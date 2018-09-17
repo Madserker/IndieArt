@@ -1,3 +1,27 @@
-.LoginButton {
-    padding: 0 14px;
-  }
+.loginButtons {
+    float: right;
+    background-color: #eec262;
+    color: black;
+    font-family: 'Lucida Sans';
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.toolbar {
+    background-color: #fbdf6f;
+    color: black;
+    font-family: 'Lucida Sans';
+    width: 80%;
+    margin: auto;
+    float: left;
+}
+
+.menu{
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+.example-spacer {
+    display: inline;
+    padding: 10px;
+}
