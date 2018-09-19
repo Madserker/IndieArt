@@ -25,7 +25,9 @@
     font-family: 'Lucida Sans';
     font-size: 125%;
     color: #383838;
-    padding: 15px 15px 15px 15px;
+    padding: 15px 0px 15px 0px;
+    min-width: 220px;
+
 
 }
 .toolbarButton:hover{
@@ -33,7 +35,10 @@
     font-size: 125%;
     color: #383838;
     background-color: #f0cd45;
-    padding: 15px 15px 15px 15px;
+    padding: 15px 0px 15px 0px;
+    min-width: 220px;
+
+
 
 }
 
@@ -51,18 +56,14 @@
     background-color: #fbdf6f;
     color: black;
     font-family: 'Lucida Sans';
-    background-repeat: no-repeat;
-    margin: auto;
     float: left;
     /*background-image: url("image.png");*/
 }
 
 .menu{
     margin-left: -10px;
-    margin-right: -10px;
-    margin-top: -10px;
-    /*max-width:100%;
-    min-width:1500px;*/
+    margin-right: -8px;
+    margin-top: -20px;
 }
 
 
@@ -84,5 +85,5 @@
 
 .logo-spacer {
     display: inline;
-    padding: 60px;
+    padding: 20px;
 }
