@@ -1,3 +1,4 @@
+/*BUTTONS===================================================================================================*/
 .loginButtons {
     float: right;
     background-color: #eec262;
@@ -6,22 +7,57 @@
     margin-top: 20px;
     margin-right: 20px;
 }
+.toolbarButton{
+    font-family: 'Lucida Sans';
+    font-size: 125%;
+    color: #383838;
+}
+
+/*=================================================================================================================*/
+ul {
+    list-style-type: none;
+  }
+  li:hover {
+    color: blue;
+    cursor: pointer;
+    background-color: yellow;
+  }
+
+.logo{
+    font-family: 'Lucida Sans';
+    font-size: 200%; 
+}
 
 .toolbar {
-    background-color: #fbdf6f;
+    /*background-color: #fbdf6f;*/
     color: black;
     font-family: 'Lucida Sans';
     width: 80%;
     margin: auto;
     float: left;
+    background-image: url("image.png");
 }
 
 .menu{
     margin-left: -10px;
     margin-top: -10px;
+    /*max-width:100%;
+    min-width:1500px;*/
 }
 
-.example-spacer {
+
+/*SPACERS=======================================================================================*/
+.button-spacer {
     display: inline;
     padding: 10px;
+}
+
+.button2-spacer {
+    display: inline;
+    padding: 20px;
+}
+
+.logo-spacer {
+    display: inline;
+    padding: 60px;
 }
