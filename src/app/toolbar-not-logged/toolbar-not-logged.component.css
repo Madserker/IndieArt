@@ -4,42 +4,62 @@
     background-color: #eec262;
     color: black;
     font-family: 'Lucida Sans';
-    margin-top: 20px;
     margin-right: 20px;
 }
+.loginButtons:hover {
+    float: right;
+    background-color: #f3b227;
+    color: black;
+    font-family: 'Lucida Sans';
+    margin-right: 20px;
+}
+.loginButtons:active {
+    float: right;
+    background-color: #eec21200;
+    color: #fbdf6f00;
+    font-family: 'Lucida Sans';
+    margin-right: 20px;
+}
+
 .toolbarButton{
     font-family: 'Lucida Sans';
     font-size: 125%;
     color: #383838;
+    padding: 15px 15px 15px 15px;
+
+}
+.toolbarButton:hover{
+    font-family: 'Lucida Sans';
+    font-size: 125%;
+    color: #383838;
+    background-color: #f0cd45;
+    padding: 15px 15px 15px 15px;
+
 }
 
-/*=================================================================================================================*/
-ul {
-    list-style-type: none;
-  }
-  li:hover {
-    color: blue;
-    cursor: pointer;
-    background-color: yellow;
-  }
-
+/*MENU=================================================================================================================*/
+.mat-menu-content {
+    background-color: 'red';
+}
 .logo{
     font-family: 'Lucida Sans';
     font-size: 200%; 
+    color: rgb(250, 160, 43);
 }
 
 .toolbar {
-    /*background-color: #fbdf6f;*/
+    background-color: #fbdf6f;
     color: black;
     font-family: 'Lucida Sans';
-    width: 80%;
+    background-repeat: no-repeat;
     margin: auto;
     float: left;
-    background-image: url("image.png");
+    /*background-image: url("image.png");*/
 }
 
 .menu{
     margin-left: -10px;
+    margin-right: -10px;
     margin-top: -10px;
     /*max-width:100%;
     min-width:1500px;*/
@@ -54,7 +74,12 @@ ul {
 
 .button2-spacer {
     display: inline;
-    padding: 20px;
+    padding: 00px;
+}
+
+.button3-spacer {
+    display: inline;
+    padding: 300px;
 }
 
 .logo-spacer {

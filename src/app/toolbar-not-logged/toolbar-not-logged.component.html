@@ -3,29 +3,15 @@
     <mat-toolbar-row >
       <span class="logo">ArtChan</span>
       <span class="logo-spacer"></span>
-      <button mat-button class="toolbarButton">Lists</button>
 
-
-      <ul>
-        <li>Lv1: First Item</li>
-        <li>Lv1: Second Item</li>
-        <li>
-          <ul>
-            <li>Lv2: First Item</li>
-            <li>
-              <ul>
-                <li>Lv3: First Item</li>
-                <li>Lv3: Second Item</li>
-                <li>Lv3: Third Item</li>
-              </ul>
-            </li>
-            <li>Lv2: Second Item</li>
-            <li>Lv2: Third Item</li>
-          </ul>
-        </li>
-      
-      </ul>
-
+      <button mat-button [matMenuTriggerFor]="menu" class="toolbarButton" >Lits</button>
+      <!--[matMenuTriggerFor]="menu" indica que debe abrir el #menu-->
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Draws</button>
+        <button mat-menu-item>Manga</button>
+        <button mat-menu-item>Animations</button>
+        <button mat-menu-item>Users</button>
+      </mat-menu>
 
       <span class="button2-spacer"></span>
       <button mat-button class="toolbarButton">Competitions</button>
@@ -33,10 +19,17 @@
       <button mat-button class="toolbarButton">Work Offers</button>
       <span class="button2-spacer"></span>
       <button mat-button class="toolbarButton">Friend's Activity</button>
+
+      <span class="button3-spacer"></span>
+
+
+      <button mat-raised-button color="accent" class="loginButtons">Log in</button>
+      <span class="buttton-spacer"></span>
+      <button mat-raised-button color="accent" class="loginButtons">Sign in</button>
+
+
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <button mat-raised-button color="accent" class="loginButtons">Log in</button>
-  <span class="buttton-spacer"></span>
-  <button mat-raised-button color="accent" class="loginButtons">Sign in</button>
+
 </div>
