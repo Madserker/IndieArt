@@ -7,10 +7,10 @@
       <button mat-button [matMenuTriggerFor]="menu" class="toolbarButton" >Lists</button>
       <!--[matMenuTriggerFor]="menu" indica que debe abrir el #menu-->
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Draws</button>
-        <button mat-menu-item>Manga</button>
-        <button mat-menu-item>Animations</button>
-        <button mat-menu-item>Users</button>
+        <button mat-menu-item class="button-submenu">Draws</button>
+        <button mat-menu-item class="button-submenu">Manga</button>
+        <button mat-menu-item class="button-submenu">Animations</button>
+        <button mat-menu-item class="button-submenu">Users</button>
       </mat-menu>
 
       <span class="button2-spacer"></span>
@@ -18,7 +18,7 @@
       <span class="button2-spacer"></span>
       <button mat-button class="toolbarButton">Work Offers</button>
       <span class="button2-spacer"></span>
-      <button mat-button class="toolbarButton">Friend's Activity</button>
+      <button mat-button class="toolbarButton" onClick="openSideBar()">Friend's Activity</button>
 
       <span class="button3-spacer"></span>
 

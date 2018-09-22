@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ListSideNavComponent } from '../list-side-nav/list-side-nav.component';
 
 
 
@@ -13,6 +14,13 @@ export class ToolbarNotLoggedComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  openSidebar(){
+    
+
+    
+  }
+
 
 
 }

@@ -1,4 +1,12 @@
-<mat-sidenav-container class="example-container" >
-  <mat-sidenav mode="side" opened class="sidenav">Sidenav content</mat-sidenav>
 
-</mat-sidenav-container>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <a href="#">TOP RATED</a>
+  <a href="#">TOP POPULAR (all time)</a>
+  <a href="#">TOP POPULAR (this year)</a>
+  <a href="#">TOP POPULAR (this month)</a>
+</div>
+
+<h2>Animated Sidenav Example</h2>
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776; open</span>
