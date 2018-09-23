@@ -1,11 +1,16 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-  <H3>SORT OPTIONS</H3>
+  <H3>SORT</H3>
+  <mat-divider></mat-divider>
   <button mat-menu-item class="button-submenu">TOP RATED</button>
   <button mat-menu-item class="button-submenu">TOP POPULAR (all time)</button>
   <button mat-menu-item class="button-submenu">TOP POPULAR (this year)</button>
-    <button mat-menu-item class="button-submenu">TOP POPULAR (this month)</button>
+  <button mat-menu-item class="button-submenu">TOP POPULAR (this month)</button>
+  <span class="spacer"></span>
+  
+  <H3>FILTERS</H3>
+  <mat-divider></mat-divider>
 </div>
 
 <span style="font-size:30px;cursor:pointer" class="openNav" (click)="openNav()" >&#9776;</span>

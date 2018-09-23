@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ListSideNavComponent } from '../list-side-nav/list-side-nav.component';
 
 
 
 @Component({
   selector: 'app-toolbar-not-logged',
   templateUrl: './toolbar-not-logged.component.html',
-  styleUrls: ['./toolbar-not-logged.component.css'],
+  styleUrls: ['./toolbar-not-logged.component.less'],
 })
 export class ToolbarNotLoggedComponent implements OnInit {
 
@@ -15,7 +14,9 @@ export class ToolbarNotLoggedComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  openSideBar(){
+  
+  }
 
 
 

@@ -1,47 +1,55 @@
+@bg-color : #fbdf6f;
+@button-color : #eec262;
+@button-color-darken : darken(@button-color,20%);
+@bg-color-darken : darken(@bg-color,20%);
+@logo-color : rgb(250, 160, 43);
+@text-color : #383838;
+
+* {
+    font-family: 'Lucida Sans';  
+}
+
 /*BUTTONS===================================================================================================*/
+
+
 .loginButtons {
     float: right;
-    background-color: #eec262;
+    background-color: @button-color;
     color: black;
-    font-family: 'Lucida Sans';
     margin-right: 20px;
     overflow: hidden;
 }
 .loginButtons:hover {
     float: right;
-    background-color: #f3b227;
+    background-color: @button-color-darken;
     color: black;
-    font-family: 'Lucida Sans';
     margin-right: 20px;
 }
 .loginButtons:active {
     float: right;
-    background-color: #eec21200;
-    color: #fbdf6f00;
-    font-family: 'Lucida Sans';
+    background-color: @bg-color;
+    color: @bg-color;
     margin-right: 20px;
 }
 
 .toolbarButton{
-    font-family: 'Lucida Sans';
     font-size: 125%;
-    color: #383838;
+    color: @text-color;
     padding: 15px 0px 15px 0px;
     min-width: 220px;
 
 
 }
 .toolbarButton:hover{
-    font-family: 'Lucida Sans';
     font-size: 125%;
-    color: #383838;
-    background-color: #f0cd45;
+    color: @text-color;
+    background-color: @bg-color-darken;
     padding: 15px 0px 15px 0px;
     min-width: 220px;
 }
 
 .button-submenu:hover {
-    background-color: #eec262;
+    background-color: @button-color;
     color: black;
 }
 
@@ -49,26 +57,22 @@
 /*MENU=================================================================================================================*/
 
 .logo{
-    font-family: 'Lucida Sans';
     font-size: 200%; 
-    color: rgb(250, 160, 43);
+    color: @logo-color ;
 }
 
 .toolbar {
-    background-color: #fbdf6f;
+    background-color: @bg-color;
     color: black;
-    font-family: 'Lucida Sans';
     /*background-image: url("image.png");*/
 }
-
+/*
 .menu{
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
-
-
 }
-
+*/
 
 /*SPACERS=======================================================================================*/
 .button-spacer {
@@ -84,7 +88,6 @@
 .button3-spacer {
     display: inline;
     padding: 300px;
-
 }
 
 .logo-spacer {

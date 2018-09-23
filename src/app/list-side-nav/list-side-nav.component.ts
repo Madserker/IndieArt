@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-side-nav.component.less']
 })
 export class ListSideNavComponent implements OnInit{
+
+  filtersDraws=[];
+
   ngOnInit(): void {
     
   }
