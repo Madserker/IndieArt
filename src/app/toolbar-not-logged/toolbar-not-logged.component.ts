@@ -15,11 +15,7 @@ export class ToolbarNotLoggedComponent implements OnInit {
   ngOnInit() {
   }
 
-  openSidebar(){
-    
 
-    
-  }
 
 
 

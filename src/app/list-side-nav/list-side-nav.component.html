@@ -1,12 +1,11 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-  <a href="#">TOP RATED</a>
-  <a href="#">TOP POPULAR (all time)</a>
-  <a href="#">TOP POPULAR (this year)</a>
-  <a href="#">TOP POPULAR (this month)</a>
+  <H3>SORT OPTIONS</H3>
+  <button mat-menu-item class="button-submenu">TOP RATED</button>
+  <button mat-menu-item class="button-submenu">TOP POPULAR (all time)</button>
+  <button mat-menu-item class="button-submenu">TOP POPULAR (this year)</button>
+    <button mat-menu-item class="button-submenu">TOP POPULAR (this month)</button>
 </div>
 
-<h2>Animated Sidenav Example</h2>
-<p>Click on the element below to open the side navigation menu.</p>
-<span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776; open</span>
+<span style="font-size:30px;cursor:pointer" class="openNav" (click)="openNav()" >&#9776;</span>
