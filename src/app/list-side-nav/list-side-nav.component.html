@@ -11,6 +11,9 @@
   
   <H3>FILTERS</H3>
   <mat-divider></mat-divider>
+  <button mat-menu-item class="button-submenu" *ngFor="let filter of filters">
+    {{filter}}
+  </button>
 </div>
 
 <span style="font-size:30px;cursor:pointer" class="openNav" (click)="openNav()" >&#9776;</span>

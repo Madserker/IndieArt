@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { ListComponent } from '../list/list.component';
+import { ToolbarNotLoggedComponent } from '../toolbar-not-logged/toolbar-not-logged.component';
+import { ChangeFiltersService } from '../change-filters.service';
 
 @Component({
   selector: 'app-list-side-nav',
@@ -6,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-side-nav.component.less']
 })
 export class ListSideNavComponent implements OnInit{
+  
+  
 
-  filtersDraws=[];
+  filters:string [];
+  constructor(private data: ChangeFiltersService) { }
+
 
   ngOnInit(): void {
-    
+    this.data.currentFilters.subscribe(filters => this.filters=filters);
   }
 
   openNav() {

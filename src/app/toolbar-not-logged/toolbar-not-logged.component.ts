@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, HostListener } from '@angular/core';
+import { ListComponent } from '../list/list.component';
+import { ListSideNavComponent } from '../list-side-nav/list-side-nav.component';
+import { ChangeFiltersService } from '../change-filters.service';
 
 
 
@@ -9,14 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarNotLoggedComponent implements OnInit {
 
-  constructor() { }
+
+  filters:string[];
+
+  constructor(private data: ChangeFiltersService) { }
 
   ngOnInit() {
+    this.data.currentFilters.subscribe(filters => this.filters=filters);
   }
 
-  openSideBar(){
-  
+
+  changeToDrawFilters(){
+    this.data.changeToDrawFilters();
   }
+  changeToUserFilters(){
+    this.data.changeToUserFilters();
+  }
+  changeToMangaFilters(){
+    this.data.changeToMangaFilters();
+  }
+  changeToAnimationFilters(){
+    this.data.changeToAnimationFilters();
+  }
+
 
 
 
