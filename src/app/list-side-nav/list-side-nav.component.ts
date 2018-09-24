@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { ListComponent } from '../list/list.component';
-import { ToolbarNotLoggedComponent } from '../toolbar-not-logged/toolbar-not-logged.component';
 import { ChangeFiltersService } from '../change-filters.service';
 
 @Component({

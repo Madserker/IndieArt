@@ -7,13 +7,15 @@ import { CustomMaterialModule } from './material';
 import { ToolbarNotLoggedComponent } from './toolbar-not-logged/toolbar-not-logged.component';
 import { ListSideNavComponent } from './list-side-nav/list-side-nav.component';
 import { ListComponent } from './list/list.component';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarNotLoggedComponent,
     ListSideNavComponent,
-    ListComponent
+    ListComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,

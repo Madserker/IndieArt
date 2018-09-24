@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, Input, HostListener } from '@angular/core';
-import { ListComponent } from '../list/list.component';
-import { ListSideNavComponent } from '../list-side-nav/list-side-nav.component';
 import { ChangeFiltersService } from '../change-filters.service';
 
 

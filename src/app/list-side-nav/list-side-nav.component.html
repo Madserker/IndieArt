@@ -1,6 +1,6 @@
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()" id="closeButton">&times;</a>
   <H3>SORT</H3>
   <mat-divider></mat-divider>
   <button mat-menu-item class="button-submenu">TOP RATED</button>
@@ -11,9 +11,11 @@
   
   <H3>FILTERS</H3>
   <mat-divider></mat-divider>
-  <button mat-menu-item class="button-submenu" *ngFor="let filter of filters">
+  <mat-radio-button class="radio-margin" *ngFor="let filter of filters" name={{filter}}>
     {{filter}}
-  </button>
+  </mat-radio-button>
+
 </div>
 
-<span style="font-size:30px;cursor:pointer" class="openNav" (click)="openNav()" >&#9776;</span>
+
+<span style="font-size:30px;cursor:pointer" class="openNav" (click)="openNav()" id="openButton">&#9776;</span>

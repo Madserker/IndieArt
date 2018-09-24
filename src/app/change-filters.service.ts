@@ -6,10 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ChangeFiltersService {
 
-  drawFilters:string[] = ["Digital Art","Traditional Art"];
-  mangaFilters:string[] = ["Comic","Manga","English","Spanish"];
-  userFilters:string[] = ["Manga Artists","Animators","Draw Artist"];
-  animationFilters:string[] = ["Short Animations","Long Animations","Serie"];
+  drawFilters:string[] = ["Digital Art","Traditional Art","Fan Art","Photography","Contest Winners"];
+  mangaFilters:string[] = ["Comic","Manga","Contest Winners","English","Spanish","Japanese"];
+  userFilters:string[] = ["Manga Artists","Animators","Draw Artist","Contest Winners"];
+  animationFilters:string[] = ["Short Animations","Long Animations","Serie","GIF","Film","Contest Winners"];
 
   private filtersSource = new BehaviorSubject<string []>(this.drawFilters);
   currentFilters = this.filtersSource.asObservable();
