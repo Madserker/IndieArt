@@ -1,27 +1,35 @@
 @bg-color : #fbdf6f;
 
 .image{
-    margin: 20px;
-    border:3px solid @bg-color;
+    margin: 10px;
+    border: 3px solid @bg-color;
     border-radius: 10px;
+    height: 100%;
+    width: auto;
+    display: block;
+    position:absolute;
 }
 
 /* Container holding the image and the text */
 .container {
     position: relative;
-    width: 22%;
-    height: 22%;
-    float: left;
+    width: 500px;
+    height: 300px;
+    margin: 10px;
+    display:inline-block;
+        
+
 }
 
 /* Bottom right text */
 .text-block {
     position: absolute;
-    bottom: 10px;
-    right: -15px;
+    bottom: 0px;
+    right: -10px;
     background-color: rgba(0, 0, 0, 0.616);
     color: white;
-    padding-left: 20px;
+    padding-left: 5px;
+    padding-top: 5px;
     padding-right: 20px;
     font-size: 10px;
 }
