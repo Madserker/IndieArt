@@ -23,14 +23,15 @@
       <span class="button3-spacer"></span>
 
 
-      <button mat-raised-button color="accent" class="loginButtons">Log in</button>
+      <button mat-raised-button color="accent" class="loginButtons" (click)="openLoginNav()">Log in</button>
       <span class="buttton-spacer"></span>
-      <button mat-raised-button color="accent" class="loginButtons">Sign in</button>
+      <button mat-raised-button color="accent" class="loginButtons" (click)="openRegisterNav()">Sign in</button>
 
 
     </mat-toolbar-row>
   </mat-toolbar>
-  
-
-
 </div>
+
+<app-login-side-nav></app-login-side-nav>
+
+

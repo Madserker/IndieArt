@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, HostListener, ViewChild } from '@angular/core';
 import { ChangeFiltersService } from '../change-filters.service';
+import { LoginSideNavComponent } from '../login-side-nav/login-side-nav.component';
 
 
 
@@ -10,7 +11,9 @@ import { ChangeFiltersService } from '../change-filters.service';
 })
 export class ToolbarNotLoggedComponent implements OnInit {
 
-
+  @ViewChild(LoginSideNavComponent)
+  private loginsidenav: LoginSideNavComponent;
+  
   filters:string[];
 
   constructor(private data: ChangeFiltersService) { }
@@ -19,6 +22,13 @@ export class ToolbarNotLoggedComponent implements OnInit {
     this.data.currentFilters.subscribe(filters => this.filters=filters);
   }
 
+
+  openLoginNav(){		
+    this.loginsidenav.openLogin();	   
+  }
+  openRegisterNav(){		
+    this.loginsidenav.openRegister();	   
+  }
 
   changeToDrawFilters(){
     this.data.changeToDrawFilters();

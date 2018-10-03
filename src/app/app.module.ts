@@ -8,6 +8,7 @@ import { ToolbarNotLoggedComponent } from './toolbar-not-logged/toolbar-not-logg
 import { ListSideNavComponent } from './list-side-nav/list-side-nav.component';
 import { ListComponent } from './list/list.component';
 import { ImageComponent } from './image/image.component';
+import { LoginSideNavComponent } from './login-side-nav/login-side-nav.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ImageComponent } from './image/image.component';
     ToolbarNotLoggedComponent,
     ListSideNavComponent,
     ListComponent,
-    ImageComponent
+    ImageComponent,
+    LoginSideNavComponent
   ],
   imports: [
     BrowserModule,
