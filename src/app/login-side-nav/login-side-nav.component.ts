@@ -15,6 +15,10 @@ export class LoginSideNavComponent implements OnInit {
   ngOnInit() {
   }
 
+  noRefresh(){
+    return false;
+  }
+
   openLogin() {
     document.getElementById("sn").style.width = "250px";
     document.getElementById("sn").style.height = "300px";

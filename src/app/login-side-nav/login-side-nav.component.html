@@ -3,15 +3,17 @@
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()" id="closeButton">&times;</a>
 
 
+
 <div *ngIf="login"><!--when login is true, this form is showed-->
   <H3>LOGIN</H3>
   <mat-divider></mat-divider>
   <span class="spacer"></span>
-  <form>
+  <form (submit)="noRefresh()"><!--no refresh no actualiza la pagina al hacer submit-->
     Username:<br>
     <input type="text" name="firstname"><br>
     Password:<br>
     <input type="text" name="lastname">
+    <button mat-menu-item class="buttonSubmit">Done</button>
   </form>
 </div>
 
@@ -19,7 +21,7 @@
   <H3>SIGN IN</H3>
   <mat-divider></mat-divider>
   <span class="spacer"></span>
-  <form>
+  <form (submit)="noRefresh()">
     Username:<br>
     <input type="text" name="firstname"><br>
     Email:<br>
@@ -28,6 +30,7 @@
     <input type="text" name="lastname">
     Repeat Password:<br>
     <input type="text" name="lastname">
+    <button mat-menu-item class="buttonSubmit">Done</button>
   </form>
 </div>
 
