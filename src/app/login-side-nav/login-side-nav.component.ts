@@ -21,14 +21,14 @@ export class LoginSideNavComponent implements OnInit {
 
   openLogin() {
     document.getElementById("sn").style.width = "250px";
-    document.getElementById("sn").style.height = "300px";
+    document.getElementById("sn").style.height = "295px";
     this.register=false;
     this.login=true;
 }
 
   openRegister() {
     document.getElementById("sn").style.width = "250px";
-    document.getElementById("sn").style.height = "400px";
+    document.getElementById("sn").style.height = "402px";
     this.register=true;
     this.login=false;
 }
