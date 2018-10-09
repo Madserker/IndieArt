@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChangeFiltersService } from '../change-filters.service';
 import { LoginSideNavComponent } from '../login-side-nav/login-side-nav.component';
+import { Router } from '@angular/router';
+import { debug, debuglog } from 'util';
 
 
 
@@ -16,11 +18,21 @@ export class ToolbarNotLoggedComponent implements OnInit {
   
   filters:string[];
 
-  constructor(private data: ChangeFiltersService) { }
+  constructor(private router:Router, private data: ChangeFiltersService) { }
 
   ngOnInit() {
     this.data.currentFilters.subscribe(filters => this.filters=filters);
   }
+
+
+
+goToWorkOffers(){
+  this.router.navigateByUrl('/workOffers');
+}
+
+goToHome(){
+  this.router.navigateByUrl('/');
+}
 
 
   openLoginNav(){		
@@ -30,17 +42,25 @@ export class ToolbarNotLoggedComponent implements OnInit {
     this.loginsidenav.openRegister();	   
   }
 
+
+
+
+
   changeToDrawFilters(){
     this.data.changeToDrawFilters();
+    this.goToHome();
   }
   changeToUserFilters(){
     this.data.changeToUserFilters();
+    this.goToHome();
   }
   changeToMangaFilters(){
     this.data.changeToMangaFilters();
+    this.goToHome();
   }
   changeToAnimationFilters(){
     this.data.changeToAnimationFilters();
+    this.goToHome();
   }
 
 
