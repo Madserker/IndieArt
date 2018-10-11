@@ -1,9 +1,7 @@
-<div class="menu">
-  <mat-toolbar color="primary" class= "toolbar">
-    <mat-toolbar-row>
-      <div class="ButtonsDiv">
+
+  <div class="toolbar">
       <img src="src/app/toolbar-not-logged/Artchan.png">
-      <span class="logo">ArtChan</span>
+      <span class="logo">IndieArt</span>
       <span class="logo-spacer"></span>
 
       <button mat-button [matMenuTriggerFor]="menu" class="toolbarButton" >Lists</button>
@@ -18,14 +16,13 @@
       <span class="button2-spacer"></span>
       <button mat-button class="toolbarButton">Competitions</button>
       <span class="button2-spacer"></span>
-      <button mat-button class="toolbarButton" (click)="goToWorkOffers()">Work Offers</button>
+      <button mat-button class="toolbarButton" (click)="goToWorkOffers()">Chat Rooms</button>
       <span class="button2-spacer"></span>
       <button mat-button class="toolbarButton">Friend's Activity</button>
       
-      
-      <span class="button3-spacer"></span>
+    
 
-    </div>
+
       <div class="loginButtonsDiv">
       <button mat-raised-button color="accent" class="loginButtons" (click)="openLoginNav()">Log in</button>
       <span class="buttton-spacer"></span>
@@ -34,9 +31,7 @@
     </div>
 
 
-    </mat-toolbar-row>
-  </mat-toolbar>
-</div>
+  </div>
 
 <app-login-side-nav></app-login-side-nav>
 
