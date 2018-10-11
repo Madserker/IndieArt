@@ -15,13 +15,10 @@ export class ToolbarNotLoggedComponent implements OnInit {
 
   @ViewChild(LoginSideNavComponent)
   private loginsidenav: LoginSideNavComponent;
-  
-  filters:string[];
 
-  constructor(private router:Router, private data: ChangeFiltersService) { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
-    this.data.currentFilters.subscribe(filters => this.filters=filters);
   }
 
 
@@ -40,27 +37,6 @@ goToHome(){
   }
   openRegisterNav(){		
     this.loginsidenav.openRegister();	   
-  }
-
-
-
-
-
-  changeToDrawFilters(){
-    this.data.changeToDrawFilters();
-    this.goToHome();
-  }
-  changeToUserFilters(){
-    this.data.changeToUserFilters();
-    this.goToHome();
-  }
-  changeToMangaFilters(){
-    this.data.changeToMangaFilters();
-    this.goToHome();
-  }
-  changeToAnimationFilters(){
-    this.data.changeToAnimationFilters();
-    this.goToHome();
   }
 
 
