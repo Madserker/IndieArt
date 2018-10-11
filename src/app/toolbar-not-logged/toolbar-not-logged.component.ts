@@ -23,8 +23,12 @@ export class ToolbarNotLoggedComponent implements OnInit {
 
 
 
-goToWorkOffers(){
-  this.router.navigateByUrl('/workOffers');
+goToChatRooms(){
+  this.router.navigateByUrl('/chat-rooms');
+}
+
+goToFriendsActivity(){
+  this.router.navigateByUrl('/friends-activity');
 }
 
 goToHome(){

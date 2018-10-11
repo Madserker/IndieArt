@@ -15,11 +15,13 @@ import { ListsViewComponent } from './lists-view/lists-view.component';
 
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
 {path: '', component: ListsViewComponent},
-{path: 'workOffers', component: WorkOffersComponent}
+{path: 'chat-rooms', component: WorkOffersComponent},
+{path: 'friends-activity', component: FriendsActivityComponent}
 ];
 
 
@@ -32,7 +34,8 @@ const routes : Route[] = [
     ImageComponent,
     LoginSideNavComponent,
     WorkOffersComponent,
-    ListsViewComponent
+    ListsViewComponent,
+    FriendsActivityComponent
   ],
   imports: [
     BrowserModule,

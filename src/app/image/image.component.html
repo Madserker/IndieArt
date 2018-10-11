@@ -1,9 +1,9 @@
 
 
 
-<div class="container">
+<div class="container" (mouseenter)="showText()" (mouseleave)="hideText()">
     <img src={{image}} class="image" id="image" width="100%">
-    <div class="text-block"> 
+    <div class="text-block" id=text{{id}} > 
       <h6>{{name}}</h6>
       <p>By <a href="">{{author}} </a></p>
     </div>
