@@ -4,14 +4,7 @@
       <span class="logo">IndieArt</span>
       <span class="logo-spacer"></span>
 
-      <button mat-button [matMenuTriggerFor]="menu" class="toolbarButton" >Lists</button>
-      <!--[matMenuTriggerFor]="menu" indica que debe abrir el #menu-->
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item class="button-submenu" (click)="changeToDrawFilters()">Draws</button>
-        <button mat-menu-item class="button-submenu" (click)="changeToMangaFilters()">Manga</button>
-        <button mat-menu-item class="button-submenu" (click)="changeToAnimationFilters()">Animations</button>
-        <button mat-menu-item class="button-submenu" (click)="changeToUserFilters()">Users</button>
-      </mat-menu>
+      <button mat-button class="toolbarButton" >Lists</button>
 
       <span class="button2-spacer"></span>
       <button mat-button class="toolbarButton">Competitions</button>
