@@ -13,6 +13,10 @@ import { LoginSideNavComponent } from './login-side-nav/login-side-nav.component
 import { WorkOffersComponent } from './work-offers/work-offers.component';
 import { ListsViewComponent } from './lists-view/lists-view.component';
 
+import { FormsModule }   from '@angular/forms';
+import { HttpModule }    from '@angular/http';
+
+//definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
 {path: '', component: ListsViewComponent},
 {path: 'workOffers', component: WorkOffersComponent}
@@ -34,8 +38,10 @@ const routes : Route[] = [
     BrowserModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
+    FormsModule, 
+    HttpModule,
 
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes) //le pasamos las rutas disponibles en la aplicación
   ],
 
 

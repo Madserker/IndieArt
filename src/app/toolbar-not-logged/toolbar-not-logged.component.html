@@ -1,6 +1,7 @@
 <div class="menu">
   <mat-toolbar color="primary" class= "toolbar">
-    <mat-toolbar-row >
+    <mat-toolbar-row>
+      <div class="ButtonsDiv">
       <img src="src/app/toolbar-not-logged/Artchan.png">
       <span class="logo">ArtChan</span>
       <span class="logo-spacer"></span>
@@ -20,13 +21,17 @@
       <button mat-button class="toolbarButton" (click)="goToWorkOffers()">Work Offers</button>
       <span class="button2-spacer"></span>
       <button mat-button class="toolbarButton">Friend's Activity</button>
-
+      
+      
       <span class="button3-spacer"></span>
 
-
+    </div>
+      <div class="loginButtonsDiv">
       <button mat-raised-button color="accent" class="loginButtons" (click)="openLoginNav()">Log in</button>
       <span class="buttton-spacer"></span>
       <button mat-raised-button color="accent" class="loginButtons" (click)="openRegisterNav()">Sign in</button>
+
+    </div>
 
 
     </mat-toolbar-row>

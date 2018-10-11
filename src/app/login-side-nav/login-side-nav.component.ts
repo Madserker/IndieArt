@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login-side-nav',
@@ -10,13 +12,15 @@ export class LoginSideNavComponent implements OnInit {
   register : boolean = false;
   login : boolean = true;
 
-  constructor() { }
+  constructor(private _http: Http) { }
+  private headers = new Headers({'Content-Type': 'application/json'});
+  title = 'Laravel Angular 4 App';
 
   ngOnInit() {
   }
 
-  noRefresh(){
-    return false;
+  noRefresh(form: NgForm){//envia el Form al backend
+      console.log(form.value);
   }
 
   openLogin() {

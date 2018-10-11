@@ -8,7 +8,7 @@
   <H3>LOGIN</H3>
   <mat-divider></mat-divider>
   <span class="spacer"></span>
-  <form (submit)="noRefresh()"><!--no refresh no actualiza la pagina al hacer submit-->
+  <form (submit)="noRefresh()" #fm="ngForm"><!--no refresh no actualiza la pagina al hacer submit-->
     Username:<br>
     <input type="text" name="firstname"><br>
     Password:<br>
@@ -21,7 +21,7 @@
   <H3>SIGN IN</H3>
   <mat-divider></mat-divider>
   <span class="spacer"></span>
-  <form (submit)="noRefresh()">
+  <form (submit)="noRefresh()" #fm="ngForm">
     Username:<br>
     <input type="text" name="firstname"><br>
     Email:<br>

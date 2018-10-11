@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { ChangeFiltersService } from './_services/change-filters.service.ts';
+import { ChangeFiltersService } from '../change-filters.service';
+
 
 @Component({
   selector: 'app-list-side-nav',

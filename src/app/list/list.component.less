@@ -1,8 +1,31 @@
-@bg-color : #fbdf6f;
+@bg-color : #c4b369;
 @button-color : #eec262;
+@bg-color-darken : darken(@bg-color,20%);
+@text-color : #383838;
 
 
+.toolbarButtonsDiv{
+  display: inline;
+  align-items: center;
+  justify-content: center;
 
+}
+
+.toolbarButton{
+  font-size: 100%;
+  color: @text-color;
+  padding: 0px 0px 0px 0px;
+  min-width: 200px;
+}
+
+.toolbarButton:hover{
+  background-color: @bg-color-darken;
+
+}
+
+.spacer{
+  padding: 60px;
+}
 
 .openNav{
   margin-left: 10px;
@@ -12,12 +35,9 @@
 
     min-height: 1000px;
     max-height: auto;
-    background-color: rgba(251, 223, 111, 0.45);
+    background-color: #3a3a3a;
 
-
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 90px;
+    margin-top: 64px;
 
 }
 
@@ -26,7 +46,6 @@
 
 
 .topnav {
-
   overflow: hidden;
   background-color: @bg-color;
 }
