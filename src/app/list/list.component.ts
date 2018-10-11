@@ -32,7 +32,7 @@ export class ListComponent implements OnInit {
     this.data.changeToMangaFilters();
   }
   changeToAnimationFilters(){
-    this.data.changeToAnimationFilters();
+    this.data.changeToAnimationFilters(); 
   }
 
 
