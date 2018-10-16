@@ -8,12 +8,12 @@
   <H3>LOGIN</H3>
   <mat-divider></mat-divider>
   <span class="spacer"></span>
-  <form (submit)="noRefresh()" #fm="ngForm"><!--no refresh no actualiza la pagina al hacer submit-->
+  <form (submit)="loginUser($event)"><!--no refresh no actualiza la pagina al hacer submit-->
     Username:<br>
-    <input type="text" name="firstname"><br>
+    <input type="text" name="name" id="username"><br>
     Password:<br>
-    <input type="text" name="lastname">
-    <button mat-menu-item class="buttonSubmit">Done</button>
+    <input type="password" name="pass" id="password">
+    <button mat-menu-item class="buttonSubmit" value="Submit">Done</button>
   </form>
 </div>
 
@@ -21,15 +21,15 @@
   <H3>SIGN IN</H3>
   <mat-divider></mat-divider>
   <span class="spacer"></span>
-  <form (submit)="noRefresh()" #fm="ngForm">
+  <form (submit)="registerUser($event)">
     Username:<br>
-    <input type="text" name="firstname"><br>
+    <input type="text" name="name" id="name"><br>
     Email:<br>
-    <input type="text" name="firstname"><br>
+    <input type="text" name="email" id="email"><br>
     Password:<br>
-    <input type="text" name="lastname">
+    <input type="text" name="pass" id="pass">
     Repeat Password:<br>
-    <input type="text" name="lastname">
+    <input type="text" name="rpass" id="rpass">
 
     <button mat-menu-item class="buttonSubmit">Done</button>
   </form>

@@ -14,7 +14,8 @@ import { WorkOffersComponent } from './work-offers/work-offers.component';
 import { ListsViewComponent } from './lists-view/lists-view.component';
 
 import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'; 
+
 import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
@@ -42,8 +43,8 @@ const routes : Route[] = [
     BrowserAnimationsModule,
     CustomMaterialModule,
     FormsModule, 
-    HttpModule,
-
+    HttpClientModule,
+    
     RouterModule.forRoot(routes) //le pasamos las rutas disponibles en la aplicación
   ],
 
