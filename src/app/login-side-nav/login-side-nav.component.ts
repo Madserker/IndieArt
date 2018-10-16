@@ -32,11 +32,12 @@ export class LoginSideNavComponent implements OnInit {
         window.alert(data.message);
       }
     })
-}
+  }
+
   registerUser(event){
 
 
-}
+  }
 
 
   openLogin() {
