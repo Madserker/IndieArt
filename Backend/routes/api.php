@@ -16,3 +16,20 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//CREAMOS LAS RUTAS DE LA API DEL BACKEND
+
+//RUTAS PARA DRAW
+Route::post('/draw',[
+    'uses' => 'DrawController@postDraw'//usamos el metodo postDraw del DrawController
+]);
+Route::get('/draws',[
+    'uses' => 'DrawController@getDraws'
+]);
+//{id} es un parametro dinamico, el id del dibujo
+Route::put('/draw/{id}',[
+    'uses' => 'DrawController@putDraw'
+]);
+Route::delete('/draw/{id}',[
+    'uses' => 'DrawController@deleteDraw'
+]);
