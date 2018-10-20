@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDrawTable extends Migration
+class CreateDrawsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDrawTable extends Migration
      */
     public function up()
     {
-        Schema::create('draw', function (Blueprint $table) {
+        Schema::create('draws', function (Blueprint $table) {
             $table->increments('id');//el id incrementara solo
             $table->timestamps();
             $table->text('name');
@@ -27,6 +27,6 @@ class CreateDrawTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('draw');
+        Schema::dropIfExists('draws');
     }
 }

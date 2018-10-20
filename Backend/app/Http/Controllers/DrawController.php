@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Draw;
+use Illuminate\Http\Request;
+
 
 class DrawController extends Controller
 {
@@ -13,7 +12,7 @@ class DrawController extends Controller
         $draw = new Draw();
         $draw->name = $request->input('name');//cogemos el name del draw desde la request del frontend
         $draw->save();//guardamos el draw
-        return response()->json(['draw' => $draw],201);//retornamos 201 y el dibujo
+        return response()->json(['draw' => $draw], 201);//retornamos 201 y el dibujo
     }
 
     public function getDraws(){
