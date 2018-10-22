@@ -25,6 +25,7 @@ Route::post('/draw',[
     'uses' => 'DrawController@postDraw'//usamos el metodo postDraw del DrawController
 ]);
 Route::get('/draws',[
+    'middleware' => 'cors',
     'uses' => 'DrawController@getDraws'
 ]);
 //{id} es un parametro dinamico, el id del dibujo

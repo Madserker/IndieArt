@@ -30,22 +30,11 @@
     <mat-divider></mat-divider>
     <app-list-side-nav></app-list-side-nav>
 
-    <app-image id="1" name="nani?" author="GOD" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="2" name="Potatoes and Molasses" author="Gregory" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="3" name="Perfection" author="DIO" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="4" name="Me" author="Uganda Knucles" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="5" name="The blackswords man" author="Guts" image="src/app/image/gandalf.gif"></app-image>
 
-    <app-image id="6" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="7" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="8" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="9" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="10" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="11" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="12" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="13" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="14" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
-    <app-image id="15" name="Where is my lamp?" author="Moth" image="src/app/image/gandalf.gif"></app-image>
+    <app-image *ngFor="let draw of draws" [draw]="draw"></app-image>
+
+    <app-image id="1" name="nani?" author="GOD" image="src/app/image/gandalf.gif"></app-image>  
+
 
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { debuglog } from 'util';
+import { Draw } from '../_models/Draw.interface';
 
 @Component({
   selector: 'app-image',
@@ -8,10 +9,16 @@ import { debuglog } from 'util';
 })
 export class ImageComponent implements OnInit {
 
+  /*
   @Input() name: string;
   @Input() author: string;
   @Input() image: string;
   @Input() id: number;
+*/
+
+  @Input() draw: Draw;
+
+
 
   constructor() {
 
@@ -21,11 +28,12 @@ export class ImageComponent implements OnInit {
 
   }
 
+
   showText(){
-    document.getElementById("text"+this.id.toString()).style.visibility="visible";
+    document.getElementById("text"+this.draw.id.toString()).style.visibility="visible";
     
   }
   hideText(){
-    document.getElementById("text"+this.id.toString()).style.visibility="hidden";
+    document.getElementById("text"+this.draw.id.toString()).style.visibility="hidden";
   }
 }

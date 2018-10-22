@@ -20,7 +20,14 @@ class DrawController extends Controller
         $response = [
             'draws' => $draws
         ];
-        return response()->json($response,200);
+
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+//base64_encode
+        return response()->json(($response),200);
+
+
+
     }
 
     public function putDraw(Request $request, $id){//actualizar draw atributes

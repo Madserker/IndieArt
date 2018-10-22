@@ -15,6 +15,7 @@ import { ListsViewComponent } from './lists-view/lists-view.component';
 
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
 
 import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
 
@@ -44,6 +45,7 @@ const routes : Route[] = [
     CustomMaterialModule,
     FormsModule, 
     HttpClientModule,
+    HttpModule,
     
     RouterModule.forRoot(routes) //le pasamos las rutas disponibles en la aplicación
   ],
