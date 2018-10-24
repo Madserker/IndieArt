@@ -2,12 +2,12 @@
 
 
 <div class="container" (mouseenter)="showText()" (mouseleave)="hideText()">
-    <img src={{image}} class="image" id="image" width="100%">
-    <div class="text-block" id=text{{id}} > 
-      <h6>{{name}}</h6>
-      <p>By <a href="">{{author}} </a></p>
+    <img src="src/app/image/gandalf.gif" class="image" id="image" width="100%">
+    <div class="text-block" id=text{{draw.id}} > 
+      <h6>{{draw.name}}</h6>
+      <p>By <a href="">draw.author </a></p>
     </div>
-    <div class="text-block-up" id=text{{id}}> 
+    <div class="text-block-up" id=text{{draw.id}}> 
       <h6>4 &#9733;</h6>
     </div>
   </div>

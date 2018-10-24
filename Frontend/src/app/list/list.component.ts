@@ -21,10 +21,14 @@ export class ListComponent implements OnInit {
 
   constructor(private data: ChangeFiltersService, private drawService: DrawServiceService) { }
 
+
   ngOnInit() {
     this.data.currentFilters.subscribe(filters => this.filters=filters);
     this.drawService.getDraws()
-    .subscribe(result => {this.draws = result as Draw[]})
+    .subscribe(result => {
+      this.draws = result as Draw[]
+    })
+
     
   }
 
@@ -36,6 +40,7 @@ export class ListComponent implements OnInit {
   changeToDrawFilters(){
     this.data.changeToDrawFilters();
     this.getAllDraws();
+    console.log(this.draws);
     
   }
   changeToUserFilters(){

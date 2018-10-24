@@ -19,13 +19,12 @@ export class ImageComponent implements OnInit {
   @Input() draw: Draw;
 
 
-
   constructor() {
 
    }
 
   ngOnInit() {
-
+    console.log(this.draw.id);
   }
 
 
