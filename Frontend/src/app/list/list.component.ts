@@ -32,14 +32,10 @@ export class ListComponent implements OnInit {
     
   }
 
-  getAllDraws(){
-
-  }
 
 
   changeToDrawFilters(){
     this.data.changeToDrawFilters();
-    this.getAllDraws();
     console.log(this.draws);
     
   }

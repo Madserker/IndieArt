@@ -28,14 +28,13 @@ import { map} from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Draw } from "./_models/Draw.interface";
-    
 
 @Injectable()
 export class DrawServiceService {
  constructor(private http: HttpClient){}
 
  getDraws(): Observable<Draw[]> {
-    // base URL should not have ? in it at the en
+
     return this.http.get('http://localhost:8000/api/draws')
     .pipe(
   map(res => res.draws as Draw[] || [])); 
