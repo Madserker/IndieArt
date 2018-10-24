@@ -36,7 +36,7 @@ export class DrawServiceService {
   getDraws(): Observable<Draw[]>{
   //get: returns observable object
   //need to cast observable to interface Draw -> get<Draw[]>
-  console.log(this.http.get<Draw[]>('http://localhost:8000/api/draws'));
+    console.log(this.http.get<Draw[]>('http://localhost:8000/api/draws'));
     return this.http.get<Draw[]>('http://localhost:8000/api/draws');
 
   }

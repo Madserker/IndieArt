@@ -24,10 +24,8 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.data.currentFilters.subscribe(filters => this.filters=filters);
     this.drawService.getDraws()
-    .subscribe(
-      //asignamos data(Observable) a nuestro objeto draws
-      data => this.draws = data
-    );
+    .subscribe(result => {this.draws = result as Draw[]})
+    
   }
 
   getAllDraws(){

@@ -15,8 +15,8 @@ class CreateDrawsTable extends Migration
     {
         Schema::create('draws', function (Blueprint $table) {
             $table->increments('id');//el id incrementara solo
-            $table->timestamps();
             $table->text('name');
+            $table->timestamps();
         });
     }
 

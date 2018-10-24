@@ -10,7 +10,6 @@ import { ListSideNavComponent } from './list-side-nav/list-side-nav.component';
 import { ListComponent } from './list/list.component';
 import { ImageComponent } from './image/image.component';
 import { LoginSideNavComponent } from './login-side-nav/login-side-nav.component';
-import { WorkOffersComponent } from './work-offers/work-offers.component';
 import { ListsViewComponent } from './lists-view/lists-view.component';
 
 import { FormsModule }   from '@angular/forms';
@@ -18,12 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
+import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
 {path: '', component: ListsViewComponent},
-{path: 'chat-rooms', component: WorkOffersComponent},
-{path: 'friends-activity', component: FriendsActivityComponent}
+{path: 'chat-rooms', component: ChatRoomsComponent},
+{path: 'friends-activity', component: FriendsActivityComponent},
 ];
 
 
@@ -35,9 +35,9 @@ const routes : Route[] = [
     ListComponent,
     ImageComponent,
     LoginSideNavComponent,
-    WorkOffersComponent,
     ListsViewComponent,
-    FriendsActivityComponent
+    FriendsActivityComponent,
+    ChatRoomsComponent
   ],
   imports: [
     BrowserModule,
