@@ -29,13 +29,17 @@ import { map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Draw } from "./_models/Draw.interface";
 
+interface getjson{
+  draws: Draw[]
+}
+
 @Injectable()
 export class DrawServiceService {
  constructor(private http: HttpClient){}
 
  getDraws(): Observable<Draw[]> {
 
-    return this.http.get('http://localhost:8000/api/draws')
+    return this.http.get<getjson>('http://localhost:8000/api/draws')
     .pipe(
   map(res => res.draws as Draw[] || [])); 
    // in case that the property results in the res POJO doesnt exist (res.results returns null) then return empty array ([])
