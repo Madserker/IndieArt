@@ -29,6 +29,7 @@ import { map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Draw } from "./_models/Draw.interface";
 
+//definimos interface para mapear la lista de dibujos
 interface getjson{
   draws: Draw[]
 }
@@ -41,7 +42,6 @@ export class DrawServiceService {
 
     return this.http.get<getjson>('http://localhost:8000/api/draws')
     .pipe(
-  map(res => res.draws as Draw[] || [])); 
-   // in case that the property results in the res POJO doesnt exist (res.results returns null) then return empty array ([])
+      map(res => res.draws as Draw[] || [])); 
   }
 } 

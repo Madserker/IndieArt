@@ -35,3 +35,8 @@ Route::put('/draw/{id}',[
 Route::delete('/draw/{id}',[
     'uses' => 'DrawController@deleteDraw'
 ]);
+
+//RUTAS PARA LOGIN Y SIGN UP
+Route::post('/user', [
+    'uses' => 'UserController@signup'
+]);

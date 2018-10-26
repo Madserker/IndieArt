@@ -14,10 +14,14 @@ class CreateDrawsTable extends Migration
     public function up()
     {
         Schema::create('draws', function (Blueprint $table) {
+            Schema::dropIfExists('draws');
             $table->increments('id');//el id incrementara solo
             $table->text('name');
+            $table->text('author');
+            $table->text('ImagePath');
             $table->timestamps();
         });
+    
     }
 
     /**
