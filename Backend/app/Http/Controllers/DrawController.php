@@ -17,9 +17,10 @@ class DrawController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
         
-
         $draw = new Draw();
-        $draw->name = $request->input('name');//cogemos el name del draw desde la request del frontend
+        $draw->name = $request->input('name');//cogemos los datos del draw desde la request del frontend
+        $draw->author = $request->input('author');
+        $draw->imagePath = $request->input('imagePath');       
         $draw->save();//guardamos el draw
         return response()->json(['draw' => $draw], 201);//retornamos 201 y el dibujo
     }
