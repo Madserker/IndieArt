@@ -28,7 +28,6 @@ export class AuthService {
     },
     {headers: new Headers({'X-Request-Width':'XMLHttpRequest'})}).pipe(
     map(
-
       (response: Response) => {
         const token = response.json().token;
         localStorage.setItem('token', token);
