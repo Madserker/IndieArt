@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //RUTAS PARA DRAW
 Route::post('/draw',[
-    'uses' => 'DrawController@postDraw'//usamos el metodo postDraw del DrawController
+    'uses' => 'DrawController@postDraw',//usamos el metodo postDraw del DrawController
 ]);
 Route::get('/draws',[
     'middleware' => 'cors',
@@ -30,10 +30,10 @@ Route::get('/draws',[
 ]);
 //{id} es un parametro dinamico, el id del dibujo
 Route::put('/draw/{id}',[
-    'uses' => 'DrawController@putDraw'
+    'uses' => 'DrawController@putDraw',
 ]);
 Route::delete('/draw/{id}',[
-    'uses' => 'DrawController@deleteDraw'
+    'uses' => 'DrawController@deleteDraw',
 ]);
 
 //RUTAS PARA LOGIN Y SIGN UP

@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
-
-
-interface myData{
-  success: boolean,
-  message: string
-}
+import { Http, Headers, Response } from '@angular/http';
+import {Observable} from 'rxjs';
 
 @Injectable()
-export class AuthService{
-  
-  constructor(private http : HttpClient){}
-  
-  getUserDetails(username,password){
-    //post detalles al API server y retorna info de user si es correcto
-    return this.http.post<myData>('/api/auth.php',{
-      username,
-      password
-    })
+export class AuthService {
+
+  constructor(private http: Http) { 
+
+  }
+
+  signup(username:string,email:string,password:string){
+    return this.http.post('http://localhost:8000/api/user',{
+      username:username,
+      email:email,
+      password:password
+    },
+    {headers: new Headers({'X-Request-Width':'XMLHttpRequest'})}
+    );
   }
 }

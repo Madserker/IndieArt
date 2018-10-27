@@ -29,7 +29,6 @@ class UserController extends Controller
     public function signin(Request $request){
         $this->validate($request,[//validamos el registro
             'username' => 'required', //el nombre es obligatorio
-            'email' => 'required|email', //el email tiene que ser obligatorio y formato email 
             'password' => 'required', //contraseña obligatoria
                 ]);
             $credentials = $request->only('email','password');
