@@ -40,3 +40,6 @@ Route::delete('/draw/{id}',[
 Route::post('/user', [
     'uses' => 'UserController@signup'
 ]);
+Route::post('/user/signin', [
+    'uses' => 'UserController@signin'
+]);

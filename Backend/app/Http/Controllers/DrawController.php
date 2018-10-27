@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Draw;
 use Illuminate\Http\Request;
-
+use JWTAuth;
 
 
 class DrawController extends Controller
 {
 
     public function postDraw(Request $request){
+        //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+
         $draw = new Draw();
         $draw->name = $request->input('name');//cogemos el name del draw desde la request del frontend
         $draw->save();//guardamos el draw
