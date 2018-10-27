@@ -31,7 +31,7 @@ class UserController extends Controller
             'username' => 'required', //el nombre es obligatorio
             'password' => 'required', //contraseña obligatoria
                 ]);
-            $credentials = $request->only('email','password');
+            $credentials = $request->only('username','password');
             try {
                 if(!$token = JWTAuth::attempt($credentials)){//intenta crear token
                 //si if falla, las credenciales no son validas

@@ -8,11 +8,11 @@
   <H3>LOGIN</H3>
   <mat-divider></mat-divider>
   <span class="spacer"></span>
-  <form (submit)="loginUser($event)"><!--no refresh no actualiza la pagina al hacer submit-->
+  <form (submit)="loginUser(f)" #f="ngForm" required><!--no refresh no actualiza la pagina al hacer submit-->
     Username:<br>
-    <input type="text" name="name" id="username"><br>
+    <input type="text" name="username" id="username" ngModel class="form-control">
     Password:<br>
-    <input type="password" name="pass" id="password">
+    <input type="text" name="password" id="password" ngModel class="form-control">
     <button mat-menu-item class="buttonSubmit" value="Submit">Done</button>
   </form>
 </div>

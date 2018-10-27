@@ -19,7 +19,13 @@ export class LoginSideNavComponent implements OnInit {
   }
 
   loginUser(form: NgForm){
-
+    this.authService.signin(
+      form.value.username,
+      form.value.password
+      ).subscribe(
+        response => console.log(response),
+        error => console.log(error)
+      );
   }
 
   registerUser(form: NgForm){
@@ -37,7 +43,7 @@ export class LoginSideNavComponent implements OnInit {
 
   openLogin() {
     document.getElementById("sn").style.width = "250px";
-    document.getElementById("sn").style.height = "295px";
+    document.getElementById("sn").style.height = "310px";
     this.register=false;
     this.login=true;
 }
