@@ -26,6 +26,7 @@ const routes : Route[] = [
 {path: 'chat-rooms', component: ChatRoomsComponent},
 {path: 'friends-activity', component: FriendsActivityComponent},
 {path: 'competitions', component: ListsViewComponent},
+//{path: '/profile/:username', component: ListsViewComponent},
 ];
 
 

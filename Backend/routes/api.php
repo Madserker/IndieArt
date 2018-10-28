@@ -43,3 +43,19 @@ Route::post('/user', [
 Route::post('/user/signin', [
     'uses' => 'UserController@signin'
 ]);
+
+//RUTAS PARA COMIC
+Route::post('/comic',[
+    'uses' => 'ComicController@postComic',//usamos el metodo postDraw del DrawController
+]);
+Route::get('/comics',[
+    'middleware' => 'cors',
+    'uses' => 'ComicController@getComics'
+]);
+//{id} es un parametro dinamico, el id del dibujo
+Route::put('/comic/{id}',[
+    'uses' => 'ComicController@putComics',
+]);
+Route::delete('/comic/{id}',[
+    'uses' => 'ComicController@deleteComics',
+]);
