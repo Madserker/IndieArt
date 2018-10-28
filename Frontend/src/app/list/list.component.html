@@ -30,9 +30,12 @@
     <mat-divider></mat-divider>
     <app-list-side-nav></app-list-side-nav>
 
-
+<div *ngIf="option==1">
     <app-image *ngFor="let draw of draws" [draw]="draw"></app-image>
-
+  </div>
+<div *ngIf="option==2">
+    <app-image *ngFor="let comic of comics" [draw]="comic"></app-image>
+</div>
   
 
 

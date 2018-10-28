@@ -3,6 +3,7 @@ import { ListSideNavComponent } from '../list-side-nav/list-side-nav.component';
 import { ChangeFiltersService } from '../change-filters.service';
 import { Draw } from '../_models/Draw.interface';
 import { DrawServiceService } from '../draw-service.service';
+import { Comic } from '../_models/Comic.interface';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class ListComponent implements OnInit {
   private listSideNav: ListSideNavComponent;
   
   filters:string[];
+  option: number = 1;
   draws: Draw[] = [];
+  comics: Comic[] = [];
 
   constructor(private data: ChangeFiltersService, private drawService: DrawServiceService) { }
 
@@ -36,6 +39,7 @@ export class ListComponent implements OnInit {
 
   changeToDrawFilters(){
     this.data.changeToDrawFilters();
+    this.option=1;
     console.log(this.draws);
     
   }
@@ -44,6 +48,11 @@ export class ListComponent implements OnInit {
   }
   changeToMangaFilters(){
     this.data.changeToMangaFilters();
+    this.option=2;
+    this.drawService.getComics()
+    .subscribe(result => {
+      this.comics = result as Comic[]
+    })
   }
   changeToAnimationFilters(){
     this.data.changeToAnimationFilters(); 

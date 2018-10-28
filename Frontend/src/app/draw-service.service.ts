@@ -28,10 +28,14 @@ import { map} from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Draw } from "./_models/Draw.interface";
+import { Comic } from './_models/Comic.interface';
 
 //definimos interface para mapear la lista de dibujos
-interface getjson{
+interface getDraws{
   draws: Draw[]
+}
+interface getComics{
+  comics: Comic[]
 }
 
 @Injectable()
@@ -40,8 +44,14 @@ export class DrawServiceService {
 
  getDraws(): Observable<Draw[]> {
 
-    return this.http.get<getjson>('http://localhost:8000/api/draws')
+    return this.http.get<getDraws>('http://localhost:8000/api/draws')
     .pipe(
       map(res => res.draws as Draw[] || [])); 
+  }
+
+  getComics(): Observable<Comic[]>{
+    return this.http.get<getComics>('http://localhost:8000/api/comics')
+    .pipe(
+      map(res => res.comics as Comic[] || [])); 
   }
 } 
