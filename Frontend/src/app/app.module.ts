@@ -24,6 +24,7 @@ const routes : Route[] = [
 {path: '', component: ListsViewComponent},
 {path: 'chat-rooms', component: ChatRoomsComponent},
 {path: 'friends-activity', component: FriendsActivityComponent},
+{path: 'competitions', component: ListsViewComponent},
 ];
 
 

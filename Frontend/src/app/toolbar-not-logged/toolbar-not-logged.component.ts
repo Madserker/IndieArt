@@ -22,7 +22,7 @@ export class ToolbarNotLoggedComponent implements OnInit {
   currentUser : User;
 
   constructor(private router:Router,protected authService:AuthService) { 
-    this.getUser();
+    this.getUser();//al iniciar o actualizar la pagina cogemos el usuario del local storage
   }
 
   ngOnInit() {
@@ -31,11 +31,9 @@ export class ToolbarNotLoggedComponent implements OnInit {
 
 getUser(){
   if(JSON.parse(this.authService.getUser())==null){
-    console.log("1");
   }
   else{
     this.currentUser = JSON.parse(this.authService.getUser())[0];//cogemos el usuario del localStorage
-    console.log("2");
   }
 }
 
@@ -45,6 +43,10 @@ goToChatRooms(){
 
 goToFriendsActivity(){
   this.router.navigateByUrl('/friends-activity');
+}
+
+goToCompetitions(){
+  this.router.navigateByUrl('/competitions');
 }
 
 goToHome(){
