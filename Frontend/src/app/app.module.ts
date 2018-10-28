@@ -37,7 +37,7 @@ const routes : Route[] = [
     LoginSideNavComponent,
     ListsViewComponent,
     FriendsActivityComponent,
-    ChatRoomsComponent
+    ChatRoomsComponent,
   ],
   imports: [
     BrowserModule,

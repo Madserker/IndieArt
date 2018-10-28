@@ -20,12 +20,13 @@
       
     
 
-
-      <div class="loginButtonsDiv">
+      <div class="loginButtonsDiv" *ngIf="currentUser == null">
       <button mat-raised-button color="accent" class="loginButtons" (click)="openLoginNav()">Log in</button>
       <span class="buttton-spacer"></span>
       <button mat-raised-button color="accent" class="loginButtons" (click)="openRegisterNav()">Sign up</button>
-
+    </div>
+    <div class="loginButtonsDiv" *ngIf="currentUser != null">
+        <button mat-raised-button color="accent" class="loginButtons" (click)="logout()">Log out</button>
     </div>
 
 

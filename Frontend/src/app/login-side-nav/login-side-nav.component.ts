@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,9 +12,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginSideNavComponent implements OnInit {
   register : boolean = false;
-  login : boolean = true;
 
-  constructor(protected authService:AuthService) { }
+  constructor(private router:Router, protected authService:AuthService) { }
 
   ngOnInit() {
   }
@@ -23,8 +23,8 @@ export class LoginSideNavComponent implements OnInit {
       form.value.username,
       form.value.password
       ).subscribe(
-        response => console.log(response),
-        error => console.log(error)
+        response =>  window.location.reload(),//si ha ido bien el login
+        error => console.log(error)//si no ha ido bien el login
       );
   }
 
@@ -34,25 +34,28 @@ export class LoginSideNavComponent implements OnInit {
       form.value.email,
       form.value.password
       ).subscribe(
-        response => console.log(response),
-        error => console.log(error)
+        response => { window.location.reload(),this.closeNav()},//si ha ido bien el registro
+        error => console.log(error)//si no ha ido bien el registro
       );
+      
 
   }
 
+  logout(){
+    this.authService.logout();
+    window.location.reload();
+  }
 
   openLogin() {
     document.getElementById("sn").style.width = "250px";
     document.getElementById("sn").style.height = "310px";
     this.register=false;
-    this.login=true;
 }
 
   openRegister() {
     document.getElementById("sn").style.width = "250px";
     document.getElementById("sn").style.height = "430px";
     this.register=true;
-    this.login=false;
 }
 
  closeNav() {
