@@ -26,7 +26,14 @@
       <button mat-raised-button color="accent" class="loginButtons" (click)="openRegisterNav()">Sign up</button>
     </div>
     <div class="loginButtonsDiv" *ngIf="currentUser != null">
-        <button mat-raised-button color="accent" class="loginButtons" (click)="logout()">Log out</button>
+
+        <button mat-button class="profileButton"[matMenuTriggerFor]="menu">
+            <img src="src/app/image/berserk.jpg" class="image" id="image">
+          {{currentUser.username}} &#9662;</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">Profile</button>
+          <button mat-menu-item (click)="logout()">Log out &#10149;</button>
+        </mat-menu>
     </div>
 
 

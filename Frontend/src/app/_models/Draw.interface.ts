@@ -1,4 +1,5 @@
 export interface Draw{
+    mark: number;
     name: string;
     id: number;
     imagePath:string;

@@ -18,6 +18,7 @@ import { HttpModule } from '@angular/http';
 
 import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
 import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -39,6 +40,7 @@ const routes : Route[] = [
     ListsViewComponent,
     FriendsActivityComponent,
     ChatRoomsComponent,
+    ProfileViewComponent,
   ],
   imports: [
     BrowserModule,
