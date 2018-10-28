@@ -2,7 +2,7 @@
 
 
 <div class="container" (mouseenter)="showText()" (mouseleave)="hideText()">
-    <img src="src/app/image/berserk.jpg" class="image" id="image" width="100%">
+    <img src="{{draw.ImagePath}}" class="image" id="image" width="100%">
     <div class="text-block" id=text{{draw.id}} > 
       <h6>{{draw.name}}</h6>
       <p>By <a href="">{{draw.author}}</a></p>
