@@ -4,6 +4,7 @@ import { ChangeFiltersService } from '../change-filters.service';
 import { Draw } from '../_models/Draw.interface';
 import { DrawServiceService } from '../draw-service.service';
 import { Comic } from '../_models/Comic.interface';
+import { User } from '../_models/User.interface';
 
 
 @Component({
@@ -21,21 +22,19 @@ export class ListComponent implements OnInit {
   option: number = 1;
   draws: Draw[] = [];
   comics: Comic[] = [];
+  users: User[] = [];
 
   constructor(private data: ChangeFiltersService, private drawService: DrawServiceService) { }
 
 
   ngOnInit() {
     this.data.currentFilters.subscribe(filters => this.filters=filters);
+    //rellenamos la lista de dibujos al iniciar el componente (default option = draws)
     this.drawService.getDraws()
     .subscribe(result => {
       this.draws = result as Draw[]
-    })
-
-    
+    })    
   }
-
-
 
   changeToDrawFilters(){
     this.data.changeToDrawFilters();
@@ -45,9 +44,16 @@ export class ListComponent implements OnInit {
   }
   changeToUserFilters(){
     this.data.changeToUserFilters();
+        //rellenamos la listade comics y la mostramos
+        this.option=4;
+        this.drawService.getUsers()
+        .subscribe(result => {
+          this.users = result as User[]
+        })
   }
   changeToMangaFilters(){
     this.data.changeToMangaFilters();
+    //rellenamos la listade comics y la mostramos
     this.option=2;
     this.drawService.getComics()
     .subscribe(result => {

@@ -28,10 +28,10 @@
     <div class="loginButtonsDiv" *ngIf="currentUser != null">
 
         <button mat-button class="profileButton"[matMenuTriggerFor]="menu">
-            <img src="src/app/image/berserk.jpg" class="image" id="image">
+            <img src={{currentUser.ImagePath}} class="profileImage" id="image">
           {{currentUser.username}} &#9662;</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()">Profile</button>
+          <button mat-menu-item >Profile</button>
           <button mat-menu-item (click)="logout()">Log out &#10149;</button>
         </mat-menu>
     </div>

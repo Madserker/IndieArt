@@ -20,6 +20,7 @@ import { FriendsActivityComponent } from './friends-activity/friends-activity.co
 import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ComicComponent } from './comic/comic.component';
+import { UserComponent } from './user/user.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -44,6 +45,7 @@ const routes : Route[] = [
     ChatRoomsComponent,
     ProfileViewComponent,
     ComicComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

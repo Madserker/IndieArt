@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //CREAMOS LAS RUTAS DE LA API DEL BACKEND
 
-//RUTAS PARA DRAW
+//===========================================================================================RUTAS PARA DRAW
 Route::post('/draw',[
     'uses' => 'DrawController@postDraw',//usamos el metodo postDraw del DrawController
 ]);
@@ -44,7 +44,7 @@ Route::post('/user/signin', [
     'uses' => 'UserController@signin'
 ]);
 
-//RUTAS PARA COMIC
+//=====================================================================================RUTAS PARA COMIC
 Route::post('/comic',[
     'uses' => 'ComicController@postComic',//usamos el metodo postDraw del DrawController
 ]);
@@ -58,4 +58,10 @@ Route::put('/comic/{id}',[
 ]);
 Route::delete('/comic/{id}',[
     'uses' => 'ComicController@deleteComics',
+]);
+
+//====================================================================================RUTAS PARA USER
+Route::get('/users',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getUsers'
 ]);

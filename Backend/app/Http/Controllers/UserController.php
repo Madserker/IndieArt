@@ -9,6 +9,9 @@ use JWTAuth;
 
 class UserController extends Controller
 {
+
+
+//==============================================================LOGIN/REGISTER METHODS
     public function signup(Request $request){
         $this->validate($request,[//validamos el registro
         'username' => 'required|unique:users', //el nombre de usuario es obligatorio y unico en la tabla de usuarios
@@ -16,15 +19,12 @@ class UserController extends Controller
         'password' => 'required', //contraseña obligatoria
             ]);
         $user = new User([//creamos el usuario con los parametros del request
+            'ImagePath' => 'src/assets/storage/berserk.jpg',//default image
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')) //bcrypt encripta la contraseña del usuario
         ]);
         $user->save();//guardamos el usuario en la DB
-
-
-
-        
         return response()->json([
             'message' => 'User succesfully created'
         ],201);
@@ -53,5 +53,20 @@ class UserController extends Controller
                 'token' => $token,
                 'user' => $user
             ],200);
-    }   
+    }  
+    
+    
+
+    //===============================================USERS METHODS
+    public function getUsers(){
+        $users = User::all();
+        $response = [
+            'users' => $users
+        ];
+
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
 }

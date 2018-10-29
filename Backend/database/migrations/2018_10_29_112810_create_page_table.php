@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnimationsTable extends Migration
+class CreatePageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAnimationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('animations', function (Blueprint $table) {
+        Schema::create('page', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('name');
-            $table->text('author');
-            $table->text('ImagePath');//portada de la serie de animacion
+            $table->integer('number');
+            $table->string('ImagePath');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateAnimationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('animations');
+        Schema::dropIfExists('page');
     }
 }

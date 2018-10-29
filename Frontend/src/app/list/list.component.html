@@ -36,6 +36,9 @@
 <div *ngIf="option==2">
     <app-comic *ngFor="let comic of comics" [comic]="comic"></app-comic>
 </div>
+<div *ngIf="option==4">
+  <app-user *ngFor="let user of users" [user]="user"></app-user>
+</div>
   
 
 
