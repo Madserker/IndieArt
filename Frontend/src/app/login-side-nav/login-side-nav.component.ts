@@ -29,16 +29,16 @@ export class LoginSideNavComponent implements OnInit {
   }
 
   registerUser(form: NgForm){
-    this.authService.signup(
-      form.value.username,
-      form.value.email,
-      form.value.password
-      ).subscribe(
-        response => { window.location.reload(),this.closeNav()},//si ha ido bien el registro
-        error => console.log(error)//si no ha ido bien el registro
+    if(form.value.password == form.value.rpass){//comprobamos en el frontend si coinciden las contraseñas  
+      this.authService.signup(
+        form.value.username,
+        form.value.email,
+        form.value.password
+        ).subscribe(
+          response => { window.location.reload(),this.closeNav()},//si ha ido bien el registro
+          error => console.log(error)//si no ha ido bien el registro
       );
-      
-
+    }
   }
 
   logout(){
