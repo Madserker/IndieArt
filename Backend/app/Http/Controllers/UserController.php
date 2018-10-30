@@ -13,13 +13,18 @@ class UserController extends Controller
 
 //==============================================================LOGIN/REGISTER METHODS
     public function signup(Request $request){
+
+        $randomPic = ['src/assets/storage/profile1.jpg','src/assets/storage/profile2.png',
+        'src/assets/storage/profile3.png','src/assets/storage/profile4.jpg',
+        'src/assets/storage/profile5.jpg','src/assets/storage/profile6.jpg'];
+
         $this->validate($request,[//validamos el registro
         'username' => 'required|unique:users', //el nombre de usuario es obligatorio y unico en la tabla de usuarios
         'email' => 'required|email|unique:users', //el email tiene que ser obligatorio, formato email y unico en la tabla de usuarios
         'password' => 'required', //contraseña obligatoria
             ]);
         $user = new User([//creamos el usuario con los parametros del request
-            'ImagePath' => 'src/assets/storage/berserk.jpg',//default image
+            'ImagePath' => array_random($randomPic),//default image
             'username' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')) //bcrypt encripta la contraseña del usuario
