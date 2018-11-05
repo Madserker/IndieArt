@@ -15,7 +15,6 @@ export class DrawViewComponent implements OnInit {
 
 draw : Draw;
 id:number;
-draws : Draw[];
 
 
   constructor(private route: ActivatedRoute,private drawService: DrawServiceService) {}

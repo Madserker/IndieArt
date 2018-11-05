@@ -53,6 +53,9 @@ goToHome(){
   this.router.navigateByUrl('/');
 }
 
+goToProfile(username){
+  this.router.navigateByUrl("user/"+username);
+}
 
   openLoginNav(){		
     this.loginsidenav.openLogin();	   

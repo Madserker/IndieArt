@@ -70,3 +70,8 @@ Route::get('/users',[
     'middleware' => 'cors',
     'uses' => 'UserController@getUsers'
 ]);
+Route::get('/user/{username}',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getUserByUsername'
+]);
+

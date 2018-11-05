@@ -44,6 +44,9 @@ interface getUsers{
 interface getDraw{
   draw: Draw
 }
+interface getUser{
+  user: User
+}
 
 @Injectable()
 export class DrawServiceService {
@@ -70,17 +73,17 @@ export class DrawServiceService {
       map(res => res.users as User[] || [])); 
   }
 
-  //=================================================================================
+  //=================================================================================GetByPrimaryKey Methods
 
- /* 
-  getDrawById(id: number) : Observable<Draw>{
-    return this.getDraws().pipe(
-      map((draws: Draw[]) => draws.find(draw => draw.id == id ))
-    );
-  }*/
+
   getDrawById(id : number): Observable<Draw>{
     return this.http.get<getDraw>('http://localhost:8000/api/draw/'+id).pipe(
       map(res => res.draw as Draw)
+    )
+  }
+  getUserByUsername(username : string): Observable<User>{
+    return this.http.get<getUser>('http://localhost:8000/api/user/'+username).pipe(
+      map(res => res.user as User)
     )
   }
 } 

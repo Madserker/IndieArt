@@ -31,7 +31,9 @@ const routes : Route[] = [
 {path: 'friends-activity', component: FriendsActivityComponent},
 {path: 'competitions', component: ChatRoomsComponent},
 
+//rutas dinamicas
 {path: 'draw/:id', component: DrawViewComponent},
+{path: 'user/:username', component: ProfileViewComponent},
 
 //{path: '/profile/:username', component: ListsViewComponent},
 ];
