@@ -41,9 +41,14 @@ interface getComics{
 interface getUsers{
   users: User[]
 }
+interface getDraw{
+  draw: Draw
+}
 
 @Injectable()
 export class DrawServiceService {
+
+  draws : Draw[]
  constructor(private http: HttpClient){}
 
  getDraws(): Observable<Draw[]> {
@@ -63,5 +68,19 @@ export class DrawServiceService {
     return this.http.get<getUsers>('http://localhost:8000/api/users')
     .pipe(
       map(res => res.users as User[] || [])); 
+  }
+
+  //=================================================================================
+
+ /* 
+  getDrawById(id: number) : Observable<Draw>{
+    return this.getDraws().pipe(
+      map((draws: Draw[]) => draws.find(draw => draw.id == id ))
+    );
+  }*/
+  getDrawById(id : number): Observable<Draw>{
+    return this.http.get<getDraw>('http://localhost:8000/api/draw/'+id).pipe(
+      map(res => res.draw as Draw)
+    )
   }
 } 

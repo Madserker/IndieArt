@@ -21,13 +21,18 @@ import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ComicComponent } from './comic/comic.component';
 import { UserComponent } from './user/user.component';
+import { DrawViewComponent } from './draw-view/draw-view.component';
+import { DrawDetailsComponent } from './draw-details/draw-details.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
 {path: '', component: ListsViewComponent},
 {path: 'chat-rooms', component: ChatRoomsComponent},
 {path: 'friends-activity', component: FriendsActivityComponent},
-{path: 'competitions', component: ListsViewComponent},
+{path: 'competitions', component: ChatRoomsComponent},
+
+{path: 'draw/:id', component: DrawViewComponent},
+
 //{path: '/profile/:username', component: ListsViewComponent},
 ];
 
@@ -46,6 +51,8 @@ const routes : Route[] = [
     ProfileViewComponent,
     ComicComponent,
     UserComponent,
+    DrawViewComponent,
+    DrawDetailsComponent,
   ],
   imports: [
     BrowserModule,

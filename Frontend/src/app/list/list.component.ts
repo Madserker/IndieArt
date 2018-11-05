@@ -5,6 +5,7 @@ import { Draw } from '../_models/Draw.interface';
 import { DrawServiceService } from '../draw-service.service';
 import { Comic } from '../_models/Comic.interface';
 import { User } from '../_models/User.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ListComponent implements OnInit {
   comics: Comic[] = [];
   users: User[] = [];
 
-  constructor(private data: ChangeFiltersService, private drawService: DrawServiceService) { }
+  constructor(private data: ChangeFiltersService, private drawService: DrawServiceService,private router:Router) { }
 
 
   ngOnInit() {
@@ -67,5 +68,12 @@ export class ListComponent implements OnInit {
 
   openNav(){		
     this.listSideNav.openNav();   
+  }
+
+
+
+
+  goToDrawDetails(id){
+    this.router.navigateByUrl("draw/"+id);
   }
 }

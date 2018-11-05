@@ -29,6 +29,11 @@ Route::get('/draws',[
     'uses' => 'DrawController@getDraws'
 ]);
 //{id} es un parametro dinamico, el id del dibujo
+Route::get('/draw/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'DrawController@getDrawById',
+]
+);
 Route::put('/draw/{id}',[
     'uses' => 'DrawController@putDraw',
 ]);

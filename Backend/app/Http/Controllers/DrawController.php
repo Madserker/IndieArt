@@ -40,6 +40,15 @@ class DrawController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+    public function getDrawById($id){
+        $draw = Draw::find($id);
+        if(!$draw){//si no ha encontrado el draw con ese id
+            return response()->json(['message' => 'Draw not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['draw' => $draw],200);
+        
+    }
+
     public function putDraw(Request $request, $id){//actualizar draw atributes
 
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 

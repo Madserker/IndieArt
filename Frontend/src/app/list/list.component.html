@@ -31,7 +31,8 @@
     <app-list-side-nav></app-list-side-nav>
 
 <div *ngIf="option==1">
-    <app-image *ngFor="let draw of draws" [draw]="draw"></app-image>
+    <app-image *ngFor="let draw of draws" [draw]="draw" (click)="goToDrawDetails(draw.id)">
+    </app-image>
   </div>
 <div *ngIf="option==2">
     <app-comic *ngFor="let comic of comics" [comic]="comic"></app-comic>
