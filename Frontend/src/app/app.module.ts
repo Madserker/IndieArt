@@ -19,10 +19,13 @@ import { HttpModule } from '@angular/http';
 import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
 import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ProfileViewComponent } from './profile/profile-view/profile-view.component';
+import { ProfileViewImageComponent } from './profile/profile-view-image/profile-view-image.component';
 import { ComicComponent } from './comic/comic.component';
 import { UserComponent } from './user/user.component';
 import { DrawViewComponent } from './draw-view/draw-view.component';
 import { DrawDetailsComponent } from './draw-details/draw-details.component';
+import { GalleryComponent } from './profile/gallery/gallery.component';
+import { DrawListComponent } from './draw-list/draw-list.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -55,6 +58,9 @@ const routes : Route[] = [
     UserComponent,
     DrawViewComponent,
     DrawDetailsComponent,
+    ProfileViewImageComponent,
+    GalleryComponent,
+    DrawListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,10 @@
 <nav>
   <app-toolbar-not-logged></app-toolbar-not-logged>
   </nav>
-<img src="{{user.ImagePath}}" class="image" id="image" width="60%">
+
 
 <div class="container">
-{{user.username}}
+<img src="{{user.ImagePath}}" class="profile-image" id="image" width="60%">
+<h1>{{user.username}}</h1>
+<h6>{{user.email}}</h6>
 </div>
