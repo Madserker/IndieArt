@@ -25,7 +25,9 @@ import { UserComponent } from './user/user.component';
 import { DrawViewComponent } from './draw-view/draw-view.component';
 import { DrawDetailsComponent } from './draw-details/draw-details.component';
 import { GalleryComponent } from './profile/gallery/gallery.component';
-import { DrawListComponent } from './draw-list/draw-list.component';
+import { DrawListComponent } from './profile/draw-list/draw-list.component';
+import { ComicListComponent } from './profile/comic-list/comic-list.component';
+import { AnimationListComponent } from './profile/animation-list/animation-list.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -61,6 +63,8 @@ const routes : Route[] = [
     ProfileViewImageComponent,
     GalleryComponent,
     DrawListComponent,
+    ComicListComponent,
+    AnimationListComponent,
   ],
   imports: [
     BrowserModule,

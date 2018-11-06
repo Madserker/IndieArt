@@ -9,13 +9,6 @@ import { Draw } from '../_models/Draw.interface';
 })
 export class ImageComponent implements OnInit {
 
-  /*
-  @Input() name: string;
-  @Input() author: string;
-  @Input() image: string;
-  @Input() id: number;
-*/
-
   @Input() draw: Draw;
 
 
