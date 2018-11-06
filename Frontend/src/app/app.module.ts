@@ -18,7 +18,7 @@ import { HttpModule } from '@angular/http';
 
 import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
 import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
-import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ProfileViewComponent } from './profile/profile-view/profile-view.component';
 import { ComicComponent } from './comic/comic.component';
 import { UserComponent } from './user/user.component';
 import { DrawViewComponent } from './draw-view/draw-view.component';
