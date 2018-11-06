@@ -8,7 +8,7 @@ import { map} from 'rxjs/operators';
 
 
 @Injectable()
-export class DrawServiceService {
+export class ListsService {
   constructor(private http: HttpClient) {
 
   }
@@ -49,7 +49,7 @@ interface getUser{
 }
 
 @Injectable()
-export class DrawServiceService {
+export class ListsService {
 
   draws : Draw[]
  constructor(private http: HttpClient){}

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/User.interface';
-import { DrawServiceService } from '../draw-service.service';
+import { ListsService } from '../lists.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile-view',
   templateUrl: './profile-view.component.html',
   styleUrls: ['./profile-view.component.less'],
-  providers: [DrawServiceService]
+  providers: [ListsService]
 })
 export class ProfileViewComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class ProfileViewComponent implements OnInit {
   username : string;
 
 
-  constructor(private route: ActivatedRoute,private drawService: DrawServiceService) {}
+  constructor(private route: ActivatedRoute,private lists: ListsService) {}
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -23,7 +23,7 @@ export class ProfileViewComponent implements OnInit {
         this.username = params.username;
       }
     )
-    this.drawService.getUserByUsername(this.username)
+    this.lists.getUserByUsername(this.username)
     .subscribe(result => {
     this.user = result[0] as User
     console.log(this.user)

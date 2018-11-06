@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListSideNavComponent } from '../list-side-nav/list-side-nav.component';
 import { ChangeFiltersService } from '../change-filters.service';
 import { Draw } from '../_models/Draw.interface';
-import { DrawServiceService } from '../draw-service.service';
+import { ListsService } from '../lists.service';
 import { Comic } from '../_models/Comic.interface';
 import { User } from '../_models/User.interface';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.less'],
-  providers: [DrawServiceService]
+  providers: [ListsService]
 })
 export class ListComponent implements OnInit {
 
@@ -25,13 +25,13 @@ export class ListComponent implements OnInit {
   comics: Comic[] = [];
   users: User[] = [];
 
-  constructor(private data: ChangeFiltersService, private drawService: DrawServiceService,private router:Router) { }
+  constructor(private data: ChangeFiltersService, private lists: ListsService,private router:Router) { }
 
 
   ngOnInit() {
     this.data.currentFilters.subscribe(filters => this.filters=filters);
     //rellenamos la lista de dibujos al iniciar el componente (default option = draws)
-    this.drawService.getDraws()
+    this.lists.getDraws()
     .subscribe(result => {
       this.draws = result as Draw[]
     })    
@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
     this.data.changeToUserFilters();
         //rellenamos la listade comics y la mostramos
         this.option=4;
-        this.drawService.getUsers()
+        this.lists.getUsers()
         .subscribe(result => {
           this.users = result as User[]
         })
@@ -56,7 +56,7 @@ export class ListComponent implements OnInit {
     this.data.changeToMangaFilters();
     //rellenamos la listade comics y la mostramos
     this.option=2;
-    this.drawService.getComics()
+    this.lists.getComics()
     .subscribe(result => {
       this.comics = result as Comic[]
     })
