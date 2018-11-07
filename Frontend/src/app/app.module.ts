@@ -28,6 +28,7 @@ import { GalleryComponent } from './profile/gallery/gallery.component';
 import { DrawListComponent } from './profile/draw-list/draw-list.component';
 import { ComicListComponent } from './profile/comic-list/comic-list.component';
 import { AnimationListComponent } from './profile/animation-list/animation-list.component';
+import { AnimationComponent } from './animation/animation.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -65,6 +66,7 @@ const routes : Route[] = [
     DrawListComponent,
     ComicListComponent,
     AnimationListComponent,
+    AnimationComponent,
   ],
   imports: [
     BrowserModule,

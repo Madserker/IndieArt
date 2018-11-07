@@ -68,6 +68,12 @@ Route::delete('/comic/{id}',[
     'uses' => 'ComicController@deleteComics',
 ]);
 
+//====================================================================================RUTAS PARA ANIMATION
+Route::get('/animations',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@getAnimations',
+]);
+
 //====================================================================================RUTAS PARA USER
 Route::get('/users',[
     'middleware' => 'cors',

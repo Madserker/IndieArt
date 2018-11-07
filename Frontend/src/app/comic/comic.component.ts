@@ -17,7 +17,7 @@ export class ComicComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.comic.id);
+
   }
 
 

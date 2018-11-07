@@ -5,6 +5,7 @@ import { Draw } from '../_models/Draw.interface';
 import { ListsService } from '../lists.service';
 import { Comic } from '../_models/Comic.interface';
 import { User } from '../_models/User.interface';
+import { A_Animation } from '../_models/A_Animation.interface';
 import { Router } from '@angular/router';
 
 
@@ -23,6 +24,7 @@ export class ListComponent implements OnInit {
   option: number = 1;
   draws: Draw[] = [];
   comics: Comic[] = [];
+  animations: A_Animation[] = [];
   users: User[] = [];
 
   constructor(private data: ChangeFiltersService, private lists: ListsService,private router:Router) { }
@@ -63,6 +65,12 @@ export class ListComponent implements OnInit {
   }
   changeToAnimationFilters(){
     this.data.changeToAnimationFilters(); 
+     //rellenamos la listade animaciones y la mostramos
+     this.option=3;
+     this.lists.getAnimations()
+     .subscribe(result => {
+       this.animations = result as A_Animation[]
+     })
   }
 
 

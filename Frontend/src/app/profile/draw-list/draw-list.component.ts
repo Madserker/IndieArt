@@ -20,7 +20,6 @@ export class DrawListComponent implements OnInit {
     .subscribe(result => {
       this.draws = result as Draw[]
       console.log(this.draws)
-
     })    
 
   }

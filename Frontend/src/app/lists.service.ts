@@ -30,6 +30,7 @@ import { Injectable } from '@angular/core';
 import { Draw } from "./_models/Draw.interface";
 import { Comic } from './_models/Comic.interface';
 import { User } from './_models/User.interface';
+import { A_Animation } from './_models/A_Animation.interface';
 
 //definimos interface para mapear la lista de dibujos
 interface getDraws{
@@ -41,12 +42,17 @@ interface getComics{
 interface getUsers{
   users: User[]
 }
+interface getAnimations{
+  animations: A_Animation[]
+}
 interface getDraw{
   draw: Draw
 }
 interface getUser{
   user: User
 }
+
+
 
 @Injectable()
 export class ListsService {
@@ -65,6 +71,12 @@ export class ListsService {
     return this.http.get<getComics>('http://localhost:8000/api/comics')
     .pipe(
       map(res => res.comics as Comic[] || [])); 
+  }
+
+  getAnimations(): Observable<A_Animation[]>{
+    return this.http.get<getAnimations>('http://localhost:8000/api/animations')
+    .pipe(
+      map(res => res.animations as A_Animation[] || [])); 
   }
 
   getUsers(): Observable<User[]>{
