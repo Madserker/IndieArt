@@ -3,11 +3,11 @@
 
 <div class="container" (mouseenter)="showText()" (mouseleave)="hideText()">
     <img src="{{comic.ImagePath}}" class="image" id="image" width="100%">
-    <div class="text-block" id=text{{comic.id}} > 
+    <div class="text-block" id=comic{{comic.id}} > 
       <h6>{{comic.name}}</h6>
       <p>By <a href="">{{comic.author}}</a></p>
     </div>
-    <div class="text-block-up" id=text{{comic.id}}> 
+    <div class="text-block-up" id=comic{{comic.id}}> 
       <h6>4 &#9733;</h6>
     </div>
   </div>

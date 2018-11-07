@@ -22,11 +22,11 @@ export class ComicComponent implements OnInit {
 
 
   showText(){
-    document.getElementById("text"+this.comic.id.toString()).style.visibility="visible";
+    document.getElementById("comic"+this.comic.id.toString()).style.visibility="visible";
     
   }
   hideText(){
-    document.getElementById("text"+this.comic.id.toString()).style.visibility="hidden";
+    document.getElementById("comic"+this.comic.id.toString()).style.visibility="hidden";
   }
 
 }

@@ -22,10 +22,10 @@ export class ImageComponent implements OnInit {
 
 
   showText(){
-    document.getElementById("text"+this.draw.id.toString()).style.visibility="visible";
+    document.getElementById("draw"+this.draw.id.toString()).style.visibility="visible";
     
   }
   hideText(){
-    document.getElementById("text"+this.draw.id.toString()).style.visibility="hidden";
+    document.getElementById("draw"+this.draw.id.toString()).style.visibility="hidden";
   }
 }
