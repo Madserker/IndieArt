@@ -86,4 +86,11 @@ export class ListsService {
       map(res => res.user as User)
     )
   }
+
+  //=============================================================GetGallery
+  getUserDraws(username : string): Observable<Draw[]> {
+    return this.http.get<getDraws>('http://localhost:8000/api/user/draws/'+username)
+    .pipe(
+      map(res => res.draws as Draw[] || [])); 
+  }
 } 

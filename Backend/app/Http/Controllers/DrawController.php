@@ -49,6 +49,14 @@ class DrawController extends Controller
         
     }
 
+    public function getDrawsByAuthor($author){//metodo para obtener los dibujos de un usuario
+        $draws = Draw::where('author',$author)->get();
+        if(!$draws){//si no ha encontrado ningun draw
+            return response()->json(['message' => 'Draws not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['draws' => $draws],200);
+    }
+
     public function putDraw(Request $request, $id){//actualizar draw atributes
 
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 

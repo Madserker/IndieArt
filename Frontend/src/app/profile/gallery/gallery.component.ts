@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/_models/User.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gallery.component.less']
 })
 export class GalleryComponent implements OnInit {
-
+@Input() user:User;
   constructor() { }
 
   ngOnInit() {

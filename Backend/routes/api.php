@@ -32,8 +32,11 @@ Route::get('/draws',[
 Route::get('/draw/{id}',[
     'middleware' => 'cors',
     'uses' => 'DrawController@getDrawById',
-]
-);
+]);
+Route::get('/user/draws/{author}',[
+    'middleware' => 'cors',
+    'uses' => 'DrawController@getDrawsByAuthor',
+]);
 Route::put('/draw/{id}',[
     'uses' => 'DrawController@putDraw',
 ]);
