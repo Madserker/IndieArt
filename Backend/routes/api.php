@@ -60,6 +60,14 @@ Route::get('/comics',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComics'
 ]);
+Route::get('/comic/{id}/chapters',[
+    'middleware' => 'cors',
+    'uses' => 'ComicController@getComicChapters'
+]);
+Route::get('/comic/chapter/{id}/pages',[
+    'middleware' => 'cors',
+    'uses' => 'ChapterController@getChapterPages'
+]);
 //{id} es un parametro dinamico, el id del dibujo
 Route::put('/comic/{id}',[
     'uses' => 'ComicController@putComics',
@@ -72,6 +80,11 @@ Route::delete('/comic/{id}',[
 Route::get('/animations',[
     'middleware' => 'cors',
     'uses' => 'AnimationController@getAnimations',
+]);
+
+Route::get('/animation/{id}/episodes',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@getAnimationEpisodes',
 ]);
 
 //====================================================================================RUTAS PARA USER

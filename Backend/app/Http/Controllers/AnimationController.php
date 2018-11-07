@@ -23,4 +23,15 @@ class AnimationController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+    public function getAnimationEpisodes($id){//json de episodios del la animacion 
+        $animation = Animation::find($id);
+        $response = [
+            'episodes' => $animation->episodes//sabemos los episodios con la foreignKey de episodes
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
 }

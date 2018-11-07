@@ -37,6 +37,19 @@ class ComicController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+
+    public function getComicChapters($id){//json de capitulos del comic 
+        $comic = Comic::find($id);
+        $response = [
+            'chapters' => $comic->chapters//sabemos los capitulos con la foreignKey de capitulos
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+
     public function putComic(Request $request, $id){//actualizar draw atributes
 
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
