@@ -24,4 +24,9 @@ export class ComicListComponent implements OnInit {
 
   }
 
+  goToComicDetails(id){
+    this.router.navigateByUrl("comic/"+id);
+  }
+
+
 }

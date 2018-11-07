@@ -22,13 +22,15 @@ import { ProfileViewComponent } from './profile/profile-view/profile-view.compon
 import { ProfileViewImageComponent } from './profile/profile-view-image/profile-view-image.component';
 import { ComicComponent } from './comic/comic.component';
 import { UserComponent } from './user/user.component';
-import { DrawViewComponent } from './draw-view/draw-view.component';
-import { DrawDetailsComponent } from './draw-details/draw-details.component';
+import { DrawViewComponent } from './draw-details-view/draw-view/draw-view.component';
+import { DrawDetailsComponent } from './draw-details-view/draw-details/draw-details.component';
 import { GalleryComponent } from './profile/gallery/gallery.component';
 import { DrawListComponent } from './profile/draw-list/draw-list.component';
 import { ComicListComponent } from './profile/comic-list/comic-list.component';
 import { AnimationListComponent } from './profile/animation-list/animation-list.component';
 import { AnimationComponent } from './animation/animation.component';
+import { ComicViewComponent } from './comic-details-view/comic-view/comic-view.component';
+import { AnimationViewComponent } from './animation-details-view/animation-view/animation-view.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -39,6 +41,8 @@ const routes : Route[] = [
 
 //rutas dinamicas
 {path: 'draw/:id', component: DrawViewComponent},
+{path: 'comic/:id', component: ComicViewComponent},
+{path: 'animation/:id', component: AnimationViewComponent},
 {path: 'user/:username', component: ProfileViewComponent},
 
 //{path: '/profile/:username', component: ListsViewComponent},
@@ -67,6 +71,8 @@ const routes : Route[] = [
     ComicListComponent,
     AnimationListComponent,
     AnimationComponent,
+    ComicViewComponent,
+    AnimationViewComponent,
   ],
   imports: [
     BrowserModule,

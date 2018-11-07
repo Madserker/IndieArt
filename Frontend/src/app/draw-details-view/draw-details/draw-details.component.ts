@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Draw } from '../_models/Draw.interface';
+import { Draw } from '../../_models/Draw.interface';
 
 @Component({
   selector: 'app-draw-details',

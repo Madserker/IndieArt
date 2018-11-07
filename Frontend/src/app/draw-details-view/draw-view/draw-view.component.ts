@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Draw } from '../_models/Draw.interface';
-import { ListsService } from '../lists.service';
+import { Draw } from '../../_models/Draw.interface';
+import { ListsService } from '../../lists.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 

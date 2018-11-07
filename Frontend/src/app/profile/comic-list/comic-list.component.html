@@ -1,2 +1,2 @@
 <h5>COMICS</h5>
-<app-comic *ngFor="let comic of comics" [comic]="comic" (click)="goToDrawDetails(draw.id)"></app-comic>
+<app-comic *ngFor="let comic of comics" [comic]="comic" (click)="goToComicDetails(comic.id)"></app-comic>
