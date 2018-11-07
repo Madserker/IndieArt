@@ -35,13 +35,13 @@
     </app-image>
   </div>
 <div *ngIf="option==2">
-    <app-comic *ngFor="let comic of comics" [comic]="comic"></app-comic>
+    <app-comic *ngFor="let comic of comics" [comic]="comic" (click)="goToComicDetails(comic.id)"></app-comic>
 </div>
 <div *ngIf="option==3">
-  <app-animation *ngFor="let animation of animations" [animation]="animation"></app-animation>
+  <app-animation *ngFor="let animation of animations" [animation]="animation" (click)="goToAnimationDetails(animation.id)"></app-animation>
 </div>
 <div *ngIf="option==4">
-  <app-user *ngFor="let user of users" [user]="user"></app-user>
+  <app-user *ngFor="let user of users" [user]="user" (click)="goToProfile(user.username)"></app-user>
 </div>
   
 

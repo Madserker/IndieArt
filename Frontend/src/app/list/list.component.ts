@@ -84,4 +84,13 @@ export class ListComponent implements OnInit {
   goToDrawDetails(id){
     this.router.navigateByUrl("draw/"+id);
   }
+  goToComicDetails(id){
+    this.router.navigateByUrl("comic/"+id);
+  }
+  goToAnimationDetails(id){
+    this.router.navigateByUrl("animation/"+id);
+  }
+  goToProfile(username){
+    this.router.navigateByUrl("user/"+username);
+  }
 }

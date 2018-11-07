@@ -31,6 +31,8 @@ import { AnimationListComponent } from './profile/animation-list/animation-list.
 import { AnimationComponent } from './animation/animation.component';
 import { ComicViewComponent } from './comic-details-view/comic-view/comic-view.component';
 import { AnimationViewComponent } from './animation-details-view/animation-view/animation-view.component';
+import { CommentsListComponent } from './comments-list/comments-list.component';
+import { CommentComponent } from './comment/comment.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -73,6 +75,9 @@ const routes : Route[] = [
     AnimationComponent,
     ComicViewComponent,
     AnimationViewComponent,
+    CommentsListComponent,
+    CommentComponent,
+    
   ],
   imports: [
     BrowserModule,
