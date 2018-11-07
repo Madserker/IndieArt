@@ -34,4 +34,12 @@ class AnimationController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+    public function getAnimationsByAuthor($author){//metodo para obtener las animaciones de un usuario
+        $animations = Animation::where('author',$author)->get();
+        if(!$animations){//si no ha encontrado ningun draw
+            return response()->json(['message' => 'Animations not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['animations' => $animations],200);
+    }
+
 }

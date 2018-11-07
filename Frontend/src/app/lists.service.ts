@@ -105,4 +105,16 @@ export class ListsService {
     .pipe(
       map(res => res.draws as Draw[] || [])); 
   }
+
+  getUserComics(username : string): Observable<Comic[]> {
+    return this.http.get<getComics>('http://localhost:8000/api/user/comics/'+username)
+    .pipe(
+      map(res => res.comics as Comic[] || [])); 
+  }
+
+  getUserAnimations(username : string): Observable<A_Animation[]> {
+    return this.http.get<getAnimations>('http://localhost:8000/api/user/animations/'+username)
+    .pipe(
+      map(res => res.animations as A_Animation[] || [])); 
+  }
 } 

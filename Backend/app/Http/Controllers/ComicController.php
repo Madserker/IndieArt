@@ -49,6 +49,14 @@ class ComicController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+    public function getComicsByAuthor($author){//metodo para obtener los dibujos de un usuario
+        $comics = Comic::where('author',$author)->get();
+        if(!$comics){//si no ha encontrado ningun draw
+            return response()->json(['message' => 'Comcs not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['comics' => $comics],200);
+    }
+
 
     public function putComic(Request $request, $id){//actualizar draw atributes
 

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../../_models/User.interface';
+import { Comic } from '../../_models/Comic.interface';
+import { ListsService } from '../../lists.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comic-list',
@@ -6,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comic-list.component.less']
 })
 export class ComicListComponent implements OnInit {
-
-  constructor() { }
+  @Input() user:User;
+  comics: Comic[] = [];
+  
+  constructor(private lists: ListsService,private router:Router) { }
 
   ngOnInit() {
+    this.lists.getUserComics(this.user.username)
+    .subscribe(result => {
+      this.comics = result as Comic[]
+      console.log(this.comics)
+    })    
+
   }
 
 }

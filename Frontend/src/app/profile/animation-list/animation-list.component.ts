@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../../_models/User.interface';
 
 @Component({
   selector: 'app-animation-list',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnimationListComponent implements OnInit {
 
+  @Input() user : User;
+  
   constructor() { }
 
   ngOnInit() {

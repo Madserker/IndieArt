@@ -64,6 +64,10 @@ Route::get('/comic/{id}/chapters',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComicChapters'
 ]);
+Route::get('/user/comics/{author}',[
+    'middleware' => 'cors',
+    'uses' => 'ComicController@getComicsByAuthor',
+]);
 Route::get('/comic/chapter/{id}/pages',[
     'middleware' => 'cors',
     'uses' => 'ChapterController@getChapterPages'
@@ -85,6 +89,11 @@ Route::get('/animations',[
 Route::get('/animation/{id}/episodes',[
     'middleware' => 'cors',
     'uses' => 'AnimationController@getAnimationEpisodes',
+]);
+
+Route::get('/user/animations/{author}',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@getAnimationsByAuthor',
 ]);
 
 //====================================================================================RUTAS PARA USER
