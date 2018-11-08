@@ -17,7 +17,7 @@ class CreateComicCommentsTable extends Migration
             $table->increments('id');
             $table->text('text');
 
-            $table->string('username')->unsigned()->index();
+            $table->string('username');
             $table->foreign('username')->references('username')->on('users');
 
             $table->integer('comic_id')->unsigned()->index();

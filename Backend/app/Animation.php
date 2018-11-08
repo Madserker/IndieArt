@@ -11,4 +11,8 @@ class Animation extends Model
     {
         return $this->hasMany('App\Episode');
     }
+    public function comments()
+    {
+        return $this->hasMany('App\AnimationComment');
+    }
 }

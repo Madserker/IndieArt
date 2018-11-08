@@ -11,4 +11,8 @@ class Comic extends Model
     {
         return $this->hasMany('App\Chapter');
     }
+    public function comments()
+    {
+        return $this->hasMany('App\ComicComment');
+    }
 }

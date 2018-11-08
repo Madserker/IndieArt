@@ -106,3 +106,16 @@ Route::get('/user/{username}',[
     'uses' => 'UserController@getUserByUsername'
 ]);
 
+//=================================================================================RUTAS PARA COMMENTS
+Route::get('/comments/draw/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'CommentsController@getDrawComments'
+]);
+Route::get('/comments/comic/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'CommentsController@getComicComments'
+]);
+Route::get('/comments/animation/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'CommentsController@getAnimationComments'
+]);

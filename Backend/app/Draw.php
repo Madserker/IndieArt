@@ -9,4 +9,9 @@ class Draw extends Model
     protected $fillable = [
         'name', 'author', 'imagePath',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany('App\DrawComment');
+    }
 }
