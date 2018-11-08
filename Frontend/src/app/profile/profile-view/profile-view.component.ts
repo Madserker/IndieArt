@@ -23,10 +23,10 @@ export class ProfileViewComponent implements OnInit {
         this.username = params.username;
       }
     )
+    //cogemos el username de la ruta y buscamos en la base de datos el usuario con ese username
     this.lists.getUserByUsername(this.username)
     .subscribe(result => {
     this.user = result[0] as User
-    console.log(this.user)
     })
 
   }
