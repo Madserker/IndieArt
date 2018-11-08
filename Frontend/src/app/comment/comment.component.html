@@ -1,7 +1,9 @@
 <div class="comment">
     <p class="name"><a [routerLink]="['/user',comment.username]">{{comment.username}}</a>: </p>
     <p class="text">{{comment.text}}</p>
-
+    <div *ngIf="currentUser.username == comment.username" class="delete">
+        <button mat-menu-item class="deleteButton">Delete comment</button>
+    </div>
   </div>
 
 
