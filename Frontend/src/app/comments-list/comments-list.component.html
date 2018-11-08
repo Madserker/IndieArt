@@ -5,7 +5,9 @@
     </app-comment>
 </div>
 </div>
-<form (ngSubmit)="registerUser(f)" #f="ngForm" required>
-        <input type="text" name="username" id="username" ngModel class="form-control" placeholder="Write a comment">
+<div *ngIf="currentUser != null"><!--Si no estamos logeados no podemos escribir comentario-->
+<form (ngSubmit)="postComment(f)" #f="ngForm" required>
+        <input type="text" name="text" id="text" ngModel class="form-control" placeholder="Write a comment">
         <button mat-menu-item class="buttonSubmit" [disabled]="!f.valid">Comment</button><!--si no es valido, el boton esta desactivado-->
       </form>
+    </div>

@@ -1,5 +1,5 @@
 <div class="comment">
-    <p class="name">{{comment.username}}: </p>
+    <p class="name"><a [routerLink]="['/user',comment.username]">{{comment.username}}</a>: </p>
     <p class="text">{{comment.text}}</p>
 
   </div>

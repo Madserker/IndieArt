@@ -31,4 +31,10 @@ export class CommentsService {
       map(res => res.comments as DrawComment[] || [])); 
   }
 
+
+
+  postDrawComment(idDraw,idUser,text){
+    //this.http.post('http://localhost:8000/api/comments/draw/'+idDraw,{idUser,text})
+  }
+
 }
