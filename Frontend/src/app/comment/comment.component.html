@@ -1,8 +1,9 @@
 <div class="comment">
     <p class="name"><a [routerLink]="['/user',comment.username]">{{comment.username}}</a>: </p>
     <p class="text">{{comment.text}}</p>
+    <!--comprobamos si el comentario es del usuario logeado para mostrar el boton de elminar-->
     <div *ngIf="currentUser.username == comment.username" class="delete">
-        <button mat-menu-item class="deleteButton">Delete comment</button>
+        <button mat-menu-item class="deleteButton" (click)="deleteComment()">Delete comment</button>
     </div>
   </div>
 

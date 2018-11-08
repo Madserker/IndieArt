@@ -34,7 +34,7 @@ export class CommentsService {
       map(res => res.comments as DrawComment[] || [])); 
   }
 
-
+//=============================================================================================================
 
   postDrawComment(draw_id,username,text){
 
@@ -53,6 +53,14 @@ export class CommentsService {
       {'Content-Type': 'application/json'}
       )
     })
+  }
+
+
+  //===============================================================================================================
+
+  deleteDrawComment(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete('http://localhost:8000/api/comment/draw/' + id + '?token=' + token);
   }
 
 }

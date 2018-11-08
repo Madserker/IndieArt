@@ -58,4 +58,15 @@ class CommentsController extends Controller
         $drawComment->save();//guardamos el draw
         return response()->json(['drawComment' => $drawComment], 201);//retornamos 201 y el dibujo
     }
+
+    public function deleteDrawComment($id){
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $drawComment = DrawComment::find($id);
+        $drawComment->delete();
+        return response()->json(['message' => 'drawComment deleted'],200);
+    }
 }

@@ -123,3 +123,7 @@ Route::get('/comments/animation/{id}',[
 Route::post('/comment/draw',[
     'uses' => 'CommentsController@postDrawComment'
 ]);
+
+Route::delete('/comment/draw/{id}',[
+    'uses' => 'CommentsController@deleteDrawComment'
+]);
