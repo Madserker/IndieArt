@@ -1,27 +1,3 @@
-/*
-
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { HttpClient } from '@angular/common/http';
-import { Draw } from "./_models/Draw.interface";
-import { map} from 'rxjs/operators';
-
-
-@Injectable()
-export class ListsService {
-  constructor(private http: HttpClient) {
-
-  }
-
-  getDraws(): Observable<Draw[]>{
-  //get: returns observable object
-  //need to cast observable to interface Draw -> get<Draw[]>
-    return this.http.get<Draw[]>('http://localhost:8000/api/draws').pipe(map(response=>response));
-
-
-  }
-}
-*/
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
@@ -57,7 +33,7 @@ interface getUser{
 @Injectable()
 export class ListsService {
 
-  draws : Draw[]
+
  constructor(private http: HttpClient){}
 
  getDraws(): Observable<Draw[]> {

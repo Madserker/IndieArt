@@ -1,7 +1,9 @@
 <div class= "container">
-<h2>Comments</h2><!--
-<app-comment *ngFor="let comment of comments" [draw]="draw">
-    </app-comment>-->
+<h2>Comments</h2>
+<div class="comment">
+<app-comment *ngFor="let comment of comments" [comment]=comment>
+    </app-comment>
+</div>
 </div>
 <form (ngSubmit)="registerUser(f)" #f="ngForm" required>
         <input type="text" name="username" id="username" ngModel class="form-control" placeholder="Write a comment">
