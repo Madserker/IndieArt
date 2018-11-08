@@ -33,6 +33,7 @@ import { ComicViewComponent } from './comic-details-view/comic-view/comic-view.c
 import { AnimationViewComponent } from './animation-details-view/animation-view/animation-view.component';
 import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentComponent } from './comment/comment.component';
+import { AuthService } from './auth.service';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -91,7 +92,7 @@ const routes : Route[] = [
   ],
 
 
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -46,9 +46,9 @@ class CommentsController extends Controller
 
     public function postDrawComment(Request $request){
         //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
-        // if(!$user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
-        //     return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
-        // }
+        if(!$user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
         
         $drawComment = new DrawComment();
         $drawComment->text = $request->input('text');//cogemos los datos del draw desde la request del frontend

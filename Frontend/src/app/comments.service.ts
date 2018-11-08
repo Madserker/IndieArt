@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RequestOptions } from '@angular/http';
 
+import { AuthService } from "./auth.service";
+
 
 interface getDrawComments{
   comments : DrawComment[]
@@ -14,7 +16,7 @@ interface getDrawComments{
 export class CommentsService {
 
   
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private authService: AuthService){}
  
   getDrawComments(id : number): Observable<DrawComment[]> {
      return this.http.get<getDrawComments>('http://localhost:8000/api/comments/draw/'+id)
@@ -36,6 +38,8 @@ export class CommentsService {
 
   postDrawComment(draw_id,username,text){
 
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
     const body = JSON.stringify(
       {
         "draw_id" : draw_id, 
@@ -43,7 +47,8 @@ export class CommentsService {
         "text" : text
       }
     );
-    return this.http.post('http://localhost:8000/api/comment/draw/', body, 
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/comment/draw/?token=' + token, body, 
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
       )
