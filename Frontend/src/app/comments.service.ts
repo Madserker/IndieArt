@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { DrawComment } from './_models/DrawComment.interface';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { RequestOptions } from '@angular/http';
 
 
 interface getDrawComments{
@@ -33,8 +34,20 @@ export class CommentsService {
 
 
 
-  postDrawComment(idDraw,idUser,text){
-    //this.http.post('http://localhost:8000/api/comments/draw/'+idDraw,{idUser,text})
+  postDrawComment(draw_id,username,text){
+
+    const body = JSON.stringify(
+      {
+        "draw_id" : draw_id, 
+        "username" : username, 
+        "text" : text
+      }
+    );
+    return this.http.post('http://localhost:8000/api/comment/draw/', body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    })
   }
 
 }

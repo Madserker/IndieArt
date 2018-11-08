@@ -119,3 +119,7 @@ Route::get('/comments/animation/{id}',[
     'middleware' => 'cors',
     'uses' => 'CommentsController@getAnimationComments'
 ]);
+
+Route::post('/comment/draw',[
+    'uses' => 'CommentsController@postDrawComment'
+]);

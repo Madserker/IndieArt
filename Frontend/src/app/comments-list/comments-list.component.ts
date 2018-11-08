@@ -29,9 +29,14 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
   ngOnInit() {
   }
 
+
   postComment(form: NgForm){
     if(this.type==1){
       this.commentsService.postDrawComment(this.draw_id,this.currentUser.username,form.value.text)
+      .subscribe(
+        () => window.location.reload()
+      );
+    form.reset();
     }else if(this.type==2){
 
     }else if(this.type==3){
