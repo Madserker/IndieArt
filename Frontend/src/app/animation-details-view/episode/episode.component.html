@@ -5,5 +5,12 @@
 <p class="name">
 {{episode.name}}
 </p>
-<button mat-menu-item class="watchButton" (click)="watchEpisode()">Watch</button>
+<button mat-menu-item class="watchButton" (click)="openVideo()" id=button{{episode.id}}>Watch</button>
+</div>
+
+<div id=video{{episode.id}} class="video">
+        <video width="400" controls>
+                <source src={{episode.videoPath}} type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
 </div>
