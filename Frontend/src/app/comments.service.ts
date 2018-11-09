@@ -55,6 +55,25 @@ export class CommentsService {
     })
   }
 
+  postAnimationComment(animation_id,username,text){
+
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    const body = JSON.stringify(
+      {
+        "animation_id" : animation_id, 
+        "username" : username, 
+        "text" : text
+      }
+    );
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/comment/animation/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    })
+  }
+
 
   //===============================================================================================================
 

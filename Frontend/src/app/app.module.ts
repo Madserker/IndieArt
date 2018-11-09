@@ -34,6 +34,7 @@ import { AnimationViewComponent } from './animation-details-view/animation-view/
 import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentComponent } from './comment/comment.component';
 import { AuthService } from './auth.service';
+import { AnimationDetailsComponent } from './animation-details-view/animation-details/animation-details.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -78,6 +79,7 @@ const routes : Route[] = [
     AnimationViewComponent,
     CommentsListComponent,
     CommentComponent,
+    AnimationDetailsComponent,
     
   ],
   imports: [

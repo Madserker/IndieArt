@@ -38,9 +38,14 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
       );
     form.reset();
     }else if(this.type==2){
+      
 
     }else if(this.type==3){
-
+      this.commentsService.postAnimationComment(this.animation_id,this.currentUser.username,form.value.text)
+      .subscribe(
+        () => window.location.reload()
+      );
+    form.reset();
     }
     
   }

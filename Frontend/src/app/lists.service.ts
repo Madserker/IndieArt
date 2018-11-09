@@ -24,6 +24,9 @@ interface getAnimations{
 interface getDraw{
   draw: Draw
 }
+interface getAnimation{
+  animation: A_Animation
+}
 interface getUser{
   user: User
 }
@@ -67,6 +70,11 @@ export class ListsService {
   getDrawById(id : number): Observable<Draw>{
     return this.http.get<getDraw>('http://localhost:8000/api/draw/'+id).pipe(
       map(res => res.draw as Draw)
+    )
+  }
+  getAnimationById(id : number): Observable<A_Animation>{
+    return this.http.get<getAnimation>('http://localhost:8000/api/animation/'+id).pipe(
+      map(res => res.animation as A_Animation)
     )
   }
   getUserByUsername(username : string): Observable<User>{

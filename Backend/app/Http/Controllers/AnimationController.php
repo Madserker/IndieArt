@@ -42,4 +42,11 @@ class AnimationController extends Controller
         return response()->json(['animations' => $animations],200);
     }
 
+    public function getAnimationById($id){
+        $animation = Animation::find($id);
+        if(!$animation){//si no ha encontrado el draw con ese id
+            return response()->json(['message' => 'Animation not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['animation' => $animation],200);
+    }
 }

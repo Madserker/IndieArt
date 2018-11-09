@@ -9,6 +9,7 @@ use App\Draw;
 use App\Comic;
 use App\Animation;
 use App\DrawComment;
+use App\AnimationComment;
 
 
 class CommentsController extends Controller
@@ -51,12 +52,27 @@ class CommentsController extends Controller
         }
         
         $drawComment = new DrawComment();
-        $drawComment->text = $request->input('text');//cogemos los datos del draw desde la request del frontend
+        $drawComment->text = $request->input('text');//cogemos los datos del comentario desde la request del frontend
         $drawComment->draw_id = $request->input('draw_id');
         $drawComment->username = $request->input('username');
     
-        $drawComment->save();//guardamos el draw
-        return response()->json(['drawComment' => $drawComment], 201);//retornamos 201 y el dibujo
+        $drawComment->save();//guardamos el comentario
+        return response()->json(['drawComment' => $drawComment], 201);//retornamos 201 y el comentario
+    }
+
+    public function postAnimationComment(Request $request){
+        //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
+        if(!$user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        $animationComment = new AnimationComment();
+        $animationComment->text = $request->input('text');//cogemos los datos del comentario desde la request del frontend
+        $animationComment->animation_id = $request->input('animation_id');
+        $animationComment->username = $request->input('username');
+    
+        $animationComment->save();//guardamos el comentario
+        return response()->json(['animationComment' => $animationComment], 201);//retornamos 201 y el comentario
     }
 
     public function deleteDrawComment($id){

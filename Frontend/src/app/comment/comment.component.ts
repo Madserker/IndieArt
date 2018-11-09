@@ -12,6 +12,7 @@ export class CommentComponent implements OnInit {
 
   @Input() comment : Comment;
   @Input() currentUser : User;
+  @Input() type : number;
 
   constructor(private commentsService:CommentsService) { }
 
@@ -19,10 +20,12 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment(){
+    if(this.type==1){
     this.commentsService.deleteDrawComment(this.comment.id).subscribe(
       () => {
         window.location.reload()
       }
     );
+    }
   }
 }

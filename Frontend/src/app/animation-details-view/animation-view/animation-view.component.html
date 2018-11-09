@@ -1,3 +1,7 @@
-<p>
-  animation-view works!
-</p>
+<nav>
+  <app-toolbar-not-logged></app-toolbar-not-logged>
+</nav>
+<app-animation-details [animation]="animation"></app-animation-details>
+<app-comments-list [comments]=comments [type]=3 [animation_id]=animation.id></app-comments-list>
+
+ 

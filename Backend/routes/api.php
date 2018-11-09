@@ -96,6 +96,11 @@ Route::get('/user/animations/{author}',[
     'uses' => 'AnimationController@getAnimationsByAuthor',
 ]);
 
+Route::get('/animation/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@getAnimationById',
+]);
+
 //====================================================================================RUTAS PARA USER
 Route::get('/users',[
     'middleware' => 'cors',
@@ -122,6 +127,10 @@ Route::get('/comments/animation/{id}',[
 
 Route::post('/comment/draw',[
     'uses' => 'CommentsController@postDrawComment'
+]);
+
+Route::post('/comment/animation',[
+    'uses' => 'CommentsController@postAnimationComment'
 ]);
 
 Route::delete('/comment/draw/{id}',[
