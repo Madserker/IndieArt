@@ -1,3 +1,9 @@
-<p>
-  episode works!
+<div class=episode>
+<p class="number">
+{{episode.number}}.
 </p>
+<p class="name">
+{{episode.name}}
+</p>
+<button mat-menu-item class="watchButton" (click)="watchEpisode()">Watch</button>
+</div>

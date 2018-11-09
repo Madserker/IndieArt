@@ -7,6 +7,7 @@ import { Draw } from "./_models/Draw.interface";
 import { Comic } from './_models/Comic.interface';
 import { User } from './_models/User.interface';
 import { A_Animation } from './_models/A_Animation.interface';
+import { Episode } from './_models/Episode.interface';
 
 //definimos interface para mapear la lista de dibujos
 interface getDraws{
@@ -29,6 +30,9 @@ interface getAnimation{
 }
 interface getUser{
   user: User
+}
+interface getEpisodes{
+  episodes: Episode[]
 }
 
 
@@ -62,6 +66,12 @@ export class ListsService {
     return this.http.get<getUsers>('http://localhost:8000/api/users')
     .pipe(
       map(res => res.users as User[] || [])); 
+  }
+
+  getEpisodes(id): Observable<Episode[]>{
+    return this.http.get<getEpisodes>('http://localhost:8000/api/animation/'+id+'/episodes')
+    .pipe(
+      map(res => res.episodes as Episode[] || [])); 
   }
 
   //=================================================================================GetByPrimaryKey Methods

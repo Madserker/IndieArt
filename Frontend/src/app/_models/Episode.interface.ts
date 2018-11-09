@@ -4,4 +4,5 @@ export class Episode{
     name : string;
     animation_id : number;
     videoPath: string;
+    //portada:string;
 }
