@@ -50,6 +50,7 @@ const routes : Route[] = [
 {path: 'comic/:id', component: ComicViewComponent},
 {path: 'animation/:id', component: AnimationViewComponent},
 {path: 'user/:username', component: ProfileViewComponent},
+{path: 'animation/:id/episodes', component: EpisodesViewComponent},
 
 //{path: '/profile/:username', component: ListsViewComponent},
 ];
@@ -83,7 +84,6 @@ const routes : Route[] = [
     CommentComponent,
     AnimationDetailsComponent,
     EpisodeComponent,
-    EpisodesViewComponent,
     
   ],
   imports: [
