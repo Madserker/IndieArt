@@ -36,7 +36,7 @@ export class CommentsService {
 
 //=============================================================================================================
 
-  postDrawComment(draw_id,username,text){
+  postDrawComment(draw_id,username,text) {
 
     const token = this.authService.getToken();//recuperamos el token de la sesion
 

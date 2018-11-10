@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { CommentsService } from '../comments.service';
 import { AuthService } from '../auth.service';
 import { User } from '../_models/User.interface';
+import { DrawComment } from '../_models/DrawComment.interface';
 
 @Component({
   selector: 'app-comments-list',
@@ -34,7 +35,11 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
     if(this.type==1){
       this.commentsService.postDrawComment(this.draw_id,this.currentUser.username,form.value.text)
       .subscribe(
-        () => window.location.reload()
+        () => 
+          this.commentsService.getDrawComments(this.draw_id)
+          .subscribe(result => {
+          this.comments = result as Comment[]
+        })
       );
     form.reset();
     }else if(this.type==2){
@@ -43,7 +48,11 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
     }else if(this.type==3){
       this.commentsService.postAnimationComment(this.animation_id,this.currentUser.username,form.value.text)
       .subscribe(
-        () => window.location.reload()
+        () =>
+        this.commentsService.getAnimationComments(this.animation_id)
+        .subscribe(result => {
+        this.comments = result as Comment[]
+        })
       );
     form.reset();
     }
@@ -56,6 +65,16 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
     else{
       this.currentUser = JSON.parse(this.authService.getUser())[0];//cogemos el usuario del localStorage
     }
+  }
+
+  //actualiza la lista de comentarios al eliminar un comentario
+  onDeleted(comment: Comment) {
+    const position = this.comments.findIndex(
+      (commentEl: Comment) => {
+        return commentEl.id == comment.id;
+      }
+    );
+    this.comments.splice(position, 1);
   }
 
 }
