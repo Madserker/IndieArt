@@ -81,5 +81,10 @@ export class CommentsService {
     const token = this.authService.getToken();
     return this.http.delete('http://localhost:8000/api/comment/draw/' + id + '?token=' + token);
   }
+  deleteAnimationComment(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete('http://localhost:8000/api/comment/animation/' + id + '?token=' + token);
+  }
+
 
 }

@@ -85,4 +85,15 @@ class CommentsController extends Controller
         $drawComment->delete();
         return response()->json(['message' => 'drawComment deleted'],200);
     }
+
+    public function deleteAnimationComment($id){
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $animationComment = AnimationComment::find($id);
+        $animationComment->delete();
+        return response()->json(['message' => 'animationComment deleted'],200);
+    }
 }
