@@ -38,6 +38,7 @@ import { AnimationDetailsComponent } from './animation-details-view/animation-de
 import { EpisodeComponent } from './animation-details-view/episode/episode.component';
 import { EpisodesViewComponent } from './animation-details-view/episodes-view/episodes-view.component';
 import { EpisodesListComponent } from './animation-details-view/episodes-list/episodes-list.component';
+import { ComicDetailsComponent } from './comic-details-view/comic-details/comic-details.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -87,6 +88,9 @@ const routes : Route[] = [
     EpisodeComponent,
     EpisodesViewComponent,
     EpisodesListComponent,
+    ComicDetailsComponent,
+    ComicViewComponent,
+
     
   ],
   imports: [

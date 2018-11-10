@@ -1,19 +1,12 @@
-    <!--
-    Imagen
-    details->(name, vis, comments number, author(details), puntuacion)
-    Comments
-    Recomended draws (for later)
-    -->
+<div class="infoDraw">
 
-    <div class="infoDraw">
-
-    <img src="{{draw?.ImagePath}}" class="image" id="image" width="60%">
-
-
+    <img src="{{comic?.ImagePath}}" class="image" id="image" width="60%">
+  
+  
     <div class="container">
-    <h1>{{draw?.name}}</h1>
-    <h6>Made by <a [routerLink]="['/user',draw?.author]">{{draw?.author}}</a></h6>
-    {{draw.mark}}
+    <h1>{{comic?.name}}</h1>
+    <h6>Made by <a [routerLink]="['/user',comic?.author]">{{comic?.author}}</a></h6>
+    {{animation.mark}}
     <h6>textolargo textolargo textolargo textolargo textolargo 
         textolargo textolargo textolargo textolargo textolargo 
         textolargo textolargo textolargo textolargo textolargo 
@@ -21,8 +14,8 @@
         textolargo textolargo textolargo textolargo textolargo 
         textolargo textolargo textolargo textolargo textolargo 
         textolargo textolargo textolargo textolargo textolargo 
-
+  
     </h6>
     </div>
-
+    <button mat-menu-item class="watchButton" (click)="goToEpisodesList()">READ</button>
     </div>

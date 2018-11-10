@@ -60,6 +60,10 @@ Route::get('/comics',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComics'
 ]);
+Route::get('/comic/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'ComicController@getComicById'
+]);
 Route::get('/comic/{id}/chapters',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComicChapters'

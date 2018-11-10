@@ -2,6 +2,8 @@
   <app-toolbar-not-logged></app-toolbar-not-logged>
 </nav>
 <app-draw-details [draw]=draw></app-draw-details>
-<app-comments-list [comments]=comments [type]=1 [draw_id]=draw.id></app-comments-list>
+<!--Elvis operator: object?.atribute
+  si el objeto es null, espera hasta que no sea null
+-->
+<app-comments-list [comments]=comments [type]=1 [draw_id]=draw?.id></app-comments-list>
 
- 

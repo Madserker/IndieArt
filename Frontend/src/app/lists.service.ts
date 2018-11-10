@@ -34,6 +34,10 @@ interface getUser{
 interface getEpisodes{
   episodes: Episode[]
 }
+interface getComic{
+  comic: Comic
+}
+
 
 
 
@@ -80,6 +84,11 @@ export class ListsService {
   getDrawById(id : number): Observable<Draw>{
     return this.http.get<getDraw>('http://localhost:8000/api/draw/'+id).pipe(
       map(res => res.draw as Draw)
+    )
+  }
+  getComicById(id : number): Observable<Comic>{
+    return this.http.get<getComic>('http://localhost:8000/api/comic/'+id).pipe(
+      map(res => res.comic as Comic)
     )
   }
   getAnimationById(id : number): Observable<A_Animation>{

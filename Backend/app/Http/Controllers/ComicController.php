@@ -57,6 +57,15 @@ class ComicController extends Controller
         return response()->json(['comics' => $comics],200);
     }
 
+    
+    public function getComicById($id){
+        $comic = Comic::find($id);
+        if(!$comic){//si no ha encontrado el draw con ese id
+            return response()->json(['message' => 'Comic not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['comic' => $comic],200);
+        
+    }
 
     public function putComic(Request $request, $id){//actualizar draw atributes
 
