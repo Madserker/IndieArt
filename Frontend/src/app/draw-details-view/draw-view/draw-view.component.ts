@@ -16,7 +16,7 @@ import { DrawComment } from '../../_models/DrawComment.interface';
 export class DrawViewComponent implements OnInit {
 
 draw : Draw;
-comments : Comment [];
+comments : DrawComment [];
 id:number;
 
 
@@ -38,7 +38,7 @@ id:number;
     //cogemos la lista de comentarios del dibujo con el id de la ruta
     this.commentsService.getDrawComments(this.id)
     .subscribe(result => {
-    this.comments = result as Comment[]
+    this.comments = result as DrawComment[]
     console.log(this.comments);
     })
   }

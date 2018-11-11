@@ -3,6 +3,7 @@ import { ListsService } from '../../lists.service';
 import { CommentsService } from '../../comments.service';
 import { Comic } from '../../_models/Comic.interface';
 import { ActivatedRoute } from '@angular/router';
+import { ComicComment } from '../../_models/ComicComment.interface';
 
 @Component({
   selector: 'app-comic-view',
@@ -14,7 +15,7 @@ export class ComicViewComponent implements OnInit {
 
 
   comic : Comic;
-  comments : Comment [];
+  comments : ComicComment [];
   id : number;
   
   
@@ -36,7 +37,7 @@ export class ComicViewComponent implements OnInit {
       //cogemos la lista de comentarios del dibujo con el id de la ruta
       this.commentsService.getComicComments(this.id)
       .subscribe(result => {
-      this.comments = result as Comment[]
+      this.comments = result as ComicComment[]
       console.log(this.comments);
       })
     }
