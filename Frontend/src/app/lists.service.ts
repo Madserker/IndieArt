@@ -34,6 +34,9 @@ interface getUser{
 interface getEpisodes{
   episodes: Episode[]
 }
+interface getChapters{
+  chapters: Chapter[]
+}
 interface getComic{
   comic: Comic
 }
@@ -76,6 +79,12 @@ export class ListsService {
     return this.http.get<getEpisodes>('http://localhost:8000/api/animation/'+id+'/episodes')
     .pipe(
       map(res => res.episodes as Episode[] || [])); 
+  }
+
+  getChapters(id): Observable<Chapter[]>{
+    return this.http.get<getChapters>('http://localhost:8000/api/comic/'+id+'/chapters')
+    .pipe(
+      map(res => res.chapters as Chapter[] || [])); 
   }
 
   //=================================================================================GetByPrimaryKey Methods

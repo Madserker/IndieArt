@@ -39,6 +39,9 @@ import { EpisodeComponent } from './animation-details-view/episode/episode.compo
 import { EpisodesViewComponent } from './animation-details-view/episodes-view/episodes-view.component';
 import { EpisodesListComponent } from './animation-details-view/episodes-list/episodes-list.component';
 import { ComicDetailsComponent } from './comic-details-view/comic-details/comic-details.component';
+import { ChaptersViewComponent } from './comic-details-view/chapters-view/chapters-view.component';
+import { ChaptersListComponent } from './comic-details-view/chapters-list/chapters-list.component';
+import { ChapterComponent } from './comic-details-view/chapter/chapter.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -53,6 +56,7 @@ const routes : Route[] = [
 {path: 'animation/:id', component: AnimationViewComponent},
 {path: 'user/:username', component: ProfileViewComponent},
 {path: 'animation/:id/episodes', component: EpisodesViewComponent},
+{path: 'comic/:id/chapters', component: ChaptersViewComponent},
 
 //{path: '/profile/:username', component: ListsViewComponent},
 ];
@@ -90,6 +94,9 @@ const routes : Route[] = [
     EpisodesListComponent,
     ComicDetailsComponent,
     ComicViewComponent,
+    ChaptersViewComponent,
+    ChaptersListComponent,
+    ChapterComponent,
 
     
   ],
