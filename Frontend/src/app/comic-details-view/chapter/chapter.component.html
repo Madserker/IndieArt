@@ -5,6 +5,7 @@
   <p class="name">
   {{chapter.name}}
   </p>
-  <button mat-menu-item class="watchButton" (click)="openVideo()" id=button{{chapter.id}}>Read</button>
+  <button mat-menu-item class="watchButton" (click)="openModal()" id=button{{chapter.id}}>Read</button>
   </div>
-  
+  <app-chapter-viewer [pages]=pages></app-chapter-viewer>
+

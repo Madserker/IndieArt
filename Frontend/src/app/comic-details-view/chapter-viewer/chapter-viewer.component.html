@@ -1,0 +1,12 @@
+<div id="myModal" class="modal">
+  <span class="close cursor" (click)="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">{{currentIndex}}/{{pages?.length}}</div>
+      <img src="{{pages[currentIndex-1]?.ImagePath}}" style="width:100%">
+    </div>
+    
+    
+    <a class="prev" (click)="previousPage()">&#10094;</a>
+    <a class="next" (click)="nextPage()">&#10095;</a>

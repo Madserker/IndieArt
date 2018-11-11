@@ -42,6 +42,7 @@ import { ComicDetailsComponent } from './comic-details-view/comic-details/comic-
 import { ChaptersViewComponent } from './comic-details-view/chapters-view/chapters-view.component';
 import { ChaptersListComponent } from './comic-details-view/chapters-list/chapters-list.component';
 import { ChapterComponent } from './comic-details-view/chapter/chapter.component';
+import { ChapterViewerComponent } from './comic-details-view/chapter-viewer/chapter-viewer.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -97,6 +98,7 @@ const routes : Route[] = [
     ChaptersViewComponent,
     ChaptersListComponent,
     ChapterComponent,
+    ChapterViewerComponent,
 
     
   ],
