@@ -9,10 +9,12 @@ import { User } from '../../_models/User.interface';
 export class ProfileViewImageComponent implements OnInit {
 
   @Input() user: User;
+  @Input() currentUser: User;
   
   constructor() { }
 
   ngOnInit() {
+    console.log(this.currentUser)
   }
 
 }

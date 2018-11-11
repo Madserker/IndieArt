@@ -4,7 +4,12 @@
 
 
 <div class="container">
-<img src="{{user.ImagePath}}" class="profile-image" id="image" width="60%">
-<h1>{{user.username}}</h1>
-<h6>{{user.email}}</h6>
+<img src="{{user?.ImagePath}}" class="profile-image" id="image" width="60%">
+<h1>{{user?.username}}</h1>
+<h6>{{user?.email}}</h6>
+<div *ngIf="currentUser?.username!=user?.username">
+<button mat-button class="Follow" (click)="goToFriendsActivity()">Follow User</button>
+<button mat-button class="Follow" (click)="goToFriendsActivity()">Send message</button>
 </div>
+</div>
+

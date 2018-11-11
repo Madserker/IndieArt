@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../_models/User.interface';
 import { ListsService } from '../../lists.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-profile-view',
@@ -14,21 +15,56 @@ export class ProfileViewComponent implements OnInit {
   user : User;
   username : string;
 
+  isCurrentUser : Boolean;
 
-  constructor(private route: ActivatedRoute,private lists: ListsService) {}
+  currentUser : User;
+
+  constructor(private route: ActivatedRoute,private lists: ListsService, private authService : AuthService) {
+    this.getUser();
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
       params => {
         this.username = params.username;
+        //Cargamos otra vez el component cuando cambian los parametros de la ruta,
+        //ya que una vez se inicia el componente, no se vuelve a ejecutar ngOnInit
+        this.loadComponent();
       }
+      
     )
+  }
+
+  loadComponent(){
     //cogemos el username de la ruta y buscamos en la base de datos el usuario con ese username
     this.lists.getUserByUsername(this.username)
     .subscribe(result => {
     this.user = result[0] as User
     })
-
   }
+
+  getUser(){
+    if(JSON.parse(this.authService.getUser())==null){
+    }
+    else{
+      this.currentUser = JSON.parse(this.authService.getUser())[0];//cogemos el usuario del localStorage
+    }
+  }
+
+  // getUser(){
+  //   if(JSON.parse(this.authService.getUser())==null){
+  //     this.isCurrentUser==false
+  //   }
+  //   else{
+  //     if(JSON.parse(this.authService.getUser())[0].username==this.user.username){
+  //       this.isCurrentUser==true
+  //     }
+  //     else{
+  //       this.isCurrentUser==false
+  //     }
+  //     //cogemos el usuario del localStorage
+  //   }
+
+  // }
 
 }

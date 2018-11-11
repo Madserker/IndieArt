@@ -26,11 +26,11 @@ export class ChapterComponent implements OnInit {
   }
 
 
-  openModal() {
+  openModal() {//abrimos el visor
     document.getElementById('myModal').style.display = "block";
   }
   
-  closeModal() {
+  closeModal() {//cerramos el visor
     document.getElementById('myModal').style.display = "none";
   }
   
