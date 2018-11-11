@@ -32,12 +32,15 @@ export class ChapterViewerComponent implements OnInit {
     if(this.currentIndex < this.pages.length){
       this.currentIndex++;
     }
+    document.getElementById('myModal').scrollTop = 0;
+
   }
 
   previousPage(){
     if(this.currentIndex > 1){
       this.currentIndex--;
     }
+    document.getElementById('myModal').scrollTop = 0;
   }
 
   @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {//listener de keyPressed en toda la pagina
