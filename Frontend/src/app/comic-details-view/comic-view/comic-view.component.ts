@@ -23,22 +23,21 @@ export class ComicViewComponent implements OnInit {
     ngOnInit() {
       this.route.params.subscribe(
         params => {
-          console.log(params.id) //params = animation.id
+          console.log(params.id) //params = draw.id
           this.id = params.id;
         }
       )
-      //cogemos la animacion con el id de la ruta
+      //cogemos el dibujo con el id de la ruta
       this.lists.getComicById(this.id)
       .subscribe(result => {
       this.comic = result as Comic
-      console.log(this.comic)
       })
   
-      // //cogemos la lista de comentarios del dibujo con el id de la ruta
+      //cogemos la lista de comentarios del dibujo con el id de la ruta
       this.commentsService.getComicComments(this.id)
       .subscribe(result => {
       this.comments = result as Comment[]
-
+      console.log(this.comments);
       })
     }
 

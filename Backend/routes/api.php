@@ -137,9 +137,18 @@ Route::post('/comment/animation',[
     'uses' => 'CommentsController@postAnimationComment'
 ]);
 
+Route::post('/comment/comic',[
+    'uses' => 'CommentsController@postComicComment'
+]);
+
 Route::delete('/comment/draw/{id}',[
     'uses' => 'CommentsController@deleteDrawComment'
 ]);
+
+Route::delete('/comment/comic/{id}',[
+    'uses' => 'CommentsController@deleteComicComment'
+]);
+
 Route::delete('/comment/animation/{id}',[
     'uses' => 'CommentsController@deleteAnimationComment'
 ]);

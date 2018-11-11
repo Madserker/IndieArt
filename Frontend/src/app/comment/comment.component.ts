@@ -29,11 +29,11 @@ export class CommentComponent implements OnInit {
     );
     }
     else if(this.type==2){
-      // this.commentsService.deleteComicComment(this.comment.id).subscribe(
-      //   () => {
-      //     this.commentDeleted.emit(this.comment);
-      //   }
-      // );
+      this.commentsService.deleteComicComment(this.comment.id).subscribe(
+        () => {
+          this.commentDeleted.emit(this.comment);
+        }
+      );
       }
       else if(this.type==3){
         this.commentsService.deleteAnimationComment(this.comment.id).subscribe(

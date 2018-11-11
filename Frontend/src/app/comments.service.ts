@@ -6,10 +6,18 @@ import { map } from 'rxjs/operators';
 import { RequestOptions } from '@angular/http';
 
 import { AuthService } from "./auth.service";
+import { AnimationComment } from './_models/AnimationComment.interface';
+import { ComicComment } from './_models/ComicComment.interface';
 
 
 interface getDrawComments{
   comments : DrawComment[]
+}
+interface getComicComments{
+  comments : ComicComment[]
+}
+interface getAnimationComments{
+  comments : AnimationComment[]
 }
 
 @Injectable()
@@ -23,18 +31,18 @@ export class CommentsService {
      .pipe(
        map(res => res.comments as DrawComment[] || [])); 
    }
-   getComicComments(id : number): Observable<DrawComment[]> {
-    return this.http.get<getDrawComments>('http://localhost:8000/api/comments/comic/'+id)
+   getComicComments(id : number): Observable<ComicComment[]> {
+    return this.http.get<getComicComments>('http://localhost:8000/api/comments/comic/'+id)
     .pipe(
-      map(res => res.comments as DrawComment[] || [])); 
+      map(res => res.comments as ComicComment[] || [])); 
   }
-  getAnimationComments(id : number): Observable<DrawComment[]> {
-    return this.http.get<getDrawComments>('http://localhost:8000/api/comments/animation/'+id)
+  getAnimationComments(id : number): Observable<AnimationComment[]> {
+    return this.http.get<getAnimationComments>('http://localhost:8000/api/comments/animation/'+id)
     .pipe(
-      map(res => res.comments as DrawComment[] || [])); 
+      map(res => res.comments as AnimationComment[] || [])); 
   }
 
-//=============================================================================================================
+//=============================================================================================================POST COMMENT
 
   postDrawComment(draw_id,username,text) {
 
@@ -49,6 +57,25 @@ export class CommentsService {
     );
     //le pasamos el token para confirmar que estamos logeados
     return this.http.post('http://localhost:8000/api/comment/draw/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    })
+  }
+
+  postComicComment(comic_id,username,text) {
+
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    const body = JSON.stringify(
+      {
+        "comic_id" : comic_id, 
+        "username" : username, 
+        "text" : text
+      }
+    );
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/comment/comic/?token=' + token, body, 
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
       )
@@ -80,6 +107,10 @@ export class CommentsService {
   deleteDrawComment(id: number){
     const token = this.authService.getToken();
     return this.http.delete('http://localhost:8000/api/comment/draw/' + id + '?token=' + token);
+  }
+  deleteComicComment(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete('http://localhost:8000/api/comment/comic/' + id + '?token=' + token);
   }
   deleteAnimationComment(id: number){
     const token = this.authService.getToken();

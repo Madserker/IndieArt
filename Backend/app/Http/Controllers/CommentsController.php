@@ -9,6 +9,7 @@ use App\Draw;
 use App\Comic;
 use App\Animation;
 use App\DrawComment;
+use App\ComicComment;
 use App\AnimationComment;
 
 
@@ -60,6 +61,21 @@ class CommentsController extends Controller
         return response()->json(['drawComment' => $drawComment], 201);//retornamos 201 y el comentario
     }
 
+    public function postComicComment(Request $request){
+        //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
+        if(!$user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        $comicComment = new ComicComment();
+        $comicComment->text = $request->input('text');//cogemos los datos del comentario desde la request del frontend
+        $comicComment->comic_id = $request->input('comic_id');
+        $comicComment->username = $request->input('username');
+    
+        $comicComment->save();//guardamos el comentario
+        return response()->json(['comicComment' => $comicComment], 201);//retornamos 201 y el comentario
+    }
+
     public function postAnimationComment(Request $request){
         //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
         if(!$user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
@@ -84,6 +100,17 @@ class CommentsController extends Controller
         $drawComment = DrawComment::find($id);
         $drawComment->delete();
         return response()->json(['message' => 'drawComment deleted'],200);
+    }
+
+    public function deleteComicComment($id){
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $comicComment = ComicComment::find($id);
+        $comicComment->delete();
+        return response()->json(['message' => 'comicComment deleted'],200);
     }
 
     public function deleteAnimationComment($id){

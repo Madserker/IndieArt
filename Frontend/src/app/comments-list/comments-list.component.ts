@@ -28,6 +28,7 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
  }
 
   ngOnInit() {
+    
   }
 
 
@@ -41,10 +42,15 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
           this.comments = result as Comment[]
         })
       );
-    form.reset();
     }else if(this.type==2){
-      
-
+      this.commentsService.postComicComment(this.comic_id,this.currentUser.username,form.value.text)
+      .subscribe(
+        () =>
+        this.commentsService.getComicComments(this.comic_id)
+        .subscribe(result => {
+        this.comments = result as Comment[]
+        })
+      );
     }else if(this.type==3){
       this.commentsService.postAnimationComment(this.animation_id,this.currentUser.username,form.value.text)
       .subscribe(
@@ -54,8 +60,8 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
         this.comments = result as Comment[]
         })
       );
-    form.reset();
     }
+    form.reset();
     
   }
 
