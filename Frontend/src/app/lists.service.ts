@@ -50,6 +50,7 @@ interface getComic{
 
 @Injectable()
 export class ListsService {
+  authService: any;
 
 
  constructor(private http: HttpClient){}
@@ -138,5 +139,24 @@ export class ListsService {
     return this.http.get<getAnimations>('http://localhost:8000/api/user/animations/'+username)
     .pipe(
       map(res => res.animations as A_Animation[] || [])); 
+  }
+
+  //====================================================================Upload
+  uploadDraw(name:string,description:string,file:File){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    const body = JSON.stringify(
+      {
+        "name" : name, 
+        "description" : description, 
+        "file" : file
+      }
+    );
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/draw/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    })
   }
 } 
