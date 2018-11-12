@@ -10,18 +10,24 @@ import { User } from 'src/app/_models/User.interface';
   styleUrls: ['./draw-list.component.less']
 })
 export class DrawListComponent implements OnInit {
-@Input() user:User;
+  @Input() user:User;
   draws: Draw[] = [];
 
   constructor(private lists: ListsService,private router:Router) { }
 
   ngOnInit() {
+
+
+  
+
+  }
+  ngOnChanges(){
+//cuando detecta un cambio se ejecuta, en este caso cuando recibimos en input user
     this.lists.getUserDraws(this.user.username)
     .subscribe(result => {
       this.draws = result as Draw[]
       console.log(this.draws)
-    })    
-
+    })
   }
 
   goToDrawDetails(id){

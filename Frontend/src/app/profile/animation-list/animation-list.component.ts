@@ -17,10 +17,14 @@ export class AnimationListComponent implements OnInit {
   constructor(private lists: ListsService,private router:Router) { }
 
   ngOnInit() {
+ 
+  }
+
+  ngOnChanges(){
     this.lists.getUserAnimations(this.user.username)
     .subscribe(result => {
       this.animations = result as A_Animation[]
-    })   
+    })  
   }
 
   goToAnimationDetails(id){

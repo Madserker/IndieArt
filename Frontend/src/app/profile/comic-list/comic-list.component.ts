@@ -16,6 +16,10 @@ export class ComicListComponent implements OnInit {
   constructor(private lists: ListsService,private router:Router) { }
 
   ngOnInit() {
+
+  }
+
+  ngOnChanges(){
     this.lists.getUserComics(this.user.username)
     .subscribe(result => {
       this.comics = result as Comic[]
