@@ -17,6 +17,7 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             //Ponemos la informacion que queremos obtener de la base de datos de admins, ejecutamos la migracion y se sube a phpmyadmin
+            Schema::dropIfExists('admins');            
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique(); //unique es el id, la clave primaria

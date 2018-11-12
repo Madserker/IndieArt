@@ -4,17 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Draw extends Art
+class Art extends Model
 {
-
-    public function comments()
-    {
-        return $this->hasMany('App\DrawComment');
-    }
-
     public function tags()//Many To Many Relation
     {
         return $this->belongsToMany('App\Tag');
     }
-    
+    public function user()//Many To One Relation
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

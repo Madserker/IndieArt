@@ -17,8 +17,16 @@ class CreateDrawsTable extends Migration
             Schema::dropIfExists('draws');
             $table->increments('id');//el id incrementara solo
             $table->text('name');
-            $table->text('author');
-            $table->text('ImagePath');
+            $table->text('descripcion');
+            $table->integer('mark');
+
+            $table->text('imagePath');
+            $table->integer('visits');
+
+            //many to one relation
+            $table->string('author');
+            $table->foreign('author')->references('username')->on('users');
+
             $table->timestamps();
         });
     

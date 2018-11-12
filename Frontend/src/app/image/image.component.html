@@ -2,13 +2,13 @@
 
 
 <div class="container" (mouseenter)="showText()" (mouseleave)="hideText()">
-    <img src="{{draw.ImagePath}}" class="image" id="image" width="100%">
+    <img src="{{draw.imagePath}}" class="image" id="image" width="100%">
     <div class="text-block" id=draw{{draw.id}} > 
       <h6>{{draw.name}}</h6>
       <p>By <a href="">{{draw.author}}</a></p>
     </div>
     <div class="text-block-up" id=draw{{draw.id}}> 
-      <h6>4 &#9733;</h6>
+      <h6>{{draw.mark}} &#9733;</h6>
     </div>
   </div>
 

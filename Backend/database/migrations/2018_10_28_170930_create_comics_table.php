@@ -16,8 +16,17 @@ class CreateComicsTable extends Migration
         Schema::create('comics', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
-            $table->text('author');
-            $table->text('ImagePath');//portada de la serie de animacion
+            $table->text('imagePath');//portada de la serie de animacion
+            $table->text('synopsis');
+            $table->integer('mark');
+            $table->text('status');
+            $table->integer('visits');
+
+
+            //many to one relation
+            $table->string('author');
+            $table->foreign('author')->references('username')->on('users');
+
             $table->timestamps();
         });
     }

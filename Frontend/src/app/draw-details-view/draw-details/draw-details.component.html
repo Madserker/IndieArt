@@ -7,21 +7,15 @@
 
     <div class="infoDraw">
 
-    <img src="{{draw?.ImagePath}}" class="image" id="image" width="60%">
+    <img src="{{draw?.imagePath}}" class="image" id="image" width="60%">
 
 
     <div class="container">
     <h1>{{draw?.name}}</h1>
     <h6>Made by <a [routerLink]="['/user',draw?.author]">{{draw?.author}}</a></h6>
     {{draw?.mark}}
-    <h6>textolargo textolargo textolargo textolargo textolargo 
-        textolargo textolargo textolargo textolargo textolargo 
-        textolargo textolargo textolargo textolargo textolargo 
-        textolargo textolargo textolargo textolargo textolargo  
-        textolargo textolargo textolargo textolargo textolargo 
-        textolargo textolargo textolargo textolargo textolargo 
-        textolargo textolargo textolargo textolargo textolargo 
-
+    <h6>
+    {{draw?.descripcion}}
     </h6>
     </div>
 

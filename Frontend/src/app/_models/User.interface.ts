@@ -1,6 +1,10 @@
 export interface User{
     id: number;
-    ImagePath: string;
+    profilePic: string;
     username: string;
+    password: string;
+    description: string;
+    //birthday
+
 
 }

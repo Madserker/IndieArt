@@ -24,10 +24,12 @@ class UserController extends Controller
         'password' => 'required', //contraseña obligatoria
             ]);
         $user = new User([//creamos el usuario con los parametros del request
-            'ImagePath' => array_random($randomPic),//default image
+            'profilePic' => array_random($randomPic),//default image
             'username' => $request->input('username'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')) //bcrypt encripta la contraseña del usuario
+            'birthday' => $request->input('birthday'),
+            'password' => bcrypt($request->input('password')), //bcrypt encripta la contraseña del usuario
+            'description' => "",
         ]);
         $user->save();//guardamos el usuario en la DB
         return response()->json([

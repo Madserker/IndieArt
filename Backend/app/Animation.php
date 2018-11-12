@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Animation extends Model
+class Animation extends Art
 {
     //Relacion OneToMany, una animacion tiene 1..* episodios
     public function episodes()
@@ -15,4 +15,5 @@ class Animation extends Model
     {
         return $this->hasMany('App\AnimationComment');
     }
+
 }

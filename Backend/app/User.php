@@ -21,7 +21,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'ImagePath'
+        'username', 'email', 'password', 'profilePic', 'birthday', 'description'
     ];
 
     /**
@@ -48,6 +48,19 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\AnimationComment');
     }
 
+    public function draws()
+    {
+        return $this->hasMany('App\Draw');
+    }
+    public function comics()
+    {
+        return $this->hasMany('App\Comic');
+    }
+
+    public function animations()
+    {
+        return $this->hasMany('App\Animation');
+    }
 
 
     public function getJWTIdentifier()

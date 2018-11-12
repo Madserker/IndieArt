@@ -4,6 +4,8 @@ export interface A_Animation{
     id: number;
     portada: string;
     author:string;
+    descripcion:string;
+
     updated_at: string;
     created_at: string;
 }
