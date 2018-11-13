@@ -11,14 +11,14 @@ import { User } from 'src/app/_models/User.interface';
 })
 export class DrawListComponent implements OnInit {
   @Input() user:User;
+  @Input() currentUser:User;
+
+  isCurrentUser: boolean
   draws: Draw[] = [];
 
   constructor(private lists: ListsService,private router:Router) { }
 
   ngOnInit() {
-
-
-  
 
   }
   ngOnChanges(){
@@ -28,10 +28,16 @@ export class DrawListComponent implements OnInit {
       this.draws = result as Draw[]
       console.log(this.draws)
     })
+    if(this.user.username==this.currentUser.username){
+      this.isCurrentUser=true
+    }else{
+      this.isCurrentUser=false
+    }
   }
 
   goToDrawDetails(id){
     this.router.navigateByUrl("draw/"+id);
   }
+
 
 }

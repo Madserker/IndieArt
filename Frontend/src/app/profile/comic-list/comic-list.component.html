@@ -1,5 +1,3 @@
 <h5>COMICS</h5>
 <app-comic *ngFor="let comic of comics" [comic]="comic" (click)="goToComicDetails(comic?.id)"></app-comic>
-<div class="container">
-    <img src="src/assets/add.png" class="image" id="image" width="100%">
-</div>
+<app-new-comic *ngIf="isCurrentUser"></app-new-comic>

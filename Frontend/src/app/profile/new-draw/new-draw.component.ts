@@ -35,10 +35,10 @@ export class NewDrawComponent implements OnInit {
 
 // // When the user clicks the button, open the modal 
 openForm(){
-    document.getElementById('myModal').style.display = "block"
+    document.getElementById('myModal1').style.display = "block"
 }
 closeForm(){
-  document.getElementById('myModal').style.display = "none"
+  document.getElementById('myModal1').style.display = "none"
 }
 
 

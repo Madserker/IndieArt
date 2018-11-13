@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class ComicListComponent implements OnInit {
   @Input() user:User;
+  @Input() currentUser:User;
   comics: Comic[] = [];
+  isCurrentUser: boolean;
   
   constructor(private lists: ListsService,private router:Router) { }
 
@@ -25,7 +27,11 @@ export class ComicListComponent implements OnInit {
       this.comics = result as Comic[]
       console.log(this.comics)
     })    
-
+    if(this.user.username==this.currentUser.username){
+      this.isCurrentUser=true
+    }else{
+      this.isCurrentUser=false
+    }
   }
 
   goToComicDetails(id){

@@ -12,7 +12,10 @@ import { A_Animation } from '../../_models/A_Animation.interface';
 export class AnimationListComponent implements OnInit {
 
   @Input() user : User;
+  @Input() currentUser:User;
   animations : A_Animation[];
+
+  isCurrentUser : boolean;
   
   constructor(private lists: ListsService,private router:Router) { }
 
@@ -25,6 +28,11 @@ export class AnimationListComponent implements OnInit {
     .subscribe(result => {
       this.animations = result as A_Animation[]
     })  
+    if(this.user.username==this.currentUser.username){
+      this.isCurrentUser=true
+    }else{
+      this.isCurrentUser=false
+    }
   }
 
   goToAnimationDetails(id){

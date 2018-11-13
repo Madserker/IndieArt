@@ -23,7 +23,10 @@ class DrawController extends Controller
         $draw = new Draw();
         $draw->name = $request->input('name');//cogemos los datos del draw desde la request del frontend
         $draw->author = $request->input('author');
-        $draw->imagePath = $request->input('imagePath');       
+        //$draw->imagePath = $request->input('imagePath');    
+        $draw->imagePath  = "src/assets/storage/draws/".$draw->name."".$draw->id;
+        $request->merge([$request->input('file') => $draw->imagePath]);   
+
         $draw->save();//guardamos el draw
         return response()->json(['draw' => $draw], 201);//retornamos 201 y el dibujo
     }

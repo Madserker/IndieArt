@@ -8,6 +8,7 @@ import { User } from 'src/app/_models/User.interface';
 })
 export class GalleryComponent implements OnInit {
 @Input() user:User;
+@Input() currentUser:User;
   constructor() { }
 
   ngOnInit() {

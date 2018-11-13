@@ -1,3 +1,3 @@
 <h5>DRAWS</h5>
 <app-image *ngFor="let draw of draws" [draw]="draw" (click)="goToDrawDetails(draw?.id)"></app-image>
-<app-new-draw></app-new-draw>
+<app-new-draw *ngIf="isCurrentUser"></app-new-draw>
