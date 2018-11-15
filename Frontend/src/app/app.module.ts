@@ -46,6 +46,7 @@ import { ChapterViewerComponent } from './comic-details-view/chapter-viewer/chap
 import { NewDrawComponent } from './profile/new-draw/new-draw.component';
 import { NewComicComponent } from './profile/new-comic/new-comic.component';
 import { NewAnimationComponent } from './profile/new-animation/new-animation.component';
+import { NewEpisodeComponent } from './animation-details-view/new-episode/new-episode.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -105,6 +106,7 @@ const routes : Route[] = [
     NewDrawComponent,
     NewComicComponent,
     NewAnimationComponent,
+    NewEpisodeComponent,
 
     
   ],

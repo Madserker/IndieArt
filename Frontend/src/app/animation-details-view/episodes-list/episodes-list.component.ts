@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Episode } from '../../_models/Episode.interface';
+import { User } from '../../_models/User.interface';
 
 @Component({
   selector: 'app-episodes-list',
@@ -8,6 +9,8 @@ import { Episode } from '../../_models/Episode.interface';
 })
 export class EpisodesListComponent implements OnInit {
   @Input() episodes : Episode[]
+  @Input() isCurrentUser : boolean
+  @Input() currentUser : User
   constructor() { }
 
   ngOnInit() {

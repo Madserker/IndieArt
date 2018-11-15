@@ -17,11 +17,11 @@ chapters:Chapter[]
   ngOnInit() {
     this.route.params.subscribe(
       params => {
-        console.log(params.id) //params = animation.id
+        console.log(params.id) //params = comic.id
         this.id = params.id
       }
       )
-      //cogemos la animacion con el id de la ruta
+      //cogemos el comic con el id de la ruta
       this.lists.getChapters(this.id)
       .subscribe(result => {
       this.chapters = result as Chapter[]

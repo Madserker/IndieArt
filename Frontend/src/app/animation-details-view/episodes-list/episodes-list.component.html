@@ -1,7 +1,7 @@
 <div class="episodesList">
 <h1>EPISODES</h1>
 <div class="episode">
-<app-episode *ngFor="let episode of episodes" [episode]=episode>
-</app-episode>
+<app-episode *ngFor="let episode of episodes" [episode]=episode></app-episode>
+<app-new-episode *ngIf="isCurrentUser" [currentUser]="currentUser"></app-new-episode>
 </div>
 </div>
