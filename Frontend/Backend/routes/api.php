@@ -55,7 +55,8 @@ Route::post('/user/signin', [
 
 //=====================================================================================RUTAS PARA COMIC
 Route::post('/comic',[
-    'uses' => 'ComicController@postComic',//usamos el metodo postDraw del DrawController
+    'middleware' => 'cors',
+    'uses' => 'ComicController@postComic',
 ]);
 Route::get('/comics',[
     'middleware' => 'cors',

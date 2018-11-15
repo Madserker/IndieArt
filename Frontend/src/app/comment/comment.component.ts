@@ -24,7 +24,7 @@ export class CommentComponent implements OnInit {
     if(this.type==1){
     this.commentsService.deleteDrawComment(this.comment.id).subscribe(
       () => {
-        this.commentDeleted.emit(this.comment);
+        this.commentDeleted.emit(this.comment);//notifica al padre y actualiza la lista de comentarios
       }
     );
     }

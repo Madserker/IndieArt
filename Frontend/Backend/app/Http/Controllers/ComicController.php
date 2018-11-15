@@ -4,23 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comic;
+use JWTAuth;
+use Illuminate\Support\Facades\Storage;
 
 class ComicController extends Controller
 {
     public function postComic(Request $request){
         //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
-        
 
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
         
-        //$user = JWTAuth::parseToken()->toUser(); //Retorna el usuario del token
-
         $comic = new Comic();
+
+        $file = $request->file('photo');//Cogemos el file de la request
+
+        $path = Storage::putfile('comics', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
+
+        $comic->imagePath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+
         $comic->name = $request->input('name');//cogemos los datos del draw desde la request del frontend
         $comic->author = $request->input('author');
-        $comic->imagePath = $request->input('imagePath');       
+        $comic->synopsis = $request->input('synopsis');
+  
+                //default values        
+                $comic->mark = 0;
+                $comic->visits = 0;
+                $comic->status = "Aired";
+
         $comic->save();//guardamos el draw
         return response()->json(['comic' => $comic], 201);//retornamos 201 y el comic
     }

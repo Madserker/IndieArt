@@ -149,26 +149,61 @@ export class ListsService {
     let formData:FormData = new FormData();
     formData.append('photo', file, file.name);
     formData.append('name',name);
-    // formData.append('name', name);
-    // formData.append('descripcion', description);
-    // formData.append('author', username);
+    formData.append('descripcion', description);
+    formData.append('author', username);
 
     let headers = new Headers();
   	        headers.append('Accept', 'application/json');
   	        headers.append('Authorization','Bearer ' + localStorage.token );
           
-    
-    const body = JSON.stringify(
-      {
-        "name" : name, 
-        "descripcion" : description, 
-        "author" : username, 
-        "photo" : formData
- 
-      }
-    );
     //le pasamos el token para confirmar que estamos logeados
     return this.http.post('http://localhost:8000/api/draw/?token=' + token, formData, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
+
+  uploadComic(name:string,synopsis:string,file:File,username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    let formData:FormData = new FormData();
+    formData.append('photo', file, file.name);
+    formData.append('name',name);
+    formData.append('synopsis', synopsis);
+    formData.append('author', username);
+
+    let headers = new Headers();
+  	        headers.append('Accept', 'application/json');
+  	        headers.append('Authorization','Bearer ' + localStorage.token );
+          
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/comic/?token=' + token, formData, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
+
+  uploadAnimation(name:string,description:string,file:File,username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    let formData:FormData = new FormData();
+    formData.append('photo', file, file.name);
+    formData.append('name',name);
+    formData.append('descripcion', description);
+    formData.append('author', username);
+
+    let headers = new Headers();
+  	        headers.append('Accept', 'application/json');
+  	        headers.append('Authorization','Bearer ' + localStorage.token );
+          
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/animation/?token=' + token, formData, 
     {headers: new HttpHeaders(
       {'Accept': 'application/json',
       'Authorization':'Bearer'+ localStorage.token

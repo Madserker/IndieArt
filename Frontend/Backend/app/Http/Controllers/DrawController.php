@@ -33,8 +33,8 @@ class DrawController extends Controller
 
         //rellenamos el resto de datos con la request
         $draw->name = $request->input('name');
-        $draw->author = $request->input('username');
-        $draw->descripcion = $request->input('description');
+        $draw->author = $request->input('author');
+        $draw->descripcion = $request->input('descripcion');
 
         //default values        
         $draw->mark = 0;

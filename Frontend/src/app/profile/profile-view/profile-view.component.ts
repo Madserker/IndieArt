@@ -51,20 +51,5 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
-  // getUser(){
-  //   if(JSON.parse(this.authService.getUser())==null){
-  //     this.isCurrentUser==false
-  //   }
-  //   else{
-  //     if(JSON.parse(this.authService.getUser())[0].username==this.user.username){
-  //       this.isCurrentUser==true
-  //     }
-  //     else{
-  //       this.isCurrentUser==false
-  //     }
-  //     //cogemos el usuario del localStorage
-  //   }
-
-  // }
 
 }

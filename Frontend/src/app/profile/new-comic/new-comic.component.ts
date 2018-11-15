@@ -57,8 +57,8 @@ fileChange(event) {
   }
 }
 
-uploadDraw(form: NgForm){
-  this.lists.uploadDraw(
+uploadComic(form: NgForm){
+  this.lists.uploadComic(
     form.value.name,
     form.value.desc,
     this.file,

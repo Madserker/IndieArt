@@ -23,33 +23,12 @@ export class NewDrawComponent implements OnInit {
 
   }
 
-
-
-
-  // Get the modal
-
-
-// // Get the button that opens the modal
-// btn = document.getElementById("myBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// // When the user clicks the button, open the modal 
 openForm(){
     document.getElementById('myModal1').style.display = "block"
 }
 closeForm(){
   document.getElementById('myModal1').style.display = "none"
 }
-
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
 
 
 fileChange(event) {
