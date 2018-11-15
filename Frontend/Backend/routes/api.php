@@ -87,6 +87,11 @@ Route::delete('/comic/{id}',[
 ]);
 
 //====================================================================================RUTAS PARA ANIMATION
+Route::post('/animation',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@postAnimation',
+]);
+
 Route::get('/animations',[
     'middleware' => 'cors',
     'uses' => 'AnimationController@getAnimations',

@@ -189,13 +189,13 @@ export class ListsService {
     })
   }
 
-  uploadAnimation(name:string,description:string,file:File,username:string){
+  uploadAnimation(name:string,synopsis:string,file:File,username:string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
     let formData:FormData = new FormData();
     formData.append('photo', file, file.name);
     formData.append('name',name);
-    formData.append('descripcion', description);
+    formData.append('synopsis', synopsis);
     formData.append('author', username);
 
     let headers = new Headers();

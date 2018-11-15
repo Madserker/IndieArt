@@ -5,10 +5,44 @@ namespace App\Http\Controllers;
 use App\Animation;
 use Illuminate\Http\Request;
 use JWTAuth;
+use Illuminate\Support\Facades\Storage;
 
 
 class AnimationController extends Controller
 {
+
+
+    public function postAnimation(Request $request){
+        //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
+        
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        //$user = JWTAuth::parseToken()->toUser(); //Retorna el usuario del token
+
+        $animation = new Animation();
+
+        $file = $request->file('photo');//Cogemos el file de la request
+
+        $path = Storage::putfile('animations', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
+
+        $animation->imagePath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+
+        //rellenamos el resto de datos con la request
+        $animation->name = $request->input('name');
+        $animation->author = $request->input('author');
+        $animation->synopsis = $request->input('synopsis');
+
+        //default values        
+        $animation->mark = 0;
+        $animation->visits = 0;
+        $animation->status = "Aired";
+
+        $animation->save();//guardamos el draw
+        return response()->json(['animation' => $animation], 201);//retornamos 201 y el dibujo
+    }
 
 
     public function getAnimations(){
