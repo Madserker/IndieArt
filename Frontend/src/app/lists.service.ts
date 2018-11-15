@@ -211,4 +211,28 @@ export class ListsService {
       )
     })
   }
+
+  uploadEpisode(name:string,number:string,file:File,username:string, id:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    let formData:FormData = new FormData();
+    formData.append('video', file, file.name);
+    formData.append('name',name);
+    formData.append('number', number);
+    formData.append('author', username);
+    formData.append('animation_id', id);
+
+    let headers = new Headers();
+  	        headers.append('Accept', 'application/json');
+  	        headers.append('Authorization','Bearer ' + localStorage.token );
+          
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/animation/'+id+'/episode'+'/?token=' + token, formData, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
 } 

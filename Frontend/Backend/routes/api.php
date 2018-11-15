@@ -102,6 +102,11 @@ Route::get('/animation/{id}/episodes',[
     'uses' => 'AnimationController@getAnimationEpisodes',
 ]);
 
+Route::post('/animation/{id}/episode',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@postEpisode',
+]);
+
 Route::get('/user/animations/{author}',[
     'middleware' => 'cors',
     'uses' => 'AnimationController@getAnimationsByAuthor',

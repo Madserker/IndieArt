@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Animation;
+use App\Episode;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
@@ -43,6 +44,35 @@ class AnimationController extends Controller
         $animation->save();//guardamos el draw
         return response()->json(['animation' => $animation], 201);//retornamos 201 y el dibujo
     }
+
+    public function postEpisode(Request $request){
+        //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
+        
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        //$user = JWTAuth::parseToken()->toUser(); //Retorna el usuario del token
+
+        $episode = new Episode();
+
+        $file = $request->file('video');//Cogemos el file de la request
+
+        $path = Storage::putfile('animations/episodes', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
+
+        $episode->videoPath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+
+        //rellenamos el resto de datos con la request
+        $episode->name = $request->input('name');
+        $episode->number = $request->input('number');
+        $episode->animation_id = $request->input('animation_id');
+
+
+        $episode->save();//guardamos el draw
+        return response()->json(['episode' => $episode], 201);//retornamos 201 y el dibujo
+    }
+
 
 
     public function getAnimations(){
