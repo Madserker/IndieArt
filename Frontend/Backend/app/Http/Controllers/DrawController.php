@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Draw;
 use Illuminate\Http\Request;
 use JWTAuth;
+use Illuminate\Support\Facades\Storage;
+
+
 
 
 class DrawController extends Controller
@@ -21,11 +24,21 @@ class DrawController extends Controller
         //$user = JWTAuth::parseToken()->toUser(); //Retorna el usuario del token
 
         $draw = new Draw();
-        $draw->name = $request->input('name');//cogemos los datos del draw desde la request del frontend
-        $draw->author = $request->input('author');
-        //$draw->imagePath = $request->input('imagePath');    
-        $draw->imagePath  = "src/assets/storage/draws/".$draw->name."".$draw->id;
-        $request->merge([$request->input('file') => $draw->imagePath]);   
+
+        $file = $request->file('photo');//Cogemos el file de la request
+
+        $path = Storage::putfile('draws', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
+
+        $draw->imagePath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+
+        //rellenamos el resto de datos con la request
+        $draw->name = $request->input('name');
+        $draw->author = $request->input('username');
+        $draw->descripcion = $request->input('description');
+
+        //default values        
+        $draw->mark = 0;
+        $draw->visits = 0;
 
         $draw->save();//guardamos el draw
         return response()->json(['draw' => $draw], 201);//retornamos 201 y el dibujo

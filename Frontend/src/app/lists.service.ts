@@ -9,6 +9,8 @@ import { User } from './_models/User.interface';
 import { A_Animation } from './_models/A_Animation.interface';
 import { Episode } from './_models/Episode.interface';
 import { Page } from './_models/Page.interface';
+import { AuthService } from "./auth.service";
+import {Headers} from '@angular/http';
 
 //definimos interface para mapear la lista de dibujos
 interface getDraws{
@@ -50,10 +52,9 @@ interface getComic{
 
 @Injectable()
 export class ListsService {
-  authService: any;
 
 
- constructor(private http: HttpClient){}
+ constructor(private http: HttpClient, private authService: AuthService){}
 
  getDraws(): Observable<Draw[]> {
 
@@ -142,20 +143,36 @@ export class ListsService {
   }
 
   //====================================================================Upload
-  uploadDraw(name:string,description:string,file:File){
+  uploadDraw(name:string,description:string,file:File,username:string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
+    let formData:FormData = new FormData();
+    formData.append('photo', file, file.name);
+    formData.append('name',name);
+    // formData.append('name', name);
+    // formData.append('descripcion', description);
+    // formData.append('author', username);
+
+    let headers = new Headers();
+  	        headers.append('Accept', 'application/json');
+  	        headers.append('Authorization','Bearer ' + localStorage.token );
+          
+    
     const body = JSON.stringify(
       {
         "name" : name, 
-        "description" : description, 
-        "file" : file
+        "descripcion" : description, 
+        "author" : username, 
+        "photo" : formData
+ 
       }
     );
     //le pasamos el token para confirmar que estamos logeados
-    return this.http.post('http://localhost:8000/api/draw/?token=' + token, body, 
+    return this.http.post('http://localhost:8000/api/draw/?token=' + token, formData, 
     {headers: new HttpHeaders(
-      {'Content-Type': 'application/json'}
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
       )
     })
   }

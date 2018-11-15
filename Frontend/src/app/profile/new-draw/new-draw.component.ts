@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ListsService } from '../../lists.service';
 import { NgForm } from '@angular/forms';
+import { User } from '../../_models/User.interface';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class NewDrawComponent implements OnInit {
 
   file : File
+  @Input() currentUser : User
 
   constructor(private lists : ListsService) { }
 
@@ -58,10 +60,12 @@ fileChange(event) {
 }
 
 uploadDraw(form: NgForm){
+  console.log(this.file)
   this.lists.uploadDraw(
     form.value.name,
-    form.value.description,
-    this.file
+    form.value.desc,
+    this.file,
+    this.currentUser.username
     ).subscribe(
       response =>  window.location.reload(),//si ha ido bien el login
       error => console.log(error)//si no ha ido bien el login

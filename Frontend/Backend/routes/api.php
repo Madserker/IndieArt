@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //===========================================================================================RUTAS PARA DRAW
 Route::post('/draw',[
+    'middleware' => 'cors',
     'uses' => 'DrawController@postDraw',//usamos el metodo postDraw del DrawController
 ]);
 Route::get('/draws',[
