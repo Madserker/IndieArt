@@ -123,7 +123,7 @@ class UserController extends Controller
 
         $user = User::find($user_id);
         if ($user->following->contains($following_id)) {//comprobamos que este esta relacion ya en la tabla
-            $user->following()->delete($following_id);
+            $user->following()->detach($following_id);
             return response()->json(['user' => $user], 201);//retornamos 201
         }
         return response()->json(['message' => 'You do not follow that user'],404); //si ya seguimos al usuario, lanzamos error
