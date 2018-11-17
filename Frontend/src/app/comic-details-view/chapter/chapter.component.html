@@ -7,5 +7,5 @@
   </p>
   <button mat-menu-item class="watchButton" (click)="openModal()" id=button{{chapter.id}}>Read</button>
   </div>
-  <app-chapter-viewer [pages]=pages></app-chapter-viewer>
+  <app-chapter-viewer [pages]=pages [chapterId]=chapter.id></app-chapter-viewer>
 

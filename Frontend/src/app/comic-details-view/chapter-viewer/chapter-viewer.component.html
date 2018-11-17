@@ -1,10 +1,10 @@
-<div id="myModal" class="modal">
+<div id="myModal{{chapterId}}" class="modal">
   <span class="close cursor" (click)="closeModal()">&times;</span>
   <div class="modal-content">
 
     <div class="mySlides">
       <div class="numbertext">{{currentIndex}}/{{pages?.length}}</div>
-      <img src="{{pages[currentIndex-1]?.imagePath}}" style="width:100%">
+      <img src="{{pages && pages[currentIndex-1]?.imagePath}}" style="width:100%">
     </div>
     
     

@@ -10,6 +10,7 @@ import { HostListener } from '@angular/core';
 export class ChapterViewerComponent implements OnInit {
 
   @Input() pages : Page[]
+  @Input() chapterId : number
 
   currentIndex : number = 1;
   
@@ -19,13 +20,17 @@ export class ChapterViewerComponent implements OnInit {
 
   }
 
+  ngOnChanges(){
+    console.log(this.pages)
+  }
+
 
   openModal() {
-    document.getElementById('myModal').style.display = "block";
+    document.getElementById('myModal'+this.chapterId).style.display = "block";
   }
   
   closeModal() {
-    document.getElementById('myModal').style.display = "none";
+    document.getElementById('myModal'+this.chapterId).style.display = "none";
   }
 
   nextPage(){
