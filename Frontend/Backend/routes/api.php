@@ -25,6 +25,7 @@ Route::post('/draw',[
     'middleware' => 'cors',
     'uses' => 'DrawController@postDraw',//usamos el metodo postDraw del DrawController
 ]);
+
 Route::get('/draws',[
     'middleware' => 'cors',
     'uses' => 'DrawController@getDraws'
@@ -34,21 +35,25 @@ Route::get('/draw/{id}',[
     'middleware' => 'cors',
     'uses' => 'DrawController@getDrawById',
 ]);
+
 Route::get('/user/draws/{author}',[
     'middleware' => 'cors',
     'uses' => 'DrawController@getDrawsByAuthor',
 ]);
+
 Route::put('/draw/{id}',[
     'uses' => 'DrawController@putDraw',
 ]);
+
 Route::delete('/draw/{id}',[
     'uses' => 'DrawController@deleteDraw',
 ]);
 
-//RUTAS PARA LOGIN Y SIGN UP
+//=================================================================================RUTAS PARA LOGIN Y SIGN UP
 Route::post('/user', [
     'uses' => 'UserController@signup'
 ]);
+
 Route::post('/user/signin', [
     'uses' => 'UserController@signin'
 ]);
@@ -58,30 +63,37 @@ Route::post('/comic',[
     'middleware' => 'cors',
     'uses' => 'ComicController@postComic',
 ]);
+
 Route::post('/comic/{id}/chapter',[
     'middleware' => 'cors',
     'uses' => 'ChapterController@postChapter',
 ]);
+
 Route::post('/comic/chapter/{id}/page',[
     'middleware' => 'cors',
     'uses' => 'PageController@postPage',
 ]);
+
 Route::get('/comics',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComics'
 ]);
+
 Route::get('/comic/{id}',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComicById'
 ]);
+
 Route::get('/comic/{id}/chapters',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComicChapters'
 ]);
+
 Route::get('/user/comics/{author}',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComicsByAuthor',
 ]);
+
 Route::get('/comic/chapter/{id}/pages',[
     'middleware' => 'cors',
     'uses' => 'ChapterController@getChapterPages'
@@ -90,6 +102,7 @@ Route::get('/comic/chapter/{id}/pages',[
 Route::put('/comic/{id}',[
     'uses' => 'ComicController@putComics',
 ]);
+
 Route::delete('/comic/{id}',[
     'uses' => 'ComicController@deleteComics',
 ]);
@@ -130,9 +143,20 @@ Route::get('/users',[
     'middleware' => 'cors',
     'uses' => 'UserController@getUsers'
 ]);
+
 Route::get('/user/{username}',[
     'middleware' => 'cors',
     'uses' => 'UserController@getUserByUsername'
+]);
+
+Route::get('/user/{username}/followers',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getFollowers'
+]);
+
+Route::get('/user/{username}/following',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getFollowing'
 ]);
 
 //=================================================================================RUTAS PARA COMMENTS
@@ -140,10 +164,12 @@ Route::get('/comments/draw/{id}',[
     'middleware' => 'cors',
     'uses' => 'CommentsController@getDrawComments'
 ]);
+
 Route::get('/comments/comic/{id}',[
     'middleware' => 'cors',
     'uses' => 'CommentsController@getComicComments'
 ]);
+
 Route::get('/comments/animation/{id}',[
     'middleware' => 'cors',
     'uses' => 'CommentsController@getAnimationComments'

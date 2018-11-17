@@ -83,6 +83,21 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
         return response()->json(['user' => $user],200);
-        
+    }
+
+    public function getFollowers(String $username){
+        $user = User::where('username',$username)->get();
+        if(!$user){//si no ha encontrado el user con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['followers' => $user[0]->followers],200);
+    }
+
+    public function getFollowing(String $username){
+        $user = User::where('username',$username)->get();
+        if(!$user){//si no ha encontrado el user con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+        return response()->json(['followers' => $user[0]->following],200);
     }
 }

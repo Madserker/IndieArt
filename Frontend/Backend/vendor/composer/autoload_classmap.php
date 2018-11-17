@@ -9,6 +9,7 @@ return array(
     'App\\Admin' => $baseDir . '/app/Admin.php',
     'App\\Animation' => $baseDir . '/app/Animation.php',
     'App\\AnimationComment' => $baseDir . '/app/AnimationComment.php',
+    'App\\Art' => $baseDir . '/app/Art.php',
     'App\\Chapter' => $baseDir . '/app/Chapter.php',
     'App\\Comic' => $baseDir . '/app/Comic.php',
     'App\\ComicComment' => $baseDir . '/app/ComicComment.php',

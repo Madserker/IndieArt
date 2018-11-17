@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Model;
 
+
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -61,6 +62,19 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Animation');
     }
+
+
+
+
+    public function followers(){//Many To Many relationship
+        return $this->belongsToMany(User::class, 'users_users', 'user_id', 'follower_id');
+    }
+    public function following(){//Many To Many relationship
+        return $this->belongsToMany(User::class, 'users_users', 'follower_id', 'user_id');
+    }
+
+
+
 
 
     public function getJWTIdentifier()

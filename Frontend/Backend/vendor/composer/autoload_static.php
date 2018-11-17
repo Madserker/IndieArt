@@ -369,6 +369,7 @@ class ComposerStaticInite2544a7c37b24356cb11ae9086957b6a
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\Animation' => __DIR__ . '/../..' . '/app/Animation.php',
         'App\\AnimationComment' => __DIR__ . '/../..' . '/app/AnimationComment.php',
+        'App\\Art' => __DIR__ . '/../..' . '/app/Art.php',
         'App\\Chapter' => __DIR__ . '/../..' . '/app/Chapter.php',
         'App\\Comic' => __DIR__ . '/../..' . '/app/Comic.php',
         'App\\ComicComment' => __DIR__ . '/../..' . '/app/ComicComment.php',
