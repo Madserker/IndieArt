@@ -17,11 +17,11 @@
 
 <br>
 <h6>FOLLOWING</h6>
-<img *ngFor="let user of following" src="{{user.profilePic}}" width="60%" class="follow-image">
+<img *ngFor="let user of following" src="{{user.profilePic}}" width="60%" class="follow-image" [routerLink]="['/user',user?.username]">
 
 <div *ngIf="currentUser?.username!=user?.username && currentUser!=null">
-<button mat-button class="Follow" (click)="goToFriendsActivity()">Follow User</button>
-<button mat-button class="Follow" (click)="goToFriendsActivity()">Send message</button>
+<button mat-button class="Follow" (click)="followUser()">Follow User</button>
+<button mat-button class="Follow" (click)="sendMessage()">Send message</button>
 </div>
 </div>
 

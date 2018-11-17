@@ -26,6 +26,16 @@ export class ProfileViewImageComponent implements OnInit {
     this.usersService.getFollowers(this.user.username).subscribe(result => {
       this.followers = result as User []
       })
+    this.usersService.getFollowing(this.user.username).subscribe(result => {
+        this.following = result as User []
+      })
+  }
+
+  followUser(){
+    this.usersService.followUser(this.currentUser.id, this.user.id).subscribe(
+      response =>  window.location.reload(),//si ha ido bien el login
+      error => console.log(error)//si no ha ido bien el login
+    );
   }
 
 }

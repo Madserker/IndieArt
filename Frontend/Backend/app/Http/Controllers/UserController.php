@@ -100,4 +100,20 @@ class UserController extends Controller
         }
         return response()->json(['followers' => $user[0]->following],200);
     }
+
+    public function follow(Request $request){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        $user = User::find($request->input('user_id'));
+
+        if (!$user->followers->contains($request->input('follower_id'))) {//comprobamos que no este esta relacion ya en la tabla
+            $user->followers()->attach($request->input('follower_id'));
+            return response()->json(['user' => $user], 201);//retornamos 201
+        }
+        return response()->json(['message' => 'Already following that user'],404); //si no hay token o no es correcto lanza un error
+
+
+    }
 }

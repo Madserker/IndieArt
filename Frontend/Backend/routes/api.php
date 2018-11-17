@@ -159,6 +159,11 @@ Route::get('/user/{username}/following',[
     'uses' => 'UserController@getFollowing'
 ]);
 
+Route::post('/user/follow',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@follow'
+]);
+
 //=================================================================================RUTAS PARA COMMENTS
 Route::get('/comments/draw/{id}',[
     'middleware' => 'cors',

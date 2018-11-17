@@ -31,6 +31,25 @@ export class UsersService {
       map(res => res.followers as User[] || [])); 
   }
 
+  followUser(follower_id : number, username_id : number){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+    console.log(follower_id)
+    console.log(username_id)
+    const body = JSON.stringify(
+      {
+        "user_id":username_id,
+        "follower_id":follower_id
+      }
+    );
+
+
+    return this.http.post('http://localhost:8000/api/user/follow/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    });
+  }
+
 
   
 }
