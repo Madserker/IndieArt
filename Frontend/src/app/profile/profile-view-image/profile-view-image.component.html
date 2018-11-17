@@ -21,6 +21,7 @@
 
 <div *ngIf="currentUser?.username!=user?.username && currentUser!=null"><!--si estamos logueados y no somos el usuario de este perfil-->
 <button *ngIf="!alreadyFollowing" mat-button class="Follow" (click)="followUser()">Follow User</button><!--si no seguimos al usuario-->
+<button *ngIf="alreadyFollowing" mat-button class="Follow" (click)="unfollowUser()">Unfollow User</button><!--si no seguimos al usuario-->
 <button mat-button class="Follow" (click)="sendMessage()">Send message</button>
 </div>
 </div>

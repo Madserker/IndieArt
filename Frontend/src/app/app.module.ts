@@ -16,7 +16,6 @@ import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
 
-import { FriendsActivityComponent } from './friends-activity/friends-activity.component';
 import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ProfileViewComponent } from './profile/profile-view/profile-view.component';
 import { ProfileViewImageComponent } from './profile/profile-view-image/profile-view-image.component';
@@ -48,12 +47,15 @@ import { NewComicComponent } from './profile/new-comic/new-comic.component';
 import { NewAnimationComponent } from './profile/new-animation/new-animation.component';
 import { NewEpisodeComponent } from './animation-details-view/new-episode/new-episode.component';
 import { NewChapterComponent } from './comic-details-view/new-chapter/new-chapter.component';
+import { FriendsActivityViewComponent } from './friends-activity/friends-activity-view/friends-activity-view.component';
+import { FriendsActivityListComponent } from './friends-activity/friends-activity-list/friends-activity-list.component';
+import { FriendsActivityNotificationComponent } from './friends-activity/friends-activity-notification/friends-activity-notification.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
 {path: '', component: ListsViewComponent},
 {path: 'chat-rooms', component: ChatRoomsComponent},
-{path: 'friends-activity', component: FriendsActivityComponent},
+{path: 'friends-activity', component: FriendsActivityViewComponent},
 {path: 'competitions', component: ChatRoomsComponent},
 
 //rutas dinamicas
@@ -77,7 +79,6 @@ const routes : Route[] = [
     ImageComponent,
     LoginSideNavComponent,
     ListsViewComponent,
-    FriendsActivityComponent,
     ChatRoomsComponent,
     ProfileViewComponent,
     ComicComponent,
@@ -109,6 +110,9 @@ const routes : Route[] = [
     NewAnimationComponent,
     NewEpisodeComponent,
     NewChapterComponent,
+    FriendsActivityViewComponent,
+    FriendsActivityListComponent,
+    FriendsActivityNotificationComponent,
 
     
   ],

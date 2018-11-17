@@ -113,7 +113,19 @@ class UserController extends Controller
             return response()->json(['user' => $user], 201);//retornamos 201
         }
         return response()->json(['message' => 'Already following that user'],404); //si ya seguimos al usuario, lanzamos error
+    }
 
+    public function unfollow($following_id,$user_id){
 
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $user = User::find($user_id);
+        if ($user->following->contains($following_id)) {//comprobamos que este esta relacion ya en la tabla
+            $user->following()->delete($following_id);
+            return response()->json(['user' => $user], 201);//retornamos 201
+        }
+        return response()->json(['message' => 'You do not follow that user'],404); //si ya seguimos al usuario, lanzamos error
     }
 }

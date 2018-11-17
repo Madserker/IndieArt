@@ -19,10 +19,10 @@ class CreateUsersUsersTable extends Migration
             $table->timestamps();
 
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
             $table->integer('follower_id')->unsigned()->index();
-            $table->foreign('follower_id')->references('id')->on('users');
+            $table->foreign('follower_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

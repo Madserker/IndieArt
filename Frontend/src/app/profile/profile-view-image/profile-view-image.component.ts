@@ -49,5 +49,11 @@ export class ProfileViewImageComponent implements OnInit {
       error => console.log(error)//si no ha ido bien el login
     );
   }
+  unfollowUser(){
+    this.usersService.unfollowUser(this.currentUser.id, this.user.id).subscribe(
+      response =>  window.location.reload(),//si ha ido bien el login
+      error => console.log(error)//si no ha ido bien el login
+    );
+  }
 
 }

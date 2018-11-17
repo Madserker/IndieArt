@@ -33,8 +33,6 @@ export class UsersService {
 
   followUser(follower_id : number, username_id : number){
     const token = this.authService.getToken();//recuperamos el token de la sesion
-    console.log(follower_id)
-    console.log(username_id)
     const body = JSON.stringify(
       {
         "user_id":username_id,
@@ -42,10 +40,20 @@ export class UsersService {
       }
     );
 
-
     return this.http.post('http://localhost:8000/api/user/follow/?token=' + token, body, 
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
+      )
+    });
+  }
+
+  unfollowUser(following_id : number, username_id : number){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.delete('http://localhost:8000/api/user/'+username_id+'/unfollow/'+following_id+'/?token=' + token,     {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
       )
     });
   }
