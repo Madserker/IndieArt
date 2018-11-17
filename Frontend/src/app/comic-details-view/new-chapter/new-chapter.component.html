@@ -1,0 +1,43 @@
+<div class=chapter>
+  <p class="name">Create Chapter</p>
+  <img src="src/assets/add.png" class="image" id="image" width="100%" (click)="openForm()">
+    </div>
+    
+
+    <!-- The Modal -->
+<div id="myModal5" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" (click)="closeForm()">&times;</span>
+      </div>
+  
+      <form (ngSubmit)="uploadChapter(f)" #f="ngForm" required>
+      <div class="modal-body" id="chapter-modal-body">
+  
+  
+          Name:<br>
+          <input type="text" name="name" id="name" ngModel class="form-control"><br>
+          Number:<br>
+          <input type="text" name="number" id="number" ngModel class="form-control"><br>
+
+          <input type="file" (change)="fileChange($event)" placeholder="Upload Page" accept=".jpg,.jpeg,.png" id="inputPage">
+          <button type="button" mat-menu-item class="buttonSubmit" (click)="addPage()">Add Page</button>
+          <br>
+          <!--<button type="button" mat-menu-item class="buttonSubmit" (click)="removePage()">Remove Page</button>-->
+        <br>
+
+
+  
+        </div>
+          <div class="modal-footer">
+            <button mat-menu-item class="buttonSubmit">Upload Episode</button>
+          </div>
+        </form>
+  
+    </div>
+  
+  </div>
+  
+  

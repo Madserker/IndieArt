@@ -58,6 +58,14 @@ Route::post('/comic',[
     'middleware' => 'cors',
     'uses' => 'ComicController@postComic',
 ]);
+Route::post('/comic/{id}/chapter',[
+    'middleware' => 'cors',
+    'uses' => 'ChapterController@postChapter',
+]);
+Route::post('/comic/chapter/{id}/page',[
+    'middleware' => 'cors',
+    'uses' => 'PageController@postPage',
+]);
 Route::get('/comics',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComics'

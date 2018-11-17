@@ -46,6 +46,9 @@ interface getPages{
 interface getComic{
   comic: Comic
 }
+interface getChapter{
+  chapter: Chapter
+}
 
 
 
@@ -235,4 +238,62 @@ export class ListsService {
       )
     })
   }
+
+  uploadChapter(name:string,number:string,fileList:File[],username:string, id:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    let formData:FormData = new FormData();
+    // let count = 0;
+    // for (let file of fileList) {//pasamos pagina a pagina, formData no acepta arrays
+    //   formData.append('file'+count, file,file.name);
+    //   count++;
+    // }
+    formData.append('name',name);
+    formData.append('number', number);
+    formData.append('author', username);
+    formData.append('comic_id', id);
+
+    let headers = new Headers();
+  	        headers.append('Accept', 'application/json');
+  	        headers.append('Authorization','Bearer ' + localStorage.token );
+          
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post<getChapter>('http://localhost:8000/api/comic/'+id+'/chapter'+'/?token=' + token, formData, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
+
+  uploadPage(id:string, number:number,file:File){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    let formData:FormData = new FormData();
+    // let count = 0;
+    // for (let file of fileList) {//pasamos pagina a pagina, formData no acepta arrays
+    //   formData.append('file'+count, file,file.name);
+    //   count++;
+    // }
+    formData.append('file',file,file.name);
+    formData.append('number', number.toString());
+    formData.append('chapter_id', id);
+
+    let headers = new Headers();
+  	        headers.append('Accept', 'application/json');
+  	        headers.append('Authorization','Bearer ' + localStorage.token );
+          
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post('http://localhost:8000/api/comic/chapter/'+id+'/page'+'/?token=' + token, formData, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
+
+
+
 } 
