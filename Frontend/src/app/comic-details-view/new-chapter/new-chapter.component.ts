@@ -77,8 +77,12 @@ export class NewChapterComponent implements OnInit {
         file,
       ).subscribe(
         //response =>  window.location.reload(),//si ha ido bien el login
-        response => this.countSubs++,
-        error => console.log(error)//si no ha ido bien el login
+        () => {
+          this.countSubs++;
+        if(this.countSubs==this.fileList.length){
+          window.location.reload()//actualiza la pagina cuando ha terminado de subir todas las paginas del capitulo
+        }
+      }
       );
       count++
     }
@@ -92,18 +96,18 @@ export class NewChapterComponent implements OnInit {
       this.fileList.push(this.file);
       this.pageCount++;
       
-      var para = document.createElement("p");
-      var node = document.createTextNode(this.pageCount+": "+this.fileList[this.pageCount-1].name);
-      para.appendChild(node);
+      // var para = document.createElement("p");
+      // var node = document.createTextNode(this.pageCount+": "+this.fileList[this.pageCount-1].name);
+      // para.appendChild(node);
 
-      document.getElementById("chapter-modal-body").appendChild(para);
+      // document.getElementById("chapter-modal-body").appendChild(para);
     }
   }
 
   removePage(){
     if(this.fileList){
       this.fileList.pop();
-      this.pageCount;
+      this.pageCount--;
       
       //en proseso
     }
