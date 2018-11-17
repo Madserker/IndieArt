@@ -14,21 +14,33 @@ export class ProfileViewImageComponent implements OnInit {
 
   followers : User [];
   following : User [];
+
+  alreadyFollowing:boolean = false
   
   constructor(private usersService : UsersService) { }
 
   ngOnInit() {
     console.log(this.currentUser)
+    
 
   }
 
   ngOnChanges(){
     this.usersService.getFollowers(this.user.username).subscribe(result => {
       this.followers = result as User []
+
+      //comprobamos si ya seguimos al usuario
+      //si lo seguimos, no mostramos el boton de follow
+      for(let user of this.followers){
+        if(user.username == this.currentUser.username){
+          this.alreadyFollowing = true
+        }
+      }
       })
     this.usersService.getFollowing(this.user.username).subscribe(result => {
         this.following = result as User []
       })
+
   }
 
   followUser(){

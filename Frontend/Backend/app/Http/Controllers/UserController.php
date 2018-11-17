@@ -112,7 +112,7 @@ class UserController extends Controller
             $user->followers()->attach($request->input('follower_id'));
             return response()->json(['user' => $user], 201);//retornamos 201
         }
-        return response()->json(['message' => 'Already following that user'],404); //si no hay token o no es correcto lanza un error
+        return response()->json(['message' => 'Already following that user'],404); //si ya seguimos al usuario, lanzamos error
 
 
     }
