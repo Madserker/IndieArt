@@ -31,12 +31,12 @@ export class UsersService {
       map(res => res.followers as User[] || [])); 
   }
 
-  followUser(follower_id : number, username_id : number){
+  followUser(follower : string, username : string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
     const body = JSON.stringify(
       {
-        "user_id":username_id,
-        "follower_id":follower_id
+        "username":username,
+        "follower":follower
       }
     );
 
@@ -47,10 +47,10 @@ export class UsersService {
     });
   }
 
-  unfollowUser(following_id : number, username_id : number){
+  unfollowUser(following : string, username : string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
-    return this.http.delete('http://localhost:8000/api/user/'+username_id+'/unfollow/'+following_id+'/?token=' + token,     {headers: new HttpHeaders(
+    return this.http.delete('http://localhost:8000/api/user/'+username+'/unfollow/'+following+'/?token=' + token,     {headers: new HttpHeaders(
       {'Accept': 'application/json',
       'Authorization':'Bearer'+ localStorage.token
     }

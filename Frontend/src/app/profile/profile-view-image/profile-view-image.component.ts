@@ -44,13 +44,13 @@ export class ProfileViewImageComponent implements OnInit {
   }
 
   followUser(){
-    this.usersService.followUser(this.currentUser.id, this.user.id).subscribe(
+    this.usersService.followUser(this.currentUser.username, this.user.username).subscribe(
       response =>  window.location.reload(),//si ha ido bien el login
       error => console.log(error)//si no ha ido bien el login
     );
   }
   unfollowUser(){
-    this.usersService.unfollowUser(this.currentUser.id, this.user.id).subscribe(
+    this.usersService.unfollowUser(this.currentUser.username, this.user.username).subscribe(
       response =>  window.location.reload(),//si ha ido bien el login
       error => console.log(error)//si no ha ido bien el login
     );

@@ -15,7 +15,7 @@ class User extends Authenticatable implements JWTSubject
 
 
     public $incrementing = false;
-    protected $primarykey = 'username';
+    protected $primaryKey = 'username';
     /**
      * The attributes that are mass assignable.
      *
@@ -67,10 +67,10 @@ class User extends Authenticatable implements JWTSubject
 
 
     public function followers(){//Many To Many relationship
-        return $this->belongsToMany(User::class, 'users_users', 'user_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'users_users', 'username', 'follower');
     }
     public function following(){//Many To Many relationship
-        return $this->belongsToMany(User::class, 'users_users', 'follower_id', 'user_id');
+        return $this->belongsToMany(User::class, 'users_users', 'follower', 'username');
     }
 
 

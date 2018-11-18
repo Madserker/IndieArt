@@ -164,11 +164,15 @@ Route::post('/user/follow',[
     'uses' => 'UserController@follow'
 ]);
 
-Route::delete('/user/{id1}/unfollow/{id2}',[
+Route::delete('/user/{username}/unfollow/{following}',[
     'middleware' => 'cors',
     'uses' => 'UserController@unfollow',
 ]);
 
+Route::get('/user/{username}/following/draws',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getFollowingUsersDraws',
+]);
 //=================================================================================RUTAS PARA COMMENTS
 Route::get('/comments/draw/{id}',[
     'middleware' => 'cors',

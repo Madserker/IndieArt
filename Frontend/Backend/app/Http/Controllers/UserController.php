@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Draw;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 
@@ -106,26 +107,47 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
         
-        $user = User::find($request->input('user_id'));
+        $user = User::find($request->input('username'));
 
-        if (!$user->followers->contains($request->input('follower_id'))) {//comprobamos que no este esta relacion ya en la tabla
-            $user->followers()->attach($request->input('follower_id'));
+        if (!$user->followers->contains($request->input('follower'))) {//comprobamos que no este esta relacion ya en la tabla
+            $user->followers()->attach($request->input('follower'));
             return response()->json(['user' => $user], 201);//retornamos 201
         }
         return response()->json(['message' => 'Already following that user'],404); //si ya seguimos al usuario, lanzamos error
     }
 
-    public function unfollow($following_id,$user_id){
+    public function unfollow($following,$username){
 
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
 
-        $user = User::find($user_id);
-        if ($user->following->contains($following_id)) {//comprobamos que este esta relacion ya en la tabla
-            $user->following()->detach($following_id);
+        $user = User::find($username);
+        if ($user->following->contains($following)) {//comprobamos que este esta relacion ya en la tabla
+            $user->following()->detach($following);
             return response()->json(['user' => $user], 201);//retornamos 201
         }
         return response()->json(['message' => 'You do not follow that user'],404); //si ya seguimos al usuario, lanzamos error
+    }
+
+    public function getFollowingUsersDraws($username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        $user = User::where('username',$username)->get();
+        if(!$user){//si no ha encontrado el user con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+        $following = $user[0]->following;
+        $draws = [];
+        for($i=0; $i<sizeof($following);$i++){
+            $authorDraws = Draw::where('author',$following[$i])->get();
+            array_push($draws,$authorDraws);
+        }
+
+        return response()->json(['draws' => $following],200); 
+
+
+
     }
 }
