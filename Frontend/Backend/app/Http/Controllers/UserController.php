@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Draw;
+use App\Animation;
+use App\Episode;
+use App\Chapter;
+use App\Comic;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 
@@ -134,20 +138,60 @@ class UserController extends Controller
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
-        $user = User::where('username',$username)->get();
+        $user = User::find($username);
         if(!$user){//si no ha encontrado el user con ese id
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
-        $following = $user[0]->following;
+        $following = $user->following;
         $draws = [];
         for($i=0; $i<sizeof($following);$i++){
-            $authorDraws = Draw::where('author',$following[$i])->get();
-            array_push($draws,$authorDraws);
+            $authorDraws = Draw::where('author',$following[$i]->username)->get();//get draws del following $i
+            for($j=0; $j<sizeof($authorDraws);$j++){
+                array_push($draws,$authorDraws[$j]);//insertar draw en la lista
+            }
         }
+        return response()->json(['draws' => $draws],200); 
+    }
 
-        return response()->json(['draws' => $following],200); 
+    public function getFollowingUsersEpisodes($username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        $user = User::find($username);
+        if(!$user){//si no ha encontrado el user con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+        $following = $user->following;
+        $episodes = [];
+        for($i=0; $i<sizeof($following);$i++){
+            $authorAnimations = Animation::where('author',$following[$i]->username)->get();//get episodes del following $i
+            for($j=0; $j<sizeof($authorAnimations);$j++){
+                for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
+                    array_push($episodes,$authorAnimations[$j]->episodes[$k]);//insertar episode en la lista
+                }
+            }
+        }
+        return response()->json(['episodes' => $episodes],200); 
+    }
 
-
-
+    public function getFollowingUsersChapters($username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        $user = User::find($username);
+        if(!$user){//si no ha encontrado el user con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+        $following = $user->following;
+        $chapters = [];
+        for($i=0; $i<sizeof($following);$i++){
+            $authorComics = Comic::where('author',$following[$i]->username)->get();//get episodes del following $i
+            for($j=0; $j<sizeof($authorComics);$j++){
+                for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
+                    array_push($chapters,$authorComics[$j]->chapters[$k]);//insertar episode en la lista
+                }
+            }
+        }
+        return response()->json(['chapters' => $chapters],200); 
     }
 }

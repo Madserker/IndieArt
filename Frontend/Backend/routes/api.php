@@ -173,6 +173,16 @@ Route::get('/user/{username}/following/draws',[
     'middleware' => 'cors',
     'uses' => 'UserController@getFollowingUsersDraws',
 ]);
+
+Route::get('/user/{username}/following/episodes',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getFollowingUsersEpisodes',
+]);
+
+Route::get('/user/{username}/following/chapters',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getFollowingUsersChapters',
+]);
 //=================================================================================RUTAS PARA COMMENTS
 Route::get('/comments/draw/{id}',[
     'middleware' => 'cors',

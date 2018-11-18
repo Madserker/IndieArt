@@ -22,10 +22,10 @@ export class UserComponent implements OnInit {
 
 
   showText(){
-    document.getElementById("text"+this.user.id.toString()).style.visibility="visible";
+    document.getElementById("text"+this.user.username.toString()).style.visibility="visible";
     
   }
   hideText(){
-    document.getElementById("text"+this.user.id.toString()).style.visibility="hidden";
+    document.getElementById("text"+this.user.username.toString()).style.visibility="hidden";
   }
 }
