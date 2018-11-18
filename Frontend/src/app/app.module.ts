@@ -66,7 +66,6 @@ const routes : Route[] = [
 {path: 'animation/:id/episodes', component: EpisodesViewComponent},
 {path: 'comic/:id/chapters', component: ChaptersViewComponent},
 
-//{path: '/profile/:username', component: ListsViewComponent},
 ];
 
 

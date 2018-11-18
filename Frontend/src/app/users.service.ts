@@ -5,9 +5,20 @@ import { User } from './_models/User.interface';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Draw } from './_models/Draw.interface';
+import { Episode } from './_models/Episode.interface';
 
 interface getUsers{
   followers : User[]
+}
+interface getDraws{
+  draws : Draw[]
+}
+interface getEpisodes{
+  episodes : Episode[]
+}
+interface getChapters{
+  chapters : Chapter[]
 }
 
 @Injectable({
@@ -56,6 +67,33 @@ export class UsersService {
     }
       )
     });
+  }
+
+
+
+  //======================================================================================FRIENDS ACTIVITY
+  getFollowingUsersDraws(username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.get<getDraws>('http://localhost:8000/api/user/'+username+'/following/draws/?token=' + token, 
+    {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
+      map(res => res.draws as Draw[] || []));
+  }
+
+  getFollowingUsersEpisodes(username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.get<getEpisodes>('http://localhost:8000/api/user/'+username+'/following/episodes/?token=' + token, 
+    {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
+      map(res => res.episodes as Episode[] || []));
+  }
+
+  getFollowingUsersChapters(username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.get<getChapters>('http://localhost:8000/api/user/'+username+'/following/chapters/?token=' + token, 
+    {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
+      map(res => res.chapters as Chapter[] || []));
   }
 
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Draw } from '../../_models/Draw.interface';
 
 @Component({
   selector: 'app-friends-activity-notification',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./friends-activity-notification.component.less']
 })
 export class FriendsActivityNotificationComponent implements OnInit {
+  
+  @Input() draw : Draw;
 
   constructor() { }
 

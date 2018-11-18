@@ -185,10 +185,10 @@ class UserController extends Controller
         $following = $user->following;
         $chapters = [];
         for($i=0; $i<sizeof($following);$i++){
-            $authorComics = Comic::where('author',$following[$i]->username)->get();//get episodes del following $i
+            $authorComics = Comic::where('author',$following[$i]->username)->get();//get chapters del following $i
             for($j=0; $j<sizeof($authorComics);$j++){
-                for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
-                    array_push($chapters,$authorComics[$j]->chapters[$k]);//insertar episode en la lista
+                for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get chapters del comic
+                    array_push($chapters,$authorComics[$j]->chapters[$k]);//insertar chapter en la lista
                 }
             }
         }

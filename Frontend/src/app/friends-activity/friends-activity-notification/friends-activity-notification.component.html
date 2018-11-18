@@ -1,3 +1,10 @@
-<p>
-  friends-activity-notification works!
+<div class=episode>
+  <p class="number">
+    {{draw?.author}} uploaded a new Draw:
+  </p>
+  <p class="name">
+{{draw?.name}}
 </p>
+<img src={{draw?.imagePath}}>
+  <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
+  </div>
