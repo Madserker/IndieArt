@@ -276,7 +276,7 @@ class UserController extends Controller
         }
 
         //ordenamos de mas reciente a menos
-        $notifications = collect($notifications)->sortBy('time')->reverse()->toArray();
+        $notifications = collect($notifications)->sortBy('time')->reverse()->values();
 
         return response()->json([
             'notifications' => $notifications

@@ -1,10 +1,70 @@
-<div class=episode>
-  <p class="profile">
-    {{draw?.author}} uploaded a new Draw:
+<div *ngIf="notification?.type==1" class=notification>
+
+
+  <div class="user">
+    <img class="profilePic" src={{notification?.user_image}}>
+  <p class="profileName">
+    {{notification?.username}}
   </p>
+
+  <p class="text">
+      uploaded a new Draw 
+  </p>
+  <p class="time">
+      at {{notification?.time.date}}
+  </p>
+</div>
+
   <p class="name">
-{{draw?.name}}
-</p>
-<img src={{draw?.imagePath}}>
+    {{norification?.name}}
+  </p>
+<img src={{notification?.image}} class="image">
   <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
-  </div>
+</div>
+
+
+
+<div *ngIf="notification?.type==2" class=notification>
+    <div class="user">
+        <img class="profilePic" src={{notification?.user_image}}>
+      <p class="profileName">
+        {{notification?.username}}
+      </p>
+    
+      <p class="text">
+          uploaded a new Chapter 
+      </p>
+      <p class="time">
+          at {{notification?.time.date}}
+      </p>
+    </div>
+  <p class="name">
+    {{norification?.name}}
+  </p>
+<img src={{notification?.image}}>
+  <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
+</div>
+
+
+
+<div *ngIf="notification?.type==3" class=notification>
+    <div class="user">
+        <img class="profilePic" src={{notification?.user_image}}>
+      <p class="profileName">
+        {{notification?.username}}
+      </p>
+    
+      <p class="text">
+          uploaded a new Episode 
+      </p>
+      <p class="time">
+          at {{notification?.time.date}}
+      </p>
+    </div>
+  <p class="name">
+    {{norification?.name}}
+  </p>
+<img src={{notification?.image}}>
+  <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
+</div>
+

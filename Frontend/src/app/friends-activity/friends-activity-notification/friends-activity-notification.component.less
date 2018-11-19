@@ -1,24 +1,59 @@
 @bg-color : #fbdf6f;
-.episode{
+.notification{
     margin-bottom:5px;
     background: #535353;
     padding: 10px;
     line-height: 1.2;
 }
 
-.profile{
-    display: inline;
+.profileName{
+    margin-top: -110px;
+    margin-left: 120px;
+    font-size: 40px;
+    color:@bg-color;
+}
 
+.time{
+    font-size: 20px;
+    color:rgba(255, 255, 255, 0.637);
+
+}
+.text{
+    margin-top: -10px;
+    margin-left: 120px;
+
+    font-size: 30px;
     color:white;
-    font-size: 60px;
 }
     
+.profilePic{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;//recortamos la imagen
+    border-radius: 5px;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+    cursor: pointer;
+}
 .name{
     color : @bg-color;
     font-weight: bold;
     display: inline;
     font-size: 30px;
 }
+
+.image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    margin-bottom:15px;
+}
+
+
+
+
 
 .watchButton{
     text-align: center;
@@ -29,13 +64,4 @@
     background-color: @bg-color;
     color:black;
     font-weight: bold;
-}
-
-.video{
-    height: 0;
-    width: 0;
-    overflow-x: hidden;
-    overflow-y: hidden;
-
-    text-align: center;
 }

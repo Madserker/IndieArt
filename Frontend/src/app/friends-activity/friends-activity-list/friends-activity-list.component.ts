@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Draw } from '../../_models/Draw.interface';
 import { Notification } from '../../_models/Notification.interface';
 
 @Component({
@@ -9,12 +8,16 @@ import { Notification } from '../../_models/Notification.interface';
 })
 export class FriendsActivityListComponent implements OnInit {
   
-  @Input() notifications : Notification [];
+  @Input() notifications : Notification [] = [];
 
   constructor() { }
 
   ngOnInit() {
-    
+
+  }
+
+  ngOnChanges(){
+    console.log(this.notifications);
   }
 
 }

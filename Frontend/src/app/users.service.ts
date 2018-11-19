@@ -100,7 +100,7 @@ export class UsersService {
       map(res => res.chapters as Chapter[] || []));
   }
 
-  getNotifications(username:string){
+  getNotifications(username:string): Observable<Notification[]>{
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
     return this.http.get<getNotifications>('http://localhost:8000/api/user/'+username+'/notifications/?token=' + token, 

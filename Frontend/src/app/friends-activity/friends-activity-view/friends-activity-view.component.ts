@@ -22,7 +22,7 @@ export class FriendsActivityViewComponent implements OnInit {
   // episodesList : Episode [] = [];
   // chaptersList : Chapter [] = [];
 
-  notifications : Notification [];
+  notifications : Notification [] = [];
   
 
   constructor(private listsService : ListsService, private userService : UsersService, private authService : AuthService) {
@@ -45,6 +45,7 @@ export class FriendsActivityViewComponent implements OnInit {
 
     this.userService.getNotifications(this.currentUser.username).subscribe(result => {
       this.notifications = result as Notification [];
+      console.log(this.notifications);
     })
   }
 
