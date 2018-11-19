@@ -188,6 +188,16 @@ Route::get('/user/{username}/notifications',[
     'middleware' => 'cors',
     'uses' => 'UserController@getNotifications',
 ]);
+
+Route::put('/user/{username}/description',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@putUserDescription',
+]);
+
+Route::post('/user/{username}/image',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@putUserImage',
+]);
 //=================================================================================RUTAS PARA COMMENTS
 Route::get('/comments/draw/{id}',[
     'middleware' => 'cors',

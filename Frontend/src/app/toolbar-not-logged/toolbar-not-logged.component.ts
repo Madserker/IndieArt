@@ -57,6 +57,10 @@ goToProfile(username){
   this.router.navigateByUrl("user/"+username);
 }
 
+goToEditProfile(){
+  this.router.navigateByUrl("edit");
+}
+
   openLoginNav(){		
     this.loginsidenav.openLogin();	   
   }

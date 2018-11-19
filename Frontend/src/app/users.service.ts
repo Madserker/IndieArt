@@ -32,7 +32,7 @@ export class UsersService {
 
   url = "http://192.168.1.66:8000" // serve --host 0.0.0.0
   //url = "http://localhost:8000" // localhost
-  
+
   constructor(private http: HttpClient, private authService: AuthService){}
 
 
@@ -110,6 +110,43 @@ export class UsersService {
       map(res => res.notifications as Notification[] || []));
   }
 
+  //===========================================================================================================editUser
 
+  editUserDesc(description:string, username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    const body = JSON.stringify(
+      {
+        "description" : description, 
+      }
+    );
+
+
+    return this.http.put(this.url+'/api/user/'+username+'/description/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
+
+  editUserImage(file:File, username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    let formData:FormData = new FormData();
+    formData.append('photo', file, file.name);
+          
+    //tenemos que hacer un post en vez de un put, ya que laravel no acepta formData en un PUT
+    return this.http.post(this.url+'/api/user/'+username+'/image/?token=' + token, formData, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
+   
+  
   
 }

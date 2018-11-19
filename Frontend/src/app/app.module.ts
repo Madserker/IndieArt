@@ -50,6 +50,7 @@ import { FriendsActivityViewComponent } from './friends-activity/friends-activit
 import { FriendsActivityListComponent } from './friends-activity/friends-activity-list/friends-activity-list.component';
 import { FriendsActivityNotificationComponent } from './friends-activity/friends-activity-notification/friends-activity-notification.component';
 import { ChatRoomsViewComponent } from './chat-rooms/chat-rooms-view/chat-rooms-view.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -63,6 +64,7 @@ const routes : Route[] = [
 {path: 'comic/:id', component: ComicViewComponent},
 {path: 'animation/:id', component: AnimationViewComponent},
 {path: 'user/:username', component: ProfileViewComponent},
+{path: 'edit', component: EditProfileComponent},
 {path: 'animation/:id/episodes', component: EpisodesViewComponent},
 {path: 'comic/:id/chapters', component: ChaptersViewComponent},
 
@@ -112,6 +114,7 @@ const routes : Route[] = [
     FriendsActivityListComponent,
     FriendsActivityNotificationComponent,
     ChatRoomsViewComponent,
+    EditProfileComponent,
 
     
   ],

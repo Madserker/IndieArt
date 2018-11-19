@@ -11,6 +11,8 @@ use App\Chapter;
 use App\Comic;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
+use Illuminate\Support\Facades\Storage;
+
 
 class Notification{
     public $time;
@@ -283,6 +285,57 @@ class UserController extends Controller
         return response()->json([
             'notifications' => $notifications
         ],200); 
+    }
+
+
+
+    //================================================================================PUT
+    public function putUserDescription(Request $request, $username){//actualizar user atributes
+
+        if(!$userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $user = User::find($username);
+        if(!$user){//si no ha encontrado el draw con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+
+        //importante realizar esta comprobacion en las PUT requests
+        if($userA->username != $username){//si no es el mismo usuario que el que esta logeado, devolvemos error
+            return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
+        }
+
+        $user->description = $request->input('description');
+
+        $user->save();
+        return response()->json(['user' => $user],200);
+    }
+
+    public function putUserImage(Request $request, $username){//actualizar user atributes
+
+        if(!$userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $user = User::find($username);
+        if(!$user){//si no ha encontrado el draw con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+
+        //importante realizar esta comprobacion en las PUT requests
+        if($userA->username != $username){//si no es el mismo usuario que el que esta logeado, devolvemos error
+            return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
+        }
+
+        $file = $request->file('photo');//Cogemos el file de la request
+
+        $path = Storage::putfile('profileImages', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
+
+        $user->profilePic = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+
+        $user->save();
+        return response()->json(['user' => $user],200);
     }
 
 }
