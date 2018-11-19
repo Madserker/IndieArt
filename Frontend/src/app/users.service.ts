@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Draw } from './_models/Draw.interface';
 import { Episode } from './_models/Episode.interface';
+import { Notification } from './_models/Notification.interface';
 
 interface getUsers{
   followers : User[]
@@ -19,6 +20,9 @@ interface getEpisodes{
 }
 interface getChapters{
   chapters : Chapter[]
+}
+interface getNotifications{
+  notifications : Notification[]
 }
 
 @Injectable({
@@ -94,6 +98,14 @@ export class UsersService {
     return this.http.get<getChapters>('http://localhost:8000/api/user/'+username+'/following/chapters/?token=' + token, 
     {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
       map(res => res.chapters as Chapter[] || []));
+  }
+
+  getNotifications(username:string){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.get<getNotifications>('http://localhost:8000/api/user/'+username+'/notifications/?token=' + token, 
+    {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
+      map(res => res.notifications as Notification[] || []));
   }
 
 

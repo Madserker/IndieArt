@@ -12,6 +12,30 @@ use App\Comic;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 
+class Notification{
+    public $time;
+    public $name;
+    public $username;
+    public $user_image;
+    public $image;
+    public $id;//id of episode,draw or chapter
+    public $parent_id;//id of animation or comic
+    public $type;
+
+    function __construct($time, $name, $username, $user_image, $image, $id, $parent_id, $type) {
+        $this->time = $time;
+        $this->name = $name;
+        $this->username = $username;
+        $this->user_image = $user_image;
+        $this->image = $image;
+        $this->id = $id;
+        $this->parent_id = $parent_id;
+        $this->type = $type;
+    }
+    
+}
+
+
 class UserController extends Controller
 {
 
@@ -134,6 +158,8 @@ class UserController extends Controller
         return response()->json(['message' => 'You do not follow that user'],404); //si ya seguimos al usuario, lanzamos error
     }
 
+
+//====================================================================================================================FRIENDS UPDATES
     public function getFollowingUsersDraws($username){
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
@@ -194,4 +220,67 @@ class UserController extends Controller
         }
         return response()->json(['chapters' => $chapters],200); 
     }
+
+    public function getNotifications($username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        $user = User::find($username);
+        if(!$user){//si no ha encontrado el user con ese id
+            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+        }
+
+
+        $following = $user->following;
+        $following->push($user);//añadimos tu actividad a la lista
+
+        $notifications = [];
+
+
+        for($i=0; $i<sizeof($following);$i++){
+            
+
+            //get draws
+            $authorDraws = Draw::where('author',$following[$i]->username)->get();//get draws del following $i
+            for($j=0; $j<sizeof($authorDraws);$j++){
+                $notification = new Notification($authorDraws[$j]->created_at, $authorDraws[$j]->name,
+                $authorDraws[$j]->author, $following[$i]->profilePic, $authorDraws[$j]->imagePath,$authorDraws[$j]->id,$authorDraws[$j]->id,1);
+
+                array_push($notifications,$notification);//insertar draw en la lista
+            }
+
+            //get episodes
+            $authorAnimations = Animation::where('author',$following[$i]->username)->get();//get episodes del following $i
+            for($j=0; $j<sizeof($authorAnimations);$j++){
+                for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
+                    $notification = new Notification($authorAnimations[$j]->episodes[$k]->created_at, $authorAnimations[$j]->episodes[$k]->name,
+                    $authorAnimations[$j]->author, $following[$i]->profilePic, $authorAnimations[$j]->episodes[$k]->videoPath,$authorAnimations[$j]->id,
+                    $authorAnimations[$j]->episodes[$k]->id,3);
+                    
+                    array_push($notifications,$notification);//insertar draw en la lista
+                }
+            }
+
+            //get chapters
+            $authorComics = Comic::where('author',$following[$i]->username)->get();//get episodes del following $i
+            for($j=0; $j<sizeof($authorComics);$j++){
+                for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
+                    $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
+                    $authorComics[$j]->author, $following[$i]->profilePic, $authorComics[$j]->chapters[$k]->videoPath,$authorComics[$j]->id,
+                    $authorComics[$j]->chapters[$k]->id,2);
+                    
+                    array_push($notifications,$notification);//insertar draw en la lista
+                }   
+            }
+
+        }
+
+        //ordenamos de mas reciente a menos
+        $notifications = collect($notifications)->sortBy('time')->reverse()->toArray();
+
+        return response()->json([
+            'notifications' => $notifications
+        ],200); 
+    }
+
 }

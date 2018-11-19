@@ -6,6 +6,7 @@ import { Draw } from '../../_models/Draw.interface';
 import { Episode } from '../../_models/Episode.interface';
 import { UsersService } from '../../users.service';
 import { ListsService } from '../../lists.service';
+import { Notification } from '../../_models/Notification.interface';
 
 @Component({
   selector: 'app-friends-activity-view',
@@ -17,11 +18,11 @@ export class FriendsActivityViewComponent implements OnInit {
 
   currentUser : User;
 
-  drawsList : Draw [] = [];
-  episodesList : Episode [] = [];
-  chaptersList : Chapter [] = [];
+  // drawsList : Draw [] = [];
+  // episodesList : Episode [] = [];
+  // chaptersList : Chapter [] = [];
 
-  finalList = [];
+  notifications : Notification [];
   
 
   constructor(private listsService : ListsService, private userService : UsersService, private authService : AuthService) {
@@ -29,16 +30,21 @@ export class FriendsActivityViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getFollowingUsersDraws(this.currentUser.username).subscribe(result => {
-      //this.drawsList = result as Draw[]
-      for(let draw of result){
-        this.drawsList.push(draw)
-      }
-    })
-    this.listsService.getUserDraws(this.currentUser.username).subscribe(result => {
-      for(let draw of result){
-        this.drawsList.push(draw)
-      }
+    // this.userService.getFollowingUsersDraws(this.currentUser.username).subscribe(result => {
+    //   //this.drawsList = result as Draw[]
+    //   for(let draw of result){
+    //     this.drawsList.push(draw)
+    //   }
+    // })
+    // this.listsService.getUserDraws(this.currentUser.username).subscribe(result => {
+    //   for(let draw of result){
+    //     this.drawsList.push(draw)
+    //   }
+    // })
+
+
+    this.userService.getNotifications(this.currentUser.username).subscribe(result => {
+      this.notifications = result as Notification [];
     })
   }
 

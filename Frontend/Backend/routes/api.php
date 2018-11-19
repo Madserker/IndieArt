@@ -183,6 +183,11 @@ Route::get('/user/{username}/following/chapters',[
     'middleware' => 'cors',
     'uses' => 'UserController@getFollowingUsersChapters',
 ]);
+
+Route::get('/user/{username}/notifications',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getNotifications',
+]);
 //=================================================================================RUTAS PARA COMMENTS
 Route::get('/comments/draw/{id}',[
     'middleware' => 'cors',

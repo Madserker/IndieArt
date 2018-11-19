@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Draw } from '../../_models/Draw.interface';
+import { Notification } from '../../_models/Notification.interface';
 
 @Component({
   selector: 'app-friends-activity-list',
@@ -8,11 +9,12 @@ import { Draw } from '../../_models/Draw.interface';
 })
 export class FriendsActivityListComponent implements OnInit {
   
-  @Input() drawsList : Draw [];
+  @Input() notifications : Notification [];
 
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
