@@ -30,18 +30,20 @@ interface getNotifications{
 })
 export class UsersService {
 
+  url = "http://192.168.1.66:8000" // serve --host 0.0.0.0
+  //url = "http://localhost:8000" // localhost
   
   constructor(private http: HttpClient, private authService: AuthService){}
 
 
   getFollowers(username : String){
-    return this.http.get<getUsers>('http://localhost:8000/api/user/'+username+'/followers')
+    return this.http.get<getUsers>(this.url+'/api/user/'+username+'/followers')
     .pipe(
       map(res => res.followers as User[] || [])); 
   }
 
   getFollowing(username : String){
-    return this.http.get<getUsers>('http://localhost:8000/api/user/'+username+'/following')
+    return this.http.get<getUsers>(this.url+'/api/user/'+username+'/following')
     .pipe(
       map(res => res.followers as User[] || [])); 
   }
@@ -55,7 +57,7 @@ export class UsersService {
       }
     );
 
-    return this.http.post('http://localhost:8000/api/user/follow/?token=' + token, body, 
+    return this.http.post(this.url+'/api/user/follow/?token=' + token, body, 
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
       )
@@ -65,7 +67,7 @@ export class UsersService {
   unfollowUser(following : string, username : string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
-    return this.http.delete('http://localhost:8000/api/user/'+username+'/unfollow/'+following+'/?token=' + token,     {headers: new HttpHeaders(
+    return this.http.delete(this.url+'/api/user/'+username+'/unfollow/'+following+'/?token=' + token,     {headers: new HttpHeaders(
       {'Accept': 'application/json',
       'Authorization':'Bearer'+ localStorage.token
     }
@@ -79,7 +81,7 @@ export class UsersService {
   getFollowingUsersDraws(username:string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
-    return this.http.get<getDraws>('http://localhost:8000/api/user/'+username+'/following/draws/?token=' + token, 
+    return this.http.get<getDraws>(this.url+'/api/user/'+username+'/following/draws/?token=' + token, 
     {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
       map(res => res.draws as Draw[] || []));
   }
@@ -87,7 +89,7 @@ export class UsersService {
   getFollowingUsersEpisodes(username:string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
-    return this.http.get<getEpisodes>('http://localhost:8000/api/user/'+username+'/following/episodes/?token=' + token, 
+    return this.http.get<getEpisodes>(this.url+'/api/user/'+username+'/following/episodes/?token=' + token, 
     {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
       map(res => res.episodes as Episode[] || []));
   }
@@ -95,7 +97,7 @@ export class UsersService {
   getFollowingUsersChapters(username:string){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
-    return this.http.get<getChapters>('http://localhost:8000/api/user/'+username+'/following/chapters/?token=' + token, 
+    return this.http.get<getChapters>(this.url+'/api/user/'+username+'/following/chapters/?token=' + token, 
     {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
       map(res => res.chapters as Chapter[] || []));
   }
@@ -103,7 +105,7 @@ export class UsersService {
   getNotifications(username:string): Observable<Notification[]>{
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
-    return this.http.get<getNotifications>('http://localhost:8000/api/user/'+username+'/notifications/?token=' + token, 
+    return this.http.get<getNotifications>(this.url+'/api/user/'+username+'/notifications/?token=' + token, 
     {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
       map(res => res.notifications as Notification[] || []));
   }

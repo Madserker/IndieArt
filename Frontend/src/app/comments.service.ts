@@ -23,21 +23,23 @@ interface getAnimationComments{
 @Injectable()
 export class CommentsService {
 
+  url = "http://192.168.1.66:8000" // serve --host 0.0.0.0
+  //url = "http://localhost:8000" // localhost
   
   constructor(private http: HttpClient, private authService: AuthService){}
  
   getDrawComments(id : number): Observable<DrawComment[]> {
-     return this.http.get<getDrawComments>('http://localhost:8000/api/comments/draw/'+id)
+     return this.http.get<getDrawComments>(this.url+'/api/comments/draw/'+id)
      .pipe(
        map(res => res.comments as DrawComment[] || [])); 
    }
    getComicComments(id : number): Observable<ComicComment[]> {
-    return this.http.get<getComicComments>('http://localhost:8000/api/comments/comic/'+id)
+    return this.http.get<getComicComments>(this.url+'/api/comments/comic/'+id)
     .pipe(
       map(res => res.comments as ComicComment[] || [])); 
   }
   getAnimationComments(id : number): Observable<AnimationComment[]> {
-    return this.http.get<getAnimationComments>('http://localhost:8000/api/comments/animation/'+id)
+    return this.http.get<getAnimationComments>(this.url+'/api/comments/animation/'+id)
     .pipe(
       map(res => res.comments as AnimationComment[] || [])); 
   }
@@ -56,7 +58,7 @@ export class CommentsService {
       }
     );
     //le pasamos el token para confirmar que estamos logeados
-    return this.http.post('http://localhost:8000/api/comment/draw/?token=' + token, body, 
+    return this.http.post(this.url+'/api/comment/draw/?token=' + token, body, 
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
       )
@@ -75,7 +77,7 @@ export class CommentsService {
       }
     );
     //le pasamos el token para confirmar que estamos logeados
-    return this.http.post('http://localhost:8000/api/comment/comic/?token=' + token, body, 
+    return this.http.post(this.url+'/api/comment/comic/?token=' + token, body, 
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
       )
@@ -94,7 +96,7 @@ export class CommentsService {
       }
     );
     //le pasamos el token para confirmar que estamos logeados
-    return this.http.post('http://localhost:8000/api/comment/animation/?token=' + token, body, 
+    return this.http.post(this.url+'/api/comment/animation/?token=' + token, body, 
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
       )
@@ -106,15 +108,15 @@ export class CommentsService {
 
   deleteDrawComment(id: number){
     const token = this.authService.getToken();
-    return this.http.delete('http://localhost:8000/api/comment/draw/' + id + '?token=' + token);
+    return this.http.delete(this.url+'/api/comment/draw/' + id + '?token=' + token);
   }
   deleteComicComment(id: number){
     const token = this.authService.getToken();
-    return this.http.delete('http://localhost:8000/api/comment/comic/' + id + '?token=' + token);
+    return this.http.delete(this.url+'/api/comment/comic/' + id + '?token=' + token);
   }
   deleteAnimationComment(id: number){
     const token = this.authService.getToken();
-    return this.http.delete('http://localhost:8000/api/comment/animation/' + id + '?token=' + token);
+    return this.http.delete(this.url+'/api/comment/animation/' + id + '?token=' + token);
   }
 
 

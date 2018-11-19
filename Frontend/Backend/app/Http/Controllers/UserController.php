@@ -20,9 +20,10 @@ class Notification{
     public $image;
     public $id;//id of episode,draw or chapter
     public $parent_id;//id of animation or comic
+    public $parent_name;//name of animation or comic
     public $type;
 
-    function __construct($time, $name, $username, $user_image, $image, $id, $parent_id, $type) {
+    function __construct($time, $name, $username, $user_image, $image, $id, $parent_id, $parent_name, $type) {
         $this->time = $time;
         $this->name = $name;
         $this->username = $username;
@@ -30,6 +31,7 @@ class Notification{
         $this->image = $image;
         $this->id = $id;
         $this->parent_id = $parent_id;
+        $this->parent_name = $parent_name;
         $this->type = $type;
     }
     
@@ -244,7 +246,7 @@ class UserController extends Controller
             $authorDraws = Draw::where('author',$following[$i]->username)->get();//get draws del following $i
             for($j=0; $j<sizeof($authorDraws);$j++){
                 $notification = new Notification($authorDraws[$j]->created_at, $authorDraws[$j]->name,
-                $authorDraws[$j]->author, $following[$i]->profilePic, $authorDraws[$j]->imagePath,$authorDraws[$j]->id,$authorDraws[$j]->id,1);
+                $authorDraws[$j]->author, $following[$i]->profilePic, $authorDraws[$j]->imagePath,$authorDraws[$j]->id,$authorDraws[$j]->id,$authorDraws[$j]->name,1);
 
                 array_push($notifications,$notification);//insertar draw en la lista
             }
@@ -255,7 +257,7 @@ class UserController extends Controller
                 for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
                     $notification = new Notification($authorAnimations[$j]->episodes[$k]->created_at, $authorAnimations[$j]->episodes[$k]->name,
                     $authorAnimations[$j]->author, $following[$i]->profilePic, $authorAnimations[$j]->episodes[$k]->videoPath,$authorAnimations[$j]->id,
-                    $authorAnimations[$j]->episodes[$k]->id,3);
+                    $authorAnimations[$j]->episodes[$k]->id,$authorComics[$j]->name,3);
                     
                     array_push($notifications,$notification);//insertar draw en la lista
                 }
@@ -267,7 +269,7 @@ class UserController extends Controller
                 for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
                     $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
                     $authorComics[$j]->author, $following[$i]->profilePic, $authorComics[$j]->chapters[$k]->videoPath,$authorComics[$j]->id,
-                    $authorComics[$j]->chapters[$k]->id,2);
+                    $authorComics[$j]->chapters[$k]->id,$authorComics[$j]->name,2);
                     
                     array_push($notifications,$notification);//insertar draw en la lista
                 }   

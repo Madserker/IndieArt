@@ -16,7 +16,6 @@ import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
 
-import { ChatRoomsComponent } from './chat-rooms/chat-rooms.component';
 import { ProfileViewComponent } from './profile/profile-view/profile-view.component';
 import { ProfileViewImageComponent } from './profile/profile-view-image/profile-view-image.component';
 import { ComicComponent } from './comic/comic.component';
@@ -50,13 +49,14 @@ import { NewChapterComponent } from './comic-details-view/new-chapter/new-chapte
 import { FriendsActivityViewComponent } from './friends-activity/friends-activity-view/friends-activity-view.component';
 import { FriendsActivityListComponent } from './friends-activity/friends-activity-list/friends-activity-list.component';
 import { FriendsActivityNotificationComponent } from './friends-activity/friends-activity-notification/friends-activity-notification.component';
+import { ChatRoomsViewComponent } from './chat-rooms/chat-rooms-view/chat-rooms-view.component';
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
 {path: '', component: ListsViewComponent},
-{path: 'chat-rooms', component: ChatRoomsComponent},
+{path: 'chat-rooms', component: ChatRoomsViewComponent},
 {path: 'friends-activity', component: FriendsActivityViewComponent},
-{path: 'competitions', component: ChatRoomsComponent},
+{path: 'competitions', component: ListsViewComponent},
 
 //rutas dinamicas
 {path: 'draw/:id', component: DrawViewComponent},
@@ -78,7 +78,6 @@ const routes : Route[] = [
     ImageComponent,
     LoginSideNavComponent,
     ListsViewComponent,
-    ChatRoomsComponent,
     ProfileViewComponent,
     ComicComponent,
     UserComponent,
@@ -112,6 +111,7 @@ const routes : Route[] = [
     FriendsActivityViewComponent,
     FriendsActivityListComponent,
     FriendsActivityNotificationComponent,
+    ChatRoomsViewComponent,
 
     
   ],

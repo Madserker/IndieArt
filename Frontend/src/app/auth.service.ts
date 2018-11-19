@@ -9,6 +9,12 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class AuthService {
 
+
+  
+  url = "http://192.168.1.66:8000" // serve --host 0.0.0.0
+  //url = "http://localhost:8000" // localhost
+
+  
   currentUser : User;
   // private UserSource = new BehaviorSubject<User>(this.currentUser);
   // currentUserObs = this.UserSource.asObservable();
@@ -26,7 +32,7 @@ export class AuthService {
   }
 
   signup(username:string,email:string, birth:string, password:string){
-    return this.http.post('http://localhost:8000/api/user',{
+    return this.http.post(this.url+'/api/user',{
       username:username,
       email:email,
       birthday:birth,
@@ -44,7 +50,7 @@ export class AuthService {
   }
 
   signin(username:string,password:string){
-    return this.http.post('http://localhost:8000/api/user/signin',{
+    return this.http.post(this.url+'/api/user/signin',{
       username:username,
       password:password
     },

@@ -30,22 +30,8 @@ export class FriendsActivityViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.userService.getFollowingUsersDraws(this.currentUser.username).subscribe(result => {
-    //   //this.drawsList = result as Draw[]
-    //   for(let draw of result){
-    //     this.drawsList.push(draw)
-    //   }
-    // })
-    // this.listsService.getUserDraws(this.currentUser.username).subscribe(result => {
-    //   for(let draw of result){
-    //     this.drawsList.push(draw)
-    //   }
-    // })
-
-
     this.userService.getNotifications(this.currentUser.username).subscribe(result => {
       this.notifications = result as Notification [];
-      console.log(this.notifications);
     })
   }
 

@@ -16,7 +16,7 @@
 </div>
 
   <p class="name">
-    {{norification?.name}}
+    {{notification?.name}}
   </p>
 <img src={{notification?.image}} class="image">
   <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
@@ -32,17 +32,17 @@
       </p>
     
       <p class="text">
-          uploaded a new Chapter 
+          uploaded a new Chapter of <a href="">{{notification?.parent_name}}</a>
       </p>
       <p class="time">
           at {{notification?.time.date}}
       </p>
     </div>
-  <p class="name">
-    {{norification?.name}}
-  </p>
+    <p class="name">
+        {{notification?.name}}
+      </p>
 <img src={{notification?.image}}>
-  <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
+  <button mat-menu-item class="watchButton" (click)="openVideo()">Read</button>
 </div>
 
 
@@ -55,16 +55,16 @@
       </p>
     
       <p class="text">
-          uploaded a new Episode 
+          uploaded a new Episode of <a href="">{{notification?.parent_name}}</a>
       </p>
       <p class="time">
           at {{notification?.time.date}}
       </p>
     </div>
-  <p class="name">
-    {{norification?.name}}
-  </p>
+    <p class="name">
+        {{notification?.name}}
+      </p>
 <img src={{notification?.image}}>
-  <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
+  <button mat-menu-item class="watchButton" (click)="openVideo()">Watch</button>
 </div>
 
