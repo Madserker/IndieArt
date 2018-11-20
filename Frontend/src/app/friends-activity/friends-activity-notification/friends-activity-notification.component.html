@@ -2,8 +2,8 @@
 
 
   <div class="user">
-    <img class="profilePic" src={{notification?.user_image}}>
-  <p class="profileName">
+    <img class="profilePic" src={{notification?.user_image}} (click)="openUser()">
+  <p class="profileName" (click)="openUser()">
     {{notification?.username}}
   </p>
 
@@ -19,20 +19,20 @@
     {{notification?.name}}
   </p>
 <img src={{notification?.image}} class="image">
-  <button mat-menu-item class="watchButton" (click)="openVideo()">Comment</button>
+  <button mat-menu-item class="watchButton" (click)="openDraw()">Comment</button>
 </div>
 
 
 
 <div *ngIf="notification?.type==2" class=notification>
     <div class="user">
-        <img class="profilePic" src={{notification?.user_image}}>
-      <p class="profileName">
+        <img class="profilePic" src={{notification?.user_image}} (click)="openUser()">
+      <p class="profileName" (click)="openUser()">
         {{notification?.username}}
       </p>
     
       <p class="text">
-          uploaded a new Chapter of <a href="">{{notification?.parent_name}}</a>
+          uploaded a new Chapter of <a [routerLink]="['/comic',notification.parent_id]">{{notification?.parent_name}}</a>
       </p>
       <p class="time">
           at {{notification?.time.date}}
@@ -42,20 +42,20 @@
         {{notification?.name}}
       </p>
 <img src={{notification?.image}}>
-  <button mat-menu-item class="watchButton" (click)="openVideo()">Read</button>
+  <button mat-menu-item class="watchButton" (click)="openChapters()">Read</button>
 </div>
 
 
 
 <div *ngIf="notification?.type==3" class=notification>
     <div class="user">
-        <img class="profilePic" src={{notification?.user_image}}>
-      <p class="profileName">
+        <img class="profilePic" src={{notification?.user_image}} (click)="openUser()">
+      <p class="profileName" (click)="openUser()">
         {{notification?.username}}
       </p>
     
       <p class="text">
-          uploaded a new Episode of <a href="">{{notification?.parent_name}}</a>
+          uploaded a new Episode of <a [routerLink]="['/animation',notification.parent_id]">{{notification?.parent_name}}</a>
       </p>
       <p class="time">
           at {{notification?.time.date}}
@@ -65,6 +65,6 @@
         {{notification?.name}}
       </p>
 <img src={{notification?.image}}>
-  <button mat-menu-item class="watchButton" (click)="openVideo()">Watch</button>
+  <button mat-menu-item class="watchButton" (click)="openEpisodes()">Watch</button>
 </div>
 

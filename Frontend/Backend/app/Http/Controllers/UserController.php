@@ -34,7 +34,7 @@ class Notification{
         $this->id = $id;
         $this->parent_id = $parent_id;
         $this->parent_name = $parent_name;
-        $this->type = $type;
+        $this->type = $type; 
     }
     
 }
@@ -258,8 +258,8 @@ class UserController extends Controller
             for($j=0; $j<sizeof($authorAnimations);$j++){
                 for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
                     $notification = new Notification($authorAnimations[$j]->episodes[$k]->created_at, $authorAnimations[$j]->episodes[$k]->name,
-                    $authorAnimations[$j]->author, $following[$i]->profilePic, $authorAnimations[$j]->episodes[$k]->videoPath,$authorAnimations[$j]->id,
-                    $authorAnimations[$j]->episodes[$k]->id,$authorComics[$j]->name,3);
+                    $authorAnimations[$j]->author, $following[$i]->profilePic, $authorAnimations[$j]->episodes[$k]->videoPath, $authorAnimations[$j]->episodes[$k]->id
+                    ,$authorAnimations[$j]->id, $authorComics[$j]->name,3);
                     
                     array_push($notifications,$notification);//insertar draw en la lista
                 }
@@ -270,8 +270,8 @@ class UserController extends Controller
             for($j=0; $j<sizeof($authorComics);$j++){
                 for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
                     $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
-                    $authorComics[$j]->author, $following[$i]->profilePic, $authorComics[$j]->chapters[$k]->videoPath,$authorComics[$j]->id,
-                    $authorComics[$j]->chapters[$k]->id,$authorComics[$j]->name,2);
+                    $authorComics[$j]->author, $following[$i]->profilePic, "", $authorComics[$j]->chapters[$k]->id, $authorComics[$j]->id
+                   ,$authorComics[$j]->name,2);
                     
                     array_push($notifications,$notification);//insertar draw en la lista
                 }   
