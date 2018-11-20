@@ -5,8 +5,20 @@
 @bg-color-darken : darken(@topBar-color ,20%);
 @text-color : rgb(255, 255, 255);
 
+.watchButton{
+    text-align: center;
+    font-weight: bold;
+}
+.watchButton:hover{
+    text-align: center;
+    background-color: @bg-color;
+    color:black;
+    font-weight: bold;
+}
+
 .image{
-    display: inline;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .infoDraw{
@@ -15,14 +27,16 @@
     background: #535353;
 
     overflow: visible;
-    width: 1800px;
+    width: auto;
     height: auto;
     margin: 0 auto;
     margin-top: 120px;
     text-align: center;
     padding: 10px;
+    width: 70%;
     
 }
+
 .container{
     display: inline;
 }

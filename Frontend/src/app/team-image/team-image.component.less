@@ -1,0 +1,59 @@
+@bg-color : #fbdf6f;
+
+
+a{
+color: @bg-color;
+
+}
+
+.image{
+    margin: 10px;
+    border: 2px solid @bg-color;
+    border-radius: 5px;
+    display: block;
+    cursor: pointer; 
+    object-fit: cover;
+    width:220px;
+    height:100%;
+}
+
+/* Container holding the image and the text */
+.container {
+    padding: 13px;
+    height: 250px;
+    width: auto;
+    display: inline-block;
+
+}
+
+/* Bottom right text */
+.text-block {
+    position: absolute;
+    
+    margin-top: -50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+
+    background-color: rgba(0, 0, 0, 0.616);
+    color: white;
+    font-size: 10px;
+    
+    visibility: hidden;
+}
+
+.text-block-up {
+    position: absolute;
+    float:right;
+    height: 1;
+    margin-top: -245px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+
+    background-color: rgba(0, 0, 0, 0.616);
+    color: white;
+    font-size: 10px;
+    
+
+}
