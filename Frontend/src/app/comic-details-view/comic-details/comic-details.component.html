@@ -10,6 +10,11 @@
     <h6>
      {{comic?.synopsis}}
     </h6>
+</div>
+    <div *ngIf="currentUser?.username==comic?.author">
+    <button mat-menu-item class="watchButton1" (click)="goToChaptersList()">READ</button>
+    <button mat-menu-item class="watchButton2" (click)="deleteComic()">DELETE</button>
     </div>
+    <div *ngIf="currentUser?.username!=comic?.author">
     <button mat-menu-item class="watchButton" (click)="goToChaptersList()">READ</button>
     </div>

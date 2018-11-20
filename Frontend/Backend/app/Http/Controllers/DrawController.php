@@ -90,11 +90,14 @@ class DrawController extends Controller
 
     public function deleteDraw($id){
 
-        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+        if(! $userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
-
         $draw = Draw::find($id);
+        //importante realizar esta comprobacion en las DELETE requests
+        if($userA->username != $draw->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
+            return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
+        }
         $draw->delete();
         return response()->json(['message' => 'Draw deleted'],200);
     }

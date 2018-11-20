@@ -96,11 +96,14 @@ class ComicController extends Controller
 
     public function deleteComic($id){
 
-        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+        if(! $userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
-
         $comic = Comic::find($id);
+        //importante realizar esta comprobacion en las DELETE requests
+        if($userA->username != $comic->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
+            return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
+        }
         $comic->delete();
         return response()->json(['message' => 'Comic deleted'],200);
     }

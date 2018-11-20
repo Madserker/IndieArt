@@ -245,11 +245,6 @@ export class ListsService {
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
     let formData:FormData = new FormData();
-    // let count = 0;
-    // for (let file of fileList) {//pasamos pagina a pagina, formData no acepta arrays
-    //   formData.append('file'+count, file,file.name);
-    //   count++;
-    // }
     formData.append('name',name);
     formData.append('number', number);
     formData.append('author', username);
@@ -273,11 +268,6 @@ export class ListsService {
     const token = this.authService.getToken();//recuperamos el token de la sesion
 
     let formData:FormData = new FormData();
-    // let count = 0;
-    // for (let file of fileList) {//pasamos pagina a pagina, formData no acepta arrays
-    //   formData.append('file'+count, file,file.name);
-    //   count++;
-    // }
     formData.append('file',file,file.name);
     formData.append('number', number.toString());
     formData.append('chapter_id', id);
@@ -296,6 +286,18 @@ export class ListsService {
     })
   }
 
+  //==================================================================================DELETE
 
-
+  deleteDraw(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete(this.url+'/api/draw/' + id + '?token=' + token);
+  }
+  deleteComic(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete(this.url+'/api/comic/' + id + '?token=' + token);
+  }
+  deleteAnimation(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete(this.url+'/api/animation/' + id + '?token=' + token);
+  }
 } 

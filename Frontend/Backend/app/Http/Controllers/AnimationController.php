@@ -113,4 +113,18 @@ class AnimationController extends Controller
         }
         return response()->json(['animation' => $animation],200);
     }
+
+    public function deleteAnimation($id){
+
+        if(! $userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        $animation = Animation::find($id);
+        //importante realizar esta comprobacion en las DELETE requests
+        if($userA->username != $animation->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
+            return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
+        }
+        $animation->delete();
+        return response()->json(['message' => 'Animation deleted'],200);
+    }
 }

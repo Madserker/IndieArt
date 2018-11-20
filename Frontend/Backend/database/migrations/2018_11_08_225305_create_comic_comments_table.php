@@ -14,14 +14,15 @@ class CreateComicCommentsTable extends Migration
     public function up()
     {
         Schema::create('comic_comments', function (Blueprint $table) {
+            Schema::dropIfExists('comic_comments');
             $table->increments('id');
             $table->text('text');
 
             $table->string('username');
-            $table->foreign('username')->references('username')->on('users');
+            $table->foreign('username')->references('username')->on('users')->onDelete('cascade');
 
             $table->integer('comic_id')->unsigned()->index();
-            $table->foreign('comic_id')->references('id')->on('comics');
+            $table->foreign('comic_id')->references('id')->on('comics')->onDelete('cascade');
             $table->timestamps();
         });
     }

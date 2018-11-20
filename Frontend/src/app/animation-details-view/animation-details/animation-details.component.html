@@ -11,6 +11,11 @@
       {{animation.synopsis}}
 
   </h6>
-  </div>
-  <button mat-menu-item class="watchButton" (click)="goToEpisodesList()">WATCH</button>
-  </div>
+</div>
+<div *ngIf="currentUser?.username==comic?.author">
+<button mat-menu-item class="watchButton1" (click)="goToEpisodesList()">READ</button>
+<button mat-menu-item class="watchButton2" (click)="deleteAnimation()">DELETE</button>
+</div>
+<div *ngIf="currentUser?.username!=comic?.author">
+<button mat-menu-item class="watchButton" (click)="goToEpisodesList()">READ</button>
+</div>

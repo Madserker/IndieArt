@@ -104,7 +104,7 @@ Route::put('/comic/{id}',[
 ]);
 
 Route::delete('/comic/{id}',[
-    'uses' => 'ComicController@deleteComics',
+    'uses' => 'ComicController@deleteComic',
 ]);
 
 //====================================================================================RUTAS PARA ANIMATION
@@ -136,6 +136,11 @@ Route::get('/user/animations/{author}',[
 Route::get('/animation/{id}',[
     'middleware' => 'cors',
     'uses' => 'AnimationController@getAnimationById',
+]);
+
+Route::delete('/animation/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@deleteAnimation',
 ]);
 
 //====================================================================================RUTAS PARA USER

@@ -18,5 +18,8 @@
     {{draw?.descripcion}}
     </h6>
     </div>
-
+    <div *ngIf="currentUser?.username==draw?.author">
+        
+            <button mat-menu-item class="watchButton" (click)="deleteDraw()">DELETE</button>
+            </div>
     </div>
