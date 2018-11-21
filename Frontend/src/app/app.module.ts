@@ -53,6 +53,8 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 import { TeamViewComponent } from './team/team-view/team-view.component';
 import { ChatRoomsViewComponent } from './chat-rooms/chat-rooms-view/chat-rooms-view.component';
 import { TeamImageComponent } from './team-image/team-image.component';
+import { ChatRoomsListComponent } from './chat-rooms/chat-rooms-list/chat-rooms-list.component';
+
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
@@ -119,6 +121,7 @@ const routes : Route[] = [
     TeamViewComponent,
     ChatRoomsViewComponent,
     TeamImageComponent,
+    ChatRoomsListComponent,
 
     
   ],

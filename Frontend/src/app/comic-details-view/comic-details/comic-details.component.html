@@ -1,20 +1,55 @@
 <div class="infoDraw">
+        <div class="mark">
+                        <h1>{{comic?.name}}</h1>
+                                        </div>
 
-    <img src="{{comic?.imagePath}}" class="image" id="image">
-  
-  
+<img src="{{comic?.imagePath}}" class="image" id="image">
+
+<div class="mark">
+                <div class="right">
+                               <p> SCORE </p>
+                                {{comic?.mark}}
+                                <!-- <button mat-menu-item class="rate" >RATE</button> -->
+
+                        </div>
+
+                        <div class="right">
+                                        <p>Ranked</p>
+                                         #1099
+                                         <!-- <button mat-menu-item class="rate" >RATE</button> -->
+         
+                                 </div>
+                                 <div class="right">
+                                                <p>Views</p>
+                                                 23
+                                                 <!-- <button mat-menu-item class="rate" >RATE</button> -->
+                 
+                                         </div>
+                                         <div class="right">
+                                                        <p>Popularity</p>
+                                                        #122
+                                                         <!-- <button mat-menu-item class="rate" >RATE</button> -->
+                         
+</div>
+</div>
+
+
+
     <div class="container">
-    <h1>{{comic?.name}}</h1>
+
     <h6>Made by <a [routerLink]="['/user',comic?.author]">{{comic?.author}}</a></h6>
-    {{comic?.mark}}
     <h6>
      {{comic?.synopsis}}
     </h6>
 </div>
-    <div *ngIf="currentUser?.username==comic?.author">
+    <div *ngIf="currentUser?.username==comic?.author"><!--si eres el creador-->
     <button mat-menu-item class="watchButton1" (click)="goToChaptersList()">READ</button>
     <button mat-menu-item class="watchButton2" (click)="deleteComic()">DELETE</button>
     </div>
-    <div *ngIf="currentUser?.username!=comic?.author">
-    <button mat-menu-item class="watchButton" (click)="goToChaptersList()">READ</button>
+    <div *ngIf="currentUser?.username==null">
+    <button mat-menu-item class="watchButton" (click)="goToChaptersList()">READ</button><!--si no estas logeado-->
+    </div>
+    <div *ngIf="currentUser?.username!=null && currentUser?.username!=comic?.author"><!--si no eres el creador pero estas logeado-->
+            <button mat-menu-item class="watchButton1" (click)="goToChaptersList()">READ</button>
+    <button mat-menu-item class="watchButton2" (click)="goToChaptersList()">RATE</button>
     </div>

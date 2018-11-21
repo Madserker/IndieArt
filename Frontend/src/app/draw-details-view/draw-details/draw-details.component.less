@@ -1,9 +1,24 @@
 @bg-color : #fbdf6f;
 @bg-color2 : #303030;
+@info-color : #3d3d3d;
 @topBar-color : #f0e2a2;
 @button-color : #eec262;
 @bg-color-darken : darken(@topBar-color ,20%);
 @text-color : rgb(255, 255, 255);
+
+.rate{
+    width:auto;
+    margin:auto;
+    margin-bottom:10px;
+    border-radius: 20px;
+    background-color: lighten(@info-color,10);
+    color: black;
+    
+    }
+    .rate:hover{
+        background-color: @bg-color;
+    }
+    
 
 .watchButton{
     text-align: center;
@@ -21,11 +36,37 @@
     max-width: 100%;
 }
 
+//======================================
+.right{
+    font-size:30px;
+    color:@bg-color;
+    width:10%;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: darken(@info-color,2.5);
+    
+}
+
+
+.right p{
+    background-color:@bg-color;
+    margin:auto;
+    font-size:15px;
+    color:black;
+}
+
+
+.mark{
+    background-color: darken(@info-color,0);
+    margin-bottom:10px;
+}
+//==============================================
 .infoDraw{
 
 
-    background: #535353;
-
+    background: @info-color;
+    
     overflow: visible;
     width: auto;
     height: auto;

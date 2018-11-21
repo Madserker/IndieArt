@@ -1,21 +1,55 @@
 <div class="infoDraw">
+    <div class="mark">
+                    <h1>{{animation?.name}}</h1>
+                                    </div>
 
-  <img src="{{animation.imagePath}}" class="image" id="image" width="60%">
+<img src="{{animation?.imagePath}}" class="image" id="image">
+
+<div class="mark">
+            <div class="right">
+                           <p> SCORE </p>
+                            {{animation?.mark}}
+                            <!-- <button mat-menu-item class="rate" >RATE</button> -->
+
+                    </div>
+
+                    <div class="right">
+                                    <p>Ranked</p>
+                                     #1099
+                                     <!-- <button mat-menu-item class="rate" >RATE</button> -->
+     
+                             </div>
+                             <div class="right">
+                                            <p>Views</p>
+                                             23
+                                             <!-- <button mat-menu-item class="rate" >RATE</button> -->
+             
+                                     </div>
+                                     <div class="right">
+                                                    <p>Popularity</p>
+                                                    #122
+                                                     <!-- <button mat-menu-item class="rate" >RATE</button> -->
+                     
+</div>
+</div>
 
 
   <div class="container">
-  <h1>{{animation.name}}</h1>
+
   <h6>Made by <a [routerLink]="['/user',animation.author]">{{animation.author}}</a></h6>
-  {{animation.mark}}
   <h6>
       {{animation.synopsis}}
 
   </h6>
 </div>
-<div *ngIf="currentUser?.username==comic?.author">
-<button mat-menu-item class="watchButton1" (click)="goToEpisodesList()">READ</button>
-<button mat-menu-item class="watchButton2" (click)="deleteAnimation()">DELETE</button>
-</div>
-<div *ngIf="currentUser?.username!=comic?.author">
-<button mat-menu-item class="watchButton" (click)="goToEpisodesList()">READ</button>
-</div>
+<div *ngIf="currentUser?.username==animation?.author"><!--si eres el creador-->
+  <button mat-menu-item class="watchButton1" (click)="goToEpisodesList()">WATCH</button>
+  <button mat-menu-item class="watchButton2" (click)="deleteAnimation()">DELETE</button>
+  </div>
+  <div *ngIf="currentUser?.username==null">
+  <button mat-menu-item class="watchButton" (click)="goToEpisodesList()">WATCH</button><!--si no estas logeado-->
+  </div>
+  <div *ngIf="currentUser?.username!=null && currentUser?.username!=animation?.author"><!--si no eres el creador pero estas logeado-->
+          <button mat-menu-item class="watchButton1" (click)="goToEpisodesList()">WATCH</button>
+  <button mat-menu-item class="watchButton2" (click)="goToEpisodesList()">RATE</button>
+  </div>

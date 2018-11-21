@@ -73,7 +73,6 @@ export class ListComponent implements OnInit {
      })
   }
 
-
   openNav(){		
     this.listSideNav.openNav();   
   }

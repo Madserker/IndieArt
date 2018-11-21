@@ -6,20 +6,56 @@
     -->
 
     <div class="infoDraw">
+                <div class="mark">
+                                <h1>{{draw?.name}}</h1>
+                                                </div>
 
-    <img src="{{draw?.imagePath}}" class="image" id="image">
+        <img src="{{draw?.imagePath}}" class="image" id="image">
+
+        <div class="mark">
+                        <div class="right">
+                                       <p> SCORE </p>
+                                        {{draw?.mark}}
+                                        <!-- <button mat-menu-item class="rate" >RATE</button> -->
+        
+                                </div>
+        
+                                <div class="right">
+                                                <p>Ranked</p>
+                                                 #1099
+                                                 <!-- <button mat-menu-item class="rate" >RATE</button> -->
+                 
+                                         </div>
+                                         <div class="right">
+                                                        <p>Views</p>
+                                                         23
+                                                         <!-- <button mat-menu-item class="rate" >RATE</button> -->
+                         
+                                                 </div>
+                                                 <div class="right">
+                                                                <p>Popularity</p>
+                                                                #122
+                                                                 <!-- <button mat-menu-item class="rate" >RATE</button> -->
+                                 
+        </div>
+</div>
+
 
 
     <div class="container">
-    <h1>{{draw?.name}}</h1>
+
     <h6>Made by <a [routerLink]="['/user',draw?.author]">{{draw?.author}}</a></h6>
-    {{draw?.mark}}
+
     <h6>
     {{draw?.descripcion}}
     </h6>
     </div>
     <div *ngIf="currentUser?.username==draw?.author">
-        
             <button mat-menu-item class="watchButton" (click)="deleteDraw()">DELETE</button>
             </div>
+            <div *ngIf="currentUser?.username!=null && currentUser?.username!=draw?.author"><!--si no eres el creador pero estas logeado-->
+                <button mat-menu-item class="watchButton" (click)="rate()">RATE</button>
+                </div>
     </div>
+
+

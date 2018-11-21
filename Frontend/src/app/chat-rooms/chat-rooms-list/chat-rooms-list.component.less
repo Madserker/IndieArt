@@ -1,0 +1,98 @@
+@bg-color : #303030;
+@topBar-color : #f0e2a2;
+@button-color : #eec262;
+@bg-color-darken : darken(@topBar-color ,20%);
+@text-color : rgb(255, 255, 255);
+
+
+
+* {
+  font-family: 'Lucida Sans';  
+}
+
+
+.toolbarButtonsDiv{
+  display: inline;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.toolbarButton{
+  font-size: 130%;
+  color: @text-color;
+  min-width: 200px;
+  padding: 10px 0px 10px 0px;
+}
+
+.toolbarButton:hover{
+  background-color: @bg-color-darken;
+
+}
+
+.spacer{
+  padding: 10px;
+}
+
+.openNav{
+  margin-left: 10px;
+  color: @text-color;
+}
+
+.list {   
+
+    min-height: 1000px;
+    max-height: auto;
+    background-color: @bg-color;
+
+    margin-top: 64px;
+    padding-top: 53px;
+
+}
+
+* {box-sizing: border-box;}
+
+
+
+.topnav {
+
+  overflow: hidden;
+  background-color: @bg-color;
+  position: fixed;
+  float:right;
+  right: 0;
+  left: 0;
+  border-bottom: 1px solid #eec262;
+  border-radius: 0px;
+}
+
+
+.search-container {
+    float: right;
+
+  }
+  
+  .topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 17px;
+    border: none;
+    
+  }
+  
+  .topnav .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 16px;
+    background: @button-color;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+
