@@ -13,7 +13,8 @@ class CreateArtTable extends Migration
      */
     public function up()
     {
-        Schema::create('art', function (Blueprint $table) {
+        Schema::create('arts', function (Blueprint $table) {
+            Schema::dropIfExists('arts');
             $table->increments('id');//el id incrementara solo
             $table->text('name');
             $table->text('descripcion');
@@ -21,7 +22,7 @@ class CreateArtTable extends Migration
             $table->text('image_path');
 
             //many to one relation
-            $table->string('author_id');
+            $table->integer('author_id')->unsigned()->index();
             $table->foreign('author_id')->references('id')->on('authors');
 
             $table->timestamps();

@@ -18,10 +18,10 @@ class CreateUsersUsersTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->string('author_id');
+            $table->integer('author_id')->unsigned()->index();
             $table->foreign('author_id')->references('id')->on('authors');
 
-            $table->string('follower_id');
+            $table->integer('follower_id')->unsigned()->index();
             $table->foreign('follower_id')->references('id')->on('authors');
         });
     }

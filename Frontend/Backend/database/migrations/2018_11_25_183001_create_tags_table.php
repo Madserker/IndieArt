@@ -14,6 +14,7 @@ class CreateTagsTable extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
+            Schema::dropIfExists('tags');
             $table->increments('id');
             $table->string('text');
             $table->integer('type');

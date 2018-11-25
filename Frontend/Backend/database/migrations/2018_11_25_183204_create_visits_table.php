@@ -16,7 +16,7 @@ class CreateVisitsTable extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->string('author_id');
+            $table->integer('author_id')->unsigned()->index();
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
 
             $table->integer('art_id')->unsigned()->index();

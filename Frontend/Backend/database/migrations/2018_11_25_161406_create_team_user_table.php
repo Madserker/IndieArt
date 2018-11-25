@@ -17,10 +17,10 @@ class CreateTeamUserTable extends Migration
             $table->increments('id');
             $table->string('role');//el rol que desempeña el user en el team
 
-            $table->string('team_id');
+            $table->integer('team_id')->unsigned()->index();
             $table->foreign('team_id')->references('id')->on('users');
 
-            $table->string('user_id');
+            $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('teams');
             $table->timestamps();
         });

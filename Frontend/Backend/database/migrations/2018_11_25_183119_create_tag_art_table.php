@@ -14,10 +14,11 @@ class CreateTagArtTable extends Migration
     public function up()
     {
         Schema::create('tag_art', function (Blueprint $table) {
+            Schema::dropIfExists('tag_art');
             $table->increments('id');
             
-            $table->string('tag_id');
-            $table->foreign('tag_id')->references('id')->on('tag')->onDelete('cascade');
+            $table->integer('tag_id')->unsigned()->index();;
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
 
             $table->integer('art_id')->unsigned()->index();
             $table->foreign('art_id')->references('id')->on('arts')->onDelete('cascade');
