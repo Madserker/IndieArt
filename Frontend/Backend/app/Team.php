@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    //
+    public function users(){//Many To Many relationship
+        return $this->hasMany(User::class, 'team_user', 'team_id', 'user_id');
+    }
 }

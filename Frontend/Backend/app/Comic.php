@@ -11,12 +11,4 @@ class Comic extends Art
     {
         return $this->hasMany('App\Chapter');
     }
-    public function comments()
-    {
-        return $this->hasMany('App\ComicComment');
-    }
-    public function tags()//Many To Many Relation
-    {
-        return $this->belongsToMany('App\Tag');
-    }
 }
