@@ -18,7 +18,7 @@ class CreateEpisodesTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->integer('number');
-            $table->text('videoPath');
+            $table->text('video_path');
             $table->timestamps();
 
             $table->integer('animation_id')->unsigned()->index();

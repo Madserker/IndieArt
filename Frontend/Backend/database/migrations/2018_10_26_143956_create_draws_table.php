@@ -16,18 +16,6 @@ class CreateDrawsTable extends Migration
         Schema::create('draws', function (Blueprint $table) {
             Schema::dropIfExists('draws');
             $table->increments('id');//el id incrementara solo
-            $table->text('name');
-            $table->text('descripcion');
-            $table->integer('mark');
-
-            $table->text('imagePath');
-            $table->integer('visits');
-
-            //many to one relation
-            $table->string('author');
-            $table->foreign('author')->references('username')->on('users');
-
-            $table->timestamps();
         });
     
     }

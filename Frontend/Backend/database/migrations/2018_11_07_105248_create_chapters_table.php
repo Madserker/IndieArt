@@ -18,7 +18,7 @@ class CreateChaptersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('number');
-            $table->string('imagePath');
+            $table->string('image_path');
             $table->timestamps();
 
             $table->integer('comic_id')->unsigned()->index();

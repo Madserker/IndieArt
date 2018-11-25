@@ -17,7 +17,7 @@ class CreatePagesTable extends Migration
             Schema::dropIfExists('pages');
             $table->increments('id');
             $table->integer('number');
-            $table->string('imagePath');
+            $table->string('image_path');
             $table->timestamps();
 
             $table->integer('chapter_id')->unsigned()->index();
