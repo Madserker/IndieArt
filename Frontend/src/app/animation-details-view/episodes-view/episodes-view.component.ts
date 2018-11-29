@@ -55,7 +55,7 @@ export class EpisodesViewComponent implements OnInit {
   getUser(){
     if(JSON.parse(this.authService.getUser())==null){}
     else{
-      this.currentUser = JSON.parse(this.authService.getUser())[0];//cogemos el usuario del localStorage
+      this.currentUser = JSON.parse(this.authService.getUser());//cogemos el usuario del localStorage
     }
   }
 }

@@ -100,9 +100,9 @@ class AnimationController extends Controller
     public function getAnimationEpisodes($id){//json de episodios del la animacion 
 
         $animations = 
-        DB::table('arts')
-        ->where('arts.id', $id)
-        ->join('animations', 'arts.id', '=', 'animations.id')
+        Animation::with('episodes')
+        ->where('animations.id', $id)
+        ->join('arts', 'arts.id', '=', 'animations.id')
         ->select('arts.*','animations.*')
         ->get();
 
