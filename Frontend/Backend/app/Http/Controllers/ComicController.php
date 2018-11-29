@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comic;
+use DB;
 use App\Art;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class ComicController extends Controller
 
         $path = Storage::putfile('comics', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
 
-        $art->imagePath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+        $art->image_path = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
 
         $art->name = $request->input('name');//cogemos los datos del draw desde la request del frontend
         $art->author = $request->input('author');
@@ -61,9 +62,9 @@ class ComicController extends Controller
 
     public function getComicChapters($id){//json de capitulos del comic 
         $comics = 
-        DB::table('arts')
-        ->where('arts.id', $id)
-        ->join('comics', 'arts.id', '=', 'comics.id')
+        Comic::with('chapters')
+        ->where('comics.id', $id)
+        ->join('arts', 'arts.id', '=', 'comics.id')
         ->select('arts.*','comics.*')
         ->get();
 

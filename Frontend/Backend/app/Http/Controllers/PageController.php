@@ -22,7 +22,7 @@ class PageController extends Controller
             $page->chapter_id = $request->input('chapter_id');
             $file = $request->file('file');//Cogemos el file de la request
             $path = Storage::putfile('comics/chapters', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
-            $page->imagePath="Backend/storage/app/".$path;
+            $page->image_path="Backend/storage/app/".$path;
             $page->save();
 
         return response()->json(['page' => $page], 201);//retornamos 201 y el comic
