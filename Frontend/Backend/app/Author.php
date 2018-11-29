@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-
+    public $incrementing = false;
     protected $primaryKey="username";
 
     protected $fillable = [
@@ -24,9 +24,9 @@ class Author extends Model
     }
 
     public function followers(){//Many To Many relationship
-        return $this->belongsToMany(Author::class, 'users_users', 'author_id', 'follower_id');
+        return $this->belongsToMany(Author::class, 'users_users', 'author', 'follower');
     }
     public function following(){//Many To Many relationship
-        return $this->belongsToMany(Author::class, 'users_users', 'follower_id', 'author_id');
+        return $this->belongsToMany(Author::class, 'users_users', 'follower', 'author');
     }
 }
