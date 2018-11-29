@@ -31,11 +31,12 @@ export class AuthService {
 */
   }
 
-  signup(username:string,email:string, birth:string, password:string){
+  signup(username:string,email:string, real_name:string,birth:string, password:string){
     return this.http.post(this.url+'/api/user',{
       username:username,
       email:email,
       birthday:birth,
+      real_name:real_name,
       password:password
     },
     {headers: new Headers({'X-Request-Width':'XMLHttpRequest'})}

@@ -39,7 +39,7 @@ export class ProfileViewComponent implements OnInit {
     //cogemos el username de la ruta y buscamos en la base de datos el usuario con ese username
     this.lists.getUserByUsername(this.username)
     .subscribe(result => {
-    this.user = result[0] as User
+    this.user = result as User
     })
   }
 
@@ -47,7 +47,7 @@ export class ProfileViewComponent implements OnInit {
     if(JSON.parse(this.authService.getUser())==null){
     }
     else{
-      this.currentUser = JSON.parse(this.authService.getUser())[0];//cogemos el usuario del localStorage
+      this.currentUser = JSON.parse(this.authService.getUser());//cogemos el usuario del localStorage
     }
   }
 

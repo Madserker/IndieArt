@@ -33,6 +33,7 @@ export class LoginSideNavComponent implements OnInit {
       this.authService.signup(
         form.value.username,
         form.value.email,
+        form.value.name,
         form.value.birth,
         form.value.password
         ).subscribe(
@@ -55,7 +56,7 @@ export class LoginSideNavComponent implements OnInit {
 
   openRegister() {
     document.getElementById("sn").style.width = "250px";
-    document.getElementById("sn").style.height = "500px";
+    document.getElementById("sn").style.height = "560px";
     this.register=true;
 }
 
