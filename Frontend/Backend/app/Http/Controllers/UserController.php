@@ -323,21 +323,21 @@ class UserController extends Controller
             }
 
         // //     //get chapters
-        // //     $authorComics = 
-        // //     Comic::with('chapters')
-        // //     ->join('arts', 'arts.id', '=', 'comics.id')
-        // //     ->select('arts.*','comics.*')
-        // //     ->where('arts.author',$following[$i]->username)
-        // //     ->get();//get animations del following $i
-        // //     for($j=0; $j<sizeof($authorComics);$j++){
-        // //         for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
-        // //             $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
-        // //             $authorComics[$j]->author, $following[$i]->profilePic, "", $authorComics[$j]->chapters[$k]->id, $authorComics[$j]->id
-        // //            ,$authorComics[$j]->name,2);
+            $authorComics = 
+            Comic::with('chapters')
+            ->join('arts', 'arts.id', '=', 'comics.id')
+            ->select('arts.*','comics.*')
+            ->where('arts.author',$following[$i]->username)
+            ->get();//get animations del following $i
+            for($j=0; $j<sizeof($authorComics);$j++){
+                for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
+                    $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
+                    $authorComics[$j]->author, $following[$i]->profilePic, "", $authorComics[$j]->chapters[$k]->id, $authorComics[$j]->id
+                   ,$authorComics[$j]->name,2);
                     
-        // //             array_push($notifications,$notification);//insertar draw en la lista
-        // //         }   
-        // //     }
+                    array_push($notifications,$notification);//insertar draw en la lista
+                }   
+            }
 
          }
 
