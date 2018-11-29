@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Draw;
+use App\Art;
+use DB;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
@@ -22,30 +24,34 @@ class DrawController extends Controller
         }
         
         //$user = JWTAuth::parseToken()->toUser(); //Retorna el usuario del token
-
-        $draw = new Draw();
+        $art = new Art();
 
         $file = $request->file('photo');//Cogemos el file de la request
 
         $path = Storage::putfile('draws', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
 
-        $draw->imagePath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+        $art->image_path = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
 
         //rellenamos el resto de datos con la request
-        $draw->name = $request->input('name');
-        $draw->author = $request->input('author');
-        $draw->descripcion = $request->input('descripcion');
+        $art->name = $request->input('name');
+        $art->author = $request->input('author');
+        $art->descripcion = $request->input('descripcion');
+        $art->save();
 
+        $draw = new Draw();
+        $draw->id = $art->id;
         //default values        
-        $draw->mark = 0;
-        $draw->visits = 0;
 
         $draw->save();//guardamos el draw
         return response()->json(['draw' => $draw], 201);//retornamos 201 y el dibujo
     }
 
     public function getDraws(){
-        $draws = Draw::all();
+        $draws = 
+        DB::table('arts')
+        ->join('draws', 'arts.id', '=', 'draws.id')
+        ->select('arts.*','draws.*')
+        ->get();
         $response = [
             'draws' => $draws
         ];
@@ -57,16 +63,26 @@ class DrawController extends Controller
     }
 
     public function getDrawById($id){
-        $draw = Draw::find($id);
+        $draw = 
+        DB::table('arts')
+        ->where('arts.id', $id)
+        ->join('draws', 'arts.id', '=', 'draws.id')
+        ->select('arts.*','draws.*')
+        ->get();
         if(!$draw){//si no ha encontrado el draw con ese id
             return response()->json(['message' => 'Draw not found'],404);//json con mensaje de error 404 not found
         }
-        return response()->json(['draw' => $draw],200);
+        return response()->json(['draw' => $draw[0]],200);
         
     }
 
     public function getDrawsByAuthor($author){//metodo para obtener los dibujos de un usuario
-        $draws = Draw::where('author',$author)->get();
+        $draws = 
+        DB::table('arts')
+        ->where('arts.author', $author)
+        ->join('draws', 'arts.id', '=', 'draws.id')
+        ->select('arts.*','draws.*')
+        ->get();
         if(!$draws){//si no ha encontrado ningun draw
             return response()->json(['message' => 'Draws not found'],404);//json con mensaje de error 404 not found
         }
@@ -94,11 +110,13 @@ class DrawController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
         $draw = Draw::find($id);
+        $art = Art::find($id);
         //importante realizar esta comprobacion en las DELETE requests
         if($userA->username != $draw->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
             return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
         }
         $draw->delete();
+        $art->delete();
         return response()->json(['message' => 'Draw deleted'],200);
     }
 }

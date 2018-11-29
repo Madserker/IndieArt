@@ -41,7 +41,7 @@ class AnimationController extends Controller
 
         $animation = new Animation();
         //default values        
-        $animation->status = "Aired";
+        $animation->status = "Airing";
 
         $animation->id = $art->id;
 

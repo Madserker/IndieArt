@@ -24,12 +24,7 @@ class ChapterController extends Controller
         $chapter->name = $request->input('name');//cogemos los datos del draw desde la request del frontend
         $chapter->number = $request->input('number');
         $chapter->comic_id = $request->input('comic_id');
-        $chapter->imagePath = "";//pendiente de eliminar este valor en la BD
-  
-                // //default values        
-                // $chapter->mark = 0;
-                // $chapter->visits = 0;
-                // $chapter->status = "Aired";
+        $chapter->image_path = "";//proximas actualizaciones donde los capitulos tengan portada
 
         $chapter->save();//guardamos el chapter
 

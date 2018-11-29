@@ -197,123 +197,152 @@ class UserController extends Controller
 
 
 //====================================================================================================================FRIENDS UPDATES
-    public function getFollowingUsersDraws($username){
-        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
-            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
-        }
-        $user = User::find($username);
-        if(!$user){//si no ha encontrado el user con ese id
-            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
-        }
-        $following = $user->following;
-        $draws = [];
-        for($i=0; $i<sizeof($following);$i++){
-            $authorDraws = Draw::where('author',$following[$i]->username)->get();//get draws del following $i
-            for($j=0; $j<sizeof($authorDraws);$j++){
-                array_push($draws,$authorDraws[$j]);//insertar draw en la lista
-            }
-        }
-        return response()->json(['draws' => $draws],200); 
-    }
+    // public function getFollowingUsersDraws($username){
+    //     if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+    //         return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+    //     }
+    //     $user = User::find($username);
+    //     if(!$user){//si no ha encontrado el user con ese id
+    //         return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+    //     }
+    //     $following = $user->following;
+    //     $draws = [];
+    //     for($i=0; $i<sizeof($following);$i++){
+    //         $authorDraws = Draw::where('author',$following[$i]->username)->get();//get draws del following $i
+    //         for($j=0; $j<sizeof($authorDraws);$j++){
+    //             array_push($draws,$authorDraws[$j]);//insertar draw en la lista
+    //         }
+    //     }
+    //     return response()->json(['draws' => $draws],200); 
+    // }
 
-    public function getFollowingUsersEpisodes($username){
-        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
-            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
-        }
-        $user = User::find($username);
-        if(!$user){//si no ha encontrado el user con ese id
-            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
-        }
-        $following = $user->following;
-        $episodes = [];
-        for($i=0; $i<sizeof($following);$i++){
-            $authorAnimations = Animation::where('author',$following[$i]->username)->get();//get episodes del following $i
-            for($j=0; $j<sizeof($authorAnimations);$j++){
-                for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
-                    array_push($episodes,$authorAnimations[$j]->episodes[$k]);//insertar episode en la lista
-                }
-            }
-        }
-        return response()->json(['episodes' => $episodes],200); 
-    }
+    // public function getFollowingUsersEpisodes($username){
+    //     if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+    //         return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+    //     }
+    //     $user = User::find($username);
+    //     if(!$user){//si no ha encontrado el user con ese id
+    //         return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+    //     }
+    //     $following = $user->following;
+    //     $episodes = [];
+    //     for($i=0; $i<sizeof($following);$i++){
+    //         $authorAnimations = Animation::where('author',$following[$i]->username)->get();//get episodes del following $i
+    //         for($j=0; $j<sizeof($authorAnimations);$j++){
+    //             for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
+    //                 array_push($episodes,$authorAnimations[$j]->episodes[$k]);//insertar episode en la lista
+    //             }
+    //         }
+    //     }
+    //     return response()->json(['episodes' => $episodes],200); 
+    // }
 
-    public function getFollowingUsersChapters($username){
-        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
-            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
-        }
-        $user = User::find($username);
-        if(!$user){//si no ha encontrado el user con ese id
-            return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
-        }
-        $following = $user->following;
-        $chapters = [];
-        for($i=0; $i<sizeof($following);$i++){
-            $authorComics = Comic::where('author',$following[$i]->username)->get();//get chapters del following $i
-            for($j=0; $j<sizeof($authorComics);$j++){
-                for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get chapters del comic
-                    array_push($chapters,$authorComics[$j]->chapters[$k]);//insertar chapter en la lista
-                }
-            }
-        }
-        return response()->json(['chapters' => $chapters],200); 
-    }
+    // public function getFollowingUsersChapters($username){
+    //     if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+    //         return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+    //     }
+    //     $user = User::find($username);
+    //     if(!$user){//si no ha encontrado el user con ese id
+    //         return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
+    //     }
+    //     $following = $user->following;
+    //     $chapters = [];
+    //     for($i=0; $i<sizeof($following);$i++){
+    //         $authorComics = Comic::where('author',$following[$i]->username)->get();//get chapters del following $i
+    //         for($j=0; $j<sizeof($authorComics);$j++){
+    //             for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get chapters del comic
+    //                 array_push($chapters,$authorComics[$j]->chapters[$k]);//insertar chapter en la lista
+    //             }
+    //         }
+    //     }
+    //     return response()->json(['chapters' => $chapters],200); 
+    // }
 
     public function getNotifications($username){
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
-        $user = User::find($username);
-        if(!$user){//si no ha encontrado el user con ese id
+        $author = Author::find($username);
+        if(!$author){//si no ha encontrado el user con ese id
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
 
 
-        $following = $user->following;
-        $following->push($user);//añadimos tu actividad a la lista
+        $following = $author->following;
+        $following->push($author);//añadimos tu actividad a la lista
+
+        
+
 
         $notifications = [];
 
 
         for($i=0; $i<sizeof($following);$i++){
-            
 
-            //get draws
-            $authorDraws = Draw::where('author',$following[$i]->username)->get();//get draws del following $i
+        //     //get draws
+
+            $authorDraws = 
+            DB::table('draws')
+            ->join('arts', 'arts.id', '=', 'draws.id')
+            ->select('arts.*','draws.*')
+            ->where('arts.author',$following[$i]->username)
+            ->get();//get draws del following $i
+
             for($j=0; $j<sizeof($authorDraws);$j++){
                 $notification = new Notification($authorDraws[$j]->created_at, $authorDraws[$j]->name,
-                $authorDraws[$j]->author, $following[$i]->profilePic, $authorDraws[$j]->imagePath,$authorDraws[$j]->id,$authorDraws[$j]->id,$authorDraws[$j]->name,1);
-
+                $authorDraws[$j]->author, $following[$i]->profile_picture, $authorDraws[$j]->image_path,$authorDraws[$j]->id,$authorDraws[$j]->id,$authorDraws[$j]->name,1);
                 array_push($notifications,$notification);//insertar draw en la lista
             }
 
             //get episodes
-            $authorAnimations = Animation::where('author',$following[$i]->username)->get();//get episodes del following $i
+            $authorAnimations = 
+            Animation::with('episodes')
+            ->join('arts', 'arts.id', '=', 'animations.id')
+            ->select('arts.*','animations.*')
+            ->where('arts.author',$following[$i]->username)
+            ->get();//get animations del following $i
+
+
             for($j=0; $j<sizeof($authorAnimations);$j++){
                 for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
-                    $notification = new Notification($authorAnimations[$j]->episodes[$k]->created_at, $authorAnimations[$j]->episodes[$k]->name,
-                    $authorAnimations[$j]->author, $following[$i]->profilePic, $authorAnimations[$j]->episodes[$k]->videoPath, $authorAnimations[$j]->episodes[$k]->id
-                    ,$authorAnimations[$j]->id, $authorComics[$j]->name,3);
+                    $notification = new Notification(
+                        $authorAnimations[$j]->episodes[$k]->created_at, 
+                        $authorAnimations[$j]->episodes[$k]->name,
+                        $authorAnimations[$j]->author, 
+                        $following[$i]->profile_picture, 
+                        $authorAnimations[$j]->episodes[$k]->video_path, 
+                        $authorAnimations[$j]->episodes[$k]->id,
+                        $authorAnimations[$j]->id, 
+                        $authorAnimations[$j]->name,
+                        $authorAnimations[$j]->name,
+                        3
+                    );
                     
                     array_push($notifications,$notification);//insertar draw en la lista
                 }
             }
 
-            //get chapters
-            $authorComics = Comic::where('author',$following[$i]->username)->get();//get episodes del following $i
-            for($j=0; $j<sizeof($authorComics);$j++){
-                for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
-                    $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
-                    $authorComics[$j]->author, $following[$i]->profilePic, "", $authorComics[$j]->chapters[$k]->id, $authorComics[$j]->id
-                   ,$authorComics[$j]->name,2);
+        // //     //get chapters
+        // //     $authorComics = 
+        // //     Comic::with('chapters')
+        // //     ->join('arts', 'arts.id', '=', 'comics.id')
+        // //     ->select('arts.*','comics.*')
+        // //     ->where('arts.author',$following[$i]->username)
+        // //     ->get();//get animations del following $i
+        // //     for($j=0; $j<sizeof($authorComics);$j++){
+        // //         for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
+        // //             $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
+        // //             $authorComics[$j]->author, $following[$i]->profilePic, "", $authorComics[$j]->chapters[$k]->id, $authorComics[$j]->id
+        // //            ,$authorComics[$j]->name,2);
                     
-                    array_push($notifications,$notification);//insertar draw en la lista
-                }   
-            }
+        // //             array_push($notifications,$notification);//insertar draw en la lista
+        // //         }   
+        // //     }
 
-        }
+         }
 
-        //ordenamos de mas reciente a menos
-        $notifications = collect($notifications)->sortBy('time')->reverse()->values();
+        // //ordenamos de mas reciente a menos
+         $notifications = collect($notifications)->sortBy('time')->reverse()->values();
 
         return response()->json([
             'notifications' => $notifications
