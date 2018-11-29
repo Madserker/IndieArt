@@ -2,7 +2,7 @@ export interface Draw{
     mark: number;
     name: string;
     id: number;
-    imagePath:string;
+    image_path:string;
     author:string;
     descripcion:string;
     updated_at: string;

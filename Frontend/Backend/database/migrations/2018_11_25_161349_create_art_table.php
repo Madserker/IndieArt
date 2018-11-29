@@ -23,7 +23,7 @@ class CreateArtTable extends Migration
 
             //many to one relation
             $table->string('author');
-            $table->foreign('author')->references('username')->on('authors')->onDelete('cascade');;
+            $table->foreign('author')->references('username')->on('authors')->onDelete('cascade');
 
             $table->timestamps();
         });

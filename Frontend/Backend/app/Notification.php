@@ -10,9 +10,10 @@ class Notification extends Model{
     public $image;
     public $id;//id of episode,draw or chapter
     public $parent_id;//id of animation or comic
+    public $parent_name;//name of animation or comic
     public $type;
 
-    function __construct($time, $name, $username, $user_image, $image, $id, $parent_id, $type) {
+    function __construct($time, $name, $username, $user_image, $image, $id, $parent_id, $parent_name, $type) {
         $this->time = $time;
         $this->name = $name;
         $this->username = $username;
@@ -20,7 +21,8 @@ class Notification extends Model{
         $this->image = $image;
         $this->id = $id;
         $this->parent_id = $parent_id;
-        $this->type = $type;
+        $this->parent_name = $parent_name;
+        $this->type = $type; 
     }
     
 }

@@ -289,8 +289,17 @@ class UserController extends Controller
             ->get();//get draws del following $i
 
             for($j=0; $j<sizeof($authorDraws);$j++){
-                $notification = new Notification($authorDraws[$j]->created_at, $authorDraws[$j]->name,
-                $authorDraws[$j]->author, $following[$i]->profile_picture, $authorDraws[$j]->image_path,$authorDraws[$j]->id,$authorDraws[$j]->id,$authorDraws[$j]->name,1);
+                $notification = new Notification(
+                    $authorDraws[$j]->created_at, 
+                    $authorDraws[$j]->name,
+                    $authorDraws[$j]->author, 
+                    $following[$i]->profile_picture, 
+                    $authorDraws[$j]->image_path,
+                    $authorDraws[$j]->id,
+                    $authorDraws[$j]->id,
+                    $authorDraws[$j]->name,
+                    1
+                );
                 array_push($notifications,$notification);//insertar draw en la lista
             }
 
@@ -302,7 +311,6 @@ class UserController extends Controller
             ->where('arts.author',$following[$i]->username)
             ->get();//get animations del following $i
 
-
             for($j=0; $j<sizeof($authorAnimations);$j++){
                 for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
                     $notification = new Notification(
@@ -313,7 +321,6 @@ class UserController extends Controller
                         $authorAnimations[$j]->episodes[$k]->video_path, 
                         $authorAnimations[$j]->episodes[$k]->id,
                         $authorAnimations[$j]->id, 
-                        $authorAnimations[$j]->name,
                         $authorAnimations[$j]->name,
                         3
                     );
@@ -331,9 +338,17 @@ class UserController extends Controller
             ->get();//get animations del following $i
             for($j=0; $j<sizeof($authorComics);$j++){
                 for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get episodes de la animacion
-                    $notification = new Notification($authorComics[$j]->chapters[$k]->created_at, $authorComics[$j]->chapters[$k]->name,
-                    $authorComics[$j]->author, $following[$i]->profilePic, "", $authorComics[$j]->chapters[$k]->id, $authorComics[$j]->id
-                   ,$authorComics[$j]->name,2);
+                    $notification = new Notification(
+                        $authorComics[$j]->chapters[$k]->created_at, 
+                        $authorComics[$j]->chapters[$k]->name,
+                        $authorComics[$j]->author, 
+                        $following[$i]->profile_picture, 
+                        "", 
+                        $authorComics[$j]->chapters[$k]->id, 
+                        $authorComics[$j]->id,
+                        $authorComics[$j]->name,
+                        2
+                    );
                     
                     array_push($notifications,$notification);//insertar draw en la lista
                 }   
