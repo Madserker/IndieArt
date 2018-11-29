@@ -3,6 +3,7 @@ import { User } from '../../_models/User.interface';
 import { AuthService } from '../../auth.service';
 import { NgForm } from '@angular/forms';
 import { UsersService } from '../../users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,7 +13,7 @@ import { UsersService } from '../../users.service';
 export class EditProfileComponent implements OnInit {
   currentUser:User;
   file:File;
-  constructor(private authService: AuthService,private userService : UsersService) { 
+  constructor(private authService: AuthService,private userService : UsersService, private router : Router) { 
     this.getUser();
   }
 
@@ -23,7 +24,7 @@ export class EditProfileComponent implements OnInit {
     if(JSON.parse(this.authService.getUser())==null){
     }
     else{
-      this.currentUser = JSON.parse(this.authService.getUser())[0];//cogemos el usuario del localStorage
+      this.currentUser = JSON.parse(this.authService.getUser());//cogemos el usuario del localStorage
     }
   }
 
@@ -40,7 +41,7 @@ export class EditProfileComponent implements OnInit {
       form.value.desc,
       this.currentUser.username
       ).subscribe(
-        response => window.location.reload(),//si ha ido bien el login
+        response => this.router.navigateByUrl('/user/'+this.currentUser.username),//si ha ido bien el login
         error => console.log(error)//si no ha ido bien el login
       );
   }
@@ -51,7 +52,7 @@ export class EditProfileComponent implements OnInit {
       this.file,
       this.currentUser.username
       ).subscribe(
-        response => window.location.reload(),//si ha ido bien el login
+        response => this.router.navigateByUrl('/user/'+this.currentUser.username),//si ha ido bien el login
         error => console.log(error)//si no ha ido bien el login
       );
   }
