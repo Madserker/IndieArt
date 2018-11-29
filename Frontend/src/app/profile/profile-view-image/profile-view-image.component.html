@@ -11,11 +11,11 @@
 <br>
 
 <h6>FOLLOWERS</h6>
-<img *ngFor="let user of followers" src="{{user.profilePic}}" width="60%" class="follow-image" [routerLink]="['/user',user?.username]">
+<img *ngFor="let user of followers" src="{{user.profile_picture}}" width="60%" class="follow-image" [routerLink]="['/user',user?.username]">
 
 <br>
 <h6>FOLLOWING</h6>
-<img *ngFor="let user of following" src="{{user.profilePic}}" width="60%" class="follow-image" [routerLink]="['/user',user?.username]">
+<img *ngFor="let user of following" src="{{user.profile_picture}}" width="60%" class="follow-image" [routerLink]="['/user',user?.username]">
 
 <br>
 <h6>TEAMS</h6>

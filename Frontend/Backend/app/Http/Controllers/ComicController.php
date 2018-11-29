@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comic;
+use App\Art;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
 

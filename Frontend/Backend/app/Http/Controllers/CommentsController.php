@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Draw;
+use App\Art;
 use App\Comic;
 use App\Animation;
 use App\DrawComment;

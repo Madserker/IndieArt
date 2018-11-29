@@ -7,6 +7,7 @@ import { RequestOptions } from '@angular/http';
 
 import { AuthService } from "./auth.service";
 import { AnimationComment } from './_models/AnimationComment.interface';
+import { Comment } from './_models/Comment.interface';
 import { ComicComment } from './_models/ComicComment.interface';
 
 
@@ -18,6 +19,9 @@ interface getComicComments{
 }
 interface getAnimationComments{
   comments : AnimationComment[]
+}
+interface getComments{
+  comments : Comment[]
 }
 
 @Injectable()
@@ -44,6 +48,11 @@ export class CommentsService {
       map(res => res.comments as AnimationComment[] || [])); 
   }
 
+  getComments(id : number){
+    return this.http.get<getComments>(this.url+'/api/comments/'+id)
+    .pipe(
+      map(res => res.comments as Comment[] || [])); 
+  }
 //=============================================================================================================POST COMMENT
 
   postDrawComment(draw_id,username,text) {

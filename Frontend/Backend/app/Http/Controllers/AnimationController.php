@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Animation;
+use App\Art;
+use DB;
 use App\Episode;
 use Illuminate\Http\Request;
 use JWTAuth;
@@ -22,27 +24,29 @@ class AnimationController extends Controller
         }
         
         //$user = JWTAuth::parseToken()->toUser(); //Retorna el usuario del token
-
-        $animation = new Animation();
+        $art = new Art();
 
         $file = $request->file('photo');//Cogemos el file de la request
 
         $path = Storage::putfile('animations', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
 
-        $animation->imagePath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+        $art->image_path = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
 
         //rellenamos el resto de datos con la request
-        $animation->name = $request->input('name');
-        $animation->author = $request->input('author');
-        $animation->synopsis = $request->input('synopsis');
+        $art->name = $request->input('name');
+        $art->author = $request->input('author');
+        $art->descripcion = $request->input('synopsis');
 
+        $art->save();
+
+        $animation = new Animation();
         //default values        
-        $animation->mark = 0;
-        $animation->visits = 0;
         $animation->status = "Aired";
 
+        $animation->id = $art->id;
+
         $animation->save();//guardamos el draw
-        return response()->json(['animation' => $animation], 201);//retornamos 201 y el dibujo
+        return response()->json(['art' => $art], 201);//retornamos 201 y el dibujo
     }
 
     public function postEpisode(Request $request){
@@ -61,7 +65,7 @@ class AnimationController extends Controller
 
         $path = Storage::putfile('animations/episodes', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
 
-        $episode->videoPath = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+        $episode->video_path = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
 
         //rellenamos el resto de datos con la request
         $episode->name = $request->input('name');
@@ -76,7 +80,13 @@ class AnimationController extends Controller
 
 
     public function getAnimations(){
-        $animations = Animation::all();
+
+        $animations = 
+        DB::table('arts')
+        ->join('animations', 'arts.id', '=', 'animations.id')
+        ->select('arts.*','animations.*')
+        ->get();
+
         $response = [
             'animations' => $animations
         ];
@@ -88,9 +98,16 @@ class AnimationController extends Controller
     }
 
     public function getAnimationEpisodes($id){//json de episodios del la animacion 
-        $animation = Animation::find($id);
+
+        $animations = 
+        DB::table('arts')
+        ->where('arts.id', $id)
+        ->join('animations', 'arts.id', '=', 'animations.id')
+        ->select('arts.*','animations.*')
+        ->get();
+
         $response = [
-            'episodes' => $animation->episodes//sabemos los episodios con la foreignKey de episodes
+            'episodes' => $animations[0]->episodes//sabemos los episodios con la foreignKey de episodes
         ];
         $headers = ['Content-Type' => 'application/json; charset=UTF-8',
         'charset' => 'utf-8'];
@@ -99,19 +116,33 @@ class AnimationController extends Controller
     }
 
     public function getAnimationsByAuthor($author){//metodo para obtener las animaciones de un usuario
-        $animations = Animation::where('author',$author)->get();
-        if(!$animations){//si no ha encontrado ningun draw
+        
+        $animations = 
+        DB::table('arts')
+        ->where('arts.author', $author)
+        ->join('animations', 'arts.id', '=', 'animations.id')
+        ->select('arts.*','animations.*')
+        ->get();
+
+
+        if(!$animations){//si no ha encontrado ninguna animacion
             return response()->json(['message' => 'Animations not found'],404);//json con mensaje de error 404 not found
         }
         return response()->json(['animations' => $animations],200);
     }
 
     public function getAnimationById($id){
-        $animation = Animation::find($id);
+        $animation = 
+        DB::table('arts')
+        ->where('arts.id', $id)
+        ->join('animations', 'arts.id', '=', 'animations.id')
+        ->select('arts.*','animations.*')
+        ->get();
+
         if(!$animation){//si no ha encontrado el draw con ese id
             return response()->json(['message' => 'Animation not found'],404);//json con mensaje de error 404 not found
         }
-        return response()->json(['animation' => $animation],200);
+        return response()->json(['animation' => $animation[0]],200);
     }
 
     public function deleteAnimation($id){
@@ -120,11 +151,13 @@ class AnimationController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
         $animation = Animation::find($id);
+        $art = Art::find($id);
         //importante realizar esta comprobacion en las DELETE requests
         if($userA->username != $animation->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
             return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
         }
         $animation->delete();
+        $art->delete();
         return response()->json(['message' => 'Animation deleted'],200);
     }
 }

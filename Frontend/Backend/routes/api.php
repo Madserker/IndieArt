@@ -204,19 +204,24 @@ Route::post('/user/{username}/image',[
     'uses' => 'UserController@putUserImage',
 ]);
 //=================================================================================RUTAS PARA COMMENTS
-Route::get('/comments/draw/{id}',[
-    'middleware' => 'cors',
-    'uses' => 'CommentsController@getDrawComments'
-]);
+// Route::get('/comments/draw/{id}',[
+//     'middleware' => 'cors',
+//     'uses' => 'CommentsController@getDrawComments'
+// ]);
 
-Route::get('/comments/comic/{id}',[
-    'middleware' => 'cors',
-    'uses' => 'CommentsController@getComicComments'
-]);
+// Route::get('/comments/comic/{id}',[
+//     'middleware' => 'cors',
+//     'uses' => 'CommentsController@getComicComments'
+// ]);
 
-Route::get('/comments/animation/{id}',[
+// Route::get('/comments/animation/{id}',[
+//     'middleware' => 'cors',
+//     'uses' => 'CommentsController@getAnimationComments'
+// ]);
+
+Route::get('/comments/{id}',[
     'middleware' => 'cors',
-    'uses' => 'CommentsController@getAnimationComments'
+    'uses' => 'CommentsController@getComments'
 ]);
 
 Route::post('/comment/draw',[

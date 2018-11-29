@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ListsService } from '../../lists.service';
 import { CommentsService } from '../../comments.service';
 import { A_Animation } from '../../_models/A_Animation.interface';
-import { AnimationComment } from '../../_models/AnimationComment.interface';
+import { Comment } from '../../_models/Comment.interface';
 
 @Component({
   selector: 'app-animation-view',
@@ -14,7 +14,7 @@ import { AnimationComment } from '../../_models/AnimationComment.interface';
 export class AnimationViewComponent implements OnInit {
 
   animation : A_Animation;
-  comments : AnimationComment [];
+  comments : Comment [];
   id : number;
   
   
@@ -31,12 +31,13 @@ export class AnimationViewComponent implements OnInit {
       this.lists.getAnimationById(this.id)
       .subscribe(result => {
       this.animation = result as A_Animation
+      console.log(this.animation)
       })
   
       // //cogemos la lista de comentarios del dibujo con el id de la ruta
-      this.commentsService.getAnimationComments(this.id)
+      this.commentsService.getComments(this.id)
       .subscribe(result => {
-      this.comments = result as AnimationComment[]
+      this.comments = result as Comment[]
       console.log(this.comments);
       })
     }
