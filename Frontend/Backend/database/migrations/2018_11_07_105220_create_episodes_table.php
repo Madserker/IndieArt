@@ -22,7 +22,7 @@ class CreateEpisodesTable extends Migration
             $table->timestamps();
 
             $table->integer('animation_id')->unsigned()->index();
-            $table->foreign('animation_id')->references('id')->on('animations');
+            $table->foreign('animation_id')->references('id')->on('animations')->onDelete('cascade');;
         });
     }
 

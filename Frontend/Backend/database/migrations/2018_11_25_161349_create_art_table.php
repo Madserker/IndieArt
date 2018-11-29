@@ -22,8 +22,8 @@ class CreateArtTable extends Migration
             $table->text('image_path');
 
             //many to one relation
-            $table->integer('author_id')->unsigned()->index();
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->string('author');
+            $table->foreign('author')->references('username')->on('authors')->onDelete('cascade');;
 
             $table->timestamps();
         });

@@ -14,10 +14,11 @@ class CreateVisitsTable extends Migration
     public function up()
     {
         Schema::create('visits', function (Blueprint $table) {
+            Schema::dropIfExists('visits');
             $table->increments('id');
             
-            $table->integer('author_id')->unsigned()->index();
-            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
+            $table->string('user');
+            $table->foreign('user')->references('username')->on('users')->onDelete('cascade');
 
             $table->integer('art_id')->unsigned()->index();
             $table->foreign('art_id')->references('id')->on('arts')->onDelete('cascade');

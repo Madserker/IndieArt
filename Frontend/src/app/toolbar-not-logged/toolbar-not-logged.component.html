@@ -28,7 +28,7 @@
     <div class="loginButtonsDiv" *ngIf="currentUser != null">
 
         <button mat-button class="profileButton"[matMenuTriggerFor]="menu">
-            <img src={{currentUser.profilePic}} class="profileImage" id="image">
+            <img src={{currentUser.profile_picture}} class="profileImage" id="image">
           {{currentUser.username}} &#9662;</button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="goToProfile(currentUser.username)">Profile</button>

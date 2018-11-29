@@ -14,8 +14,8 @@ class CreateAuthorTable extends Migration
     public function up()
     {
         Schema::create('authors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username');
+            //$table->increments('id');
+            $table->string('username')->unique();
             $table->string('profile_picture');
             $table->string('description');
 

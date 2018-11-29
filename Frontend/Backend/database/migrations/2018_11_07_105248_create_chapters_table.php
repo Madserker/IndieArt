@@ -22,7 +22,7 @@ class CreateChaptersTable extends Migration
             $table->timestamps();
 
             $table->integer('comic_id')->unsigned()->index();
-            $table->foreign('comic_id')->references('id')->on('comics');
+            $table->foreign('comic_id')->references('id')->on('comics')->onDelete('cascade');;
         });
     }
 

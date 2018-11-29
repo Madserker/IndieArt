@@ -15,6 +15,48 @@ use App\AnimationComment;
 
 class CommentsController extends Controller
 {
+
+    public function getComments($id){
+        $art = Art::find($id);
+        $response = [
+            'comments' => $art->comments
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+    public function postComment(Request $request){
+        //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
+        if(!$user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        $comment = new Comment();
+        $comment->text = $request->input('text');//cogemos los datos del comentario desde la request del frontend
+        $comment->art_id = $request->input('art_id');
+        $comment->user = $request->input('user');
+    
+        $comment->save();//guardamos el comentario
+        return response()->json(['Comment' => $comment], 201);//retornamos 201 y el comentario
+    }
+
+    public function deleteComment($id){
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+
+        //ToDo: COMPROBAR SI ES EL USUARIO CORRECTO!!!!!!
+
+        $comment = Comment::find($id);
+        $comment->delete();
+        return response()->json(['message' => 'comment deleted'],200);
+    }
+
+//===========================================================================================================OLD METHODS
     public function getDrawComments($id){
         $draw = Draw::find($id);
         $response = [

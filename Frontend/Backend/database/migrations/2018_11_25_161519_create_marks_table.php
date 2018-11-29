@@ -19,12 +19,12 @@ class CreateMarksTable extends Migration
             $table->integer('score');
             $table->timestamps();
 
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users');//un administrador y un equipo no pueden votar, p
+            $table->string('user');
+            $table->foreign('user')->references('username')->on('users')->onDelete('cascade');;//un administrador y un equipo no pueden votar, p
                                                                       //por eso cogemos solo la tabla de users y no la de authors
 
             $table->integer('art_id')->unsigned()->index();
-            $table->foreign('art_id')->references('id')->on('arts');
+            $table->foreign('art_id')->references('id')->on('arts')->onDelete('cascade');;
         });
     }
 

@@ -18,8 +18,8 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->text('text');
 
-            $table->integer('author_id')->unsigned()->index();
-            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
+            $table->string('author');
+            $table->foreign('author')->references('username')->on('authors')->onDelete('cascade');
 
             $table->integer('art_id')->unsigned()->index();
             $table->foreign('art_id')->references('id')->on('arts')->onDelete('cascade');

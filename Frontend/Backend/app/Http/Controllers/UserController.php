@@ -9,6 +9,8 @@ use App\Animation;
 use App\Episode;
 use App\Chapter;
 use App\Comic;
+use App\Author;
+use DB;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
@@ -52,19 +54,28 @@ class UserController extends Controller
         'src/assets/storage/profile5.jpg','src/assets/storage/profile6.jpg'];
 
         $this->validate($request,[//validamos el registro
-        'username' => 'required|unique:users', //el nombre de usuario es obligatorio y unico en la tabla de usuarios
+        'username' => 'required|unique:authors', //el nombre de usuario es obligatorio y unico en la tabla de authors
         'email' => 'required|email|unique:users', //el email tiene que ser obligatorio, formato email y unico en la tabla de usuarios
         'password' => 'required', //contraseña obligatoria
+        'birthday' => 'required',
+        'real_name' => 'required',
             ]);
-        $user = new User([//creamos el usuario con los parametros del request
-            'profilePic' => array_random($randomPic),//default image
+        $author = new Author([
+            'profile_picture' => array_random($randomPic),//default image
             'username' => $request->input('username'),
+            'description' => "",
+        ]);
+
+        $user = new User([//creamos el usuario con los parametros del request
+            'real_name' => $request->input('real_name'),
             'email' => $request->input('email'),
             'birthday' => $request->input('birthday'),
             'password' => bcrypt($request->input('password')), //bcrypt encripta la contraseña del usuario
-            'description' => "",
+            'username' => $request->input('username'),//mismo username que el author para encontrarlo con INNER JOIN
         ]);
+        $author->save();
         $user->save();//guardamos el usuario en la DB
+
         return response()->json([
             'message' => 'User succesfully created'
         ],201);
@@ -76,7 +87,16 @@ class UserController extends Controller
             'password' => 'required', //contraseña obligatoria
                 ]);
             $credentials = $request->only('username','password');
-            $user = User::where('username', $request->input('username'))->get();
+            //$user = User::where('username', $request->input('username'))->get();
+            
+            //FIND THE USER AND SEARCH ITS AUTHOR ATTRIBUTES WITH INNER JOIN
+            $users = 
+            DB::table('users')
+            ->where('users.username', $request->input('username'))
+            ->join('authors', 'users.username', '=', 'authors.username')
+            ->select('authors.*','users.*')
+            ->get();
+
             try {
                 if(!$token = JWTAuth::attempt($credentials)){//intenta crear token
                 //si if falla, las credenciales no son validas
@@ -91,7 +111,7 @@ class UserController extends Controller
             }
             return response()->json([//si las credenciales son validas y no ha habido error al crear token, retornamos token y usuario
                 'token' => $token,
-                'user' => $user
+                'user' => $users[0]
             ],200);
     }  
     
@@ -99,7 +119,13 @@ class UserController extends Controller
 
     //===============================================USERS METHODS
     public function getUsers(){
-        $users = User::all();
+        //inner join
+        $users = 
+        DB::table('users')
+        ->join('authors', 'users.username', '=', 'authors.username')
+        ->select('authors.*','users.*')
+        ->get();
+
         $response = [
             'users' => $users
         ];
@@ -111,27 +137,34 @@ class UserController extends Controller
     }
 
     public function getUserByUsername(String $username){
-        $user = User::where('username',$username)->get();
+
+        $user = 
+        DB::table('users')
+        ->where('users.username', $username)
+        ->join('authors', 'users.username', '=', 'authors.username')
+        ->select('authors.*','users.*')
+        ->get();
+
         if(!$user){//si no ha encontrado el user con ese id
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
-        return response()->json(['user' => $user],200);
+        return response()->json(['user' => $user[0]],200);
     }
 
     public function getFollowers(String $username){
-        $user = User::where('username',$username)->get();
-        if(!$user){//si no ha encontrado el user con ese id
+        $author = Author::where('username',$username)->get();
+        if(!$author){//si no ha encontrado el user con ese id
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
-        return response()->json(['followers' => $user[0]->followers],200);
+        return response()->json(['followers' => $author[0]->followers],200);
     }
 
     public function getFollowing(String $username){
-        $user = User::where('username',$username)->get();
-        if(!$user){//si no ha encontrado el user con ese id
+        $author = Author::where('username',$username)->get();
+        if(!$author){//si no ha encontrado el user con ese id
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
-        return response()->json(['followers' => $user[0]->following],200);
+        return response()->json(['followers' => $author[0]->following],200);
     }
 
     public function follow(Request $request){
@@ -139,11 +172,11 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
         
-        $user = User::find($request->input('username'));
+        $author = Author::find($request->input('username'));
 
-        if (!$user->followers->contains($request->input('follower'))) {//comprobamos que no este esta relacion ya en la tabla
-            $user->followers()->attach($request->input('follower'));
-            return response()->json(['user' => $user], 201);//retornamos 201
+        if (!$author->followers->contains($request->input('follower'))) {//comprobamos que no este esta relacion ya en la tabla
+            $author->followers()->attach($request->input('follower'));
+            return response()->json(['author' => $author], 201);//retornamos 201
         }
         return response()->json(['message' => 'Already following that user'],404); //si ya seguimos al usuario, lanzamos error
     }
@@ -154,10 +187,10 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
 
-        $user = User::find($username);
-        if ($user->following->contains($following)) {//comprobamos que este esta relacion ya en la tabla
-            $user->following()->detach($following);
-            return response()->json(['user' => $user], 201);//retornamos 201
+        $author = Author::find($username);
+        if ($author->following->contains($following)) {//comprobamos que este esta relacion ya en la tabla
+            $author->following()->detach($following);
+            return response()->json(['author' => $author], 201);//retornamos 201
         }
         return response()->json(['message' => 'You do not follow that user'],404); //si ya seguimos al usuario, lanzamos error
     }
@@ -290,14 +323,16 @@ class UserController extends Controller
 
 
     //================================================================================PUT
+    //PARA TEAM PUT: editar la comprovacion que se haze en estos metodos del username
+
     public function putUserDescription(Request $request, $username){//actualizar user atributes
 
         if(!$userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
 
-        $user = User::find($username);
-        if(!$user){//si no ha encontrado el draw con ese id
+        $author = Author::find($username);
+        if(!$author){//si no ha encontrado el draw con ese id
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
 
@@ -306,10 +341,10 @@ class UserController extends Controller
             return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
         }
 
-        $user->description = $request->input('description');
+        $author->description = $request->input('description');
 
-        $user->save();
-        return response()->json(['user' => $user],200);
+        $author->save();
+        return response()->json(['author' => $author],200);
     }
 
     public function putUserImage(Request $request, $username){//actualizar user atributes
@@ -318,8 +353,8 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
 
-        $user = User::find($username);
-        if(!$user){//si no ha encontrado el draw con ese id
+        $author = Author::find($username);
+        if(!$author){//si no ha encontrado el draw con ese id
             return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
         }
 
@@ -332,10 +367,10 @@ class UserController extends Controller
 
         $path = Storage::putfile('profileImages', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
 
-        $user->profilePic = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
+        $author->profile_picture = "Backend/storage/app/".$path;//le pasamos este path a la base de datos
 
-        $user->save();
-        return response()->json(['user' => $user],200);
+        $author->save();
+        return response()->json(['author' => $author],200);
     }
 
 }

@@ -1,10 +1,10 @@
 export interface User{
-    id: number;
-    profilePic: string;
+    profile_picture: string;
     username: string;
     password: string;
     description: string;
-    //birthday
+    birthday: Date;
+    real_name: string;
 
 
 }

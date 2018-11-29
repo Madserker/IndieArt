@@ -21,7 +21,7 @@ class CreatePagesTable extends Migration
             $table->timestamps();
 
             $table->integer('chapter_id')->unsigned()->index();
-            $table->foreign('chapter_id')->references('id')->on('chapters');
+            $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');;
         });
     }
 

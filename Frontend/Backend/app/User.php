@@ -13,16 +13,15 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    protected $primaryKey="username";
 
-    public $incrementing = false;
-    protected $primaryKey = 'username';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'profilePic', 'birthday', 'description'
+        'email', 'password', 'birthday', 'real_name', 'username'
     ];
 
     /**
@@ -67,10 +66,10 @@ class User extends Authenticatable implements JWTSubject
 
 
     public function followers(){//Many To Many relationship
-        return $this->belongsToMany(User::class, 'users_users', 'username', 'follower');
+        return $this->belongsToMany(Author::class, 'users_users', 'author_id', 'follower_id');
     }
     public function following(){//Many To Many relationship
-        return $this->belongsToMany(User::class, 'users_users', 'follower', 'username');
+        return $this->belongsToMany(Author::class, 'users_users', 'follower_id', 'author_id');
     }
 
 
