@@ -1,7 +1,7 @@
 <div class= "container">
 <h2>Comments</h2>
 <div class="comment">
-<app-comment *ngFor="let comment of comments" [comment]=comment [currentUser]=currentUser [type]=type (commentDeleted)="onDeleted($event)">
+<app-comment *ngFor="let comment of comments" [comment]=comment [currentUser]=currentUser (commentDeleted)="onDeleted($event)">
   <!--(commentDeleted)="onDeleted($event)" le pasamos el metodo a ejecutar al eliminar el comentario-->
     </app-comment>
 </div>

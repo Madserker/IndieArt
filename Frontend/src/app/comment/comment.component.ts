@@ -13,7 +13,6 @@ export class CommentComponent implements OnInit {
   @Input() comment : Comment;
   @Output() commentDeleted = new EventEmitter<Comment>();
   @Input() currentUser : User;
-  @Input() type : number;
 
   constructor(private commentsService:CommentsService) { }
 
@@ -21,26 +20,11 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment(){
-    if(this.type==1){
-    this.commentsService.deleteDrawComment(this.comment.id).subscribe(
+    this.commentsService.deleteComment(this.comment.id).subscribe(
       () => {
         this.commentDeleted.emit(this.comment);//notifica al padre y actualiza la lista de comentarios
       }
     );
-    }
-    else if(this.type==2){
-      this.commentsService.deleteComicComment(this.comment.id).subscribe(
-        () => {
-          this.commentDeleted.emit(this.comment);
-        }
-      );
-      }
-      else if(this.type==3){
-        this.commentsService.deleteAnimationComment(this.comment.id).subscribe(
-          () => {
-            this.commentDeleted.emit(this.comment);
-          }
-        );
-        }
+    
   }
 }

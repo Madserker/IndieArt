@@ -37,7 +37,9 @@ export class ChapterViewerComponent implements OnInit {
     if(this.currentIndex < this.pages.length){
       this.currentIndex++;
     }
-    document.getElementById('myModal').scrollTop = 0;
+    //reseteamos el scroll por si la pagina es muy larga y el usuario querra verla 
+    //desde el principio la siguiente pagina
+    document.getElementById('myModal'+this.chapterId).scrollTop = 0;
 
   }
 
@@ -45,7 +47,7 @@ export class ChapterViewerComponent implements OnInit {
     if(this.currentIndex > 1){
       this.currentIndex--;
     }
-    document.getElementById('myModal').scrollTop = 0;
+    document.getElementById('myModal'+this.chapterId).scrollTop = 0;
   }
 
   @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent) {//listener de keyPressed en toda la pagina

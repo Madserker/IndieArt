@@ -17,11 +17,8 @@ export class CommentsListComponent implements OnInit {
 currentUser : User;
   
 @Input() comments : Comment [];
-@Input() type : number;
 
-@Input() draw_id : number;
-@Input() animation_id : number;
-@Input() comic_id : number;
+@Input() id : number;
 
 constructor(private commentsService:CommentsService,private authService : AuthService) {
   this.getUser();//al iniciar o actualizar la pagina cogemos el usuario del local storage
@@ -33,37 +30,18 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
 
 
   postComment(form: NgForm){
-    if(this.type==1){
-      this.commentsService.postDrawComment(this.draw_id,this.currentUser.username,form.value.text)
+      this.commentsService.postComment(this.id,this.currentUser.username,form.value.text)
       .subscribe(
         () => 
-          this.commentsService.getDrawComments(this.draw_id)
+          this.commentsService.getComments(this.id)
           .subscribe(result => {
           this.comments = result as Comment[]
         })
       );
-    }else if(this.type==2){
-      this.commentsService.postComicComment(this.comic_id,this.currentUser.username,form.value.text)
-      .subscribe(
-        () =>
-        this.commentsService.getComicComments(this.comic_id)
-        .subscribe(result => {
-        this.comments = result as Comment[]
-        })
-      );
-    }else if(this.type==3){
-      this.commentsService.postAnimationComment(this.animation_id,this.currentUser.username,form.value.text)
-      .subscribe(
-        () =>
-        this.commentsService.getAnimationComments(this.animation_id)
-        .subscribe(result => {
-        this.comments = result as Comment[]
-        })
-      );
+      form.reset();
     }
-    form.reset();
-    
-  }
+
+  
 
   getUser(){
     if(JSON.parse(this.authService.getUser())==null){

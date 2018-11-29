@@ -11,6 +11,7 @@ use App\Comic;
 use App\Animation;
 use App\DrawComment;
 use App\ComicComment;
+use App\Comment;
 use App\AnimationComment;
 
 
@@ -37,7 +38,7 @@ class CommentsController extends Controller
         $comment = new Comment();
         $comment->text = $request->input('text');//cogemos los datos del comentario desde la request del frontend
         $comment->art_id = $request->input('art_id');
-        $comment->user = $request->input('user');
+        $comment->author = $request->input('username');
     
         $comment->save();//guardamos el comentario
         return response()->json(['Comment' => $comment], 201);//retornamos 201 y el comentario

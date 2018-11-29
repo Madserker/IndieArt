@@ -204,46 +204,16 @@ Route::post('/user/{username}/image',[
     'uses' => 'UserController@putUserImage',
 ]);
 //=================================================================================RUTAS PARA COMMENTS
-// Route::get('/comments/draw/{id}',[
-//     'middleware' => 'cors',
-//     'uses' => 'CommentsController@getDrawComments'
-// ]);
-
-// Route::get('/comments/comic/{id}',[
-//     'middleware' => 'cors',
-//     'uses' => 'CommentsController@getComicComments'
-// ]);
-
-// Route::get('/comments/animation/{id}',[
-//     'middleware' => 'cors',
-//     'uses' => 'CommentsController@getAnimationComments'
-// ]);
 
 Route::get('/comments/{id}',[
     'middleware' => 'cors',
     'uses' => 'CommentsController@getComments'
 ]);
 
-Route::post('/comment/draw',[
-    'uses' => 'CommentsController@postDrawComment'
+Route::post('/comment',[
+    'uses' => 'CommentsController@postComment'
 ]);
 
-Route::post('/comment/animation',[
-    'uses' => 'CommentsController@postAnimationComment'
-]);
-
-Route::post('/comment/comic',[
-    'uses' => 'CommentsController@postComicComment'
-]);
-
-Route::delete('/comment/draw/{id}',[
-    'uses' => 'CommentsController@deleteDrawComment'
-]);
-
-Route::delete('/comment/comic/{id}',[
-    'uses' => 'CommentsController@deleteComicComment'
-]);
-
-Route::delete('/comment/animation/{id}',[
-    'uses' => 'CommentsController@deleteAnimationComment'
+Route::delete('/comment/{id}',[
+    'uses' => 'CommentsController@deleteComment'
 ]);

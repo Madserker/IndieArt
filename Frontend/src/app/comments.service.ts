@@ -32,11 +32,7 @@ export class CommentsService {
   
   constructor(private http: HttpClient, private authService: AuthService){}
  
-  getDrawComments(id : number): Observable<DrawComment[]> {
-     return this.http.get<getDrawComments>(this.url+'/api/comments/draw/'+id)
-     .pipe(
-       map(res => res.comments as DrawComment[] || [])); 
-   }
+
    getComicComments(id : number): Observable<ComicComment[]> {
     return this.http.get<getComicComments>(this.url+'/api/comments/comic/'+id)
     .pipe(
@@ -54,6 +50,24 @@ export class CommentsService {
       map(res => res.comments as Comment[] || [])); 
   }
 //=============================================================================================================POST COMMENT
+
+  postComment(id,username,text){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    const body = JSON.stringify(
+      {
+        "art_id" : id, 
+        "username" : username, 
+        "text" : text
+      }
+    );
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post(this.url+'/api/comment/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    })
+  }
 
   postDrawComment(draw_id,username,text) {
 
@@ -114,7 +128,10 @@ export class CommentsService {
 
 
   //===============================================================================================================
-
+  deleteComment(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete(this.url+'/api/comment/' + id + '?token=' + token);
+  }
   deleteDrawComment(id: number){
     const token = this.authService.getToken();
     return this.http.delete(this.url+'/api/comment/draw/' + id + '?token=' + token);

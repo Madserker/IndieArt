@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { CommentsService } from '../../comments.service';
 import { DrawComment } from '../../_models/DrawComment.interface';
+import { Comment } from '../../_models/Comment.interface';
 
 @Component({
   selector: 'app-draw-view',
@@ -16,7 +17,7 @@ import { DrawComment } from '../../_models/DrawComment.interface';
 export class DrawViewComponent implements OnInit {
 
 draw : Draw;
-comments : DrawComment [];
+comments : Comment [];
 id:number;
 
 
@@ -36,9 +37,9 @@ id:number;
     })
 
     //cogemos la lista de comentarios del dibujo con el id de la ruta
-    this.commentsService.getDrawComments(this.id)
+    this.commentsService.getComments(this.id)
     .subscribe(result => {
-    this.comments = result as DrawComment[]
+    this.comments = result as Comment[]
     console.log(this.comments);
     })
   }
