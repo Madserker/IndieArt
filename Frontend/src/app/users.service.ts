@@ -24,6 +24,12 @@ interface getChapters{
 interface getNotifications{
   notifications : Notification[]
 }
+interface getScore{
+  score : number
+}
+interface getVisits{
+  visits : number
+}
 
 @Injectable({
   providedIn: 'root'
@@ -147,6 +153,54 @@ export class UsersService {
     })
   }
    
-  
+  //================================================================================== VISIT AND VOTE
+
+  vote(art_id,username,score){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    const body = JSON.stringify(
+      {
+        "art_id" : art_id, 
+        "username" : username,
+        "score" : score
+      }
+    );
+
+    return this.http.post(this.url+'/api/vote/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
+  }
+
+  getScore(art_id){
+    return this.http.get<getScore>(this.url+'/api/score/'+art_id,
+    {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
+      map(res => res.score as number));
+  }
+
+  visit(art_id,username){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    const body = JSON.stringify(
+      {
+      "art_id":art_id,
+      "username": username
+      }
+    );
+    return this.http.post(this.url+'/api/visit/?token=' + token, body, 
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    })
+  }
+
+  getVisits(art_id){
+    return this.http.get<getVisits>(this.url+'/api/visits/'+art_id, 
+    {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
+      map(res => res.visits as number));
+  }
   
 }

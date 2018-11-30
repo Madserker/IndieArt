@@ -4,6 +4,7 @@ import { ListsService } from '../../lists.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { User } from '../../_models/User.interface';
+import { UsersService } from '../../users.service';
 
 @Component({
   selector: 'app-draw-details',
@@ -14,14 +15,21 @@ export class DrawDetailsComponent implements OnInit {
 
   @Input() draw: Draw;
 
-  currentUser:User;
+  @Input() score : number;
+  @Input() visits : number;
+
+  @Input() currentUser:User;
 
   
-  constructor(private authService : AuthService, private lists : ListsService, private router : Router) { 
-    this.getUser();
+  constructor(private usersService : UsersService,private authService : AuthService, private lists : ListsService, private router : Router) { 
+
   }
 
   ngOnInit() {
+
+  }
+  ngOnChange(){
+
   }
   
   deleteDraw(){
@@ -36,11 +44,6 @@ export class DrawDetailsComponent implements OnInit {
 
 
 
-  getUser(){
-    if(JSON.parse(this.authService.getUser())==null){}
-    else{
-      this.currentUser = JSON.parse(this.authService.getUser());//cogemos el usuario del localStorage
-    }
-  }
+
 
 }

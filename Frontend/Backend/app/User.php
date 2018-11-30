@@ -68,7 +68,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function artsVisited(){//Many To Many relationship
-        return $this->belongsToMany(Art::class, 'visits', 'art_id', 'user');
+        return $this->belongsToMany(Art::class, 'visits', 'user', 'art_id');
     }
 
 

@@ -7,6 +7,9 @@ import { switchMap } from 'rxjs/operators';
 import { CommentsService } from '../../comments.service';
 import { DrawComment } from '../../_models/DrawComment.interface';
 import { Comment } from '../../_models/Comment.interface';
+import { UsersService } from '../../users.service';
+import { User } from '../../_models/User.interface';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-draw-view',
@@ -20,14 +23,39 @@ draw : Draw;
 comments : Comment [];
 id:number;
 
+visits:number;
+score:number;
 
-  constructor(private route: ActivatedRoute,private lists: ListsService,private commentsService : CommentsService) {}
+currentUser : User;
+
+
+  constructor(private authService: AuthService, private usersService: UsersService, private route: ActivatedRoute,private lists: ListsService,private commentsService : CommentsService) {
+    
+  }
+
+  ngOnChange(){
+    
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
       params => {
         console.log(params.id) //params = draw.id
         this.id = params.id;
+        this.getUser();
+        this.usersService.getScore(this.id)    
+        .subscribe(result => {
+          this.score = result as number
+        })
+
+
+
+        this.usersService.getVisits(this.id)    
+        .subscribe(result => {
+          this.visits = result as number
+        })
+
+
       }
     )
     //cogemos el dibujo con el id de la ruta
@@ -42,6 +70,15 @@ id:number;
     this.comments = result as Comment[]
     console.log(this.comments);
     })
+  }
+
+  getUser(){
+    if(JSON.parse(this.authService.getUser())==null){}
+    else{
+      this.currentUser = JSON.parse(this.authService.getUser());//cogemos el usuario del localStorage
+      this.usersService.visit(this.id,this.currentUser.username).subscribe(result=>{
+      });
+    }
   }
 
 }

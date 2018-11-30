@@ -85,7 +85,7 @@ class ArtController extends Controller
             $visit->save();
             return response()->json(['user' => $user], 201);//retornamos 201
         }
-        return response()->json(['message' => 'Already scored that art'],404); //si ya seguimos al usuario, lanzamos error
+        return response()->json(['message' => 'Already visited that art'],201); //si ya seguimos al usuario, lanzamos error
     }
 
     public function getVisits($id){
