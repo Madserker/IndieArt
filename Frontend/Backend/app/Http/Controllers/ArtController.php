@@ -22,12 +22,13 @@ class ArtController extends Controller
         
         $user = User::find($request->input('username'));
 
-        if ($user->artsScored->contains($request->input('art_id'))) {//si ya hemos votado la publicacion, sobreescribimos
-            $mark=Mark::where('user', $request->input('username'))
-            ->where('art_id', $request->input('art_id'))
-            ->get();
-            $mark[0]->delete();
-        }
+        //si ya hemos votado la publicacion, sobreescribimos
+        $mark=Mark::where('user', $request->input('username'))
+        ->where('art_id', $request->input('art_id'))
+        ->delete();
+        //if($mark!=null){$mark[0]->delete();}
+
+        
 
         $mark = new Mark();
         $mark->score = $request->input('score');

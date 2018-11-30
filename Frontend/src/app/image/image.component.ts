@@ -10,6 +10,7 @@ import { Draw } from '../_models/Draw.interface';
 export class ImageComponent implements OnInit {
 
   @Input() draw: Draw;
+  
 
 
   constructor() {

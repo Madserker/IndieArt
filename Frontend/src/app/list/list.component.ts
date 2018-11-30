@@ -7,6 +7,7 @@ import { Comic } from '../_models/Comic.interface';
 import { User } from '../_models/User.interface';
 import { A_Animation } from '../_models/A_Animation.interface';
 import { Router } from '@angular/router';
+import { Team } from '../_models/Team.interface';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class ListComponent implements OnInit {
   comics: Comic[] = [];
   animations: A_Animation[] = [];
   users: User[] = [];
+  teams: Team[] = [];
 
   constructor(private data: ChangeFiltersService, private lists: ListsService,private router:Router) { }
 
@@ -70,6 +72,15 @@ export class ListComponent implements OnInit {
      this.lists.getAnimations()
      .subscribe(result => {
        this.animations = result as A_Animation[]
+     })
+  }
+  changeToTeamFilters(){
+    this.data.changeToUserFilters(); 
+     //rellenamos la listade animaciones y la mostramos
+     this.option=5;
+     this.lists.getTeams()
+     .subscribe(result => {
+       this.teams = result as Team[]
      })
   }
 

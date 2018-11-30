@@ -11,6 +11,7 @@ import { Episode } from './_models/Episode.interface';
 import { Page } from './_models/Page.interface';
 import { AuthService } from "./auth.service";
 import {Headers} from '@angular/http';
+import { Team } from './_models/Team.interface';
 
 //definimos interface para mapear la lista de dibujos
 interface getDraws{
@@ -48,6 +49,9 @@ interface getComic{
 }
 interface getChapter{
   chapter: Chapter
+}
+interface getTeams{
+  teams: Team[]
 }
 
 
@@ -104,6 +108,11 @@ export class ListsService {
       map(res => res.pages as Page[] || [])); 
   }
 
+  getTeams(): Observable<Team[]> {
+    return this.http.get<getTeams>(this.url+'/api/teams')
+    .pipe(
+      map(res => res.teams as Team[] || [])); 
+  }
   //=================================================================================GetByPrimaryKey Methods
 
 

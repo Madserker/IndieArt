@@ -244,3 +244,9 @@ Route::post('/visit',[
     'uses' => 'ArtController@visit'
 ]);
 
+//============================================================================================== RUTAS PARA TEAM
+
+Route::get('/teams',[
+    'middleware' => 'cors',
+    'uses' => 'TeamController@getTeams'
+]);

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../_models/User.interface';
+import { Team } from '../_models/Team.interface';
 
 @Component({
   selector: 'app-team-image',
@@ -8,7 +9,7 @@ import { User } from '../_models/User.interface';
 })
 export class TeamImageComponent implements OnInit {
 
-  @Input() user: User;
+  @Input() team: Team;
 
   constructor() { }
 
@@ -16,11 +17,11 @@ export class TeamImageComponent implements OnInit {
   }
 
   showText(){
-    document.getElementById("text"+this.user.username.toString()).style.visibility="visible";
+    document.getElementById("text"+this.team.username.toString()).style.visibility="visible";
     
   }
   hideText(){
-    document.getElementById("text"+this.user.username.toString()).style.visibility="hidden";
+    document.getElementById("text"+this.team.username.toString()).style.visibility="hidden";
   }
 
 }

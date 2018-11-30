@@ -50,7 +50,6 @@ import { FriendsActivityViewComponent } from './friends-activity/friends-activit
 import { FriendsActivityListComponent } from './friends-activity/friends-activity-list/friends-activity-list.component';
 import { FriendsActivityNotificationComponent } from './friends-activity/friends-activity-notification/friends-activity-notification.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
-import { TeamViewComponent } from './team/team-view/team-view.component';
 import { ChatRoomsViewComponent } from './chat-rooms/chat-rooms-view/chat-rooms-view.component';
 import { TeamImageComponent } from './team-image/team-image.component';
 import { ChatRoomsListComponent } from './chat-rooms/chat-rooms-list/chat-rooms-list.component';
@@ -118,10 +117,10 @@ const routes : Route[] = [
     FriendsActivityListComponent,
     FriendsActivityNotificationComponent,
     EditProfileComponent,
-    TeamViewComponent,
     ChatRoomsViewComponent,
     TeamImageComponent,
     ChatRoomsListComponent,
+
 
     
   ],

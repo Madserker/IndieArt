@@ -11,7 +11,7 @@
           <button mat-button class="toolbarButton" (click)="changeToMangaFilters()">Comics</button>
           <button mat-button class="toolbarButton" (click)="changeToAnimationFilters()">Animations</button>
           <button mat-button class="toolbarButton" (click)="changeToUserFilters()">Users</button>
-          <button mat-button class="toolbarButton" (click)="changeToUserFilters()">Teams</button>
+          <button mat-button class="toolbarButton" (click)="changeToTeamFilters()">Teams</button>
 
         </div>
 
@@ -44,7 +44,9 @@
 <div *ngIf="option==4">
   <app-user *ngFor="let user of users" [user]="user" (click)="goToProfile(user.username)"></app-user>
 </div>
-  
+<div *ngIf="option==5">
+    <app-team-image *ngFor="let team of teams" [team]="team" (click)="goToProfile(team.username)"></app-team-image>
+  </div>
 
 
 
