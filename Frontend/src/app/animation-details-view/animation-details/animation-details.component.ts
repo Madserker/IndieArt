@@ -3,6 +3,8 @@ import { A_Animation } from '../../_models/A_Animation.interface';
 import { Router } from '@angular/router';
 import { ListsService } from '../../lists.service';
 import { User } from '../../_models/User.interface';
+import { UsersService } from '../../users.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-animation-details',
@@ -17,11 +19,23 @@ export class AnimationDetailsComponent implements OnInit {
   @Input() visits : number;
 
   @Input() currentUser:User;
+  @Input() userScore:number;
 
-  constructor(private lists : ListsService, private router:Router) { }
+  constructor(private usersService : UsersService,private authService : AuthService, private lists : ListsService, private router : Router) { }
 
   ngOnInit() {
   }
+
+  onChange(newValue) {
+    this.usersService.vote(this.animation.id,this.currentUser.username,newValue).subscribe(
+      result=>{
+        this.usersService.getScore(this.animation.id)    
+        .subscribe(result => {
+          this.score = result as number
+        })
+      }
+    );
+}
 
   goToEpisodesList(){
     this.router.navigateByUrl("animation/"+this.animation.id+"/episodes");
