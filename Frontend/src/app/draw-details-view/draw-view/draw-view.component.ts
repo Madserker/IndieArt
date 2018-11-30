@@ -42,7 +42,9 @@ currentUser : User;
       params => {
         console.log(params.id) //params = draw.id
         this.id = params.id;
+
         this.getUser();
+        
         this.usersService.getScore(this.id)    
         .subscribe(result => {
           this.score = result as number
@@ -76,6 +78,7 @@ currentUser : User;
     if(JSON.parse(this.authService.getUser())==null){}
     else{
       this.currentUser = JSON.parse(this.authService.getUser());//cogemos el usuario del localStorage
+      //añadimos visita
       this.usersService.visit(this.id,this.currentUser.username).subscribe(result=>{
       });
     }

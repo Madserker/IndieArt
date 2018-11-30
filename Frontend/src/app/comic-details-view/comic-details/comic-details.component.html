@@ -6,11 +6,10 @@
 <img src="{{comic?.image_path}}" class="image" id="image">
 
 <div class="mark">
+                <button mat-menu-item class="rate" >RATE</button> 
                 <div class="right">
                                <p> SCORE </p>
-                                {{comic?.mark}}
-                                <!-- <button mat-menu-item class="rate" >RATE</button> -->
-
+                                {{score}}
                         </div>
 
                         <div class="right">
@@ -21,7 +20,7 @@
                                  </div>
                                  <div class="right">
                                                 <p>Views</p>
-                                                 23
+                                                 {{visits}}
                                                  <!-- <button mat-menu-item class="rate" >RATE</button> -->
                  
                                          </div>

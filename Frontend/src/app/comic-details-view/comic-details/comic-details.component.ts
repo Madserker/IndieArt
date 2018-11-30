@@ -14,10 +14,13 @@ import { ListsService } from '../../lists.service';
 export class ComicDetailsComponent implements OnInit {
 
   @Input() comic : Comic
-  currentUser : User;
+  @Input() score : number;
+  @Input() visits : number;
+
+  @Input() currentUser:User;
   
   constructor(private lists : ListsService, private router:Router,private authService : AuthService) {
-    this.getUser();
+
    }
 
   ngOnInit() {
@@ -35,11 +38,5 @@ export class ComicDetailsComponent implements OnInit {
     );
   }
 
-  getUser(){
-    if(JSON.parse(this.authService.getUser())==null){}
-    else{
-      this.currentUser = JSON.parse(this.authService.getUser());//cogemos el usuario del localStorage
-    }
-  }
 
 }
