@@ -31,6 +31,18 @@ export class DrawDetailsComponent implements OnInit {
   ngOnChange(){
 
   }
+
+  onChange(newValue) {
+
+    this.usersService.vote(this.draw.id,this.currentUser.username,newValue).subscribe(
+      result=>{
+        this.usersService.getScore(this.draw.id)    
+        .subscribe(result => {
+          this.score = result as number
+        })
+      }
+    );
+}
   
   deleteDraw(){
     this.lists.deleteDraw(this.draw.id).subscribe(

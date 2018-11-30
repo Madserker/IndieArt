@@ -13,7 +13,27 @@
         <img src="{{draw?.image_path}}" class="image" id="image">
 
         <div class="mark">
-                        <button mat-menu-item class="rate" >RATE</button> 
+
+                        <div class="right">
+                                <p> YOUR SCORE </p>
+                                <select class="select_score" [ngModel]="selectedDevice" (ngModelChange)="onChange($event)" name="sel2">
+                                                        <option [value]="1">1 (Appalling)</option>
+                                                        <option [value]="2">2 (Horrible)</option>
+                                                        <option [value]="3">3 (Very bad)</option>
+                                                        <option [value]="4">4 (Bad)</option>
+                                                        <option [value]="5">5 (Average)</option>
+                                                        <option [value]="6">6 (Fine)</option>
+                                                        <option [value]="7">7 (Good)</option>
+                                                        <option [value]="8">8 (Very good)</option>
+                                                        <option [value]="9">9 (Great)</option>
+                                                        <option [value]="10">10 (Materpiece)</option>
+
+                                </select>
+ 
+         
+                                 </div>     
+                                                  
+
                         <div class="right">
                                        <p> SCORE </p>
                                         {{score}}

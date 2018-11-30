@@ -168,9 +168,7 @@ export class UsersService {
 
     return this.http.post(this.url+'/api/vote/?token=' + token, body, 
     {headers: new HttpHeaders(
-      {'Accept': 'application/json',
-      'Authorization':'Bearer'+ localStorage.token
-    }
+      {'Content-Type': 'application/json'}
       )
     })
   }
