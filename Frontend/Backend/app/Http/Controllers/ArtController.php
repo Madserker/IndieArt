@@ -22,15 +22,22 @@ class ArtController extends Controller
         
         $user = User::find($request->input('username'));
 
-        if (!$user->artsScored->contains($request->input('art_id'))) {//si ya hemos votado la publicacion, sobreescribimos
-            $mark = new Mark();
-            $mark->score = $request->input('score');
-            $mark->art_id = $request->input('art_id');
-            $mark->user = $request->input('username');
-            $mark->save();
-            return response()->json(['user' => $user], 201);//retornamos 201
+        if ($user->artsScored->contains($request->input('art_id'))) {//si ya hemos votado la publicacion, sobreescribimos
+            $mark=Mark::where('user', $request->input('username'))
+            ->where('art_id', $request->input('art_id'))
+            ->get();
+            $mark[0]->delete();
         }
-        return response()->json(['message' => 'Already scored that art'],404); //si ya seguimos al usuario, lanzamos error
+
+        $mark = new Mark();
+        $mark->score = $request->input('score');
+        $mark->art_id = $request->input('art_id');
+        $mark->user = $request->input('username');
+        $mark->save();
+        return response()->json(['mark' => $mark], 201);//retornamos 201
+
+
+         return response()->json(['message' => 'Already scored that art'],404); //si ya seguimos al usuario, lanzamos error
     }
 
     public function getScore($id){
