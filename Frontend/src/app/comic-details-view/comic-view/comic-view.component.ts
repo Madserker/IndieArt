@@ -24,6 +24,8 @@ export class ComicViewComponent implements OnInit {
   visits:number;
   score:number;
 
+  userScore:number;
+
   currentUser : User;
   
   constructor(private authService : AuthService, private usersService : UsersService, private route: ActivatedRoute,private lists: ListsService,private commentsService : CommentsService) {}
@@ -70,6 +72,11 @@ export class ComicViewComponent implements OnInit {
         //añadimos visita
         this.usersService.visit(this.id,this.currentUser.username).subscribe(result=>{
         });
+              //cogemos la nota del usuario
+      this.usersService.getUserScore(this.id,this.currentUser.username).subscribe(result=>{
+        this.userScore = result
+        console.log(result)
+      });
       }
     }
 }

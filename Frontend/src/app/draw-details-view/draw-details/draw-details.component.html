@@ -13,33 +13,27 @@
         <img src="{{draw?.image_path}}" class="image" id="image">
 
         <div class="mark">
-
-                        <div class="right">
+                                <!--si estamos logueados y no somos el creador de la publicacion mostramos nuestro voto y podemos votar -->
+                        <div class="right" *ngIf="currentUser?.username!=null && currentUser?.username!=draw?.author">
                                 <p> YOUR SCORE </p>
                                 <select id="scoreSelect" class="select_score" [ngModel]="userScore" (ngModelChange)="onChange($event)" name="sel2">
-                                                        <option [value]="1">1 (Appalling)</option>
-                                                        <option [value]="2">2 (Horrible)</option>
-                                                        <option [value]="3">3 (Very bad)</option>
-                                                        <option [value]="4">4 (Bad)</option>
-                                                        <option [value]="5">5 (Average)</option>
-                                                        <option [value]="6">6 (Fine)</option>
-                                                        <option [value]="7">7 (Good)</option>
-                                                        <option [value]="8">8 (Very good)</option>
-                                                        <option [value]="9">9 (Great)</option>
-                                                        <option [value]="10">10 (Materpiece)</option>
-
+                                        <option [value]="1">1 (Appalling)</option>
+                                        <option [value]="2">2 (Horrible)</option>
+                                        <option [value]="3">3 (Very bad)</option>
+                                        <option [value]="4">4 (Bad)</option>
+                                        <option [value]="5">5 (Average)</option>
+                                        <option [value]="6">6 (Fine)</option>
+                                        <option [value]="7">7 (Good)</option>
+                                        <option [value]="8">8 (Very good)</option>
+                                        <option [value]="9">9 (Great)</option>
+                                        <option [value]="10">10 (Materpiece)</option>
                                 </select>
- 
-         
                                  </div>     
-                                                  
 
                         <div class="right">
-                                       <p> SCORE </p>
-                                        {{score}}
-
-        
-                                </div>
+                                <p> SCORE </p>
+                                {{score}}
+                        </div>
 
                                 <div class="right">
                                                 <p>Ranked</p>
@@ -74,9 +68,7 @@
     <div *ngIf="currentUser?.username==draw?.author">
             <button mat-menu-item class="watchButton" (click)="deleteDraw()">DELETE</button>
             </div>
-            <div *ngIf="currentUser?.username!=null && currentUser?.username!=draw?.author"><!--si no eres el creador pero estas logeado-->
-                <button mat-menu-item class="watchButton" (click)="rate()">RATE</button>
-                </div>
+
     </div>
 
 

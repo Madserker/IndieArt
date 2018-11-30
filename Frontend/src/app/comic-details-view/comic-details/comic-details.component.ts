@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { User } from '../../_models/User.interface';
 import { ListsService } from '../../lists.service';
+import { UsersService } from '../../users.service';
 
 
 @Component({
@@ -14,18 +15,30 @@ import { ListsService } from '../../lists.service';
 export class ComicDetailsComponent implements OnInit {
 
   @Input() comic : Comic
+
   @Input() score : number;
   @Input() visits : number;
 
   @Input() currentUser:User;
+  @Input() userScore:number;
   
-  constructor(private lists : ListsService, private router:Router,private authService : AuthService) {
+  constructor(private usersService : UsersService,private authService : AuthService, private lists : ListsService, private router : Router) { 
 
    }
 
   ngOnInit() {
   }
 
+  onChange(newValue) {
+    this.usersService.vote(this.comic.id,this.currentUser.username,newValue).subscribe(
+      result=>{
+        this.usersService.getScore(this.comic.id)    
+        .subscribe(result => {
+          this.score = result as number
+        })
+      }
+    );
+}
   goToChaptersList(){
     this.router.navigateByUrl("comic/"+this.comic.id+"/chapters");
   }
