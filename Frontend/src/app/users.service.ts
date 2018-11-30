@@ -179,6 +179,13 @@ export class UsersService {
       map(res => res.score as number));
   }
 
+  getUserScore(art_id,user){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+    return this.http.get<getScore>(this.url+'/api/'+art_id+'/score/'+user+'/?token='+token,
+    {headers: new HttpHeaders({'Content-Type': 'application/json'})}).pipe(
+      map(res => res.score as number));
+  }
+
   visit(art_id,username){
     const token = this.authService.getToken();//recuperamos el token de la sesion
 

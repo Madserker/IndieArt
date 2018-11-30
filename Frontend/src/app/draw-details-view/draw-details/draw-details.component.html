@@ -16,7 +16,7 @@
 
                         <div class="right">
                                 <p> YOUR SCORE </p>
-                                <select class="select_score" [ngModel]="selectedDevice" (ngModelChange)="onChange($event)" name="sel2">
+                                <select id="scoreSelect" class="select_score" [ngModel]="userScore" (ngModelChange)="onChange($event)" name="sel2">
                                                         <option [value]="1">1 (Appalling)</option>
                                                         <option [value]="2">2 (Horrible)</option>
                                                         <option [value]="3">3 (Very bad)</option>

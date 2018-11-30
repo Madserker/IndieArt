@@ -234,6 +234,11 @@ Route::get('/visits/{id}',[
     'uses' => 'ArtController@getVisits'
 ]);
 
+Route::get('/{id}/score/{user}',[
+    'middleware' => 'cors',
+    'uses' => 'ArtController@getUserScore'
+]);
+
 Route::post('/visit',[
     'middleware' => 'cors',
     'uses' => 'ArtController@visit'

@@ -54,6 +54,26 @@ class ArtController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+    public function getUserScore($id,$username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        
+        $score=Mark::where('user', $username)
+        ->where('art_id', $id)
+        ->get()[0];
+
+        $response = [
+            'score' => $score->score
+        ];
+
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
     public function calculateScore($id){
 
         $totalScore=0;

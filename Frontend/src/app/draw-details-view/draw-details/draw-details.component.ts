@@ -19,10 +19,10 @@ export class DrawDetailsComponent implements OnInit {
   @Input() visits : number;
 
   @Input() currentUser:User;
+  @Input() userScore:number;
 
   
   constructor(private usersService : UsersService,private authService : AuthService, private lists : ListsService, private router : Router) { 
-
   }
 
   ngOnInit() {
@@ -33,7 +33,6 @@ export class DrawDetailsComponent implements OnInit {
   }
 
   onChange(newValue) {
-
     this.usersService.vote(this.draw.id,this.currentUser.username,newValue).subscribe(
       result=>{
         this.usersService.getScore(this.draw.id)    
