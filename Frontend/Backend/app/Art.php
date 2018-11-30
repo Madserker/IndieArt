@@ -23,7 +23,7 @@ class Art extends Model
     }
 
     public function usersVisited(){//Many To Many relationship
-        return $this->belongsToMany(User::class, 'visits', 'art_id', 'user');
+        return $this->belongsToMany(User::class, 'visits', 'user', 'art_id');
     }
 
 }

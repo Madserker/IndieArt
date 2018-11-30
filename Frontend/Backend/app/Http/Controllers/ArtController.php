@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Art;
 use App\User;
 use App\Mark;
+use App\Visit;
 use DB;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +22,7 @@ class ArtController extends Controller
         
         $user = User::find($request->input('username'));
 
-        if (!$user->artsScored->contains($request->input('art_id'))) {//comprobamos que no este esta relacion ya en la tabla
+        if (!$user->artsScored->contains($request->input('art_id'))) {//si ya hemos votado la publicacion, sobreescribimos
             $mark = new Mark();
             $mark->score = $request->input('score');
             $mark->art_id = $request->input('art_id');
@@ -70,7 +71,6 @@ class ArtController extends Controller
         }
         
         $user = User::find($request->input('username'));
-
         if (!$user->artsVisited->contains($request->input('art_id'))) {//comprobamos que no este esta relacion ya en la tabla
             $visit = new Visit();
             $visit->art_id = $request->input('art_id');
