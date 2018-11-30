@@ -217,3 +217,25 @@ Route::post('/comment',[
 Route::delete('/comment/{id}',[
     'uses' => 'CommentsController@deleteComment'
 ]);
+//================================================================================RUTAS PARA SCORE Y VISITS
+
+Route::get('/score/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'ArtController@getScore'
+]);
+
+Route::post('/vote',[
+    'middleware' => 'cors',
+    'uses' => 'ArtController@vote'
+]);
+
+Route::get('/visits/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'ArtController@getVisits'
+]);
+
+Route::post('/visit',[
+    'middleware' => 'cors',
+    'uses' => 'ArtController@visit'
+]);
+

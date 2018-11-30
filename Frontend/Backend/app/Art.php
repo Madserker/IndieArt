@@ -18,4 +18,12 @@ class Art extends Model
         return $this->hasMany('App\Comment');
     }
 
+    public function usersScored(){//Many To Many relationship
+        return $this->belongsToMany(User::class, 'marks', 'art_id', 'user');
+    }
+
+    public function usersVisited(){//Many To Many relationship
+        return $this->belongsToMany(User::class, 'visits', 'art_id', 'user');
+    }
+
 }
