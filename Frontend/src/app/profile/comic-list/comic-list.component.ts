@@ -3,6 +3,7 @@ import { User } from '../../_models/User.interface';
 import { Comic } from '../../_models/Comic.interface';
 import { ListsService } from '../../lists.service';
 import { Router } from '@angular/router';
+import { Author } from '../../_models/Author.interface';
 
 @Component({
   selector: 'app-comic-list',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./comic-list.component.less']
 })
 export class ComicListComponent implements OnInit {
-  @Input() user:User;
+  @Input() author:Author;
   @Input() currentUser:User;
   comics: Comic[] = [];
   isCurrentUser: boolean;
@@ -22,12 +23,15 @@ export class ComicListComponent implements OnInit {
   }
 
   ngOnChanges(){
-    this.lists.getUserComics(this.user.username)
+    console.log("this.author.username")
+
+    console.log(this.author.username)
+    this.lists.getUserComics(this.author.username)
     .subscribe(result => {
       this.comics = result as Comic[]
       console.log(this.comics)
     })    
-    if(this.user.username==this.currentUser.username){
+    if(this.author.username==this.currentUser.username){
       this.isCurrentUser=true
     }else{
       this.isCurrentUser=false

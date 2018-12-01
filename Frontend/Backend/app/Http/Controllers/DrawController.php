@@ -111,8 +111,9 @@ class DrawController extends Controller
         }
         $draw = Draw::find($id);
         $art = Art::find($id);
+        
         //importante realizar esta comprobacion en las DELETE requests
-        if($userA->username != $draw->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
+        if($userA->username != $art->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
             return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
         }
         $draw->delete();

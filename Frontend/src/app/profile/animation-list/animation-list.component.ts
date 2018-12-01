@@ -3,6 +3,7 @@ import { User } from '../../_models/User.interface';
 import { ListsService } from '../../lists.service';
 import { Router } from '@angular/router';
 import { A_Animation } from '../../_models/A_Animation.interface';
+import { Author } from '../../_models/Author.interface';
 
 @Component({
   selector: 'app-animation-list',
@@ -11,7 +12,7 @@ import { A_Animation } from '../../_models/A_Animation.interface';
 })
 export class AnimationListComponent implements OnInit {
 
-  @Input() user : User;
+  @Input() author : Author;
   @Input() currentUser:User;
   animations : A_Animation[];
 
@@ -24,11 +25,11 @@ export class AnimationListComponent implements OnInit {
   }
 
   ngOnChanges(){
-    this.lists.getUserAnimations(this.user.username)
+    this.lists.getUserAnimations(this.author.username)
     .subscribe(result => {
       this.animations = result as A_Animation[]
     })  
-    if(this.user.username==this.currentUser.username){
+    if(this.author.username==this.currentUser.username){
       this.isCurrentUser=true
     }else{
       this.isCurrentUser=false
