@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Team } from '../../_models/Team.interface';
 import { User } from '../../_models/User.interface';
 import { UsersService } from '../../users.service';
+import { TeamUser } from '../../_models/TeamUser.interface';
+import { ListsService } from '../../lists.service';
 
 @Component({
   selector: 'app-team-view-image',
@@ -15,9 +17,11 @@ export class TeamViewImageComponent implements OnInit {
 
   followers : User [];
 
+  teamUsers : TeamUser[];
+
   alreadyFollowing:boolean = false
   
-  constructor(private usersService : UsersService) { }
+  constructor(private listsService:ListsService, private usersService : UsersService) { }
 
   ngOnInit() {
     console.log(this.team)
@@ -37,6 +41,17 @@ export class TeamViewImageComponent implements OnInit {
         }
       }
       })
+
+
+      this.listsService.getTeamUsers(this.team.username).subscribe(result => {
+        this.teamUsers = result as TeamUser []
+
+        for(let user of this.teamUsers){
+          this.listsService.getUserByUsername(user.user).subscribe(result=>{
+            user._user = result
+          })
+        }
+        })
 
   }
 

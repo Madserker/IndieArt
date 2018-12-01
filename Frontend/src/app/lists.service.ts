@@ -12,6 +12,7 @@ import { Page } from './_models/Page.interface';
 import { AuthService } from "./auth.service";
 import {Headers} from '@angular/http';
 import { Team } from './_models/Team.interface';
+import { TeamUser } from './_models/TeamUser.interface';
 
 //definimos interface para mapear la lista de dibujos
 interface getDraws{
@@ -55,6 +56,9 @@ interface getTeams{
 }
 interface getTeam{
   team: Team
+}
+interface getTeamUsers{
+  users : TeamUser[]
 }
 
 
@@ -143,6 +147,12 @@ export class ListsService {
   getTeamByUsername(username : string): Observable<Team>{
     return this.http.get<getTeam>(this.url+'/api/team/'+username).pipe(
       map(res => res.team as Team)
+    )
+  }
+
+  getTeamUsers(username : string): Observable<TeamUser[]>{
+    return this.http.get<getTeamUsers>(this.url+'/api/team/'+username+'/users').pipe(
+      map(res => res.users as TeamUser[])
     )
   }
 

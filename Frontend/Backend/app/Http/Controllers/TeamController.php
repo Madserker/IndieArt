@@ -27,7 +27,12 @@ class TeamController extends Controller
 
     public function getTeamUsers($username){
         $team = Team::find($username);
-        $users = $team->users;
+        //$users = $team->users;
+        $users=
+        DB::table('team_user')
+        ->where('team_user.team',$username)
+        ->select('team_user.user','team_user.role','team_user.created_at')
+        ->get();
         $response = [
             'users' => $users
         ];
