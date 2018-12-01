@@ -100,7 +100,7 @@ class ArtController extends Controller
         $user = User::find($request->input('username'));
         // if (!$user->artsVisited->contains($request->input('art_id'))) {//comprobamos que no este esta relacion ya en la tabla
                     //si ya hemos visitado la publicacion, sobreescribimos
-                    $mark=Mark::where('user', $request->input('username'))
+                    $visit=Visit::where('user', $request->input('username'))
                     ->where('art_id', $request->input('art_id'))
                     ->delete();
             $visit = new Visit();

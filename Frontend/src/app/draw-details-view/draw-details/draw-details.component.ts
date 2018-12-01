@@ -33,6 +33,7 @@ export class DrawDetailsComponent implements OnInit {
   }
 
   onChange(newValue) {
+    if(newValue!=null){
     this.usersService.vote(this.draw.id,this.currentUser.username,newValue).subscribe(
       result=>{
         this.usersService.getScore(this.draw.id)    
@@ -41,6 +42,7 @@ export class DrawDetailsComponent implements OnInit {
         })
       }
     );
+    }
 }
   
   deleteDraw(){
