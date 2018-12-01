@@ -26,7 +26,6 @@ class ArtController extends Controller
         $mark=Mark::where('user', $request->input('username'))
         ->where('art_id', $request->input('art_id'))
         ->delete();
-        //if($mark!=null){$mark[0]->delete();}
 
         
 
@@ -99,14 +98,18 @@ class ArtController extends Controller
         }
         
         $user = User::find($request->input('username'));
-        if (!$user->artsVisited->contains($request->input('art_id'))) {//comprobamos que no este esta relacion ya en la tabla
+        // if (!$user->artsVisited->contains($request->input('art_id'))) {//comprobamos que no este esta relacion ya en la tabla
+                    //si ya hemos visitado la publicacion, sobreescribimos
+                    $mark=Mark::where('user', $request->input('username'))
+                    ->where('art_id', $request->input('art_id'))
+                    ->delete();
             $visit = new Visit();
             $visit->art_id = $request->input('art_id');
             $visit->user = $request->input('username');
             $visit->save();
             return response()->json(['user' => $user], 201);//retornamos 201
-        }
-        return response()->json(['message' => 'Already visited that art'],201); //si ya seguimos al usuario, lanzamos error
+        
+        //return response()->json(['message' => 'Already visited that art'],201); //si ya seguimos al usuario, lanzamos error
     }
 
     public function getVisits($id){

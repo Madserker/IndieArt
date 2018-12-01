@@ -9,6 +9,6 @@ class Team extends Model
     protected $primaryKey="username";
 
     public function users(){//Many To Many relationship
-        return $this->hasMany(User::class, 'team_user', 'team_id', 'user_id');
+        return $this->belongsToMany(User::class, 'team_user', 'team', 'user');
     }
 }

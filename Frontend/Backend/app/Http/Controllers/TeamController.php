@@ -24,4 +24,17 @@ class TeamController extends Controller
 
         return response()->json($response, 200, $headers);
     }
+
+    public function getTeamUsers($username){
+        $team = Team::find($username);
+        $users = $team->users;
+        $response = [
+            'users' => $users
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+
+    }
 }

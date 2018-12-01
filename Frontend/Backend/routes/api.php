@@ -250,3 +250,8 @@ Route::get('/teams',[
     'middleware' => 'cors',
     'uses' => 'TeamController@getTeams'
 ]);
+
+Route::get('/team/{name}/users',[
+    'middleware' => 'cors',
+    'uses' => 'TeamController@getTeamUsers'
+]);

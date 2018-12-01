@@ -13,6 +13,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    public $incrementing = false;
     protected $primaryKey="username";
 
     /**
@@ -34,33 +35,6 @@ class User extends Authenticatable implements JWTSubject
     ];
 
 
-    public function drawComments()
-    {
-        return $this->hasMany('App\DrawComment');
-    }
-    public function comicComments()
-    {
-        return $this->hasMany('App\ComicComment');
-    }
-
-    public function animationComments()
-    {
-        return $this->hasMany('App\AnimationComment');
-    }
-
-    public function draws()
-    {
-        return $this->hasMany('App\Draw');
-    }
-    public function comics()
-    {
-        return $this->hasMany('App\Comic');
-    }
-
-    public function animations()
-    {
-        return $this->hasMany('App\Animation');
-    }
 
 
     public function artsScored(){//Many To Many relationship
@@ -69,6 +43,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function artsVisited(){//Many To Many relationship
         return $this->belongsToMany(Art::class, 'visits', 'user', 'art_id');
+    }
+
+    public function teams(){//Many To Many relationship
+        return $this->belongsToMany(Team::class, 'team_user', 'user', 'team');
     }
 
 
