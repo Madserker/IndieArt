@@ -33,7 +33,8 @@
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="goToProfile(currentUser.username)">Profile</button>
           <button mat-menu-item (click)="goToEditProfile(currentUser.username)">Edit Profile</button>
-          <button mat-menu-item (click)="goToEditProfile(currentUser.username)">Create Team</button>
+          <button mat-menu-item (click)="goToCreateTeam()">Create Team</button>
+          <button mat-menu-item (click)="goToManageTeams()">Manage Teams</button>
           <button mat-menu-item (click)="logout()">Log out &#10149;</button>
         </mat-menu>
     </div>

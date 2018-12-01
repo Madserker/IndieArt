@@ -63,6 +63,14 @@ goToEditProfile(){
   this.router.navigateByUrl("edit");
 }
 
+goToCreateTeam(){
+  this.router.navigateByUrl("create-team");
+}
+
+goToManageTeams(){
+  this.router.navigateByUrl("manage-teams");
+}
+
   openLoginNav(){		
     this.loginsidenav.openLogin();	   
   }
