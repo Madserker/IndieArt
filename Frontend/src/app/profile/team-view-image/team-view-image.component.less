@@ -1,0 +1,61 @@
+@bg-color : #fbdf6f;
+@bg-color2 : #303030;
+@topBar-color : #f0e2a2;
+@button-color : #eec262;
+@bg-color-darken : darken(@topBar-color ,20%);
+@text-color : rgb(255, 255, 255);
+
+* {
+    font-family: 'Lucida Sans';  
+  }
+.color{
+    color:rgb(196, 194, 176);
+}
+.follow-image{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;//recortamos la imagen
+    border-radius: 5px;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+    cursor: pointer;
+}
+
+.Follow{
+    color: white;
+
+    text-align: center;
+}
+
+.container{
+    margin-top: 50px;
+    float: left;
+    width: 300px;
+    
+
+    border: 5px solid darken(@bg-color2,5%);
+    border-bottom: 0px;
+    border-left: 0px;
+    background-color: @bg-color2;
+
+
+    padding-right: 30px;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+.profile-image{
+    height: 250px;
+    width: 250px;
+    object-fit: cover;//recortamos la imagen
+    border-radius: 5px;
+}
+h1{
+    color: @bg-color;
+    text-align: center;
+}
+h6{
+    color: white;
+    text-align: center;
+}

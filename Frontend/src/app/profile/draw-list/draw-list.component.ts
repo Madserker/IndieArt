@@ -3,6 +3,7 @@ import { Draw } from '../../_models/Draw.interface';
 import { ListsService } from '../../lists.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/_models/User.interface';
+import { Author } from '../../_models/Author.interface';
 
 @Component({
   selector: 'app-draw-list',
@@ -10,7 +11,7 @@ import { User } from 'src/app/_models/User.interface';
   styleUrls: ['./draw-list.component.less']
 })
 export class DrawListComponent implements OnInit {
-  @Input() user:User;
+  @Input() author:Author;
   @Input() currentUser:User;
 
   isCurrentUser: boolean
@@ -23,12 +24,12 @@ export class DrawListComponent implements OnInit {
   }
   ngOnChanges(){
 //cuando detecta un cambio se ejecuta, en este caso cuando recibimos en input user
-    this.lists.getUserDraws(this.user.username)
+    this.lists.getUserDraws(this.author.username)
     .subscribe(result => {
       this.draws = result as Draw[]
       console.log(this.draws)
     })
-    if(this.user.username==this.currentUser.username){
+    if(this.author.username==this.currentUser.username){
       this.isCurrentUser=true
     }else{
       this.isCurrentUser=false

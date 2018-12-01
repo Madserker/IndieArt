@@ -53,6 +53,9 @@ interface getChapter{
 interface getTeams{
   teams: Team[]
 }
+interface getTeam{
+  team: Team
+}
 
 
 
@@ -134,6 +137,12 @@ export class ListsService {
   getUserByUsername(username : string): Observable<User>{
     return this.http.get<getUser>(this.url+'/api/user/'+username).pipe(
       map(res => res.user as User)
+    )
+  }
+
+  getTeamByUsername(username : string): Observable<Team>{
+    return this.http.get<getTeam>(this.url+'/api/team/'+username).pipe(
+      map(res => res.team as Team)
     )
   }
 

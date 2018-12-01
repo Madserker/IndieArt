@@ -37,4 +37,24 @@ class TeamController extends Controller
         return response()->json($response, 200, $headers);
 
     }
+
+    public function getTeamByUsername($username){
+        $team = Team::find($username);
+
+        $team = 
+        DB::table('teams')
+        ->where('teams.username', $username)
+        ->join('authors', 'teams.username', '=', 'authors.username')
+        ->select('authors.*','teams.*')
+        ->get();
+
+        $response = [
+            'team' => $team[0]
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+
+    }
 }

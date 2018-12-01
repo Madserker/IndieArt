@@ -4,20 +4,24 @@ import { ActivatedRoute } from '@angular/router';
 import { ListsService } from '../../lists.service';
 import { AuthService } from '../../auth.service';
 import { User } from '../../_models/User.interface';
+import { Team } from '../../_models/Team.interface';
 
 @Component({
   selector: 'app-team-view',
   templateUrl: './team-view.component.html',
-  styleUrls: ['./team-view.component.less']
+  styleUrls: ['./team-view.component.less'],
+  providers: [ListsService]
 })
 export class TeamViewComponent implements OnInit {
 
-  author : Author;
+  team : Team;
   username : string;
 
   isCurrentUser : Boolean;
 
   currentUser : User;
+
+  author: Author;
 
   constructor(private route: ActivatedRoute,private lists: ListsService, private authService : AuthService) {
     this.getUser();
@@ -37,7 +41,7 @@ export class TeamViewComponent implements OnInit {
 
   loadComponent(){
     //cogemos el username de la ruta y buscamos en la base de datos el usuario con ese username
-    this.lists.getUserByUsername(this.username)
+    this.lists.getTeamByUsername(this.username)
     .subscribe(result => {
     this.author = result as Author
     })

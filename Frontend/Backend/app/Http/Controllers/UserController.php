@@ -271,6 +271,8 @@ class UserController extends Controller
         $following = $author->following;
         $following->push($author);//añadimos tu actividad a la lista
 
+
+
         
 
 

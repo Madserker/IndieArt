@@ -20,7 +20,7 @@ export class TeamViewImageComponent implements OnInit {
   constructor(private usersService : UsersService) { }
 
   ngOnInit() {
-    console.log(this.currentUser)
+    console.log(this.team)
     
 
   }
