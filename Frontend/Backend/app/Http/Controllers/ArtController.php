@@ -60,7 +60,8 @@ class ArtController extends Controller
         }
         
         
-        $score=Mark::where('user', $username)
+        $score=
+        Mark::where('user', $username)
         ->where('art_id', $id)
         ->get()[0];
 

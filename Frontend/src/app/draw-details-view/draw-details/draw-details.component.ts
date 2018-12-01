@@ -33,6 +33,7 @@ export class DrawDetailsComponent implements OnInit {
   }
 
   onChange(newValue) {
+    console.log(newValue)
     if(newValue!=null){
     this.usersService.vote(this.draw.id,this.currentUser.username,newValue).subscribe(
       result=>{
