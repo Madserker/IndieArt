@@ -53,6 +53,8 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 import { ChatRoomsViewComponent } from './chat-rooms/chat-rooms-view/chat-rooms-view.component';
 import { TeamImageComponent } from './team-image/team-image.component';
 import { ChatRoomsListComponent } from './chat-rooms/chat-rooms-list/chat-rooms-list.component';
+import { TeamViewComponent } from './profile/team-view/team-view.component';
+import { TeamViewImageComponent } from './profile/team-view-image/team-view-image.component';
 
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
@@ -67,6 +69,7 @@ const routes : Route[] = [
 {path: 'comic/:id', component: ComicViewComponent},
 {path: 'animation/:id', component: AnimationViewComponent},
 {path: 'user/:username', component: ProfileViewComponent},
+{path: 'team/:username', component: TeamViewComponent},
 {path: 'edit', component: EditProfileComponent},
 {path: 'animation/:id/episodes', component: EpisodesViewComponent},
 {path: 'comic/:id/chapters', component: ChaptersViewComponent},
@@ -120,6 +123,8 @@ const routes : Route[] = [
     ChatRoomsViewComponent,
     TeamImageComponent,
     ChatRoomsListComponent,
+    TeamViewComponent,
+    TeamViewImageComponent,
 
 
     

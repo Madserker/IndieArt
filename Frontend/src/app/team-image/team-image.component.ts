@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../_models/User.interface';
 import { Team } from '../_models/Team.interface';
 
 @Component({

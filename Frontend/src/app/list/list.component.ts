@@ -101,6 +101,6 @@ export class ListComponent implements OnInit {
     this.router.navigateByUrl("animation/"+id);
   }
   goToProfile(username){
-    this.router.navigateByUrl("user/"+username);
+    this.router.navigateByUrl("team/"+username);
   }
 }
