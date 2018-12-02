@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Team;
+use App\Author;
 use DB;
 use App\Http\Controllers\Controller;
+use JWTAuth;
+use Illuminate\Support\Facades\Storage;
 
 class TeamController extends Controller
 {
@@ -60,6 +63,60 @@ class TeamController extends Controller
         'charset' => 'utf-8'];
 
         return response()->json($response, 200, $headers);
+    }
+
+    public function createTeam(Request $request){
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $randomPic = ['src/assets/storage/profile1.jpg','src/assets/storage/profile2.png',
+        'src/assets/storage/profile3.png','src/assets/storage/profile4.jpg',
+        'src/assets/storage/profile5.jpg','src/assets/storage/profile6.jpg'];
+
+        $this->validate($request,[//validamos el registro
+        'username' => 'required|unique:authors', //el nombre de usuario es obligatorio y unico en la tabla de authors
+        ]);
+
+        $path = array_random($randomPic);//default image
+
+        $file = $request->file('photo');//Cogemos el file de la request
+
+
+        if($file!=null){
+
+            $pathTemp = Storage::putfile('profileImages', $file);//cogemos el path con el nombre del file que laravel ha creado automaticamente
+
+            $path = "Backend/storage/app/".$pathTemp;
+        }
+
+
+        $author = new Author([
+            'username' => $request->input('username'),//mismo username que el team para encontrarlo con INNER JOIN
+            'description' => $request->input('descripcion'),
+            'profile_picture' => $path
+        ]);
+
+        $team = new Team([
+            'username' => $request->input('username'),//mismo username que el author para encontrarlo con INNER JOIN
+        ]);
+        
+
+        $team->save();
+        $author->save();
+
+       $this->addUserToTeam($request->input('username'), $user->username,$request->input('role'),true);
+
+        return response()->json(['author' => $author],200);
 
     }
+
+    public function addUserToTeam($team,$user,$role,$admin){
+        DB::table('team_user')->insert([
+            ['team' => $team, 'user' => $user, 'role' => $role, 'admin' => $admin],
+        ]);
+    }
+
+
 }

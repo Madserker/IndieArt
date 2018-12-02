@@ -23,7 +23,6 @@ export class ComicListComponent implements OnInit {
   }
 
   ngOnChanges(){
-    console.log("this.author.username")
 
     console.log(this.author.username)
     this.lists.getUserComics(this.author.username)

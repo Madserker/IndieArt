@@ -14,8 +14,10 @@ class CreateTeamUserTable extends Migration
     public function up()
     {
         Schema::create('team_user', function (Blueprint $table) {
+            Schema::dropIfExists('team_user');
             $table->increments('id');
             $table->string('role');//el rol que desempeña el user en el team
+            $table->boolean('admin');//si puede añadir o eliminar gente
 
             $table->string('team');
             $table->foreign('team')->references('username')->on('teams');

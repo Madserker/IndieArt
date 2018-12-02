@@ -23,7 +23,6 @@ export class AnimationComponent implements OnInit {
 
   showText(){
     document.getElementById("animation"+this.animation.id.toString()).style.visibility="visible";
-    
   }
   hideText(){
     document.getElementById("animation"+this.animation.id.toString()).style.visibility="hidden";
