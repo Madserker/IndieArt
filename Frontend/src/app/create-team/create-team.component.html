@@ -1,3 +1,40 @@
-<p>
-  create-team works!
-</p>
+<nav>
+  <app-toolbar-not-logged></app-toolbar-not-logged>
+</nav>
+
+<div class="container">
+    <form (submit)="createTeam(f)" #f="ngForm" required><!--no refresh no actualiza la pagina al hacer submit-->
+
+      <div class="role">
+          TEAM NAME:<br>
+      <input type="text" name="team" id="team" ngModel class="form-control">
+      </div>
+      <br>
+      <div class="desc">
+      TEAM PROFILE PICTURE:
+    </div>
+      <div class="pic">
+
+      <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg">
+
+    </div>
+        <br>
+        <div class="desc">
+        TEAM DESCRIPTION:<br>
+      </div>
+      <div class="descT">
+        <input type="text" name="desc" id="desc" ngModel class="form-control">
+        <br>
+        </div>
+
+        <br>
+
+        <div class="role">
+            YOUR ROLE ON THE TEAM:<br>
+        <input type="text" name="role" id="role" ngModel class="form-control">
+      </div>
+        <br>
+      <button mat-menu-item class="buttonSubmit" value="Submit">Done</button>
+    </form>
+  </div>
+

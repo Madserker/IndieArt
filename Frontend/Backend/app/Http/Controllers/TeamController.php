@@ -94,7 +94,7 @@ class TeamController extends Controller
 
         $author = new Author([
             'username' => $request->input('username'),//mismo username que el team para encontrarlo con INNER JOIN
-            'description' => $request->input('descripcion'),
+            'description' => $request->input('description'),
             'profile_picture' => $path
         ]);
 
@@ -118,5 +118,16 @@ class TeamController extends Controller
         ]);
     }
 
+    public function postUserToTeam(Request $request){
+        $this->addUserToTeam($request->input('team'), $request->input('user'),$request->input('role'),$request->input('admin'));
+    }
+
+    //promote to admin
+
+    //edit role
+
+    //delete team
+
+    //delete user on team
 
 }

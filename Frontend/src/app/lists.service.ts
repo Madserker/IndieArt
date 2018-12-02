@@ -114,11 +114,29 @@ export class ListsService {
     .pipe(
       map(res => res.pages as Page[] || [])); 
   }
-
+//===================================================================================TEAMS
   getTeams(): Observable<Team[]> {
     return this.http.get<getTeams>(this.url+'/api/teams')
     .pipe(
       map(res => res.teams as Team[] || [])); 
+  }
+  createTeam(name,description,role,file){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    let formData:FormData = new FormData();
+    formData.append('photo', file, file.name);
+    formData.append('username',name);
+    formData.append('description', description);
+    formData.append('role', role);
+          
+    //le pasamos el token para confirmar que estamos logeados
+    return this.http.post(this.url+'/api/team/?token=' + token, formData, 
+    {headers: new HttpHeaders(
+      {'Accept': 'application/json',
+      'Authorization':'Bearer'+ localStorage.token
+    }
+      )
+    })
   }
   //=================================================================================GetByPrimaryKey Methods
 
