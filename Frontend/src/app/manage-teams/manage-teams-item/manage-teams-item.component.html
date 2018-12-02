@@ -1,0 +1,47 @@
+<div class=notification>
+    <div class="user">
+      <img class="profilePic" src={{team?.profile_picture}} (click)="openUser()">
+    <p class="profileName" (click)="openUser()">
+      {{team?.username}}
+    </p>
+  
+    <p class="text">
+      {{team?.description}}
+    </p>
+
+  </div>
+
+
+
+  </div>
+  
+  <div class="members">
+      <p class="membersText">
+          MEMBERS
+        </p>
+        <div *ngFor="let member of members">
+            <div *ngIf="member.admin" 
+            style="
+            border: 5px solid #fbdf6f;
+            border-radius: 5px;
+        " class="member"> 
+            <img class="memberPic" src={{member?._user.profile_picture}} (click)="openUser()">
+
+            <p class="memberName" (click)="openUser()">
+                {{member?.user}}
+              </p>
+              </div>
+
+
+        <div *ngIf="!member.admin" class="member"> 
+        <img class="memberPic" src={{member?._user.profile_picture}} (click)="openUser()">
+
+        <p class="memberName" (click)="openUser()">
+            {{member?.user}}
+          </p>
+          </div>
+    </div>
+
+
+
+  </div>

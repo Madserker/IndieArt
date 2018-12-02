@@ -56,7 +56,9 @@ import { ChatRoomsListComponent } from './chat-rooms/chat-rooms-list/chat-rooms-
 import { TeamViewComponent } from './profile/team-view/team-view.component';
 import { TeamViewImageComponent } from './profile/team-view-image/team-view-image.component';
 import { CreateTeamComponent } from './create-team/create-team.component';
-import { ManageTeamsComponent } from './manage-teams/manage-teams.component';
+import { ManageTeamsListComponent } from './manage-teams/manage-teams-list/manage-teams-list.component';
+import { ManageTeamsViewComponent } from './manage-teams/manage-teams-view/manage-teams-view.component';
+import { ManageTeamsItemComponent } from './manage-teams/manage-teams-item/manage-teams-item.component';
 
 
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
@@ -66,7 +68,7 @@ const routes : Route[] = [
 {path: 'friends-activity', component: FriendsActivityViewComponent},
 {path: 'competitions', component: ListsViewComponent},
 {path: 'create-team', component: CreateTeamComponent},
-{path: 'manage-teams', component: ManageTeamsComponent},
+{path: 'manage-teams', component: ManageTeamsViewComponent},
 
 //rutas dinamicas
 {path: 'draw/:id', component: DrawViewComponent},
@@ -130,7 +132,9 @@ const routes : Route[] = [
     TeamViewComponent,
     TeamViewImageComponent,
     CreateTeamComponent,
-    ManageTeamsComponent,
+    ManageTeamsListComponent,
+    ManageTeamsViewComponent,
+    ManageTeamsItemComponent,
 
 
     

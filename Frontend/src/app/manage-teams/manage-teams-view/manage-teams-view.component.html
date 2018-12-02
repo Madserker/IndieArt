@@ -1,0 +1,12 @@
+<nav>
+    <app-toolbar-not-logged></app-toolbar-not-logged>
+  </nav>
+  
+  <div *ngIf="currentUser!=null"><!--si estamos logueados-->
+  <app-manage-teams-list [teams]="teams"></app-manage-teams-list>
+  </div>
+  
+  <div *ngIf="currentUser==null"><!--si no estamos logueados-->
+  <p class="alert">
+    Sign up to use this functionality
+    </div>
