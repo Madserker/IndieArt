@@ -138,6 +138,12 @@ export class ListsService {
       )
     })
   }
+    getUserTeams($username){
+      return this.http.get<getTeams>(this.url+'/api/user/'+$username+'/teams')
+      .pipe(
+        map(res => res.teams as Team[] || [])); 
+    }
+  
   //=================================================================================GetByPrimaryKey Methods
 
 

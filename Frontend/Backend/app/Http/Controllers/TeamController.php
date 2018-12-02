@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Team;
+use App\User;
 use App\Author;
 use DB;
 use App\Http\Controllers\Controller;
@@ -43,7 +44,6 @@ class TeamController extends Controller
         'charset' => 'utf-8'];
 
         return response()->json($response, 200, $headers);
-
     }
 
     public function getTeamByUsername($username){
@@ -120,6 +120,26 @@ class TeamController extends Controller
 
     public function postUserToTeam(Request $request){
         $this->addUserToTeam($request->input('team'), $request->input('user'),$request->input('role'),$request->input('admin'));
+    }
+
+    public function getUserTeams($username){
+        $user = User::find($username);
+        //$users = $team->users;
+        $teams=
+        DB::table('team_user')
+        ->join('authors', 'authors.username', '=', 'team_user.team')
+        ->where('team_user.user',$username)
+        ->select('authors.*')
+        ->get();
+
+        $response = [
+            'teams' => $teams
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+
     }
 
     //promote to admin

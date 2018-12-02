@@ -261,6 +261,11 @@ Route::get('/team/{name}',[
     'uses' => 'TeamController@getTeamByUsername'
 ]);
 
+Route::get('/user/{name}/teams/',[
+    'middleware' => 'cors',
+    'uses' => 'TeamController@getUserTeams'
+]);
+
 Route::post('/team',[
     'middleware' => 'cors',
     'uses' => 'TeamController@createTeam'

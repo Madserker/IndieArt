@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../_models/User.interface';
 import { UsersService } from '../../users.service';
+import { Team } from '../../_models/Team.interface';
+import { ListsService } from '../../lists.service';
 
 @Component({
   selector: 'app-profile-view-image',
@@ -14,13 +16,14 @@ export class ProfileViewImageComponent implements OnInit {
 
   followers : User [];
   following : User [];
+  teams:Team[];
 
   alreadyFollowing:boolean = false
   
-  constructor(private usersService : UsersService) { }
+  constructor(private lists:ListsService,private usersService : UsersService) { }
 
   ngOnInit() {
-    console.log(this.currentUser)
+
     
 
   }
@@ -41,6 +44,9 @@ export class ProfileViewImageComponent implements OnInit {
         this.following = result as User []
       })
 
+      this.lists.getUserTeams(this.user.username).subscribe(result=>{
+        this.teams=result as Team[]
+      })
   }
 
   followUser(){

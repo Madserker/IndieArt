@@ -19,6 +19,7 @@
 
 <br>
 <h6>TEAMS</h6>
+<img *ngFor="let team of teams" src="{{team.profile_picture}}" width="60%" class="follow-image" [routerLink]="['/team',team?.username]">
 <div *ngIf="currentUser?.username!=user?.username && currentUser!=null"><!--si estamos logueados y no somos el usuario de este perfil-->
 <button *ngIf="!alreadyFollowing" mat-button class="Follow" (click)="followUser()">Follow User</button><!--si no seguimos al usuario-->
 <button *ngIf="alreadyFollowing" mat-button class="Follow" (click)="unfollowUser()">Unfollow User</button><!--si no seguimos al usuario-->

@@ -16,7 +16,7 @@ export class AnimationListComponent implements OnInit {
   @Input() currentUser:User;
   animations : A_Animation[];
 
-  isCurrentUser : boolean;
+  isCurrentUser : boolean=false;
   
   constructor(private lists: ListsService,private router:Router) { }
 
@@ -32,7 +32,14 @@ export class AnimationListComponent implements OnInit {
     if(this.author.username==this.currentUser.username){
       this.isCurrentUser=true
     }else{
-      this.isCurrentUser=false
+      //si no somos el usuario, comprobamos que esto sea un equipo y que estamos dentro
+      this.lists.getTeamUsers(this.author.username).subscribe(result=>{
+        for(let user of result){
+          if(user.user == this.currentUser.username){
+            this.isCurrentUser=true
+          }
+        }
+      })
     }
   }
 
