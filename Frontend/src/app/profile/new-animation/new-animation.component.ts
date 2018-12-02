@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ListsService } from '../../lists.service';
 import { User } from '../../_models/User.interface';
+import { Author } from '../../_models/Author.interface';
 
 @Component({
   selector: 'app-new-animation',
@@ -12,6 +13,7 @@ export class NewAnimationComponent implements OnInit {
   file : File
   formData:FormData
   @Input() currentUser : User
+  @Input() author : Author
   constructor(private lists : ListsService) { }
 
   ngOnInit() {
@@ -22,7 +24,7 @@ openForm(){
     document.getElementById('myModal3').style.display = "block"
 }
 closeForm(){
-  document.getElementById('myModal3').style.display = "none"
+    document.getElementById('myModal3').style.display = "none"
 }
 
 
@@ -38,7 +40,7 @@ uploadAnimation(form: NgForm){
     form.value.name,
     form.value.desc,
     this.file,
-    this.currentUser.username
+    this.author.username
     ).subscribe(
       response =>  window.location.reload(),//si ha ido bien el login
       error => console.log(error)//si no ha ido bien el login

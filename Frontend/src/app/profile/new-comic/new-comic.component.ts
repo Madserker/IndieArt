@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ListsService } from '../../lists.service';
 import { User } from '../../_models/User.interface';
+import { Author } from '../../_models/Author.interface';
 
 @Component({
   selector: 'app-new-comic',
@@ -11,6 +12,7 @@ import { User } from '../../_models/User.interface';
 export class NewComicComponent implements OnInit {
   file : File
   @Input() currentUser : User
+  @Input() author : Author
 
   constructor(private lists : ListsService) { }
 
@@ -62,7 +64,7 @@ uploadComic(form: NgForm){
     form.value.name,
     form.value.desc,
     this.file,
-    this.currentUser.username
+    this.author.username
     ).subscribe(
       response =>  window.location.reload(),//si ha ido bien el login
       error => console.log(error)//si no ha ido bien el login

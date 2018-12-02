@@ -1,3 +1,3 @@
 <h5>ANIMATIONS</h5>
 <app-animation *ngFor="let animation of animations" [animation]="animation" (click)="goToAnimationDetails(animation?.id)"></app-animation>
-<app-new-animation *ngIf="isCurrentUser" [currentUser]="currentUser"></app-new-animation>
+<app-new-animation *ngIf="isCurrentUser" [currentUser]="currentUser" [author]="author"></app-new-animation>
