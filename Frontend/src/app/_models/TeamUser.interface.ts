@@ -4,6 +4,7 @@ export interface TeamUser{
     user : string
     _user : User
     role : string
+    admin : boolean
 
 
 }

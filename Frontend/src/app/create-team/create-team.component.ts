@@ -39,7 +39,7 @@ export class CreateTeamComponent implements OnInit {
        form.value.role,
        this.file
       ).subscribe(
-        response =>         this.router.navigateByUrl("/");
+        response => this.router.navigateByUrl("/"),
         error => console.log(error)//si no ha ido bien el login
       );
   }

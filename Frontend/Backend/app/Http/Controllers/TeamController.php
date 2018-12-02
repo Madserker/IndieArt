@@ -34,7 +34,7 @@ class TeamController extends Controller
         $users=
         DB::table('team_user')
         ->where('team_user.team',$username)
-        ->select('team_user.user','team_user.role','team_user.created_at')
+        ->select('team_user.user','team_user.role','team_user.created_at','team_user.admin')
         ->get();
         $response = [
             'users' => $users

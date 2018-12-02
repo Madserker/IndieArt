@@ -16,12 +16,32 @@
   <br>
   <h6>MEMBERS</h6>
   <div class="member" *ngFor="let user of teamUsers">
-  <img src="{{user._user.profile_picture}}" width="60%" class="follow-image" [routerLink]="['/user',user?.user]">
-  <div class="desc">
-  <p style="color:#fbdf6f">{{user.user}}</p>
-  <p>{{user.role}}</p>
-</div>
-<p>Joined in: {{user.created_at}}</p>
+    <div *ngIf="user.admin"> 
+      <img src="{{user._user.profile_picture}}" width="60%" class="follow-image" [routerLink]="['/user',user?.user]" 
+      style="
+          border: 5px solid #fbdf6f;
+          border-radius: 5px;
+      "
+      
+      >
+      <div class="desc">
+      <p style="color:#fbdf6f">{{user.user}}</p>
+      <p>{{user.role}}</p>
+      </div>
+    </div>
+
+
+  <div *ngIf="!user.admin"> 
+      <img src="{{user._user.profile_picture}}" width="60%" class="follow-image" [routerLink]="['/user',user?.user]">
+      <div class="desc">
+      <p style="color:#fbdf6f69">{{user.user}}</p>
+      <p>{{user.role}}</p>
+      </div>
+    </div>
+      <p>Joined in: {{user.created_at}}</p>
+
+
+
 </div>
 
   <div *ngIf="currentUser?.username!=user?.username && currentUser!=null"><!--si estamos logueados y no somos el usuario de este perfil-->
