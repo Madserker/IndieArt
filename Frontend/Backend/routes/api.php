@@ -275,3 +275,8 @@ Route::delete('/team/{team}/user/{user}',[
     'middleware' => 'cors',
     'uses' => 'TeamController@removeUserFromTeam'
 ]);
+
+Route::delete('/team/{team}',[
+    'middleware' => 'cors',
+    'uses' => 'TeamController@deleteTeam'
+]);

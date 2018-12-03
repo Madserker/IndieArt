@@ -38,10 +38,21 @@ export class ManageTeamsItemComponent implements OnInit {
   }
 
   removeUser(member){
+    if(this.members.length<=1){//si somos el ultimo miembro se elimina el team
     this.lists.removeUserFromTeam(member.user,this.team.username).subscribe(result=>{
-      window.location.reload()//si ha ido bien el delete
+      this.lists.removeTeam(this.team.username).subscribe(result=>{
+        window.location.reload()//si ha ido bien el delete
+      })
     })
+  }else{
+    this.lists.removeUserFromTeam(member.user,this.team.username).subscribe(result=>{
+        window.location.reload()//si ha ido bien el delete
+    })
+  }
+}
 
+  addMember(){
+    
   }
 
 
