@@ -184,6 +184,19 @@ getTeamUsers(username : string): Observable<TeamUser[]>{
         )
       })
     }
+
+    promoteToAdmin(username,team){
+      const token = this.authService.getToken();//recuperamos el token de la sesion
+
+  
+      return this.http.put(this.url+'/api/team/'+team+'/user/'+username+'/admin/?token=' + token, 
+      {headers: new HttpHeaders(
+        {'Content-Type': 'application/json',
+        'Authorization':'Bearer'+ localStorage.token
+      }
+        )
+      })
+    }
   //=================================================================================GetByPrimaryKey Methods
 
 

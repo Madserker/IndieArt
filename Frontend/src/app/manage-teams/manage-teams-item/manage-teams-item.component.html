@@ -50,7 +50,7 @@
           <button 
           *ngIf="isAdmin || currentUser?.username==member?.user" 
           mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
-          <button *ngIf="isAdmin" mat-menu-item class="memberButton">PROMOTE TO ADMIN</button>
+          <button *ngIf="isAdmin" mat-menu-item class="memberButton" (click)="promoteToAdmin(member)">PROMOTE TO ADMIN</button>
           </div>
     </div>
     <form (ngSubmit)="addMember(f)" #f="ngForm" required>

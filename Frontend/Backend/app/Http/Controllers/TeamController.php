@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Team;
+use App\Team_user;
 use App\User;
 use App\Author;
 use DB;
@@ -188,6 +189,30 @@ class TeamController extends Controller
         return response()->json(['message' => 'Team deleted'],200);
     }
 
+    public function promoteToAdmin($team,$username){
+
+        if(! $userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        //comprobamos que seamos un administrador en el lado del backend tambien:
+        $check=
+        DB::table('team_user')
+        ->where('team_user.user',$userA->username)
+        ->get();
+
+        if(!$check[0]->admin){//si no somos administrador
+            return response()->json(['message' => 'No eres administrador del equipo'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $team=
+        DB::table('team_user')
+        ->where('team_user.user',$username)
+        ->where('team_user.team',$team)
+        ->update(['admin' => true]);
+
+
+    }
 
     //promote to admin
 

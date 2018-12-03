@@ -62,6 +62,12 @@ export class ManageTeamsItemComponent implements OnInit {
       );
   }
 
+  promoteToAdmin(member){
+    this.lists.promoteToAdmin(member.user,this.team.username).subscribe(result=>{
+      window.location.reload()//si ha ido bien el delete
+  })
+  }
+
 
 
 }

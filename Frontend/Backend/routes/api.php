@@ -285,3 +285,8 @@ Route::post('/team/user',[
     'middleware' => 'cors',
     'uses' => 'TeamController@postUserToTeam'
 ]);
+
+Route::put('/team/{team}/user/{user}/admin',[
+    'middleware' => 'cors',
+    'uses' => 'TeamController@promoteToAdmin'
+]);
