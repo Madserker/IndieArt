@@ -115,6 +115,18 @@ export class ListsService {
       map(res => res.pages as Page[] || [])); 
   }
 //===================================================================================TEAMS
+
+getTeamByUsername(username : string): Observable<Team>{
+  return this.http.get<getTeam>(this.url+'/api/team/'+username).pipe(
+    map(res => res.team as Team)
+  )
+}
+
+getTeamUsers(username : string): Observable<TeamUser[]>{
+  return this.http.get<getTeamUsers>(this.url+'/api/team/'+username+'/users').pipe(
+    map(res => res.users as TeamUser[])
+  )
+}
   getTeams(): Observable<Team[]> {
     return this.http.get<getTeams>(this.url+'/api/teams')
     .pipe(
@@ -144,6 +156,15 @@ export class ListsService {
         map(res => res.teams as Team[] || [])); 
     }
   
+    removeUserFromTeam(member,team){
+      const token = this.authService.getToken();
+      return this.http.delete(this.url+'/api/team/' + team + '/user/'+member+'/?token=' + token);
+    }
+    
+    removeTeam(team){
+      const token = this.authService.getToken();
+      return this.http.delete(this.url+'/api/team/' + team + '/?token=' + token);
+    }
   //=================================================================================GetByPrimaryKey Methods
 
 
@@ -168,17 +189,7 @@ export class ListsService {
     )
   }
 
-  getTeamByUsername(username : string): Observable<Team>{
-    return this.http.get<getTeam>(this.url+'/api/team/'+username).pipe(
-      map(res => res.team as Team)
-    )
-  }
 
-  getTeamUsers(username : string): Observable<TeamUser[]>{
-    return this.http.get<getTeamUsers>(this.url+'/api/team/'+username+'/users').pipe(
-      map(res => res.users as TeamUser[])
-    )
-  }
 
   //=============================================================GetGallery
   getUserDraws(username : string): Observable<Draw[]> {

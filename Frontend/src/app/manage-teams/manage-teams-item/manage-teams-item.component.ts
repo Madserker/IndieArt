@@ -12,7 +12,9 @@ import { TeamUser } from '../../_models/TeamUser.interface';
 export class ManageTeamsItemComponent implements OnInit {
 
   @Input() team : Team;
+  @Input() currentUser : User;
   members : TeamUser[];
+  isAdmin : boolean = false;
 
 
   constructor(private lists : ListsService) { }
@@ -25,12 +27,23 @@ export class ManageTeamsItemComponent implements OnInit {
       this.members = result as TeamUser []
 
       for(let user of this.members){
+        if(user.user==this.currentUser.username && user.admin){
+          this.isAdmin=true
+        }
         this.lists.getUserByUsername(user.user).subscribe(result=>{
           user._user = result
         })
       }
       })
+  }
+
+  removeUser(member){
+    this.lists.removeUserFromTeam(member,this.team.username).subscribe(result=>{
+
+    })
 
   }
+
+
 
 }

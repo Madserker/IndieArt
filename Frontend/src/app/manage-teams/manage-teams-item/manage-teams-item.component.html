@@ -30,7 +30,12 @@
             <p class="memberName" (click)="openUser()">
                 {{member?.user}}
               </p>
-              </div>
+              <p class="memberText">{{member?.role}}</p>
+              <!--solo si soy administrador o soy el usuario-->
+              <button 
+              *ngIf="isAdmin || currentUser?.username==member.user" 
+              mat-menu-item class="memberButton" (click)="removeUser()">REMOVE</button>
+        </div>
 
 
         <div *ngIf="!member.admin" class="member"> 
@@ -39,8 +44,17 @@
         <p class="memberName" (click)="openUser()">
             {{member?.user}}
           </p>
+          <p class="memberText">{{member?.role}}</p>
+
+<!--solo si soy administrador o soy el usuario-->
+          <button 
+          *ngIf="isAdmin || currentUser?.username==member.user" 
+          mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
+          <button *ngIf="isAdmin" mat-menu-item class="memberButton">PROMOTE TO ADMIN</button>
           </div>
     </div>
+
+    <button mat-menu-item class="addMember">ADD MEMBER</button><!--si no es valido, el boton esta desactivado-->
 
 
 

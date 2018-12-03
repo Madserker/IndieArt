@@ -3,7 +3,7 @@
   </nav>
   
   <div *ngIf="currentUser!=null"><!--si estamos logueados-->
-  <app-manage-teams-list [teams]="teams"></app-manage-teams-list>
+  <app-manage-teams-list [teams]="teams" [currentUser]="currentUser"></app-manage-teams-list>
   </div>
   
   <div *ngIf="currentUser==null"><!--si no estamos logueados-->

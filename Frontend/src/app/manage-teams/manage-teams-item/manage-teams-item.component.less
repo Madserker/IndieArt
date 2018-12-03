@@ -1,4 +1,5 @@
 @bg-color : #fbdf6f;
+@color: #3b3b3b;
 .notification{
     margin-bottom:15px;
     background: #3b3b3b;
@@ -79,6 +80,37 @@ a{
 
 }
 
+.memberText{
+    margin-top: -10px;
+    margin-left: 120px;
+
+    font-size: 20px;
+    color:white;
+}
+
+.addMember{
+    text-align: center;
+    margin-bottom:10px;
+    background: @bg-color;
+
+    background: lighten(@color,3%);
+
+}
+.memberButton{
+    width: auto;
+    display:inline;
+margin-left: 10px;
+margin-right: 10px;
+
+background: lighten(@color,3%);
+}
+
+.memberButton:hover{
+    background: lighten(@color,6%);
+}
+.addMember:hover{
+    background: lighten(@color,6%);
+}
 .memberPic{
     height: 50px;
     width: 50px;
@@ -91,7 +123,6 @@ a{
 }
 
 .memberName{
-    //margin-top: -110px;
     margin-left: 20px;
     font-size: 25px;
     color:@bg-color;
