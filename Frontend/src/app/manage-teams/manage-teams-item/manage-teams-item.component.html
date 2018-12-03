@@ -33,8 +33,8 @@
               <p class="memberText">{{member?.role}}</p>
               <!--solo si soy administrador o soy el usuario-->
               <button 
-              *ngIf="isAdmin || currentUser?.username==member.user" 
-              mat-menu-item class="memberButton" (click)="removeUser()">REMOVE</button>
+              *ngIf="isAdmin || currentUser?.username==member?.user" 
+              mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
         </div>
 
 
@@ -48,7 +48,7 @@
 
 <!--solo si soy administrador o soy el usuario-->
           <button 
-          *ngIf="isAdmin || currentUser?.username==member.user" 
+          *ngIf="isAdmin || currentUser?.username==member?.user" 
           mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
           <button *ngIf="isAdmin" mat-menu-item class="memberButton">PROMOTE TO ADMIN</button>
           </div>

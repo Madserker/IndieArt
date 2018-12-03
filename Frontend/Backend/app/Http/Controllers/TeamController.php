@@ -142,6 +142,19 @@ class TeamController extends Controller
 
     }
 
+    public function removeUserFromTeam($team,$member){
+
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        DB::table('team_user')
+        ->where('team_user.user',$member)
+        ->where('team_user.team',$team)
+        ->delete();
+
+        return response()->json(['message' => 'user deleted'],200);
+    }
     //promote to admin
 
     //edit role
