@@ -39,7 +39,7 @@ export class ManageTeamsItemComponent implements OnInit {
 
   removeUser(member){
     this.lists.removeUserFromTeam(member.user,this.team.username).subscribe(result=>{
-
+      window.location.reload()//si ha ido bien el delete
     })
 
   }

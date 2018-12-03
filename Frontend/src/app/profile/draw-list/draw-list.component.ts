@@ -40,7 +40,6 @@ export class DrawListComponent implements OnInit {
           }
         }
       })
-
     }
   }
 

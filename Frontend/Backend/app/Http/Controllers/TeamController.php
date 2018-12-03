@@ -148,6 +148,16 @@ class TeamController extends Controller
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
 
+        //comprobamos que seamos un administrador en el lado del backend tambien:
+        $check=
+        DB::table('team_user')
+        ->where('team_user.user',$user->username)
+        ->get();
+
+        if(!$check[0]->admin){//si no somos administrador
+            return response()->json(['message' => 'No eres administrador del equipo'],404); //si no hay token o no es correcto lanza un error
+        }
+    
         DB::table('team_user')
         ->where('team_user.user',$member)
         ->where('team_user.team',$team)
