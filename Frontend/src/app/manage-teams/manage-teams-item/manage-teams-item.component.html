@@ -35,6 +35,10 @@
               <button 
               *ngIf="isAdmin || currentUser?.username==member?.user" 
               mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
+              <button 
+              *ngIf="currentUser?.username==member?.user" 
+              mat-menu-item class="memberButton" (click)="editRole()">EDIT ROLE</button>
+              <input type=text id="role">
         </div>
 
 
@@ -51,8 +55,13 @@
           *ngIf="isAdmin || currentUser?.username==member?.user" 
           mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
           <button *ngIf="isAdmin" mat-menu-item class="memberButton" (click)="promoteToAdmin(member)">PROMOTE TO ADMIN</button>
+          <button 
+          *ngIf="currentUser?.username==member?.user" 
+          mat-menu-item class="memberButton" (click)="editRole()">EDIT ROLE</button>
+          <input type=text id="role">
           </div>
     </div>
+    <div *ngIf="isAdmin">
     <form (ngSubmit)="addMember(f)" #f="ngForm" required>
 <div class="addMemberDiv">
   <div class="addMemberInput">
@@ -62,3 +71,4 @@
   </div>
 
 </form>
+</div>

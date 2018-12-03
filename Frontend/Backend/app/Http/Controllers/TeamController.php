@@ -214,12 +214,8 @@ class TeamController extends Controller
 
     }
 
-    //promote to admin
 
     //edit role
 
-    //delete team
-
-    //delete user on team
 
 }
