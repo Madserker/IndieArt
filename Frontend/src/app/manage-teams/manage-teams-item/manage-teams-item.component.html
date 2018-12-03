@@ -53,9 +53,12 @@
           <button *ngIf="isAdmin" mat-menu-item class="memberButton">PROMOTE TO ADMIN</button>
           </div>
     </div>
-
-    <button mat-menu-item class="addMember">ADD MEMBER</button><!--si no es valido, el boton esta desactivado-->
-
-
-
+    <form (ngSubmit)="addMember(f)" #f="ngForm" required>
+<div class="addMemberDiv">
+  <div class="addMemberInput">
+    Username: <input type="text" name="member" id="member" ngModel class="form-control">
   </div>
+    <button mat-menu-item class="addMember">ADD MEMBER</button><!--si no es valido, el boton esta desactivado-->
+  </div>
+
+</form>

@@ -3,6 +3,7 @@ import { Team } from '../../_models/Team.interface';
 import { User } from '../../_models/User.interface';
 import { ListsService } from '../../lists.service';
 import { TeamUser } from '../../_models/TeamUser.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-teams-item',
@@ -51,8 +52,14 @@ export class ManageTeamsItemComponent implements OnInit {
   }
 }
 
-  addMember(){
-    
+  addMember(form: NgForm){
+    this.lists.addUserToTeam(
+      form.value.member,
+      this.team.username
+      ).subscribe(
+        response =>  window.location.reload(),//si ha ido bien el login
+        error => console.log(error)//si no ha ido bien el login
+      );
   }
 
 

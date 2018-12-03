@@ -181,12 +181,14 @@ class TeamController extends Controller
             return response()->json(['message' => 'No eres administrador del equipo'],404); //si no hay token o no es correcto lanza un error
         }
 
-DB::table('authors')->where('authors.username',$team)->delete();
-DB::table('teams')->where('teams.username',$team)->delete();
+        DB::table('authors')->where('authors.username',$team)->delete();
+        DB::table('teams')->where('teams.username',$team)->delete();
 
 
         return response()->json(['message' => 'Team deleted'],200);
     }
+
+
     //promote to admin
 
     //edit role

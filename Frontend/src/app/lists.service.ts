@@ -165,6 +165,25 @@ getTeamUsers(username : string): Observable<TeamUser[]>{
       const token = this.authService.getToken();
       return this.http.delete(this.url+'/api/team/' + team + '/?token=' + token);
     }
+
+    addUserToTeam(member,team){
+      const token = this.authService.getToken();//recuperamos el token de la sesion
+
+      const body = JSON.stringify(
+        {
+          "user" : member, 
+          "team" : team, 
+          "role" : "undefined",
+          "admin" : false
+        }
+      );
+      //le pasamos el token para confirmar que estamos logeados
+      return this.http.post(this.url+'/api/team/user/?token=' + token, body, 
+      {headers: new HttpHeaders(
+        {'Content-Type': 'application/json'}
+        )
+      })
+    }
   //=================================================================================GetByPrimaryKey Methods
 
 

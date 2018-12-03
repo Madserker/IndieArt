@@ -280,3 +280,8 @@ Route::delete('/team/{team}',[
     'middleware' => 'cors',
     'uses' => 'TeamController@deleteTeam'
 ]);
+
+Route::post('/team/user',[
+    'middleware' => 'cors',
+    'uses' => 'TeamController@postUserToTeam'
+]);
