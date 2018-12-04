@@ -9,6 +9,7 @@ use JWTAuth;
 use App\Chat;
 use App\TeamChat;
 use DB;
+use App\User;
 
 class ChatController extends Controller
 {
@@ -26,9 +27,10 @@ class ChatController extends Controller
         $chat->save();
 
         $teamChat = new TeamChat([
-            'id'=>$chat->id,
             'team'=>$team
         ]);
+
+        $teamChat->id = $chat->id;
 
         $teamChat->save();
         
@@ -66,10 +68,10 @@ class ChatController extends Controller
         for($i=0;$i<sizeof($teams);$i++){
             $temp = 
             DB::table('team_chats')
-            ->where('team_chats.team', $team)
             ->join('chats', 'chats.id', '=', 'team_chats.id')
+            ->where('team_chats.team', $teams[$i]->username)
             ->select('chats.*','team_chats.*')
-            ->get();
+            ->get()->first();
             array_push($teamChats,$temp);
 
         }
@@ -82,7 +84,7 @@ class ChatController extends Controller
 
         return response()->json($response, 200, $headers);
     }
-    
+
     //post message on chat
     //post private chat
     //post team chat

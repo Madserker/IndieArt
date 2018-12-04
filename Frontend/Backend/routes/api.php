@@ -301,3 +301,8 @@ Route::post('/team-chat/{team}/{desc}',[
     'middleware' => 'cors',
     'uses' => 'ChatController@createTeamChat'
 ]);
+
+Route::get('/team-chats/{username}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@getTeamChats'
+]);
