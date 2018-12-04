@@ -61,6 +61,7 @@ import { ManageTeamsViewComponent } from './manage-teams/manage-teams-view/manag
 import { ManageTeamsItemComponent } from './manage-teams/manage-teams-item/manage-teams-item.component';
 
 
+
 //definimos las rutas desponibles en la aplicacion y las asociamos a un componente
 const routes : Route[] = [
 {path: '', component: ListsViewComponent},

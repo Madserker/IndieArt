@@ -295,3 +295,9 @@ Route::put('/team/{team}/user/{user}/role/{role}',[
     'middleware' => 'cors',
     'uses' => 'TeamController@editRole'
 ]);
+
+//=====================================================================================================CHAT
+Route::post('/team-chat/{team}/{desc}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@createTeamChat'
+]);

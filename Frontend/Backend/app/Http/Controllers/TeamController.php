@@ -9,6 +9,7 @@ use App\User;
 use App\Author;
 use DB;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ChatController;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
 
@@ -108,6 +109,10 @@ class TeamController extends Controller
         $author->save();
 
        $this->addUserToTeam($request->input('username'), $user->username,$request->input('role'),true);
+
+
+    //Creamos el chat de equipo automaticamente al crear un equipo
+       ChatController::createTeamChat($request->input('username'),$request->input('description'));
 
         return response()->json(['author' => $author],200);
 

@@ -20,12 +20,13 @@
           MEMBERS
         </p>
         <div *ngFor="let member of members">
+          <hr>
             <div *ngIf="member.admin" 
-            style="
+
+            class="member"> 
+            <img class="memberPic" src={{member?._user.profile_picture}}             style="
             border: 5px solid #fbdf6f;
-            border-radius: 5px;
-        " class="member"> 
-            <img class="memberPic" src={{member?._user.profile_picture}} (click)="openUser()">
+            border-radius: 5px;"  (click)="openUser()">
 
             <p class="memberName" (click)="openUser()">
                 {{member?.user}}
@@ -71,11 +72,14 @@
           <input type=text id="role" name="role" ngModel>
         </form>
                           </div>  
+                        </div>  
+                      </div>  
+                      <hr>
     <div *ngIf="isAdmin">
     <form (ngSubmit)="addMember(f)" #f="ngForm" required>
 <div class="addMemberDiv">
   <div class="addMemberInput">
-    Username: <input type="text" name="member" id="member" ngModel class="form-control">
+    Username: <input type="text" name="member" id="member" ngModel >
   </div>
     <button mat-menu-item class="addMember">ADD MEMBER</button><!--si no es valido, el boton esta desactivado-->
   </div>
