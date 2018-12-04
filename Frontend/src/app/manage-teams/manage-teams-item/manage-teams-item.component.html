@@ -35,10 +35,17 @@
               <button 
               *ngIf="isAdmin || currentUser?.username==member?.user" 
               mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
+
+
+              <div *ngIf="currentUser?.username==member?.user" class="rolediv">
+              <form (ngSubmit)="editRole(f,member)" #f="ngForm" required>
               <button 
-              *ngIf="currentUser?.username==member?.user" 
-              mat-menu-item class="memberButton" (click)="editRole()">EDIT ROLE</button>
-              <input type=text id="role">
+              mat-menu-item class="memberButton">EDIT ROLE</button>
+              <input type=text id="role" name="role" ngModel>
+            </form>
+            </div>
+
+
         </div>
 
 
@@ -55,12 +62,15 @@
           *ngIf="isAdmin || currentUser?.username==member?.user" 
           mat-menu-item class="memberButton" (click)="removeUser(member)">REMOVE</button>
           <button *ngIf="isAdmin" mat-menu-item class="memberButton" (click)="promoteToAdmin(member)">PROMOTE TO ADMIN</button>
+
+
+          <div *ngIf="currentUser?.username==member?.user" class="rolediv">
+                          <form (ngSubmit)="editRole(f,member)" #f="ngForm" required>
           <button 
-          *ngIf="currentUser?.username==member?.user" 
-          mat-menu-item class="memberButton" (click)="editRole()">EDIT ROLE</button>
-          <input type=text id="role">
-          </div>
-    </div>
+          mat-menu-item class="memberButton">EDIT ROLE</button>
+          <input type=text id="role" name="role" ngModel>
+        </form>
+                          </div>  
     <div *ngIf="isAdmin">
     <form (ngSubmit)="addMember(f)" #f="ngForm" required>
 <div class="addMemberDiv">

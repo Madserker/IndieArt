@@ -68,8 +68,8 @@ export class ManageTeamsItemComponent implements OnInit {
   })
   }
 
-  editRole(form: NgForm){
-
+  editRole(form: NgForm,member){
+    this.lists.editRole(member.user,this.team.username,form.value.role).subscribe(result=>{window.location.reload()})
   }
 
 

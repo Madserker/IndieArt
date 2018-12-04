@@ -197,6 +197,18 @@ getTeamUsers(username : string): Observable<TeamUser[]>{
         )
       })
     }
+
+    editRole(username,team,role){
+      const token = this.authService.getToken();//recuperamos el token de la sesion
+      console.log(role)
+      return this.http.put(this.url+'/api/team/'+team+'/user/'+username+'/role/'+role+'/?token=' + token, 
+      {headers: new HttpHeaders(
+        {'Content-Type': 'application/json',
+        'Authorization':'Bearer'+ localStorage.token
+      }
+        )
+      })
+    }
   //=================================================================================GetByPrimaryKey Methods
 
 

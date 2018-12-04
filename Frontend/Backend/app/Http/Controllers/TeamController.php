@@ -211,11 +211,31 @@ class TeamController extends Controller
         ->where('team_user.team',$team)
         ->update(['admin' => true]);
 
+        return response()->json(['message' => 'User updated'],200);
 
     }
 
 
-    //edit role
+    public function editRole($team,$username,$role){
+        
+        if(! $userA = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        //comprobamos que seamos el usuario en el lado del backend tambien:
+
+        if($username!=$userA->username){//si no somos el usuario
+            return response()->json(['message' => 'No eres el usuario'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $team=
+        DB::table('team_user')
+        ->where('team_user.user',$username)
+        ->where('team_user.team',$team)
+        ->update(['role' => $role]);
+
+        return response()->json(['message' => 'User updated'],200);
+    }
 
 
 }
