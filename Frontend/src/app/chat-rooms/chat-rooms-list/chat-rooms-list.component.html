@@ -9,7 +9,7 @@
         <div class="toolbarButtonsDiv">
             <button mat-button class="toolbarButton" (click)="changeToDrawFilters()">Public Chats</button>
             <button mat-button class="toolbarButton" (click)="changeToMangaFilters()">Private Chats</button>
-            <button mat-button class="toolbarButton" (click)="changeToAnimationFilters()">Team Chats</button>
+            <button mat-button class="toolbarButton" (click)="changeToTeamChats()">Team Chats</button>
   
           </div>
   
@@ -29,18 +29,14 @@
       <mat-divider></mat-divider>
       <app-list-side-nav></app-list-side-nav>
   
-  <div *ngIf="option==1">
-      <app-image *ngFor="let draw of draws" [draw]="draw" (click)="goToDrawDetails(draw.id)">
-      </app-image>
+  <div *ngIf="option==3">
+      <app-chat-rooms-chat *ngFor="let chat of teamChats" [chat]="chat" (click)="goToDrawDetails(draw.id)"></app-chat-rooms-chat>
     </div>
   <div *ngIf="option==2">
-      <app-comic *ngFor="let comic of comics" [comic]="comic" (click)="goToComicDetails(comic.id)"></app-comic>
+      <app-chat-rooms-chat *ngFor="let chat of privateChats" [chat]="chat" (click)="goToComicDetails(comic.id)"></app-chat-rooms-chat>
   </div>
-  <div *ngIf="option==3">
-    <app-animation *ngFor="let animation of animations" [animation]="animation" (click)="goToAnimationDetails(animation.id)"></app-animation>
+  <div *ngIf="option==1">
+    <app-chat-rooms-chat *ngFor="let chat of publicChats" [chat]="chat" (click)="goToAnimationDetails(animation.id)"></app-chat-rooms-chat>
   </div>
-  <div *ngIf="option==4">
-    <app-user *ngFor="let user of users" [user]="user" (click)="goToProfile(user.username)"></app-user>
-  </div>
-    
+
   

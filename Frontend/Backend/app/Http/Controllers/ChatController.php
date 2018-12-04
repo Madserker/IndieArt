@@ -73,7 +73,6 @@ class ChatController extends Controller
             ->select('chats.*','team_chats.*')
             ->get()->first();
             array_push($teamChats,$temp);
-
         }
 
         $response = [
@@ -87,7 +86,6 @@ class ChatController extends Controller
 
     //post message on chat
     //post private chat
-    //post team chat
     //post public chat
     //add user to chat
     //delete chat
