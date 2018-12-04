@@ -32,7 +32,7 @@ constructor(private commentsService:CommentsService,private authService : AuthSe
   postComment(form: NgForm){
       this.commentsService.postComment(this.id,this.currentUser.username,form.value.text)
       .subscribe(
-        () => 
+        () => //actualizamos la lista de comentarios al publicar el nuestro
           this.commentsService.getComments(this.id)
           .subscribe(result => {
           this.comments = result as Comment[]
