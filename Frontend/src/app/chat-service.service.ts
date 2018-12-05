@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 import { Chat } from './_models/Chat.interface';
 import { Message } from './_models/Message.interface';
 import { User } from './_models/User.interface';
+
 interface getTeamChats{
   teamChats : TeamChat[];
 }

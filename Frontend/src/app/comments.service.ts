@@ -1,25 +1,12 @@
 import { Injectable } from '@angular/core';
-import { DrawComment } from './_models/DrawComment.interface';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RequestOptions } from '@angular/http';
 
 import { AuthService } from "./auth.service";
-import { AnimationComment } from './_models/AnimationComment.interface';
 import { Comment } from './_models/Comment.interface';
-import { ComicComment } from './_models/ComicComment.interface';
 
-
-interface getDrawComments{
-  comments : DrawComment[]
-}
-interface getComicComments{
-  comments : ComicComment[]
-}
-interface getAnimationComments{
-  comments : AnimationComment[]
-}
 interface getComments{
   comments : Comment[]
 }

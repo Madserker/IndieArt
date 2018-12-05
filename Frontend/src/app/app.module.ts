@@ -61,6 +61,8 @@ import { ManageTeamsViewComponent } from './manage-teams/manage-teams-view/manag
 import { ManageTeamsItemComponent } from './manage-teams/manage-teams-item/manage-teams-item.component';
 import { ChatRoomsChatComponent } from './chat-rooms/chat-rooms-chat/chat-rooms-chat.component';
 import { ChatViewerComponent } from './chat-rooms/chat-viewer/chat-viewer.component';
+import { ChatMessagesListComponent } from './chat-rooms/chat-messages-list/chat-messages-list.component';
+import { ChatMessageComponent } from './chat-rooms/chat-message/chat-message.component';
 
 
 
@@ -140,7 +142,9 @@ const routes : Route[] = [
     ManageTeamsViewComponent,
     ManageTeamsItemComponent,
     ChatRoomsChatComponent,
-    ChatViewerComponent
+    ChatViewerComponent,
+    ChatMessagesListComponent,
+    ChatMessageComponent
 
 
     
