@@ -65,6 +65,20 @@ export class ChatServiceService {
     .pipe(
       map(res => res.members as User[] || [])); 
   }
+
+  postMessage(text,id){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+    const body = JSON.stringify(
+      {
+        "text" : text
+      }
+    );
+    return this.http.post(this.url+'/api/chat/'+id+'/message/?token='+token,body,    
+    {headers: new HttpHeaders(
+      {'Content-Type': 'application/json'}
+      )
+    })
+  }
 //===================================================================================================
 }
 

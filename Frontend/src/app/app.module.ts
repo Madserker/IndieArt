@@ -63,6 +63,8 @@ import { ChatRoomsChatComponent } from './chat-rooms/chat-rooms-chat/chat-rooms-
 import { ChatViewerComponent } from './chat-rooms/chat-viewer/chat-viewer.component';
 import { ChatMessagesListComponent } from './chat-rooms/chat-messages-list/chat-messages-list.component';
 import { ChatMessageComponent } from './chat-rooms/chat-message/chat-message.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 
@@ -153,6 +155,7 @@ const routes : Route[] = [
     BrowserModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
+    MatInputModule,
     FormsModule, 
     HttpClientModule,
     HttpModule,

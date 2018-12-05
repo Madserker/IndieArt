@@ -6,6 +6,7 @@ import { Chat } from '../../_models/Chat.interface';
 import { User } from '../../_models/User.interface';
 import { ChatServiceService } from '../../chat-service.service';
 import { Message } from '../../_models/Message.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-chat-viewer',
@@ -31,8 +32,12 @@ export class ChatViewerComponent implements OnInit {
         //ya que una vez se inicia el componente, no se vuelve a ejecutar ngOnInit
         this.loadComponent();
       }
-      
     )
+
+
+
+
+    
   }
 
   loadComponent(){
@@ -47,6 +52,19 @@ export class ChatViewerComponent implements OnInit {
       }
     )
   }
+
+
+  postMessage(form: NgForm){
+    console.log(form.value.text)
+    this.chatService.postMessage(
+       form.value.text,
+       this.chat_id
+      ).subscribe(
+        response => this.loadComponent(),
+        error => console.log(error)//si no ha ido bien el login
+      );
+    form.reset();
+    }
 
   getUser(){
     if(JSON.parse(this.authService.getUser())==null){

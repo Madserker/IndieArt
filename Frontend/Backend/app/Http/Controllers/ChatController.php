@@ -10,6 +10,7 @@ use App\Chat;
 use App\TeamChat;
 use DB;
 use App\User;
+use App\Message;
 
 class ChatController extends Controller
 {
@@ -120,12 +121,12 @@ class ChatController extends Controller
         return response()->json($response, 200, $headers);
     }
 
-    public function postMessage(Request $request){
+    public function postMessage($id,Request $request){
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
         $message = new Message([
-            'chat' => $request->input('chat'),
+            'chat' => $id,
             'user'=> $user->username,
             'text' => $request->input('text')
         ]);
