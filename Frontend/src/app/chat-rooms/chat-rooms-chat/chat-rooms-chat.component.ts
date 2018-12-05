@@ -9,7 +9,7 @@ import { Chat } from '../../_models/Chat.interface';
 export class ChatRoomsChatComponent implements OnInit {
   
   @Input() chat : Chat;
-
+  image = '../../../../Backend/storage/app/profileImages/jwxfyxNJNE9zo7dUkVLEvrb8UouIQdbOT9Bbxzgs.jpeg';
   constructor() { }
 
   ngOnInit() {

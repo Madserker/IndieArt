@@ -1,3 +1,14 @@
-<div class=notification>
-one team chat over here
-  </div>
+
+<!-- [style.background]="'url(' + image + ')'"-->
+<!--poner imagen del grupo en el container del chat-->
+<div class="container">
+  <div class="name">
+{{chat?.name}}
+</div>
+<div class="desc">
+  {{chat?.description}}
+</div>
+<button mat-button class="button">OPEN CHAT</button>
+</div>
+
+
