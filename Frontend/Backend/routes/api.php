@@ -311,3 +311,18 @@ Route::get('/chat/{id}',[
     'middleware' => 'cors',
     'uses' => 'ChatController@getChat'
 ]);
+
+Route::get('/chat/{id}/messages',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@getMessages'
+]);
+
+Route::get('/chat/{id}/members',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@getChatMembers'
+]);
+
+Route::post('/chat/{id}/message',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@postMessage'
+]);

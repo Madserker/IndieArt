@@ -5,6 +5,7 @@ import { AuthService } from '../../auth.service';
 import { Chat } from '../../_models/Chat.interface';
 import { User } from '../../_models/User.interface';
 import { ChatServiceService } from '../../chat-service.service';
+import { Message } from '../../_models/Message.interface';
 
 @Component({
   selector: 'app-chat-viewer',
@@ -14,9 +15,10 @@ import { ChatServiceService } from '../../chat-service.service';
 export class ChatViewerComponent implements OnInit {
 
   chat : Chat;
-chat_id : number;
+  chat_id : number;
+  messages : Message[];
 
-currentUser : User;
+  currentUser : User;
 
   constructor(private chatService : ChatServiceService, private route: ActivatedRoute, private authService : AuthService) {
     this.getUser();
@@ -39,6 +41,11 @@ currentUser : User;
     .subscribe(result => {
     this.chat = result as Chat
     })
+    this.chatService.getChatMessages(this.chat_id).subscribe(
+      result=>{
+        this.messages = result as Message[]
+      }
+    )
   }
 
   getUser(){
