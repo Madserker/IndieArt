@@ -60,6 +60,7 @@ import { ManageTeamsListComponent } from './manage-teams/manage-teams-list/manag
 import { ManageTeamsViewComponent } from './manage-teams/manage-teams-view/manage-teams-view.component';
 import { ManageTeamsItemComponent } from './manage-teams/manage-teams-item/manage-teams-item.component';
 import { ChatRoomsChatComponent } from './chat-rooms/chat-rooms-chat/chat-rooms-chat.component';
+import { ChatViewerComponent } from './chat-rooms/chat-viewer/chat-viewer.component';
 
 
 
@@ -81,6 +82,7 @@ const routes : Route[] = [
 {path: 'edit', component: EditProfileComponent},
 {path: 'animation/:id/episodes', component: EpisodesViewComponent},
 {path: 'comic/:id/chapters', component: ChaptersViewComponent},
+{path: 'chat-rooms/:id', component: ChatViewerComponent},
 
 ];
 
@@ -137,7 +139,8 @@ const routes : Route[] = [
     ManageTeamsListComponent,
     ManageTeamsViewComponent,
     ManageTeamsItemComponent,
-    ChatRoomsChatComponent
+    ChatRoomsChatComponent,
+    ChatViewerComponent
 
 
     

@@ -6,8 +6,20 @@ import { AuthService } from "./auth.service";
 
 import { TeamChat } from './_models/TeamChat.interface';
 import { Injectable } from '@angular/core';
+import { Chat } from './_models/Chat.interface';
+import { Message } from './_models/Message.interface';
+import { User } from './_models/User.interface';
 interface getTeamChats{
   teamChats : TeamChat[];
+}
+interface getChat{
+  chat : Chat;
+}
+interface getMessages{
+  messages:Message[]
+}
+interface getMembers{
+  members:User[]
 }
 
 @Injectable({
@@ -28,5 +40,30 @@ export class ChatServiceService {
       map(res => res.teamChats as TeamChat[] || [])); 
   }
 
+//======================================================================================================CHAT VIEWER
+  getChat(id){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.get<getChat>(this.url+'/api/chat/'+id+'/?token='+token)
+    .pipe(
+      map(res => res.chat as Chat || [])); 
+  }
+
+  getChatMessages(id){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.get<getMessages>(this.url+'/api/chat/'+id+'/messages/?token='+token)
+    .pipe(
+      map(res => res.messages as Message[] || [])); 
+  }
+  
+  getChatMembers(id){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+
+    return this.http.get<getMembers>(this.url+'/api/chat/'+id+'/members/?token='+token)
+    .pipe(
+      map(res => res.members as User[] || [])); 
+  }
+//===================================================================================================
 }
 

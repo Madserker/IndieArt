@@ -306,3 +306,8 @@ Route::get('/team-chats/{username}',[
     'middleware' => 'cors',
     'uses' => 'ChatController@getTeamChats'
 ]);
+
+Route::get('/chat/{id}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@getChat'
+]);

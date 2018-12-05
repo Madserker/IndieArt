@@ -84,6 +84,25 @@ class ChatController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+    public function getChat($id){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        
+        $chat = Chat::find($id);
+        $response = [
+            'chat' => $chat
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+
+    }
+
+    public function getMessages($id){
+
+    }
     //post message on chat
     //post private chat
     //post public chat
