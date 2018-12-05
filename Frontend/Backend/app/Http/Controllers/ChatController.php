@@ -101,13 +101,73 @@ class ChatController extends Controller
     }
 
     public function getMessages($id){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $messages=
+        DB::table('messages')
+        ->where('messages.chat',$id)
+        ->select('messages.*')
+        ->get();
+
+        $response = [
+            'messages' => $messages
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+    public function postMessage(Request $request){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        $message = new Message([
+            'chat' => $request->input('chat'),
+            'user'=> $user->username,
+            'text' => $request->input('text')
+        ]);
+        $message->save();
+
+        $response = [
+            'message' => $message
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+
+    public function getChatMembers($id){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $users=
+        DB::table('chat_user')
+        ->where('chat_user.id',$id)
+        ->select('chat_user.user')
+        ->get();
+
+        $response = [
+            'users' => $users
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+
+    public function deleteChat($id){
 
     }
-    //post message on chat
+
     //post private chat
     //post public chat
     //add user to chat
-    //delete chat
     //remove user from chat
-    //get messages from chat
 }
