@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TeamChat } from '../../_models/TeamChat.interface';
 import { ChatServiceService } from '../../chat-service.service';
 import { User } from '../../_models/User.interface';
+import { Chat } from '../../_models/Chat.interface';
 
 @Component({
   selector: 'app-chat-rooms-list',
@@ -9,7 +10,7 @@ import { User } from '../../_models/User.interface';
   styleUrls: ['./chat-rooms-list.component.less']
 })
 export class ChatRoomsListComponent implements OnInit {
-  @Input() teamChats : TeamChat[]; 
+  @Input() chats : Chat[]; 
   @Input() currentUser : User;
   // @Input() privateChats : PrivateChat[]; 
   // @Input() publicChats : PublicChat[]; 
@@ -22,15 +23,21 @@ export class ChatRoomsListComponent implements OnInit {
   changeToTeamChats(){
         this.option=3;
         this.chatsService.getTeamChats(this.currentUser.username).subscribe(result => {
-          this.teamChats = result as TeamChat [];
+          this.chats = result as Chat [];
         })
   }
-  changeToMangaFilters(){
-
+  changeToPrivateChats(){
+    this.option=2;
+    this.chatsService.getPrivateChats(this.currentUser.username).subscribe(result => {
+      this.chats = result as Chat [];
+    })
   }
 
-  changeToAnimationFilters(){
-
+  changeToPublicChats(){
+    this.option=1;
+    this.chatsService.getPublicChats(this.currentUser.username).subscribe(result => {
+      this.chats = result as Chat [];
+    })
   }
 
 }

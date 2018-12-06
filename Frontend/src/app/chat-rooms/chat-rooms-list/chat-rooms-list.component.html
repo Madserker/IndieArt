@@ -7,8 +7,8 @@
             <span class="spacer"></span>
   
         <div class="toolbarButtonsDiv">
-            <button mat-button class="toolbarButton" (click)="changeToDrawFilters()">Public Chats</button>
-            <button mat-button class="toolbarButton" (click)="changeToMangaFilters()">Private Chats</button>
+            <button mat-button class="toolbarButton" (click)="changeToPublicChats()">Public Chats</button>
+            <button mat-button class="toolbarButton" (click)="changeToPrivateChats()">Private Chats</button>
             <button mat-button class="toolbarButton" (click)="changeToTeamChats()">Team Chats</button>
   
           </div>
@@ -30,13 +30,13 @@
       <app-list-side-nav></app-list-side-nav>
   
   <div *ngIf="option==3">
-      <app-chat-rooms-chat *ngFor="let chat of teamChats" [chat]="chat" (click)="goToDrawDetails(draw.id)"></app-chat-rooms-chat>
+      <app-chat-rooms-chat *ngFor="let chat of chats" [chat]="chat" ></app-chat-rooms-chat>
     </div>
   <div *ngIf="option==2">
-      <app-chat-rooms-chat *ngFor="let chat of privateChats" [chat]="chat" (click)="goToComicDetails(comic.id)"></app-chat-rooms-chat>
+      <app-chat-rooms-chat *ngFor="let chat of privateChats" [chat]="chat" ></app-chat-rooms-chat>
   </div>
   <div *ngIf="option==1">
-    <app-chat-rooms-chat *ngFor="let chat of publicChats" [chat]="chat" (click)="goToAnimationDetails(animation.id)"></app-chat-rooms-chat>
+    <app-chat-rooms-chat *ngFor="let chat of publicChats" [chat]="chat" ></app-chat-rooms-chat>
   </div>
 
   

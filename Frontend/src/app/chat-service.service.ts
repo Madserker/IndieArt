@@ -15,7 +15,7 @@ import {AppConfig} from './app.config';
 import * as io from 'socket.io-client';
 
 interface getTeamChats{
-  teamChats : TeamChat[];
+  teamChats : Chat[];
 }
 interface getChat{
   chat : Chat;
@@ -43,13 +43,29 @@ export class ChatServiceService {
   constructor( private http: HttpClient, private authService: AuthService) {
    }
 
- getTeamChats(username): Observable<TeamChat[]> {
+ getTeamChats(username): Observable<Chat[]> {
   const token = this.authService.getToken();//recuperamos el token de la sesion
 
     return this.http.get<getTeamChats>(this.url+'/api/team-chats/'+username+'/?token='+token)
     .pipe(
-      map(res => res.teamChats as TeamChat[] || [])); 
+      map(res => res.teamChats as Chat[] || [])); 
   }
+
+  getPrivateChats(username): Observable<Chat[]> {
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+  
+      return this.http.get<getTeamChats>(this.url+'/api/private-chats/'+username+'/?token='+token)
+      .pipe(
+        map(res => res.teamChats as Chat[] || [])); 
+    }
+
+  getPublicChats(username): Observable<Chat[]> {
+      const token = this.authService.getToken();//recuperamos el token de la sesion
+    
+        return this.http.get<getTeamChats>(this.url+'/api/public-chats/'+username+'/?token='+token)
+        .pipe(
+          map(res => res.teamChats as Chat[] || [])); 
+    }
 
 //======================================================================================================CHAT VIEWER
   getChat(id){
