@@ -28,8 +28,10 @@ export class ChatRoomsListComponent implements OnInit {
   }
   changeToPrivateChats(){
     this.option=2;
+
     this.chatsService.getPrivateChats(this.currentUser.username).subscribe(result => {
       this.chats = result as Chat [];
+
     })
   }
 

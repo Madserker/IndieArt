@@ -29,14 +29,6 @@
       <mat-divider></mat-divider>
       <app-list-side-nav></app-list-side-nav>
   
-  <div *ngIf="option==3">
       <app-chat-rooms-chat *ngFor="let chat of chats" [chat]="chat" ></app-chat-rooms-chat>
-    </div>
-  <div *ngIf="option==2">
-      <app-chat-rooms-chat *ngFor="let chat of privateChats" [chat]="chat" ></app-chat-rooms-chat>
-  </div>
-  <div *ngIf="option==1">
-    <app-chat-rooms-chat *ngFor="let chat of publicChats" [chat]="chat" ></app-chat-rooms-chat>
-  </div>
 
   

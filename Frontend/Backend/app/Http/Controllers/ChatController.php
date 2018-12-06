@@ -81,7 +81,7 @@ class ChatController extends Controller
         }
 
         $response = [
-            'teamChats' => $teamChats
+            'chats' => $teamChats
         ];
         $headers = ['Content-Type' => 'application/json; charset=UTF-8',
         'charset' => 'utf-8'];
@@ -106,7 +106,7 @@ class ChatController extends Controller
                 
         
                 $response = [
-                    'privateChats' => $chats
+                    'chats' => $chats
                 ];
                 $headers = ['Content-Type' => 'application/json; charset=UTF-8',
                 'charset' => 'utf-8'];
@@ -130,7 +130,7 @@ class ChatController extends Controller
                 
         
                 $response = [
-                    'publicChats' => $chats
+                    'chats' => $chats
                 ];
                 $headers = ['Content-Type' => 'application/json; charset=UTF-8',
                 'charset' => 'utf-8'];

@@ -14,8 +14,8 @@ import { User } from './_models/User.interface';
 import {AppConfig} from './app.config';
 import * as io from 'socket.io-client';
 
-interface getTeamChats{
-  teamChats : Chat[];
+interface getChats{
+  chats : Chat[];
 }
 interface getChat{
   chat : Chat;
@@ -46,25 +46,25 @@ export class ChatServiceService {
  getTeamChats(username): Observable<Chat[]> {
   const token = this.authService.getToken();//recuperamos el token de la sesion
 
-    return this.http.get<getTeamChats>(this.url+'/api/team-chats/'+username+'/?token='+token)
+    return this.http.get<getChats>(this.url+'/api/team-chats/'+username+'/?token='+token)
     .pipe(
-      map(res => res.teamChats as Chat[] || [])); 
+      map(res => res.chats as Chat[] || [])); 
   }
 
   getPrivateChats(username): Observable<Chat[]> {
     const token = this.authService.getToken();//recuperamos el token de la sesion
-  
-      return this.http.get<getTeamChats>(this.url+'/api/private-chats/'+username+'/?token='+token)
+    console.log("asd")
+      return this.http.get<getChats>(this.url+'/api/private-chats/'+username+'/?token='+token)
       .pipe(
-        map(res => res.teamChats as Chat[] || [])); 
+        map(res => res.chats as Chat[] || [])); 
     }
 
   getPublicChats(username): Observable<Chat[]> {
       const token = this.authService.getToken();//recuperamos el token de la sesion
     
-        return this.http.get<getTeamChats>(this.url+'/api/public-chats/'+username+'/?token='+token)
+        return this.http.get<getChats>(this.url+'/api/public-chats/'+username+'/?token='+token)
         .pipe(
-          map(res => res.teamChats as Chat[] || [])); 
+          map(res => res.chats as Chat[] || [])); 
     }
 
 //======================================================================================================CHAT VIEWER
