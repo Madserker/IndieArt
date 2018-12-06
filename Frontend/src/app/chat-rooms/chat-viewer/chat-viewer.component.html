@@ -10,9 +10,15 @@
     <app-chat-messages-list [messages]="messages"></app-chat-messages-list>
     </div>
 <form (submit)="postMessage(f)" #f="ngForm" required>
+
+
     <div class="inputMessage">
-        <input matInput type="text" name="text" id="text" ngModel class="form-control">
-      <button mat-button class="button">SEND</button>
+        <input type="text" name="text" id="text" ngModel class="input">
+        <span class="btnSpan">
+            <button mat-button class="button">SEND</button>
+        </span>
     </div>
+
+
   </form>
   </div>
