@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
+
 import { map } from 'rxjs/operators';
+
 
 import { AuthService } from "./auth.service";
 
@@ -9,6 +11,8 @@ import { Injectable } from '@angular/core';
 import { Chat } from './_models/Chat.interface';
 import { Message } from './_models/Message.interface';
 import { User } from './_models/User.interface';
+import {AppConfig} from './app.config';
+import * as io from 'socket.io-client';
 
 interface getTeamChats{
   teamChats : TeamChat[];
@@ -23,15 +27,21 @@ interface getMembers{
   members:User[]
 }
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ChatServiceService {
 
+  socket = io(AppConfig.SOCKET_IO);
+
+
   url = "http://192.168.1.66:8000" // serve --host 0.0.0.0
   //url = "http://localhost:8000" // localhost
 
- constructor(private http: HttpClient, private authService: AuthService){}
+  constructor( private http: HttpClient, private authService: AuthService) {
+   }
 
  getTeamChats(username): Observable<TeamChat[]> {
   const token = this.authService.getToken();//recuperamos el token de la sesion
@@ -73,11 +83,18 @@ export class ChatServiceService {
         "text" : text
       }
     );
+
+
+    
     return this.http.post(this.url+'/api/chat/'+id+'/message/?token='+token,body,    
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}
       )
     })
+  }
+
+  emit(){
+    this.socket.emit('chat.message', 'New Message');
   }
 //===================================================================================================
 }

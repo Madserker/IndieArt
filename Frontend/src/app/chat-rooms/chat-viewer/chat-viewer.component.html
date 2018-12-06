@@ -1,15 +1,17 @@
 <nav>
     <app-toolbar-not-logged></app-toolbar-not-logged>
   </nav>
-  <div class="container">
 
-
+  <div class="container" #scrollMe >
+      <div class="name">
+          {{chat?.name}}
+        </div>
 <div class="messages" id="bottom">
     <app-chat-messages-list [messages]="messages"></app-chat-messages-list>
     </div>
 <form (submit)="postMessage(f)" #f="ngForm" required>
     <div class="inputMessage">
-        <input type="text" name="text" id="text" ngModel class="form-control">
+        <input matInput type="text" name="text" id="text" ngModel class="form-control">
       <button mat-button class="button">SEND</button>
     </div>
   </form>
