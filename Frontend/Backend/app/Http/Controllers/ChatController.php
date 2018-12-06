@@ -54,6 +54,10 @@ class ChatController extends Controller
 
 
     public function getTeamChats($username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
 //get user teams
         $user = User::find($username);
         //$users = $team->users;
@@ -84,6 +88,55 @@ class ChatController extends Controller
 
         return response()->json($response, 200, $headers);
     }
+
+    public function getPrivateChats($username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        //get user teams
+                $user = User::find($username);
+                //$users = $team->users;
+                $chats=
+                DB::table('chat_user')
+                ->join('private_chats', 'private_chats.id', '=', 'chat_user.chat')
+                ->join('chats', 'chats.id', '=', 'private_chats.id')
+                ->where('chat_user.user',$username)
+                ->get();
+                
+        
+                $response = [
+                    'privateChats' => $chats
+                ];
+                $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+                'charset' => 'utf-8'];
+        
+                return response()->json($response, 200, $headers);
+            }
+            
+    public function getPublicChats($username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+        //get user teams
+                $user = User::find($username);
+                //$users = $team->users;
+                $chats=
+                DB::table('chat_user')
+                ->join('public_chats', 'public_chats.id', '=', 'chat_user.chat')
+                ->join('chats', 'chats.id', '=', 'public_chats.id')
+                ->where('chat_user.user',$username)
+                ->get();
+                
+        
+                $response = [
+                    'publicChats' => $chats
+                ];
+                $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+                'charset' => 'utf-8'];
+        
+                return response()->json($response, 200, $headers);
+            }
 
     public function getChat($id){
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 

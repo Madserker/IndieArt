@@ -3,6 +3,7 @@ import { User } from '../../_models/User.interface';
 import { TeamChat } from '../../_models/TeamChat.interface';
 import { ChatServiceService } from '../../chat-service.service';
 import { AuthService } from '../../auth.service';
+import { Chat } from '../../_models/Chat.interface';
 
 @Component({
   selector: 'app-chat-rooms-view',
@@ -14,7 +15,7 @@ export class ChatRoomsViewComponent implements OnInit {
 
   currentUser : User;
 
-  teamChats : TeamChat[] = [];
+  teamChats : Chat[] = [];
   
 
   constructor(private chatsService : ChatServiceService, private authService : AuthService) {
@@ -23,7 +24,7 @@ export class ChatRoomsViewComponent implements OnInit {
 
   ngOnInit() {
     this.chatsService.getTeamChats(this.currentUser.username).subscribe(result => {
-      this.teamChats = result as TeamChat [];
+      this.teamChats = result as Chat [];
     })
   }
 

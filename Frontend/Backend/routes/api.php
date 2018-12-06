@@ -307,6 +307,16 @@ Route::get('/team-chats/{username}',[
     'uses' => 'ChatController@getTeamChats'
 ]);
 
+Route::get('/private-chats/{username}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@getPrivateChats'
+]);
+
+Route::get('/public-chats/{username}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@getPublicChats'
+]);
+
 Route::get('/chat/{id}',[
     'middleware' => 'cors',
     'uses' => 'ChatController@getChat'
