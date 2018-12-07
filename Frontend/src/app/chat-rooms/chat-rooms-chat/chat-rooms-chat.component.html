@@ -9,6 +9,10 @@
   {{chat?.description}}
 </div>
 <button mat-button class="button" (click)="openChat()">OPEN CHAT</button>
+<form (ngSubmit)="addMember(f)" #f="ngForm" required>
+<input type="text" *ngIf="private" name="member" ngModel>
+<button *ngIf="private" mat-button class="button">ADD MEMBER</button>
+</form>
 </div>
 
 

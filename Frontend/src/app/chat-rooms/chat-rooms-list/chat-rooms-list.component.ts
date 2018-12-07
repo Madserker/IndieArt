@@ -18,6 +18,10 @@ export class ChatRoomsListComponent implements OnInit {
   constructor(private chatsService : ChatServiceService) { }
 
   ngOnInit() {
+    this.option=1;
+    this.chatsService.getPublicChats(this.currentUser.username).subscribe(result => {
+      this.chats = result as Chat [];
+    })
   }
 
   changeToTeamChats(){

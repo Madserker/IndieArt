@@ -84,6 +84,15 @@ export class ChatServiceService {
         )
       })
     }
+
+    addMember(username,chat_id){
+      const token = this.authService.getToken();//recuperamos el token de la sesion
+      return this.http.post(this.url+'/api/chat/'+chat_id+'/member/'+username+'/?token='+token,    
+      {headers: new HttpHeaders(
+        {'Content-Type': 'application/json'}
+        )
+      })
+    }
   
 
 

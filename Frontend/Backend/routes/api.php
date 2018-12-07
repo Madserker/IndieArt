@@ -346,3 +346,8 @@ Route::post('/chat/{id}/message',[
     'middleware' => 'cors',
     'uses' => 'ChatController@postMessage'
 ]);
+
+Route::post('/chat/{id}/member/{user}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@addMember'
+]);

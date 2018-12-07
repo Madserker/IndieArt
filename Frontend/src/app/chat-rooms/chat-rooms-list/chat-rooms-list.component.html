@@ -28,8 +28,12 @@
   
       <mat-divider></mat-divider>
       <app-list-side-nav></app-list-side-nav>
-  
-      <app-chat-rooms-chat *ngFor="let chat of chats" [chat]="chat" ></app-chat-rooms-chat>
+  <div *ngIf="option==1 || option==3" >
+      <app-chat-rooms-chat *ngFor="let chat of chats" [chat]="chat" [private]="false"></app-chat-rooms-chat>
+  </div>
+  <div *ngIf="option==2" >
+      <app-chat-rooms-chat *ngFor="let chat of chats" [chat]="chat" [private]="true" [currentUser]="currentUser"></app-chat-rooms-chat>
+  </div>
       <app-new-private-chat *ngIf="option==2"></app-new-private-chat>
-
+      <app-new-public-chat *ngIf="option==1"></app-new-public-chat>
   

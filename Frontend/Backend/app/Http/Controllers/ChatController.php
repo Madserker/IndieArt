@@ -9,6 +9,7 @@ use JWTAuth;
 use App\Chat;
 use App\TeamChat;
 use App\PrivateChat;
+use App\PublicChat;
 use DB;
 use App\User;
 use App\Message;
@@ -289,6 +290,23 @@ class ChatController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+    public function addMember($chat_id,$username){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        DB::table('chat_user')->insert([
+            ['chat' => $chat_id, 'user' => $username],
+        ]);
+        $response = [
+            'message' => 'member added'
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+        return response()->json($response, 200, $headers);
+
+    }
+    
     public function deleteChat($id){
 
     }

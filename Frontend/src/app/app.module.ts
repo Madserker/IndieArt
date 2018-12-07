@@ -65,6 +65,7 @@ import { ChatMessagesListComponent } from './chat-rooms/chat-messages-list/chat-
 import { ChatMessageComponent } from './chat-rooms/chat-message/chat-message.component';
 import {MatInputModule} from '@angular/material/input';
 import { NewPrivateChatComponent } from './chat-rooms/new-private-chat/new-private-chat.component';
+import { NewPublicChatComponent } from './chat-rooms/new-public-chat/new-public-chat.component';
 
 
 
@@ -148,7 +149,8 @@ const routes : Route[] = [
     ChatViewerComponent,
     ChatMessagesListComponent,
     ChatMessageComponent,
-    NewPrivateChatComponent
+    NewPrivateChatComponent,
+    NewPublicChatComponent
 
 
     

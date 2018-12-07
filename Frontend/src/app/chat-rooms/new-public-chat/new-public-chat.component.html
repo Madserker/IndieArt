@@ -1,0 +1,36 @@
+<div class="container">
+  <img src="src/assets/add.png" class="image" id="image" width="100%" (click)="openForm()">
+</div>
+
+
+<!-- The Modal -->
+<div id="myModal8" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="closeForm()">&times;</span>
+    </div>
+
+    <form (ngSubmit)="createPublicChat(f)" #f="ngForm" required>
+    <div class="modal-body">
+
+
+        Name:<br>
+        <input type="text" name="name" id="name" ngModel class="form-control">
+        Description:<br>
+        <input type="text" name="desc" id="desc" ngModel class="form-control">
+      <!-- <br>
+        <input type="text" placeholder="Add member..">
+      <br> -->
+
+      </div>
+        <div class="modal-footer">
+          <button mat-menu-item class="buttonSubmit">Create Chat</button>
+        </div>
+      </form>
+
+  </div>
+
+</div>
+
