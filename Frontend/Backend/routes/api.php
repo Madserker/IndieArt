@@ -302,6 +302,16 @@ Route::post('/team-chat/{team}/{desc}',[
     'uses' => 'ChatController@createTeamChat'
 ]);
 
+Route::post('/private-chat/{name}/{desc}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@createPrivateChat'
+]);
+
+Route::post('/public-chat/{name}/{desc}',[
+    'middleware' => 'cors',
+    'uses' => 'ChatController@createPublicChat'
+]);
+
 Route::get('/team-chats/{username}',[
     'middleware' => 'cors',
     'uses' => 'ChatController@getTeamChats'

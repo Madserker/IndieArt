@@ -8,6 +8,7 @@ use App\Http\Controllers\TeamController;
 use JWTAuth;
 use App\Chat;
 use App\TeamChat;
+use App\PrivateChat;
 use DB;
 use App\User;
 use App\Message;
@@ -216,11 +217,82 @@ class ChatController extends Controller
     }
 
 
+
+
+    public static function createPrivateChat($name,$description){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $chat = new Chat([
+            'name' => $name ,//mismo name que el teamchat para encontrarlo con INNER JOIN
+            'description' => $description
+        ]);
+
+        $chat->save();
+
+        $privateChat = new PrivateChat([
+            'user' => $user->username
+        ]);
+
+        $privateChat->id = $chat->id;
+
+        $privateChat->save();
+        
+        
+        DB::table('chat_user')->insert([
+            ['chat' => $chat->id, 'user' => $user->username],
+        ]);
+
+
+        $response = [
+            'privateChat' => $privateChat
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+    public static function createPublicChat($name,$description){
+        if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
+            return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
+        }
+
+        $chat = new Chat([
+            'name' => $name ,//mismo name que el teamchat para encontrarlo con INNER JOIN
+            'description' => $description
+        ]);
+
+        $chat->save();
+
+        $publicChat = new PublicChat([
+
+        ]);
+
+        $publicChat->id = $chat->id;
+
+        $publicChat->save();
+        
+        
+        DB::table('chat_user')->insert([
+            ['chat' => $chat->id, 'user' => $user->username],
+        ]);
+
+
+        $response = [
+            'publicChat' => $publicChat
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
     public function deleteChat($id){
 
     }
 
-    //post private chat
     //post public chat
     //add user to chat
     //remove user from chat
