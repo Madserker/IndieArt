@@ -30,5 +30,6 @@
       <app-list-side-nav></app-list-side-nav>
   
       <app-chat-rooms-chat *ngFor="let chat of chats" [chat]="chat" ></app-chat-rooms-chat>
+      <app-new-private-chat *ngIf="option==2"></app-new-private-chat>
 
   
