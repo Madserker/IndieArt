@@ -67,6 +67,26 @@ export class ChatServiceService {
           map(res => res.chats as Chat[] || [])); 
     }
 
+    postPrivateChat(name,description){
+      const token = this.authService.getToken();//recuperamos el token de la sesion
+      return this.http.post(this.url+'/api/private-chat/'+name+'/'+description+'/?token='+token,    
+      {headers: new HttpHeaders(
+        {'Content-Type': 'application/json'}
+        )
+      })
+    }
+
+    postPublicChat(name,description){
+      const token = this.authService.getToken();//recuperamos el token de la sesion
+      return this.http.post(this.url+'/api/public-chat/'+name+'/'+description+'/?token='+token,    
+      {headers: new HttpHeaders(
+        {'Content-Type': 'application/json'}
+        )
+      })
+    }
+  
+
+
 //======================================================================================================CHAT VIEWER
   getChat(id){
     const token = this.authService.getToken();//recuperamos el token de la sesion
@@ -99,9 +119,6 @@ export class ChatServiceService {
         "text" : text
       }
     );
-
-
-    
     return this.http.post(this.url+'/api/chat/'+id+'/message/?token='+token,body,    
     {headers: new HttpHeaders(
       {'Content-Type': 'application/json'}

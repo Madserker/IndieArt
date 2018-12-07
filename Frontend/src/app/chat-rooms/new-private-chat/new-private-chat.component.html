@@ -12,7 +12,7 @@
       <span class="close" (click)="closeForm()">&times;</span>
     </div>
 
-    <form (ngSubmit)="uploadDraw(f)" #f="ngForm" required>
+    <form (ngSubmit)="createPrivateChat(f)" #f="ngForm" required>
     <div class="modal-body">
 
 
@@ -20,9 +20,9 @@
         <input type="text" name="name" id="name" ngModel class="form-control">
         Description:<br>
         <input type="text" name="desc" id="desc" ngModel class="form-control">
-      <br>
+      <!-- <br>
         <input type="text" placeholder="Add member..">
-      <br>
+      <br> -->
 
       </div>
         <div class="modal-footer">

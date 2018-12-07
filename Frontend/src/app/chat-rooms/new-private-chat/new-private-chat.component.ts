@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ChatServiceService } from '../../chat-service.service';
 
 @Component({
   selector: 'app-new-private-chat',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewPrivateChatComponent implements OnInit {
 
-  constructor() { }
+  constructor(private chatService : ChatServiceService) { }
 
   ngOnInit() {
   }
@@ -17,6 +19,12 @@ export class NewPrivateChatComponent implements OnInit {
 }
 closeForm(){
   document.getElementById('myModal7').style.display = "none"
+}
+
+createPrivateChat(form : NgForm){
+  console.log("in")
+  this.chatService.postPrivateChat(form.value.name,form.value.desc).subscribe(result=>{window.location.reload()})
+
 }
 
 
