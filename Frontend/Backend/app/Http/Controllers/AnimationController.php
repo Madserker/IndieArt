@@ -11,6 +11,28 @@ use JWTAuth;
 use Illuminate\Support\Facades\Storage;
 
 
+class AnimationVisits{
+    public $animation;
+    public $visits;
+
+    function __construct($animation, $visits) {
+        $this->animation = $animation;
+        $this->visits = $visits;
+    }
+}
+
+class AnimationScore{
+    public $animation;
+    public $score;
+
+    function __construct($animation, $score) {
+        $this->animation = $animation;
+        $this->score = $score;
+    }
+}
+
+
+
 class AnimationController extends Controller
 {
 
@@ -160,4 +182,95 @@ class AnimationController extends Controller
         $art->delete();
         return response()->json(['message' => 'Animation deleted'],200);
     }
+
+
+
+
+
+
+
+    
+//ORDERBY==========================================================================
+
+function cmpVisits($a,$b)
+{
+    if ($a->visits == $b->visits) {
+        return 0;
+    }
+    return ($a->visits < $b->visits) ? 1 : -1;
+}
+
+function cmpScore($a,$b)
+{
+    if ($a->score == $b->score) {
+        return 0;
+    }
+    return ($a->score < $b->score) ? 1 : -1;
+}
+
+public function getAnimationsOrderByVisits(){
+    $animations = 
+    DB::table('arts')
+    ->join('animations', 'arts.id', '=', 'animations.id')
+    ->select('arts.*','animations.*')
+    ->get();
+
+    $animationsOrdered = [];
+    $animationsOrderedJson = [];
+
+    for($i=0;$i<sizeof($animations);$i++){
+        array_push($animationsOrdered, new AnimationVisits($animations[$i],ArtController::getVisitsNoJson($animations[$i]->id)));
+    }
+
+    usort($animationsOrdered, array($this, "cmpVisits"));
+
+    for($i=0;$i<sizeof($animationsOrdered);$i++){
+        array_push($animationsOrderedJson, $animationsOrdered[$i]->animation);
+    }
+
+    $response = [
+        'animations' => $animationsOrderedJson
+    ];
+
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+
+    return response()->json($response, 200, $headers);
+}
+
+public function getAnimationsOrderByScore(){
+    $animations = 
+    DB::table('arts')
+    ->join('animations', 'arts.id', '=', 'animations.id')
+    ->select('arts.*','animations.*')
+    ->get();
+
+    $animationsOrdered = [];
+    $animationsOrderedJson = [];
+
+    for($i=0;$i<sizeof($animations);$i++){
+        array_push($animationsOrdered, new AnimationScore($animations[$i],ArtController::getScoreNoJson($animations[$i]->id)));
+    }
+
+    usort($animationsOrdered, array($this, "cmpScore"));
+
+    for($i=0;$i<sizeof($animationsOrdered);$i++){
+        array_push($animationsOrderedJson, $animationsOrdered[$i]->animation);
+    }
+
+    $response = [
+        'animations' => $animationsOrderedJson
+    ];
+
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+
+    return response()->json($response, 200, $headers);
+}
+
+
+
+
+
+
 }

@@ -9,8 +9,29 @@ use App\Art;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
 
+class ComicVisits{
+    public $comic;
+    public $visits;
+
+    function __construct($comic, $visits) {
+        $this->comic = $comic;
+        $this->visits = $visits;
+    }
+}
+
+class ComicScore{
+    public $comic;
+    public $score;
+
+    function __construct($comic, $score) {
+        $this->comic = $comic;
+        $this->score = $score;
+    }
+}
+
 class ComicController extends Controller
 {
+    
     public function postComic(Request $request){
         //confirmamos que este metodo solo se pueda ejecutar si el usuario esta logueado
 
@@ -138,4 +159,112 @@ class ComicController extends Controller
         $art->delete();
         return response()->json(['message' => 'Comic deleted'],200);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+//ORDERBY==========================================================================
+
+function cmpVisits($a,$b)
+{
+    if ($a->visits == $b->visits) {
+        return 0;
+    }
+    return ($a->visits < $b->visits) ? 1 : -1;
 }
+
+function cmpScore($a,$b)
+{
+    if ($a->score == $b->score) {
+        return 0;
+    }
+    return ($a->score < $b->score) ? 1 : -1;
+}
+
+public function getComicsOrderByVisits(){
+    $comics = 
+    DB::table('arts')
+    ->join('comics', 'arts.id', '=', 'comics.id')
+    ->select('arts.*','comics.*')
+    ->get();
+
+    $comicsOrdered = [];
+    $comicsOrderedJson = [];
+
+    for($i=0;$i<sizeof($comics);$i++){
+        array_push($comicsOrdered, new ComicVisits($comics[$i],ArtController::getVisitsNoJson($comics[$i]->id)));
+    }
+
+    usort($comicsOrdered, array($this, "cmpVisits"));
+
+    for($i=0;$i<sizeof($comicsOrdered);$i++){
+        array_push($comicsOrderedJson, $comicsOrdered[$i]->comic);
+    }
+
+    $response = [
+        'comics' => $comicsOrderedJson
+    ];
+
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+
+    return response()->json($response, 200, $headers);
+}
+
+public function getComicsOrderByScore(){
+    $comics = 
+    DB::table('arts')
+    ->join('comics', 'arts.id', '=', 'comics.id')
+    ->select('arts.*','comics.*')
+    ->get();
+
+    $comicsOrdered = [];
+    $comicsOrderedJson = [];
+
+    for($i=0;$i<sizeof($comics);$i++){
+        array_push($comicsOrdered, new ComicScore($comics[$i],ArtController::getScoreNoJson($comics[$i]->id)));
+    }
+
+    usort($comicsOrdered, array($this, "cmpScore"));
+
+    for($i=0;$i<sizeof($comicsOrdered);$i++){
+        array_push($comicsOrderedJson, $comicsOrdered[$i]->comic);
+    }
+
+    $response = [
+        'comics' => $comicsOrderedJson
+    ];
+
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+
+    return response()->json($response, 200, $headers);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+

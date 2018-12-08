@@ -81,82 +81,7 @@ class DrawController extends Controller
         return response()->json($response, 200, $headers);
     }
 
-    
-    function cmpVisits($a,$b)
-    {
-        if ($a->visits == $b->visits) {
-            return 0;
-        }
-        return ($a->visits < $b->visits) ? 1 : -1;
-    }
 
-    function cmpScore($a,$b)
-    {
-        if ($a->score == $b->score) {
-            return 0;
-        }
-        return ($a->score < $b->score) ? 1 : -1;
-    }
-
-    public function getDrawsOrderByVisits(){
-        $draws = 
-        DB::table('arts')
-        ->join('draws', 'arts.id', '=', 'draws.id')
-        ->select('arts.*','draws.*')
-        ->get();
-
-        $drawsOrdered = [];
-        $drawsOrderedJson = [];
-
-        for($i=0;$i<sizeof($draws);$i++){
-            array_push($drawsOrdered, new DrawVisits($draws[$i],ArtController::getVisitsNoJson($draws[$i]->id)));
-        }
-
-        usort($drawsOrdered, array($this, "cmpVisits"));
-
-        for($i=0;$i<sizeof($drawsOrdered);$i++){
-            array_push($drawsOrderedJson, $drawsOrdered[$i]->draw);
-        }
-
-        $response = [
-            'draws' => $drawsOrderedJson
-        ];
-
-        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
-        'charset' => 'utf-8'];
-
-        return response()->json($response, 200, $headers);
-    }
-
-    public function getDrawsOrderByScore(){
-        $draws = 
-        DB::table('arts')
-        ->join('draws', 'arts.id', '=', 'draws.id')
-        ->select('arts.*','draws.*')
-        ->get();
-
-        $drawsOrdered = [];
-        $drawsOrderedJson = [];
-
-        for($i=0;$i<sizeof($draws);$i++){
-            array_push($drawsOrdered, new DrawScore($draws[$i],ArtController::getScoreNoJson($draws[$i]->id)));
-        }
-
-        usort($drawsOrdered, array($this, "cmpScore"));
-
-        for($i=0;$i<sizeof($drawsOrdered);$i++){
-            array_push($drawsOrderedJson, $drawsOrdered[$i]->draw);
-        }
-
-        $response = [
-            'draws' => $drawsOrderedJson
-        ];
-
-        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
-        'charset' => 'utf-8'];
-
-        return response()->json($response, 200, $headers);
-    }
 
     public function getDrawById($id){
         $draw = 
@@ -216,4 +141,92 @@ class DrawController extends Controller
         $art->delete();
         return response()->json(['message' => 'Draw deleted'],200);
     }
+
+
+
+
+
+
+
+
+
+
+    
+//ORDERBY==========================================================================
+
+function cmpVisits($a,$b)
+{
+    if ($a->visits == $b->visits) {
+        return 0;
+    }
+    return ($a->visits < $b->visits) ? 1 : -1;
+}
+
+function cmpScore($a,$b)
+{
+    if ($a->score == $b->score) {
+        return 0;
+    }
+    return ($a->score < $b->score) ? 1 : -1;
+}
+
+public function getDrawsOrderByVisits(){
+    $draws = 
+    DB::table('arts')
+    ->join('draws', 'arts.id', '=', 'draws.id')
+    ->select('arts.*','draws.*')
+    ->get();
+
+    $drawsOrdered = [];
+    $drawsOrderedJson = [];
+
+    for($i=0;$i<sizeof($draws);$i++){
+        array_push($drawsOrdered, new DrawVisits($draws[$i],ArtController::getVisitsNoJson($draws[$i]->id)));
+    }
+
+    usort($drawsOrdered, array($this, "cmpVisits"));
+
+    for($i=0;$i<sizeof($drawsOrdered);$i++){
+        array_push($drawsOrderedJson, $drawsOrdered[$i]->draw);
+    }
+
+    $response = [
+        'draws' => $drawsOrderedJson
+    ];
+
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+
+    return response()->json($response, 200, $headers);
+}
+
+public function getDrawsOrderByScore(){
+    $draws = 
+    DB::table('arts')
+    ->join('draws', 'arts.id', '=', 'draws.id')
+    ->select('arts.*','draws.*')
+    ->get();
+
+    $drawsOrdered = [];
+    $drawsOrderedJson = [];
+
+    for($i=0;$i<sizeof($draws);$i++){
+        array_push($drawsOrdered, new DrawScore($draws[$i],ArtController::getScoreNoJson($draws[$i]->id)));
+    }
+
+    usort($drawsOrdered, array($this, "cmpScore"));
+
+    for($i=0;$i<sizeof($drawsOrdered);$i++){
+        array_push($drawsOrderedJson, $drawsOrdered[$i]->draw);
+    }
+
+    $response = [
+        'draws' => $drawsOrderedJson
+    ];
+
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+
+    return response()->json($response, 200, $headers);
+}
 }

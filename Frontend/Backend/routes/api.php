@@ -88,6 +88,16 @@ Route::get('/comics',[
     'uses' => 'ComicController@getComics'
 ]);
 
+
+Route::get('/comics/ordered-visits',[
+    'middleware' => 'cors',
+    'uses' => 'ComicController@getComicsOrderByVisits'
+]);
+Route::get('/comics/ordered-score',[
+    'middleware' => 'cors',
+    'uses' => 'ComicController@getComicsOrderByScore'
+]);
+
 Route::get('/comic/{id}',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComicById'
@@ -125,6 +135,16 @@ Route::post('/animation',[
 Route::get('/animations',[
     'middleware' => 'cors',
     'uses' => 'AnimationController@getAnimations',
+]);
+
+
+Route::get('/animations/ordered-visits',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@getAnimationsOrderByVisits'
+]);
+Route::get('/animations/ordered-score',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@getAnimationsOrderByScore'
 ]);
 
 Route::get('/animation/{id}/episodes',[
