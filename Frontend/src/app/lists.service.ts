@@ -79,20 +79,6 @@ export class ListsService {
       map(res => res.draws as Draw[] || [])); 
   }
 
-  getDrawsOrderedByScore(): Observable<Draw[]> {
-
-    return this.http.get<getDraws>(this.url+'/api/draws/ordered-score')
-    .pipe(
-      map(res => res.draws as Draw[] || [])); 
-  }
-
-  getDrawsOrderedByVisits(): Observable<Draw[]> {
-
-    return this.http.get<getDraws>(this.url+'/api/draws/ordered-visits')
-    .pipe(
-      map(res => res.draws as Draw[] || [])); 
-  }
-
   getComics(): Observable<Comic[]>{
     return this.http.get<getComics>(this.url+'/api/comics')
     .pipe(
@@ -128,6 +114,57 @@ export class ListsService {
     .pipe(
       map(res => res.pages as Page[] || [])); 
   }
+
+  //ORDERBY===============================================
+
+  getDrawsOrderedByScore(): Observable<Draw[]> {
+
+    return this.http.get<getDraws>(this.url+'/api/draws/ordered-score')
+    .pipe(
+      map(res => res.draws as Draw[] || [])); 
+  }
+
+  getDrawsOrderedByVisits(): Observable<Draw[]> {
+
+    return this.http.get<getDraws>(this.url+'/api/draws/ordered-visits')
+    .pipe(
+      map(res => res.draws as Draw[] || [])); 
+  }
+
+
+
+  getComicsOrderedByScore(): Observable<Comic[]> {
+
+    return this.http.get<getComics>(this.url+'/api/comics/ordered-score')
+    .pipe(
+      map(res => res.comics as Comic[] || [])); 
+  }
+
+  getComicsOrderedByVisits(): Observable<Comic[]> {
+
+    return this.http.get<getComics>(this.url+'/api/comics/ordered-visits')
+    .pipe(
+      map(res => res.comics as Comic[] || [])); 
+  }
+
+
+  
+
+  getAnimationsOrderedByScore(): Observable<A_Animation[]> {
+
+    return this.http.get<getAnimations>(this.url+'/api/animations/ordered-score')
+    .pipe(
+      map(res => res.animations as A_Animation[] || [])); 
+  }
+
+  getAnimationsOrderedByVisits(): Observable<A_Animation[]> {
+
+    return this.http.get<getAnimations>(this.url+'/api/animations/ordered-visits')
+    .pipe(
+      map(res => res.animations as A_Animation[] || [])); 
+  }
+
+
 //===================================================================================TEAMS
 
 getTeamByUsername(username : string): Observable<Team>{

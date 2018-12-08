@@ -48,12 +48,32 @@ export class ListComponent implements OnInit {
         result => this.draws = result
       );
     }
+    if(this.option==2){
+      this.lists.getComicsOrderedByScore().subscribe(
+        result => this.comics = result
+      );
+    }
+    if(this.option==3){
+      this.lists.getAnimationsOrderedByScore().subscribe(
+        result => this.animations = result
+      );
+    }
   }
 
   orderVisits(){
     if(this.option==1){
       this.lists.getDrawsOrderedByVisits().subscribe(
         result => this.draws = result
+      );
+    }
+    if(this.option==2){
+      this.lists.getComicsOrderedByVisits().subscribe(
+        result => this.comics = result
+      );
+    }
+    if(this.option==3){
+      this.lists.getAnimationsOrderedByVisits().subscribe(
+        result => this.animations = result
       );
     }
   }
