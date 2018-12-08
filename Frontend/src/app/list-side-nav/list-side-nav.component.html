@@ -3,16 +3,15 @@
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()" id="closeButton">&times;</a>
   <H3>SORT</H3>
   <mat-divider></mat-divider>
-  <button mat-menu-item class="button-submenu">TOP RATED</button>
-  <button mat-menu-item class="button-submenu">TOP POPULAR (all time)</button>
-  <button mat-menu-item class="button-submenu">TOP POPULAR (this year)</button>
-  <button mat-menu-item class="button-submenu">TOP POPULAR (this month)</button>
+  <button mat-menu-item class="button-submenu" (click)="getNew()">NEW</button>
+  <button mat-menu-item class="button-submenu" (click)="orderByScore()">TOP RATED</button>
+  <button mat-menu-item class="button-submenu" (click)="orderByVisits()">TOP POPULAR (all time)</button>
   <span class="spacer"></span>
-  
+<!-- 
   <H3>FILTERS</H3>
   <mat-divider></mat-divider>
   <mat-radio-button class="radio-margin" *ngFor="let filter of filters" name={{filter}}>
     {{filter}}
-  </mat-radio-button>
+  </mat-radio-button> -->
 
 </div>

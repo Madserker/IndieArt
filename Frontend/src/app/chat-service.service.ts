@@ -62,7 +62,7 @@ export class ChatServiceService {
   getPublicChats(username): Observable<Chat[]> {
       const token = this.authService.getToken();//recuperamos el token de la sesion
     
-        return this.http.get<getChats>(this.url+'/api/public-chats/'+username+'/?token='+token)
+        return this.http.get<getChats>(this.url+'/api/public-chats/?token='+token)
         .pipe(
           map(res => res.chats as Chat[] || [])); 
     }

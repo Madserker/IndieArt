@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ChangeFiltersService } from '../change-filters.service';
+import { ListComponent } from '../list/list.component';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { ChangeFiltersService } from '../change-filters.service';
 })
 export class ListSideNavComponent implements OnInit{
   
-  
+  @Output() orderScore = new EventEmitter();
+  @Output() orderVisits = new EventEmitter();
+  @Output() new = new EventEmitter();
 
   filters:string [];
   constructor(private data: ChangeFiltersService) { }
@@ -27,4 +30,20 @@ export class ListSideNavComponent implements OnInit{
     document.getElementById("mySidenav").style.width = "0px";
 }
 
+
+//EVENT EMITTER FUNCTIONS=====
+orderByScore(){
+    this.orderScore.emit(null)
+    this.closeNav()
+  }
+  orderByVisits(){
+    this.orderVisits.emit(null)
+    this.closeNav()
+  }
+  getNew(){
+    this.new.emit(null)
+    this.closeNav()
+  }
 }
+
+

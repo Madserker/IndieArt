@@ -29,7 +29,7 @@
 
 
     <mat-divider></mat-divider>
-    <app-list-side-nav></app-list-side-nav>
+    <app-list-side-nav (orderScore)="orderScore($event)" (orderVisits)="orderVisits($event)" (new)="getNew($event)"></app-list-side-nav>
 
 <div *ngIf="option==1">
     <app-image *ngFor="let draw of draws" [draw]="draw" (click)="goToDrawDetails(draw.id)">

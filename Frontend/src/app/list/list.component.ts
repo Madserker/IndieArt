@@ -41,10 +41,36 @@ export class ListComponent implements OnInit {
     })    
   }
 
+//EVENT EMITTER FUNCTIONS=====
+  orderScore(){
+    if(this.option==1){
+      this.lists.getDrawsOrderedByScore().subscribe(
+        result => this.draws = result
+      );
+    }
+  }
+
+  orderVisits(){
+    if(this.option==1){
+      this.lists.getDrawsOrderedByVisits().subscribe(
+        result => this.draws = result
+      );
+    }
+  }
+
+  getNew(){
+    if(this.option==1){
+      this.changeToDrawFilters()
+    }
+  }
+
   changeToDrawFilters(){
     this.data.changeToDrawFilters();
     this.option=1;
-    console.log(this.draws);
+    this.lists.getDraws()
+    .subscribe(result => {
+      this.draws = result as Draw[]
+    })
     
   }
   changeToUserFilters(){

@@ -79,6 +79,20 @@ export class ListsService {
       map(res => res.draws as Draw[] || [])); 
   }
 
+  getDrawsOrderedByScore(): Observable<Draw[]> {
+
+    return this.http.get<getDraws>(this.url+'/api/draws/ordered-score')
+    .pipe(
+      map(res => res.draws as Draw[] || [])); 
+  }
+
+  getDrawsOrderedByVisits(): Observable<Draw[]> {
+
+    return this.http.get<getDraws>(this.url+'/api/draws/ordered-visits')
+    .pipe(
+      map(res => res.draws as Draw[] || [])); 
+  }
+
   getComics(): Observable<Comic[]>{
     return this.http.get<getComics>(this.url+'/api/comics')
     .pipe(

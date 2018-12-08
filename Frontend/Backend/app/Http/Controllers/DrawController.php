@@ -10,6 +10,25 @@ use JWTAuth;
 use Illuminate\Support\Facades\Storage;
 
 
+class DrawVisits{
+    public $draw;
+    public $visits;
+
+    function __construct($draw, $visits) {
+        $this->draw = $draw;
+        $this->visits = $visits;
+    }
+}
+
+class DrawScore{
+    public $draw;
+    public $score;
+
+    function __construct($draw, $score) {
+        $this->draw = $draw;
+        $this->score = $score;
+    }
+}
 
 
 class DrawController extends Controller
@@ -54,6 +73,83 @@ class DrawController extends Controller
         ->get();
         $response = [
             'draws' => $draws
+        ];
+
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+    
+    function cmpVisits($a,$b)
+    {
+        if ($a->visits == $b->visits) {
+            return 0;
+        }
+        return ($a->visits < $b->visits) ? 1 : -1;
+    }
+
+    function cmpScore($a,$b)
+    {
+        if ($a->score == $b->score) {
+            return 0;
+        }
+        return ($a->score < $b->score) ? 1 : -1;
+    }
+
+    public function getDrawsOrderByVisits(){
+        $draws = 
+        DB::table('arts')
+        ->join('draws', 'arts.id', '=', 'draws.id')
+        ->select('arts.*','draws.*')
+        ->get();
+
+        $drawsOrdered = [];
+        $drawsOrderedJson = [];
+
+        for($i=0;$i<sizeof($draws);$i++){
+            array_push($drawsOrdered, new DrawVisits($draws[$i],ArtController::getVisitsNoJson($draws[$i]->id)));
+        }
+
+        usort($drawsOrdered, array($this, "cmpVisits"));
+
+        for($i=0;$i<sizeof($drawsOrdered);$i++){
+            array_push($drawsOrderedJson, $drawsOrdered[$i]->draw);
+        }
+
+        $response = [
+            'draws' => $drawsOrderedJson
+        ];
+
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+
+        return response()->json($response, 200, $headers);
+    }
+
+    public function getDrawsOrderByScore(){
+        $draws = 
+        DB::table('arts')
+        ->join('draws', 'arts.id', '=', 'draws.id')
+        ->select('arts.*','draws.*')
+        ->get();
+
+        $drawsOrdered = [];
+        $drawsOrderedJson = [];
+
+        for($i=0;$i<sizeof($draws);$i++){
+            array_push($drawsOrdered, new DrawScore($draws[$i],ArtController::getScoreNoJson($draws[$i]->id)));
+        }
+
+        usort($drawsOrdered, array($this, "cmpScore"));
+
+        for($i=0;$i<sizeof($drawsOrdered);$i++){
+            array_push($drawsOrderedJson, $drawsOrdered[$i]->draw);
+        }
+
+        $response = [
+            'draws' => $drawsOrderedJson
         ];
 
         $headers = ['Content-Type' => 'application/json; charset=UTF-8',

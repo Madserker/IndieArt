@@ -116,19 +116,14 @@ class ChatController extends Controller
                 return response()->json($response, 200, $headers);
             }
             
-    public function getPublicChats($username){
+    public function getPublicChats(){
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
-        //get user teams
-                $user = User::find($username);
-                //$users = $team->users;
-                $chats=
-                DB::table('chat_user')
-                ->join('public_chats', 'public_chats.id', '=', 'chat_user.chat')
-                ->join('chats', 'chats.id', '=', 'public_chats.id')
-                ->where('chat_user.user',$username)
-                ->get();
+        $chats=
+            DB::table('chats')
+            ->join('public_chats', 'public_chats.id', '=', 'chats.id')
+            ->get();
                 
         
                 $response = [
@@ -310,8 +305,6 @@ class ChatController extends Controller
     public function deleteChat($id){
 
     }
-
-    //post public chat
-    //add user to chat
+    
     //remove user from chat
 }

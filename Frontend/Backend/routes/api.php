@@ -30,6 +30,15 @@ Route::get('/draws',[
     'middleware' => 'cors',
     'uses' => 'DrawController@getDraws'
 ]);
+Route::get('/draws/ordered-visits',[
+    'middleware' => 'cors',
+    'uses' => 'DrawController@getDrawsOrderByVisits'
+]);
+Route::get('/draws/ordered-score',[
+    'middleware' => 'cors',
+    'uses' => 'DrawController@getDrawsOrderByScore'
+]);
+
 //{id} es un parametro dinamico, el id del dibujo
 Route::get('/draw/{id}',[
     'middleware' => 'cors',
@@ -322,7 +331,7 @@ Route::get('/private-chats/{username}',[
     'uses' => 'ChatController@getPrivateChats'
 ]);
 
-Route::get('/public-chats/{username}',[
+Route::get('/public-chats',[
     'middleware' => 'cors',
     'uses' => 'ChatController@getPublicChats'
 ]);

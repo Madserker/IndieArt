@@ -130,4 +130,42 @@ class ArtController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+
+
+
+
+
+
+
+    public static function getVisitsNoJson($id){
+
+        $visits=
+        DB::table('visits')
+        ->where('art_id',$id)
+        ->get();
+
+        return sizeof($visits);
+    }
+
+    
+    public static function getScoreNoJson($id){
+        
+        $totalScore=0;
+        $score=
+        DB::table('marks')
+        ->where('art_id',$id)
+        ->select('marks.score')
+        ->get();
+
+        for($i=0;$i<sizeof($score);$i++){
+            $totalScore=$totalScore + $score[$i]->score;
+        }
+        if($totalScore!=0){
+            $totalScore = $totalScore/sizeof($score);
+        }
+        return $totalScore;
+
+    }
+
+    
 }
