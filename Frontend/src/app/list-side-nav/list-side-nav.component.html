@@ -1,6 +1,16 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()" id="closeButton">&times;</a>
+  <H3>SEARCH</H3>
+  <mat-divider></mat-divider>
+  <div class="search-container">
+    <form (ngSubmit)="searchArt(f)" #f="ngForm" required>
+      <input type="text" placeholder="Search.." name="search" ngModel>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
   <H3>SORT</H3>
   <mat-divider></mat-divider>
   <button mat-menu-item class="button-submenu" (click)="getNew()">NEW</button>

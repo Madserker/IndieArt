@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostBinding, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ChangeFiltersService } from '../change-filters.service';
 import { ListComponent } from '../list/list.component';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class ListSideNavComponent implements OnInit{
   @Output() orderScore = new EventEmitter();
   @Output() orderVisits = new EventEmitter();
   @Output() new = new EventEmitter();
+  @Output() search = new EventEmitter();
 
   filters:string [];
   constructor(private data: ChangeFiltersService) { }
@@ -44,6 +46,14 @@ orderByScore(){
     this.new.emit(null)
     this.closeNav()
   }
+
+
+  searchArt(form : NgForm){
+    this.search.emit(form.value.search)
+    this.closeNav()
+  }
+  
+
 }
 
 
