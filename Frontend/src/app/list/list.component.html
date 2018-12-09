@@ -54,7 +54,7 @@
   <app-user *ngFor="let user of users" [user]="user" (click)="goToProfile(user.username)"></app-user>
 </div>
 <div *ngIf="option==5">
-    <app-team-image *ngFor="let team of teams" [team]="team" (click)="goToProfile(team.username)"></app-team-image>
+    <app-team-image *ngFor="let team of teams" [team]="team" (click)="goToTeamProfile(team.username)"></app-team-image>
   </div>
 
 

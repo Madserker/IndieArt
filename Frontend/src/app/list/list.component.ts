@@ -50,29 +50,59 @@ export class ListComponent implements OnInit {
 //EVENT EMITTER FUNCTIONS=====
 getSearchResults(text){
   if(this.option==1){
+    if(text==""){
+      this.lists.getDraws().subscribe(
+        result => this.draws = result
+      );
+    }else{
     this.lists.getDrawsSearchResults(text).subscribe(
       result => this.draws = result
     );
+    }
   }
   if(this.option==2){
+    if(text==""){
+      this.lists.getComics().subscribe(
+        result => this.comics = result
+      );
+    }else{
     this.lists.getComicsSearchResults(text).subscribe(
       result => this.comics = result
     );
+    }
   }
   if(this.option==3){
+    if(text==""){
+      this.lists.getAnimations().subscribe(
+        result => this.animations = result
+      );
+    }else{
     this.lists.getAnimationsSearchResults(text).subscribe(
       result => this.animations = result
     );
+    }
   }
   if(this.option==4){
+    if(text==""){
+      this.lists.getUsers().subscribe(
+        result => this.users = result
+      );
+    }else{
     this.lists.getUsersSearchResults(text).subscribe(
       result => this.users = result
     );
+    }
   }
   if(this.option==5){
+    if(text==""){
+      this.lists.getTeams().subscribe(
+        result => this.teams = result
+      );
+    }else{
     this.lists.getTeamsSearchResults(text).subscribe(
       result => this.teams = result
     );
+    }
   }
 }
 
@@ -182,6 +212,9 @@ getSearchResults(text){
     this.router.navigateByUrl("animation/"+id);
   }
   goToProfile(username){
+    this.router.navigateByUrl("user/"+username);
+  }
+  goToTeamProfile(username){
     this.router.navigateByUrl("team/"+username);
   }
 }

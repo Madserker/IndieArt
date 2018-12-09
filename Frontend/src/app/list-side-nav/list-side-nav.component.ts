@@ -50,9 +50,8 @@ orderByScore(){
   }
 
 
-  searchArt(form : NgForm){
-    this.search.emit(form.value.search)
-    this.closeNav()
+  onKey(event:any){
+    this.search.emit(event.target.value)
   }
   
 

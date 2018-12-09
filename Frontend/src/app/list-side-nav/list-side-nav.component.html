@@ -4,10 +4,7 @@
   <H3>SEARCH</H3>
   <mat-divider></mat-divider>
   <div class="search-container">
-    <form (ngSubmit)="searchArt(f)" #f="ngForm" required>
-      <input type="text" placeholder="Search.." name="search" ngModel>
-      <button type="submit">Submit</button>
-    </form>
+      <input type="text" placeholder="Search.." name="search" (keyup)="onKey($event)">
   </div>
 
 
