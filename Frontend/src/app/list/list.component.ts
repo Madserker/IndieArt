@@ -48,6 +48,34 @@ export class ListComponent implements OnInit {
 }
 
 //EVENT EMITTER FUNCTIONS=====
+getSearchResults(text){
+  if(this.option==1){
+    this.lists.getDrawsSearchResults(text).subscribe(
+      result => this.draws = result
+    );
+  }
+  if(this.option==2){
+    this.lists.getComicsSearchResults(text).subscribe(
+      result => this.comics = result
+    );
+  }
+  if(this.option==3){
+    this.lists.getAnimationsSearchResults(text).subscribe(
+      result => this.animations = result
+    );
+  }
+  if(this.option==4){
+    this.lists.getUsersSearchResults(text).subscribe(
+      result => this.users = result
+    );
+  }
+  if(this.option==5){
+    this.lists.getTeamsSearchResults(text).subscribe(
+      result => this.teams = result
+    );
+  }
+}
+
   orderScore(){
     if(this.option==1){
       this.lists.getDrawsOrderedByScore().subscribe(

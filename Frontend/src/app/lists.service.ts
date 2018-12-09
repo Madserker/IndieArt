@@ -165,6 +165,33 @@ export class ListsService {
   }
 
 
+  getDrawsSearchResults(text){
+    return this.http.get<getDraws>(this.url+'/api/draws/search/'+text)
+    .pipe(
+      map(res => res.draws as Draw[] || [])); 
+  }
+  getComicsSearchResults(text){
+    return this.http.get<getComics>(this.url+'/api/comics/search/'+text)
+    .pipe(
+      map(res => res.comics as Comic[] || [])); 
+  }
+  getAnimationsSearchResults(text){
+    return this.http.get<getAnimations>(this.url+'/api/animations/search/'+text)
+    .pipe(
+      map(res => res.animations as A_Animation[] || [])); 
+  }
+  getUsersSearchResults(text){
+    return this.http.get<getUsers>(this.url+'/api/users/search/'+text)
+    .pipe(
+      map(res => res.users as User[] || [])); 
+  }
+  getTeamsSearchResults(text){
+    return this.http.get<getTeams>(this.url+'/api/teams/search/'+text)
+    .pipe(
+      map(res => res.teams as Team[] || [])); 
+  }
+
+
 //===================================================================================TEAMS
 
 getTeamByUsername(username : string): Observable<Team>{

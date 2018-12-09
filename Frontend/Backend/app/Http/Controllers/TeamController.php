@@ -243,7 +243,7 @@ class TeamController extends Controller
     }
 
     public function getSearchResults($text){
-        $users =
+        $teams =
         DB::table('teams')->join('authors','authors.username','=','teams.username')->where('authors.username', 'LIKE', '%' . $text . '%')->get();
         $response = [
             'teams' => $teams
