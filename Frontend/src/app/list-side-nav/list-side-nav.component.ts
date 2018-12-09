@@ -15,6 +15,7 @@ export class ListSideNavComponent implements OnInit{
   @Output() orderVisits = new EventEmitter();
   @Output() new = new EventEmitter();
   @Output() search = new EventEmitter();
+  @Output() close = new EventEmitter();
 
   filters:string [];
   constructor(private data: ChangeFiltersService) { }
@@ -30,6 +31,7 @@ export class ListSideNavComponent implements OnInit{
 
  closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
+    this.close.emit(null)
 }
 
 

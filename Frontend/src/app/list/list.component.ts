@@ -41,6 +41,12 @@ export class ListComponent implements OnInit {
     })    
   }
 
+
+
+ closeNav() {
+    document.getElementById("sidenavList").style.width = "0px";
+}
+
 //EVENT EMITTER FUNCTIONS=====
   orderScore(){
     if(this.option==1){
@@ -132,6 +138,7 @@ export class ListComponent implements OnInit {
 
   openNav(){		
     this.listSideNav.openNav();   
+    document.getElementById("sidenavList").style.width = "250px";
   }
 
 
