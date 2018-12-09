@@ -24,7 +24,7 @@ export class LoginSideNavComponent implements OnInit {
       form.value.password
       ).subscribe(
         response =>  window.location.reload(),//si ha ido bien el login
-        error => console.log(error)//si no ha ido bien el login
+        error => alert(error.json().error)//si no ha ido bien el login
       );
   }
 
@@ -38,7 +38,7 @@ export class LoginSideNavComponent implements OnInit {
         form.value.password
         ).subscribe(
           response => { window.location.reload(),this.closeNav()},//si ha ido bien el registro
-          error => console.log(error)//si no ha ido bien el registro
+          error => alert(error.json().message)//si no ha ido bien el registro
       );
     }
   }

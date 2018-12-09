@@ -56,10 +56,20 @@ class UserController extends Controller
         $this->validate($request,[//validamos el registro
         'username' => 'required|unique:authors', //el nombre de usuario es obligatorio y unico en la tabla de authors
         'email' => 'required|email|unique:users', //el email tiene que ser obligatorio, formato email y unico en la tabla de usuarios
-        'password' => 'required', //contraseña obligatoria
+        'password' => array(
+            'required',
+            'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'
+            //minimo 8 caracteres, que contenga letras y numeros
+        ),
         'birthday' => 'required',
         'real_name' => 'required',
-            ]);
+        'username' => 
+        array(
+            'required',
+            'regex:/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/u'
+            //regex: no puede empezar ni por . ni por _ ni acabar por . ni _ , tiene que tener entre 3 y 20 caracteres 
+        )
+        ]);
         $author = new Author([
             'profile_picture' => array_random($randomPic),//default image
             'username' => $request->input('username'),
