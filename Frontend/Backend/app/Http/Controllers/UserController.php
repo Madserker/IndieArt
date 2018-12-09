@@ -419,4 +419,17 @@ class UserController extends Controller
         return response()->json(['author' => $author],200);
     }
 
+
+    
+public function getSearchResults($text){
+    $users =
+    DB::table('users')->join('authors','authors.username','=','users.username')->where('authors.username', 'LIKE', '%' . $text . '%')->get();
+    $response = [
+        'users' => $users
+    ];
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+    return response()->json($response, 200, $headers);
+}
+
 }

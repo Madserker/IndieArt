@@ -242,5 +242,16 @@ class TeamController extends Controller
         return response()->json(['message' => 'User updated'],200);
     }
 
+    public function getSearchResults($text){
+        $users =
+        DB::table('teams')->join('authors','authors.username','=','teams.username')->where('authors.username', 'LIKE', '%' . $text . '%')->get();
+        $response = [
+            'teams' => $teams
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+        return response()->json($response, 200, $headers);
+    }
+
 
 }

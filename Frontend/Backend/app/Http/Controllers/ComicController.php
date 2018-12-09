@@ -255,6 +255,17 @@ public function getComicsOrderByScore(){
 
     return response()->json($response, 200, $headers);
 }
+
+public function getSearchResults($text){
+    $comics =
+    DB::table('comics')->join('arts','arts.id','=','comics.id')->where('arts.name', 'LIKE', '%' . $text . '%')->get();
+    $response = [
+        'comics' => $comics
+    ];
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+    return response()->json($response, 200, $headers);
+}
 }
 
 

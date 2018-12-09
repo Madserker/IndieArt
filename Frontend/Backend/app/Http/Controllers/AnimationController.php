@@ -269,7 +269,16 @@ public function getAnimationsOrderByScore(){
 }
 
 
-
+public function getSearchResults($text){
+    $animations =
+    DB::table('animations')->join('arts','arts.id','=','animations.id')->where('arts.name', 'LIKE', '%' . $text . '%')->get();
+    $response = [
+        'animations' => $animations
+    ];
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+    return response()->json($response, 200, $headers);
+}
 
 
 

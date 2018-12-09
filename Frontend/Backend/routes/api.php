@@ -30,6 +30,10 @@ Route::get('/draws',[
     'middleware' => 'cors',
     'uses' => 'DrawController@getDraws'
 ]);
+Route::get('/draws/search/{text}',[
+    'middleware' => 'cors',
+    'uses' => 'DrawController@getSearchResults'
+]);
 Route::get('/draws/ordered-visits',[
     'middleware' => 'cors',
     'uses' => 'DrawController@getDrawsOrderByVisits'
@@ -87,7 +91,10 @@ Route::get('/comics',[
     'middleware' => 'cors',
     'uses' => 'ComicController@getComics'
 ]);
-
+Route::get('/comics/search/{text}',[
+    'middleware' => 'cors',
+    'uses' => 'ComicController@getSearchResults'
+]);
 
 Route::get('/comics/ordered-visits',[
     'middleware' => 'cors',
@@ -136,7 +143,10 @@ Route::get('/animations',[
     'middleware' => 'cors',
     'uses' => 'AnimationController@getAnimations',
 ]);
-
+Route::get('/animations/search/{text}',[
+    'middleware' => 'cors',
+    'uses' => 'AnimationController@getSearchResults'
+]);
 
 Route::get('/animations/ordered-visits',[
     'middleware' => 'cors',
@@ -191,6 +201,11 @@ Route::get('/user/{username}/followers',[
 Route::get('/user/{username}/following',[
     'middleware' => 'cors',
     'uses' => 'UserController@getFollowing'
+]);
+
+Route::get('/users/search/{text}',[
+    'middleware' => 'cors',
+    'uses' => 'UserController@getSearchResults'
 ]);
 
 Route::post('/user/follow',[
@@ -294,7 +309,10 @@ Route::get('/user/{name}/teams/',[
     'middleware' => 'cors',
     'uses' => 'TeamController@getUserTeams'
 ]);
-
+Route::get('/teams/search/{text}',[
+    'middleware' => 'cors',
+    'uses' => 'TeamController@getSearchResults'
+]);
 Route::post('/team',[
     'middleware' => 'cors',
     'uses' => 'TeamController@createTeam'

@@ -229,4 +229,16 @@ public function getDrawsOrderByScore(){
 
     return response()->json($response, 200, $headers);
 }
+
+
+    public function getSearchResults($text){
+        $draws =
+        DB::table('draws')->join('arts','arts.id','=','draws.id')->where('arts.name', 'LIKE', '%' . $text . '%')->get();
+        $response = [
+            'draws' => $draws
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+        return response()->json($response, 200, $headers);
+    }
 }

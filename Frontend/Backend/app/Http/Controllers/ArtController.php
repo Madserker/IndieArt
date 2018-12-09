@@ -135,8 +135,6 @@ class ArtController extends Controller
 
 
 
-
-
     public static function getVisitsNoJson($id){
 
         $visits=
