@@ -34,6 +34,6 @@
   <div *ngIf="option==2" >
       <app-chat-rooms-chat *ngFor="let chat of chats" [chat]="chat" [private]="true" [currentUser]="currentUser"></app-chat-rooms-chat>
   </div>
-      <app-new-private-chat *ngIf="option==2"></app-new-private-chat>
-      <app-new-public-chat *ngIf="option==1"></app-new-public-chat>
+      <app-new-private-chat *ngIf="option==2 && currentUser!=null"></app-new-private-chat>
+      <app-new-public-chat *ngIf="option==1 && currentUser!=null"></app-new-public-chat>
   
