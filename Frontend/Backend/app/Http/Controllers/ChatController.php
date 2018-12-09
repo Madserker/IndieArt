@@ -175,6 +175,10 @@ class ChatController extends Controller
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
+        $messages = Message::where('chat',$id)->get();
+        if(sizeof($messages)>50){//limite de mensajes = 50, borrar el numero 51 al publicar nuevo comentario
+            Message::where('chat',$id)->skip(50)->take(1)->delete();
+        }
         $message = new Message([
             'chat' => $id,
             'user'=> $user->username,
