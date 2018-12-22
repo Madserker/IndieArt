@@ -8,6 +8,7 @@ import { User } from '../_models/User.interface';
 import { A_Animation } from '../_models/A_Animation.interface';
 import { Router } from '@angular/router';
 import { Team } from '../_models/Team.interface';
+import { TagsService } from '../tags.service';
 
 
 @Component({
@@ -29,7 +30,9 @@ export class ListComponent implements OnInit {
   users: User[] = [];
   teams: Team[] = [];
 
-  constructor(private data: ChangeFiltersService, private lists: ListsService,private router:Router) { }
+  selectedFilters = [];
+
+  constructor(private tagService: TagsService, private data: ChangeFiltersService, private lists: ListsService,private router:Router) { }
 
 
   ngOnInit() {
@@ -106,45 +109,100 @@ getSearchResults(text){
   }
 }
 
+//EDIT TO NOT RELOAD THE ENTIRE LIST, INSTEAD USE THE CURRENT LIST
+//OR GET THE LIST FROM BACKEND AND APPLY CURRENT FILTERS
   orderScore(){
     if(this.option==1){
       this.lists.getDrawsOrderedByScore().subscribe(
-        result => this.draws = result
+        result => 
+        {
+          this.draws = result
+          //apply filters despues de ordenar
+          this.applyFilter(this.selectedFilters);
+        }
+
       );
     }
     if(this.option==2){
       this.lists.getComicsOrderedByScore().subscribe(
-        result => this.comics = result
+        result => 
+        {
+          this.comics = result
+          //apply filters despues de ordenar
+          this.applyFilter(this.selectedFilters);
+        }
       );
     }
     if(this.option==3){
       this.lists.getAnimationsOrderedByScore().subscribe(
-        result => this.animations = result
+        result => 
+        {
+          this.animations = result
+          //apply filters despues de ordenar
+          this.applyFilter(this.selectedFilters);
+        }
       );
     }
+
   }
 
   orderVisits(){
     if(this.option==1){
       this.lists.getDrawsOrderedByVisits().subscribe(
-        result => this.draws = result
+        result => 
+        {
+          this.draws = result
+          //apply filters despues de ordenar
+          this.applyFilter(this.selectedFilters);
+        }
       );
     }
     if(this.option==2){
       this.lists.getComicsOrderedByVisits().subscribe(
-        result => this.comics = result
+        result => 
+        {
+          this.comics = result
+          //apply filters despues de ordenar
+          this.applyFilter(this.selectedFilters);
+        }
       );
     }
     if(this.option==3){
       this.lists.getAnimationsOrderedByVisits().subscribe(
-        result => this.animations = result
+        result => 
+        {
+          this.animations = result
+          //apply filters despues de ordenar
+          this.applyFilter(this.selectedFilters);
+        }
       );
     }
   }
 
   getNew(){
     if(this.option==1){
-      this.changeToDrawFilters()
+      this.lists.getDraws()
+      .subscribe(result => {
+        this.draws = result as Draw[]
+        //apply filters despues de ordenar
+        this.applyFilter(this.selectedFilters);
+      })
+    }
+    if(this.option==2){
+      this.lists.getComics()
+      .subscribe(result => {
+        this.comics = result as Comic[]
+        //apply filters despues de ordenar
+        this.applyFilter(this.selectedFilters);
+      })
+    }
+    if(this.option==3){
+      this.lists.getAnimations()
+      .subscribe(result => {
+        this.animations = result as A_Animation[]
+        //apply filters despues de ordenar
+        this.applyFilter(this.selectedFilters);
+      })
     }
   }
 
@@ -177,7 +235,7 @@ getSearchResults(text){
   }
   changeToAnimationFilters(){
     this.data.changeToAnimationFilters(); 
-     //rellenamos la listade animaciones y la mostramos
+     //rellenamos la lista de animaciones y la mostramos
      this.option=3;
      this.lists.getAnimations()
      .subscribe(result => {
@@ -200,6 +258,75 @@ getSearchResults(text){
   }
 
 
+
+
+  applyFilter(filters){
+    this.selectedFilters = filters;
+    console.log("listComponent")
+    console.log(this.selectedFilters)
+    var filtered = [];
+    console.log("enter")
+    //si no hay ningun filtro, hacer un get de todos
+    if(filters.length == 0){
+      if(this.option==1){    this.lists.getDraws()
+        .subscribe(result => {
+          this.draws = result as Draw[]
+        })}
+      if(this.option==2){    this.lists.getComics()
+        .subscribe(result => {
+          this.comics = result as Comic[]
+        })}
+      if(this.option==3){     this.lists.getAnimations()
+        .subscribe(result => {
+          this.animations = result as A_Animation[]
+        })}
+    }
+    else{
+    if(this.option==1){//draws
+      for(let item of this.draws){//draw
+        this.tagService.getTags(item.id).subscribe(//tags
+          tags=>{
+            console.log(tags);
+            for(let tag of tags){//tag
+              if(filters.indexOf(tag.text) > -1){//tag in filters?
+                filtered.push(item);
+              }
+            }
+          }
+        )
+      }
+      this.draws=filtered;
+    }else if(this.option==2){
+      for(let item of this.draws){
+        this.tagService.getTags(item.id).subscribe(
+          tags=>{
+            for(let tag of tags){
+              if(filters.indexOf(tag.text) > -1){//tag in filters?
+                filtered.push(item);
+              }
+            }
+          }
+        )
+      }
+      this.comics = filtered;
+    }else if(this.option==3){
+      for(let item of this.draws){
+        this.tagService.getTags(item.id).subscribe(
+          tags=>{
+            for(let tag of tags){
+              if(filters.indexOf(tag.text) > -1){//tag in filters?
+                filtered.push(item);
+              }
+            }
+          }
+        )
+      }
+      this.animations=filtered;
+    }
+
+
+  }
+  }
 
 
   goToDrawDetails(id){

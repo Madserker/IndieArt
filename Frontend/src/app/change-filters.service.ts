@@ -7,10 +7,10 @@ import { BehaviorSubject } from 'rxjs';
 export class ChangeFiltersService {
 
   //definimos las listas con los filtros disponibles
-  drawFilters:string[] = ["Digital Art","Traditional Art","Fan Art","Photography","Contest Winners"];
-  mangaFilters:string[] = ["Comic","Manga","Contest Winners","English","Spanish","Japanese"];
-  userFilters:string[] = ["Manga Artists","Animators","Draw Artist","Contest Winners"];
-  animationFilters:string[] = ["Short Animations","Long Animations","Serie","GIF","Film","Contest Winners"];
+  drawFilters:string[] = ["Digital Art","Traditional Art","Fan Art","Photography"];
+  mangaFilters:string[] = ["Comic","Manga","English","Spanish","Japanese"];
+  userFilters:string[] = ["Manga Artists","Animators","Draw Artist"];
+  animationFilters:string[] = ["Short Animations","Long Animations","Serie","GIF","Film"];
 
   private filtersSource = new BehaviorSubject<string []>(this.drawFilters);
   currentFilters = this.filtersSource.asObservable();
@@ -20,7 +20,7 @@ export class ChangeFiltersService {
     this.filtersSource.next(filters);
   }
 
-  //metodos que usaran los componentes que usan este servidio para cambiar los filtros
+  //metodos que usaran los componentes que usan este servixio para cambiar los filtros
   changeToDrawFilters(){
     this.changeMessage(this.drawFilters);
   }

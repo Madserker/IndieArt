@@ -14,11 +14,12 @@
   <button mat-menu-item class="button-submenu" (click)="orderByScore()">TOP RATED</button>
   <button mat-menu-item class="button-submenu" (click)="orderByVisits()">TOP POPULAR (all time)</button>
   <span class="spacer"></span>
-<!-- 
+
   <H3>FILTERS</H3>
   <mat-divider></mat-divider>
-  <mat-radio-button class="radio-margin" *ngFor="let filter of filters" name={{filter}}>
+  <mat-checkbox class="radio-margin" *ngFor="let filter of filters" name={{filter}} 
+  (click)="toggleSelection(filter,$event)">
     {{filter}}
-  </mat-radio-button> -->
+  </mat-checkbox>
 
 </div>

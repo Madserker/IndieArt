@@ -8,7 +8,7 @@ class Art extends Model
 {
     public function tags()//Many To Many Relation
     {
-        return $this->hasMany('App\Tag');
+        return $this->belongsToMany('App\Tag');
     }
     public function user()//Many To One Relation
     {

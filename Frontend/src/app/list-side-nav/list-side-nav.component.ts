@@ -13,11 +13,15 @@ export class ListSideNavComponent implements OnInit{
   
   @Output() orderScore = new EventEmitter();
   @Output() orderVisits = new EventEmitter();
+  
+  @Output() applyFilter = new EventEmitter();
+
   @Output() new = new EventEmitter();
   @Output() search = new EventEmitter();
   @Output() close = new EventEmitter();
 
   filters:string [];
+  selectedFilters:string[] = [];
   constructor(private data: ChangeFiltersService) { }
 
 
@@ -34,6 +38,20 @@ export class ListSideNavComponent implements OnInit{
     this.close.emit(null)
 }
 
+//FILTERS FUNCTIONS 
+toggleSelection(filter,event){//ADD OR REMOVE FILTERS ON SELECTED FILTERS LIST
+  console.log(filter)
+  if(this.selectedFilters.indexOf(filter) > -1){
+    var index = this.selectedFilters.indexOf(filter);
+    this.selectedFilters.splice(index,1);
+    console.log(this.selectedFilters);
+  }else{
+    this.selectedFilters.push(filter);
+    console.log(this.selectedFilters);
+  }
+  //SEND LIST TO LIST-COMPONENT
+  this.applyFilter.emit(this.selectedFilters);
+}
 
 //EVENT EMITTER FUNCTIONS=====
 orderByScore(){

@@ -8,6 +8,7 @@ use App\Art;
 use App\User;
 use App\Mark;
 use App\Visit;
+use App\Tag;
 use DB;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
@@ -130,9 +131,44 @@ class ArtController extends Controller
         return response()->json($response, 200, $headers);
     }
 
+//TAGS========================================================
+public static function addTag($tag,$art_id){
+    //comprogbar si el $tag existe en la BD, si no existe retornar ERROR
+    $findTags = DB::table('tags')->where('name',$tag)->get();
+    if(!$findTags) {
+        $art = Art::find($art_id);
+        $tag = Tag::find($tag);
+        $art->tags()->attach($tag);
+        return 201;
+    }
+    return 400;
+}
+
+public static function getTagsByType($type){
+    $tags = DB::table('tags')->where('type',$type)->get();
+    $response = [
+        'tags' => $tags
+    ];
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+    return response()->json($response, 201,$headers);//retornamos 201
+ 
+}
+
+public static function getTags($art_id){
+    $art = Art::find($art_id);
+    $tags = $art->tags;
+
+    $response = [
+        'tags' => $tags
+    ];
+    $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+    'charset' => 'utf-8'];
+    return response()->json($response, 201,$headers);//retornamos 201
+}
 
 
-
+//=============================================================
 
 
     public static function getVisitsNoJson($id){

@@ -14,3 +14,15 @@ localhost:3306
 
 Servidor socket.io
 localhost:3000
+
+#START APP
+cd Frontend
+ng serve
+
+cd Frontend/Backend
+php artisan serve
+
+cd chat
+node index.js
+
+Start MySQL server on XAMPP

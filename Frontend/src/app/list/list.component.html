@@ -37,7 +37,9 @@
     (orderVisits)="orderVisits($event)" 
     (new)="getNew($event)" 
     (close)="closeNav($event)" 
-    (search)="getSearchResults($event)">
+    (search)="getSearchResults($event)"
+    (applyFilter)="applyFilter($event)"
+    >
   </app-list-side-nav>
 
 <div *ngIf="option==1">

@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    public $timestamps = false;
+
     public function art()//Many To Many Relation
     {
-        return $this->hasMany('App\Art');
+        return $this->belongsToMany('App\Art');
     }
 
 
