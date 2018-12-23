@@ -22,9 +22,9 @@
           Number:<br>
           <input type="text" name="number" id="number" ngModel class="form-control"><br>
 
-          <input type="file" (change)="fileChange($event)" placeholder="Upload Page" accept=".jpg,.jpeg,.png" id="inputPage">
-          <button type="button" mat-menu-item class="buttonSubmit" (click)="addPage()">Add Page</button>
-          <br>
+          <input type="file" class="inputFile" (change)="fileChange($event)" placeholder="Upload Page" accept=".jpg,.jpeg,.png" id="inputPage">
+
+          <span></span>
           <button type="button" mat-menu-item class="buttonSubmit" (click)="removePage()">Remove Page</button>
 
           <p *ngFor="let file of fileList">{{file.name}}</p>

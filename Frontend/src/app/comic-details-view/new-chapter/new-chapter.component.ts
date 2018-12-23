@@ -47,7 +47,7 @@ export class NewChapterComponent implements OnInit {
     let fileList = event.target.files;
     if(fileList.length > 0) {
         this.file = fileList[0];
-        
+        this.addPage();
     }
     console.log(this.fileList)
   }
