@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, HostBinding, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ChangeFiltersService } from '../change-filters.service';
-import { ListComponent } from '../list/list.component';
-import { NgForm } from '@angular/forms';
 
 
 @Component({

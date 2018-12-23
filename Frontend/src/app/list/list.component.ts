@@ -55,33 +55,52 @@ getSearchResults(text){
   if(this.option==1){
     if(text==""){
       this.lists.getDraws().subscribe(
-        result => this.draws = result
+        result => {
+          this.draws = result
+          this.selectedFilters=[];
+        }
       );
     }else{
     this.lists.getDrawsSearchResults(text).subscribe(
-      result => this.draws = result
+      result => {
+        this.draws = result
+        this.selectedFilters=[];
+      }
     );
     }
   }
   if(this.option==2){
     if(text==""){
       this.lists.getComics().subscribe(
-        result => this.comics = result
+        result => {
+          this.comics = result
+          this.selectedFilters=[];
+        }
       );
     }else{
     this.lists.getComicsSearchResults(text).subscribe(
-      result => this.comics = result
+      result => {
+        this.comics = result
+        this.selectedFilters=[];
+      }
     );
     }
   }
   if(this.option==3){
     if(text==""){
       this.lists.getAnimations().subscribe(
-        result => this.animations = result
+        result => {
+          this.animations = result
+          this.selectedFilters=[];
+        }
+        
       );
     }else{
     this.lists.getAnimationsSearchResults(text).subscribe(
-      result => this.animations = result
+      result => {
+        this.animations = result
+        this.selectedFilters=[];
+      }
     );
     }
   }
@@ -107,6 +126,7 @@ getSearchResults(text){
     );
     }
   }
+
 }
 
 //EDIT TO NOT RELOAD THE ENTIRE LIST, INSTEAD USE THE CURRENT LIST
@@ -262,10 +282,8 @@ getSearchResults(text){
 
   applyFilter(filters){
     this.selectedFilters = filters;
-    console.log("listComponent")
-    console.log(this.selectedFilters)
     var filtered = [];
-    console.log("enter")
+    console.log(this.selectedFilters)
     //si no hay ningun filtro, hacer un get de todos
     if(filters.length == 0){
       if(this.option==1){    this.lists.getDraws()
