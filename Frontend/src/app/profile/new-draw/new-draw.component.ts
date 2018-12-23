@@ -71,8 +71,8 @@ uploadDraw(form: NgForm){
     ).subscribe(
       response =>{
         for(let tag of this.selectedFilters){
-          console.log(response.draw.id)
-          this.tagsService.addTag(response.draw.id,tag).subscribe(res=>
+          console.log(response)
+          this.tagsService.addTag(response,tag).subscribe(res=>
             window.location.reload()
             )
         }

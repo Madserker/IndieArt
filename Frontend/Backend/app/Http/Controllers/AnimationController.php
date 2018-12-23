@@ -68,7 +68,7 @@ class AnimationController extends Controller
         $animation->id = $art->id;
 
         $animation->save();//guardamos el draw
-        return response()->json(['art' => $art], 201);//retornamos 201 y el dibujo
+        return response()->json([$animation->id], 201);//retornamos 201 y el id
     }
 
     public function postEpisode(Request $request){

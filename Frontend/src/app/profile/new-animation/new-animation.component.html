@@ -21,10 +21,10 @@
         Description:<br>
         <input type="text" name="desc" id="desc" ngModel class="form-control">
         Tags:<br>
-        <button mat-menu-item class="Tag">Tag1</button>
-        <button mat-menu-item class="Tag">Tag1</button>
-        <button mat-menu-item class="Tag">Tag1</button>
-        <button mat-menu-item class="Tag">Tag1</button>
+        <mat-checkbox class="radio-margin" *ngFor="let filter of filters" name={{filter}} 
+        (click)="toggleSelection(filter,$event)">
+          {{filter}}
+        </mat-checkbox>
       <br>
         <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg">
       <br>

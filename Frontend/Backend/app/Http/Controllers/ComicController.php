@@ -60,7 +60,7 @@ class ComicController extends Controller
         $comic->id = $art->id;
 
         $comic->save();//guardamos el draw
-        return response()->json(['art' => $art], 201);//retornamos 201 y el comic
+        return response()->json([$comic->id], 201);//retornamos 201 y el id
     }
 
     public function getComics(){

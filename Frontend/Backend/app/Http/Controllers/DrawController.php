@@ -62,7 +62,7 @@ class DrawController extends Controller
         //default values        
 
         $draw->save();//guardamos el draw
-        return response()->json(['draw' => $draw], 201);//retornamos 201 y el dibujo
+        return response()->json([$draw->id], 201);//retornamos 201 y el id
     }
 
     public function getDraws(){

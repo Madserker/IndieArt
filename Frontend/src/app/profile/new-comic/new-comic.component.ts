@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ListsService } from '../../lists.service';
 import { User } from '../../_models/User.interface';
 import { Author } from '../../_models/Author.interface';
+import { TagsService } from 'src/app/tags.service';
+import { GetTagsService } from 'src/app/get-tags.service';
 
 @Component({
   selector: 'app-new-comic',
@@ -10,11 +12,14 @@ import { Author } from '../../_models/Author.interface';
   styleUrls: ['./new-comic.component.less']
 })
 export class NewComicComponent implements OnInit {
+  
+  filters:string [] = [];
+  selectedFilters:string[] = [];
   file : File
   @Input() currentUser : User
   @Input() author : Author
 
-  constructor(private lists : ListsService) { }
+  constructor(private tagsService:TagsService, private lists : ListsService,private getTags:GetTagsService) { }
 
   ngOnInit() {
 
@@ -58,7 +63,17 @@ fileChange(event) {
       this.file = fileList[0];
   }
 }
-
+toggleSelection(filter,event){//ADD OR REMOVE FILTERS ON SELECTED FILTERS LIST
+  console.log(filter)
+  if(this.selectedFilters.indexOf(filter) > -1){
+    var index = this.selectedFilters.indexOf(filter);
+    this.selectedFilters.splice(index,1);
+    console.log(this.selectedFilters);
+  }else{
+    this.selectedFilters.push(filter);
+    console.log(this.selectedFilters);
+  }
+}
 uploadComic(form: NgForm){
   this.lists.uploadComic(
     form.value.name,
@@ -66,7 +81,15 @@ uploadComic(form: NgForm){
     this.file,
     this.author.username
     ).subscribe(
-      response =>  window.location.reload(),//si ha ido bien el login
+      response =>{
+        for(let tag of this.selectedFilters){
+          console.log(response)
+          this.tagsService.addTag(response,tag).subscribe(res=>
+            window.location.reload()
+            )
+        }
+        
+      },
       error => console.log(error)//si no ha ido bien el login
     );
 }
