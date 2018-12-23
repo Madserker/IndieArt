@@ -36,7 +36,7 @@ export class ListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.data.currentFilters.subscribe(filters => this.filters=filters);
+    //this.data.currentFilters.subscribe(filters => this.filters=filters);
     //rellenamos la lista de dibujos al iniciar el componente (default option = draws)
     this.lists.getDraws()
     .subscribe(result => {

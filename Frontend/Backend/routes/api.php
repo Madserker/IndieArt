@@ -404,3 +404,7 @@ Route::get('/art/{id}/tags',[
     'middleware' => 'cors',
     'uses' => 'ArtController@getTags'
 ]);
+Route::get('/tags/{type}',[
+    'middleware' => 'cors',
+    'uses' => 'ArtController@getTagsByType'
+]);
