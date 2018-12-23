@@ -304,7 +304,6 @@ getSearchResults(text){
       for(let item of this.draws){//draw
         this.tagService.getTags(item.id).subscribe(//tags
           tags=>{
-            console.log(tags);
             for(let tag of tags){//tag
               if(filters.indexOf(tag.text) > -1){//tag in filters?
                 filtered.push(item);

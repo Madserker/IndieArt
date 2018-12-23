@@ -132,14 +132,20 @@ class ArtController extends Controller
     }
 
 //TAGS========================================================
-public static function addTag($tag,$art_id){
+public static function addTag($art_id,$tag){
     //comprogbar si el $tag existe en la BD, si no existe retornar ERROR
-    $findTags = DB::table('tags')->where('name',$tag)->get();
-    if(!$findTags) {
+    $findTags = DB::table('tags')->where('text',$tag)->get();
+    if($findTags) {
         $art = Art::find($art_id);
-        $tag = Tag::find($tag);
-        $art->tags()->attach($tag);
-        return 201;
+        $art->tags()->attach($findTags[0]->id);
+
+
+        $response = [
+            'tags' => $findTags
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+        return response()->json($response, 201,$headers);//retornamos 201
     }
     return 400;
 }

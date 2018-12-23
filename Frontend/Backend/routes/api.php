@@ -399,7 +399,7 @@ Route::post('/chat/{id}/member/{user}',[
     'uses' => 'ChatController@addMember'
 ]);
 
-//==============================================================
+//==============================================================TAGS
 Route::get('/art/{id}/tags',[
     'middleware' => 'cors',
     'uses' => 'ArtController@getTags'
@@ -407,4 +407,8 @@ Route::get('/art/{id}/tags',[
 Route::get('/tags/{type}',[
     'middleware' => 'cors',
     'uses' => 'ArtController@getTagsByType'
+]);
+Route::post('/art/{id}/tag/{tag}',[
+    'middleware' => 'cors',
+    'uses' => 'ArtController@addTag'
 ]);

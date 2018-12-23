@@ -27,4 +27,14 @@ export class TagsService {
       map(res => res.tags as Tag[] || [])); 
   }
 
+  addTag(art_id,tag){
+    const token = this.authService.getToken();//recuperamos el token de la sesion
+      //le pasamos el token para confirmar que estamos logeados
+      return this.http.post(this.url+'/api/art/'+art_id+'/tag/'+tag, 
+      {headers: new HttpHeaders(
+        {'Content-Type': 'application/json'}
+        )
+      })
+  }
+
 }
