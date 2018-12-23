@@ -24,7 +24,12 @@ export class NewComicComponent implements OnInit {
   ngOnInit() {
 
 
-
+    this.getTags.getComicFilters().subscribe(res=>{
+      for(let tag of res){
+        console.log(tag.text)
+        this.filters.push(tag.text)
+      }
+    })
 
   }
 

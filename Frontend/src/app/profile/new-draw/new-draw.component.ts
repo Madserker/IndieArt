@@ -26,7 +26,6 @@ export class NewDrawComponent implements OnInit {
 
     this.getTags.getDrawFilters().subscribe(res=>{
       for(let tag of res){
-        console.log(tag.text)
         this.filters.push(tag.text)
       }
     })

@@ -22,7 +22,11 @@ export class NewAnimationComponent implements OnInit {
   constructor(private tagsService:TagsService, private lists : ListsService,private getTags:GetTagsService) { }
 
   ngOnInit() {
-
+    this.getTags.getAnimationFilters().subscribe(res=>{
+      for(let tag of res){
+        this.filters.push(tag.text)
+      }
+    })
   }
 
 openForm(){
