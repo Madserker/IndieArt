@@ -1,0 +1,46 @@
+
+  <div class="toolbar">
+      <img src="src/app/components/toolbar-not-logged/Artchan.png">
+      <span class="logo">IndieArt</span>
+      <span class="logo-spacer"></span>
+
+
+      <button mat-button class="toolbarButton" (click)="goToHome()">Lists</button>
+      <!--[matMenuTriggerFor]="menu" indica que debe abrir el #menu-->
+      <mat-menu #menu="matMenu">
+
+      </mat-menu>
+<!-- 
+      <span class="button2-spacer"></span>
+      <button mat-button class="toolbarButton" (click)="goToCompetitions()">Competitions</button> -->
+      <span class="button2-spacer"></span>
+      <button mat-button class="toolbarButton" (click)="goToChatRooms()">Chat Rooms</button>
+      <span class="button2-spacer"></span>
+      <button mat-button class="toolbarButton" (click)="goToFriendsActivity()">Friends Activity</button>
+      
+    
+
+      <div class="loginButtonsDiv" *ngIf="currentUser == null">
+      <button mat-raised-button color="accent" class="loginButtons" (click)="openLoginNav()">Log in</button>
+      <span class="buttton-spacer"></span>
+      <button mat-raised-button color="accent" class="loginButtons" (click)="openRegisterNav()">Sign up</button>
+    </div>
+    <div class="loginButtonsDiv" *ngIf="currentUser != null">
+
+        <button mat-button class="profileButton"[matMenuTriggerFor]="menu">
+            <img src={{currentUser.profile_picture}} class="profileImage" id="image">
+          {{currentUser.username}} &#9662;</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="goToProfile(currentUser.username)">Profile</button>
+          <button mat-menu-item (click)="goToEditProfile(currentUser.username)">Edit Profile</button>
+          <button mat-menu-item (click)="goToCreateTeam()">Create Team</button>
+          <button mat-menu-item (click)="goToManageTeams()">Manage Teams</button>
+          <button mat-menu-item (click)="logout()">Log out &#10149;</button>
+        </mat-menu>
+    </div>
+
+
+  </div>
+
+<app-login-side-nav></app-login-side-nav>
+
