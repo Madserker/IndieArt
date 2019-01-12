@@ -115,7 +115,7 @@ getSearchResults(text){
         {
           this.items = result
           //apply filters despues de ordenar
-          this.applyFilter(this.selectedFilters);
+          this.applyFilter(this.selectedFilters, this.items);
         }
 
       );
@@ -126,7 +126,7 @@ getSearchResults(text){
         {
           this.items = result
           //apply filters despues de ordenar
-          this.applyFilter(this.selectedFilters);
+          this.applyFilter(this.selectedFilters, this.items);
         }
       );
     }
@@ -136,7 +136,7 @@ getSearchResults(text){
         {
           this.items = result
           //apply filters despues de ordenar
-          this.applyFilter(this.selectedFilters);
+          this.applyFilter(this.selectedFilters,this.items);
         }
       );
     }
@@ -150,7 +150,7 @@ getSearchResults(text){
         {
           this.items = result
           //apply filters despues de ordenar
-          this.applyFilter(this.selectedFilters);
+          this.applyFilter(this.selectedFilters,this.items);
         }
       );
     }
@@ -160,7 +160,7 @@ getSearchResults(text){
         {
           this.items = result
           //apply filters despues de ordenar
-          this.applyFilter(this.selectedFilters);
+          this.applyFilter(this.selectedFilters,this.items);
         }
       );
     }
@@ -170,7 +170,7 @@ getSearchResults(text){
         {
           this.items = result
           //apply filters despues de ordenar
-          this.applyFilter(this.selectedFilters);
+          this.applyFilter(this.selectedFilters,this.items);
         }
       );
     }
