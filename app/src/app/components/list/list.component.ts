@@ -10,6 +10,7 @@ import { A_Animation } from '../../_models/A_Animation.interface';
 import { Router } from '@angular/router';
 import { Team } from '../../_models/Team.interface';
 import { TagsService } from '../../services/tags.service';
+import { and } from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -258,7 +259,7 @@ getSearchResults(text){
         this.tagService.getTags(item.id).subscribe(//tags
           tags=>{
             for(let tag of tags){//tag
-              if(filters.indexOf(tag.text) > -1){//tag in filters?
+              if(filters.indexOf(tag.text) > -1 && !filtered.includes(item)){//tag in filters?
                 filtered.push(item);
               }
             }
