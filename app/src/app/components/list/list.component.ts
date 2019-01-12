@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListSideNavComponent } from '../list-side-nav/list-side-nav.component';
 import { ChangeFiltersService } from '../../services/change-filters.service';
 import { Draw } from '../../_models/Draw.interface';
+import { Art } from '../../_models/Art.interface';
 import { ListsService } from '../../services/lists.service';
 import { Comic } from '../../_models/Comic.interface';
 import { User } from '../../_models/User.interface';
@@ -23,14 +24,20 @@ export class ListComponent implements OnInit {
   private listSideNav: ListSideNavComponent;
   
   filters:string[];
+  selectedFilters = [];
   option: number = 1;
+
   draws: Draw[] = [];
   comics: Comic[] = [];
   animations: A_Animation[] = [];
   users: User[] = [];
   teams: Team[] = [];
 
-  selectedFilters = [];
+  //lista con todos los elementos (not editable)
+  all_items: Art[] = [];
+
+  //lista con los elementos filtrados y ordenados (editable) (lista que se mostrara en la web)
+  items: Art[] = [];
 
   constructor(private tagService: TagsService, private data: ChangeFiltersService, private lists: ListsService,private router:Router) { }
 
@@ -40,7 +47,8 @@ export class ListComponent implements OnInit {
     //rellenamos la lista de dibujos al iniciar el componente (default option = draws)
     this.lists.getDraws()
     .subscribe(result => {
-      this.draws = result as Draw[]
+      this.all_items = result as Draw[];
+      this.items = this.all_items;
     })    
   }
 
@@ -56,14 +64,14 @@ getSearchResults(text){
     if(text==""){
       this.lists.getDraws().subscribe(
         result => {
-          this.draws = result
+          this.items = result
           this.selectedFilters=[];
         }
       );
     }else{
     this.lists.getDrawsSearchResults(text).subscribe(
       result => {
-        this.draws = result
+        this.items = result
         this.selectedFilters=[];
       }
     );
@@ -73,14 +81,14 @@ getSearchResults(text){
     if(text==""){
       this.lists.getComics().subscribe(
         result => {
-          this.comics = result
+          this.items = result
           this.selectedFilters=[];
         }
       );
     }else{
     this.lists.getComicsSearchResults(text).subscribe(
       result => {
-        this.comics = result
+        this.items = result
         this.selectedFilters=[];
       }
     );
@@ -90,7 +98,7 @@ getSearchResults(text){
     if(text==""){
       this.lists.getAnimations().subscribe(
         result => {
-          this.animations = result
+          this.items = result
           this.selectedFilters=[];
         }
         
@@ -98,7 +106,7 @@ getSearchResults(text){
     }else{
     this.lists.getAnimationsSearchResults(text).subscribe(
       result => {
-        this.animations = result
+        this.items = result
         this.selectedFilters=[];
       }
     );
@@ -107,22 +115,22 @@ getSearchResults(text){
   if(this.option==4){
     if(text==""){
       this.lists.getUsers().subscribe(
-        result => this.users = result
+        result => this.items = result
       );
     }else{
     this.lists.getUsersSearchResults(text).subscribe(
-      result => this.users = result
+      result => this.items = result
     );
     }
   }
   if(this.option==5){
     if(text==""){
       this.lists.getTeams().subscribe(
-        result => this.teams = result
+        result => this.items = result
       );
     }else{
     this.lists.getTeamsSearchResults(text).subscribe(
-      result => this.teams = result
+      result => this.items = result
     );
     }
   }
@@ -136,7 +144,7 @@ getSearchResults(text){
       this.lists.getDrawsOrderedByScore().subscribe(
         result => 
         {
-          this.draws = result
+          this.items = result
           //apply filters despues de ordenar
           this.applyFilter(this.selectedFilters);
         }
@@ -147,7 +155,7 @@ getSearchResults(text){
       this.lists.getComicsOrderedByScore().subscribe(
         result => 
         {
-          this.comics = result
+          this.items = result
           //apply filters despues de ordenar
           this.applyFilter(this.selectedFilters);
         }
@@ -157,7 +165,7 @@ getSearchResults(text){
       this.lists.getAnimationsOrderedByScore().subscribe(
         result => 
         {
-          this.animations = result
+          this.items = result
           //apply filters despues de ordenar
           this.applyFilter(this.selectedFilters);
         }
@@ -171,7 +179,7 @@ getSearchResults(text){
       this.lists.getDrawsOrderedByVisits().subscribe(
         result => 
         {
-          this.draws = result
+          this.items = result
           //apply filters despues de ordenar
           this.applyFilter(this.selectedFilters);
         }
@@ -181,7 +189,7 @@ getSearchResults(text){
       this.lists.getComicsOrderedByVisits().subscribe(
         result => 
         {
-          this.comics = result
+          this.items = result
           //apply filters despues de ordenar
           this.applyFilter(this.selectedFilters);
         }
@@ -191,7 +199,7 @@ getSearchResults(text){
       this.lists.getAnimationsOrderedByVisits().subscribe(
         result => 
         {
-          this.animations = result
+          this.items = result
           //apply filters despues de ordenar
           this.applyFilter(this.selectedFilters);
         }
@@ -203,7 +211,7 @@ getSearchResults(text){
     if(this.option==1){
       this.lists.getDraws()
       .subscribe(result => {
-        this.draws = result as Draw[]
+        this.items = result as Draw[]
         //apply filters despues de ordenar
         this.applyFilter(this.selectedFilters);
       })
@@ -211,7 +219,7 @@ getSearchResults(text){
     if(this.option==2){
       this.lists.getComics()
       .subscribe(result => {
-        this.comics = result as Comic[]
+        this.items = result as Comic[]
         //apply filters despues de ordenar
         this.applyFilter(this.selectedFilters);
       })
@@ -219,7 +227,7 @@ getSearchResults(text){
     if(this.option==3){
       this.lists.getAnimations()
       .subscribe(result => {
-        this.animations = result as A_Animation[]
+        this.items = result as A_Animation[]
         //apply filters despues de ordenar
         this.applyFilter(this.selectedFilters);
       })
@@ -231,7 +239,8 @@ getSearchResults(text){
     this.option=1;
     this.lists.getDraws()
     .subscribe(result => {
-      this.draws = result as Draw[]
+      this.all_items = result as Draw[];//cargamos la lista global
+      this.items=this.all_items;//usamos la lista global
     })
     
   }
@@ -241,7 +250,9 @@ getSearchResults(text){
         this.option=4;
         this.lists.getUsers()
         .subscribe(result => {
-          this.users = result as User[]
+          this.all_items = result as User[]
+          this.items=this.all_items;
+
         })
   }
   changeToMangaFilters(){
@@ -250,7 +261,9 @@ getSearchResults(text){
     this.option=2;
     this.lists.getComics()
     .subscribe(result => {
-      this.comics = result as Comic[]
+      this.all_items = result as Comic[]
+      this.items=this.all_items;
+
     })
   }
   changeToAnimationFilters(){
@@ -259,7 +272,9 @@ getSearchResults(text){
      this.option=3;
      this.lists.getAnimations()
      .subscribe(result => {
-       this.animations = result as A_Animation[]
+       this.all_items = result as A_Animation[]
+       this.items=this.all_items;
+
      })
   }
   changeToTeamFilters(){
@@ -268,7 +283,9 @@ getSearchResults(text){
      this.option=5;
      this.lists.getTeams()
      .subscribe(result => {
-       this.teams = result as Team[]
+       this.all_items = result as Team[]
+       this.items=this.all_items;
+
      })
   }
 
@@ -286,22 +303,10 @@ getSearchResults(text){
     console.log(this.selectedFilters)
     //si no hay ningun filtro, hacer un get de todos
     if(filters.length == 0){
-      if(this.option==1){    this.lists.getDraws()
-        .subscribe(result => {
-          this.draws = result as Draw[]
-        })}
-      if(this.option==2){    this.lists.getComics()
-        .subscribe(result => {
-          this.comics = result as Comic[]
-        })}
-      if(this.option==3){     this.lists.getAnimations()
-        .subscribe(result => {
-          this.animations = result as A_Animation[]
-        })}
+          this.items = this.all_items
     }
     else{
-    if(this.option==1){//draws
-      for(let item of this.draws){//draw
+      for(let item of this.all_items){//draw
         this.tagService.getTags(item.id).subscribe(//tags
           tags=>{
             for(let tag of tags){//tag
@@ -312,37 +317,8 @@ getSearchResults(text){
           }
         )
       }
-      this.draws=filtered;
-    }else if(this.option==2){
-      for(let item of this.draws){
-        this.tagService.getTags(item.id).subscribe(
-          tags=>{
-            for(let tag of tags){
-              if(filters.indexOf(tag.text) > -1){//tag in filters?
-                filtered.push(item);
-              }
-            }
-          }
-        )
-      }
-      this.comics = filtered;
-    }else if(this.option==3){
-      for(let item of this.draws){
-        this.tagService.getTags(item.id).subscribe(
-          tags=>{
-            for(let tag of tags){
-              if(filters.indexOf(tag.text) > -1){//tag in filters?
-                filtered.push(item);
-              }
-            }
-          }
-        )
-      }
-      this.animations=filtered;
+      this.items=filtered;
     }
-
-
-  }
   }
 
 

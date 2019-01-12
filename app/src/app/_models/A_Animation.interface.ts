@@ -1,4 +1,6 @@
-export interface A_Animation{
+import { Art } from "./Art.interface";
+
+export interface A_Animation extends Art{
     mark: number;
     name: string;
     id: number;

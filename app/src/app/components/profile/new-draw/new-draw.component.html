@@ -24,6 +24,7 @@
         <mat-checkbox class="radio-margin" *ngFor="let filter of filters" name={{filter}} 
         (click)="toggleSelection(filter,$event)">
           {{filter}}
+          <span style="margin-right:20px"></span>
         </mat-checkbox>
       <br>
         <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg">

@@ -1,4 +1,6 @@
-export interface Comic{
+import { Art } from "./Art.interface";
+
+export interface Comic extends Art{
     mark: number;
     name: string;
     id: number;

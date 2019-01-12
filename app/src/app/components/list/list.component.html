@@ -43,20 +43,20 @@
   </app-list-side-nav>
 
 <div *ngIf="option==1">
-    <app-image *ngFor="let draw of draws" [draw]="draw" (click)="goToDrawDetails(draw.id)">
+    <app-image *ngFor="let draw of items" [draw]="draw" (click)="goToDrawDetails(draw.id)">
     </app-image>
   </div>
 <div *ngIf="option==2">
-    <app-comic *ngFor="let comic of comics" [comic]="comic" (click)="goToComicDetails(comic.id)"></app-comic>
+    <app-comic *ngFor="let comic of items" [comic]="comic" (click)="goToComicDetails(comic.id)"></app-comic>
 </div>
 <div *ngIf="option==3">
-  <app-animation *ngFor="let animation of animations" [animation]="animation" (click)="goToAnimationDetails(animation.id)"></app-animation>
+  <app-animation *ngFor="let animation of items" [animation]="animation" (click)="goToAnimationDetails(animation.id)"></app-animation>
 </div>
 <div *ngIf="option==4">
-  <app-user *ngFor="let user of users" [user]="user" (click)="goToProfile(user.username)"></app-user>
+  <app-user *ngFor="let user of items" [user]="user" (click)="goToProfile(user.username)"></app-user>
 </div>
 <div *ngIf="option==5">
-    <app-team-image *ngFor="let team of teams" [team]="team" (click)="goToTeamProfile(team.username)"></app-team-image>
+    <app-team-image *ngFor="let team of items" [team]="team" (click)="goToTeamProfile(team.username)"></app-team-image>
   </div>
 
 
