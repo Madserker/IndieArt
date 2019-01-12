@@ -27,12 +27,6 @@ export class ListComponent implements OnInit {
   selectedFilters = [];
   option: number = 1;
 
-  draws: Draw[] = [];
-  comics: Comic[] = [];
-  animations: A_Animation[] = [];
-  users: User[] = [];
-  teams: Team[] = [];
-
   //lista con todos los elementos (not editable)
   all_items: Art[] = [];
 
@@ -60,81 +54,56 @@ export class ListComponent implements OnInit {
 
 //EVENT EMITTER FUNCTIONS=====
 getSearchResults(text){
+
+  if(text==""){
+    this.items = this.all_items
+    this.applyFilter(this.selectedFilters);
+  
+}else{
   if(this.option==1){
-    if(text==""){
-      this.lists.getDraws().subscribe(
-        result => {
-          this.items = result
-          this.selectedFilters=[];
-        }
-      );
-    }else{
     this.lists.getDrawsSearchResults(text).subscribe(
       result => {
         this.items = result
-        this.selectedFilters=[];
+        this.applyFilter(this.selectedFilters,this.items);
       }
     );
-    }
   }
   if(this.option==2){
-    if(text==""){
-      this.lists.getComics().subscribe(
-        result => {
-          this.items = result
-          this.selectedFilters=[];
-        }
-      );
-    }else{
     this.lists.getComicsSearchResults(text).subscribe(
       result => {
         this.items = result
-        this.selectedFilters=[];
+        this.applyFilter(this.selectedFilters,this.items);
       }
     );
-    }
+    
   }
   if(this.option==3){
-    if(text==""){
-      this.lists.getAnimations().subscribe(
-        result => {
-          this.items = result
-          this.selectedFilters=[];
-        }
-        
-      );
-    }else{
     this.lists.getAnimationsSearchResults(text).subscribe(
       result => {
         this.items = result
-        this.selectedFilters=[];
+        this.applyFilter(this.selectedFilters,this.items);
+      }
+    );
+    
+  }
+  if(this.option==4){
+    this.lists.getUsersSearchResults(text).subscribe(
+      result => {
+        this.items = result
+        this.applyFilter(this.selectedFilters,this.items);
+      }
+    );
+    
+  }
+  if(this.option==5){
+    this.lists.getTeamsSearchResults(text).subscribe(
+      result => {
+        this.items = result
+        this.applyFilter(this.selectedFilters,this.items);
       }
     );
     }
-  }
-  if(this.option==4){
-    if(text==""){
-      this.lists.getUsers().subscribe(
-        result => this.items = result
-      );
-    }else{
-    this.lists.getUsersSearchResults(text).subscribe(
-      result => this.items = result
-    );
-    }
-  }
-  if(this.option==5){
-    if(text==""){
-      this.lists.getTeams().subscribe(
-        result => this.items = result
-      );
-    }else{
-    this.lists.getTeamsSearchResults(text).subscribe(
-      result => this.items = result
-    );
-    }
-  }
-
+}
 }
 
 //EDIT TO NOT RELOAD THE ENTIRE LIST, INSTEAD USE THE CURRENT LIST
@@ -276,16 +245,16 @@ getSearchResults(text){
 
 
 
-  applyFilter(filters){
+  applyFilter(filters,all=this.all_items){
     this.selectedFilters = filters;
     var filtered = [];
     console.log(this.selectedFilters)
     //si no hay ningun filtro, hacer un get de todos
     if(filters.length == 0){
-          this.items = this.all_items
+          this.items = all
     }
     else{
-      for(let item of this.all_items){//draw
+      for(let item of all){//draw
         this.tagService.getTags(item.id).subscribe(//tags
           tags=>{
             for(let tag of tags){//tag
