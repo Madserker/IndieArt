@@ -207,32 +207,11 @@ getSearchResults(text){
     }
   }
 
-  getNew(){
-    if(this.option==1){
-      this.lists.getDraws()
-      .subscribe(result => {
-        this.items = result as Draw[]
+  getNew(){  
+        this.items = this.all_items;
         //apply filters despues de ordenar
         this.applyFilter(this.selectedFilters);
-      })
-    }
-    if(this.option==2){
-      this.lists.getComics()
-      .subscribe(result => {
-        this.items = result as Comic[]
-        //apply filters despues de ordenar
-        this.applyFilter(this.selectedFilters);
-      })
-    }
-    if(this.option==3){
-      this.lists.getAnimations()
-      .subscribe(result => {
-        this.items = result as A_Animation[]
-        //apply filters despues de ordenar
-        this.applyFilter(this.selectedFilters);
-      })
-    }
-  }
+      }
 
   changeToDrawFilters(){
     this.data.changeToDrawFilters();
