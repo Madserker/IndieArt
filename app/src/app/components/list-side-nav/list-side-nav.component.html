@@ -18,7 +18,7 @@
   <H3>FILTERS</H3>
   <mat-divider></mat-divider>
   <mat-checkbox class="radio-margin" *ngFor="let filter of filters" name={{filter}} 
-  (click)="toggleSelection(filter,$event)">
+  (change)="toggleSelection(filter,$event)">
     {{filter}}
   </mat-checkbox>
 

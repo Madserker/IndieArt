@@ -246,7 +246,7 @@ getSearchResults(text){
 
 
 
-  applyFilter(filters,all=this.all_items){
+  applyFilter(filters,all=this.all_items){//all es igual a todos los items cuando no estamos aplicando sort ni search
     this.selectedFilters = filters;
     var filtered = [];
     console.log(this.selectedFilters)
@@ -259,7 +259,7 @@ getSearchResults(text){
         this.tagService.getTags(item.id).subscribe(//tags
           tags=>{
             for(let tag of tags){//tag
-              if(filters.indexOf(tag.text) > -1 && !filtered.includes(item)){//tag in filters?
+              if(filters.indexOf(tag.text) > -1 && !filtered.includes(item)){//tag in filters? and item already in filtered?
                 filtered.push(item);
               }
             }
