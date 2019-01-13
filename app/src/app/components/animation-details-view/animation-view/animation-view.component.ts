@@ -25,6 +25,8 @@ export class AnimationViewComponent implements OnInit {
 
   userScore:number;
   currentUser : User;
+
+  isCurrentUser : boolean = false;
   
   
     constructor(private authService : AuthService, private usersService : UsersService, private route: ActivatedRoute,private lists: ListsService,private commentsService : CommentsService) {}
@@ -57,7 +59,21 @@ export class AnimationViewComponent implements OnInit {
       this.lists.getAnimationById(this.id)
       .subscribe(result => {
       this.animation = result as A_Animation
-      console.log(this.animation)
+            //check is is the current user
+            if(this.animation.author==this.currentUser.username){
+              this.isCurrentUser=true
+            }else{
+              console.log("ress")
+              //si no somos el usuario, comprobamos que esto sea un equipo y que estamos dentro
+              this.lists.getTeamUsers(this.animation.author).subscribe(result=>{
+                console.log(result)
+                for(let user of result){
+                  if(user.user == this.currentUser.username){
+                    this.isCurrentUser=true
+                  }
+                }
+              })
+            }
       })
   
       // //cogemos la lista de comentarios del dibujo con el id de la ruta

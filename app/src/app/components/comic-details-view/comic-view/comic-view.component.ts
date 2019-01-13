@@ -27,6 +27,8 @@ export class ComicViewComponent implements OnInit {
   userScore:number;
 
   currentUser : User;
+
+  isCurrentUser : boolean = false;
   
   constructor(private authService : AuthService, private usersService : UsersService, private route: ActivatedRoute,private lists: ListsService,private commentsService : CommentsService) {}
   
@@ -44,18 +46,35 @@ export class ComicViewComponent implements OnInit {
             this.score = result as number
           })
   
-  
+          
   
           this.usersService.getVisits(this.id)    
           .subscribe(result => {
             this.visits = result as number
           })
+
+
+          
         }
       )
       //cogemos el dibujo con el id de la ruta
       this.lists.getComicById(this.id)
       .subscribe(result => {
       this.comic = result as Comic
+      if(this.comic.author==this.currentUser.username){
+        this.isCurrentUser=true
+      }else{
+        console.log("ress")
+        //si no somos el usuario, comprobamos que esto sea un equipo y que estamos dentro
+        this.lists.getTeamUsers(this.comic.author).subscribe(result=>{
+          console.log(result)
+          for(let user of result){
+            if(user.user == this.currentUser.username){
+              this.isCurrentUser=true
+            }
+          }
+        })
+      }
       })
   
       //cogemos la lista de comentarios del dibujo con el id de la ruta

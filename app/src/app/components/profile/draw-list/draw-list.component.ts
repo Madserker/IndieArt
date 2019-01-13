@@ -47,5 +47,4 @@ export class DrawListComponent implements OnInit {
     this.router.navigateByUrl("draw/"+id);
   }
 
-
 }

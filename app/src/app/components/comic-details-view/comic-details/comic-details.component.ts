@@ -21,12 +21,18 @@ export class ComicDetailsComponent implements OnInit {
 
   @Input() currentUser:User;
   @Input() userScore:number;
+
+  @Input() isCurrentUser : boolean;
   
   constructor(private usersService : UsersService,private authService : AuthService, private lists : ListsService, private router : Router) { 
 
    }
 
   ngOnInit() {
+
+  }
+
+  ngOnChange(){
   }
 
   onChange(newValue) {

@@ -56,13 +56,13 @@
 
   </h6>
 </div>
-<div *ngIf="currentUser?.username==animation?.author"><!--si eres el creador-->
+<div *ngIf="isCurrentUser"><!--si eres el creador-->
   <button mat-menu-item class="watchButton1" (click)="goToEpisodesList()">WATCH</button>
   <button mat-menu-item class="watchButton2" (click)="deleteAnimation()">DELETE</button>
   </div>
   <div *ngIf="currentUser?.username==null">
   <button mat-menu-item class="watchButton" (click)="goToEpisodesList()">WATCH</button><!--si no estas logeado-->
   </div>
-  <div *ngIf="currentUser?.username!=null && currentUser?.username!=animation?.author"><!--si no eres el creador pero estas logeado-->
+  <div *ngIf="currentUser?.username!=null && !isCurrentUser"><!--si no eres el creador pero estas logeado-->
           <button mat-menu-item class="watchButton1" (click)="goToEpisodesList()">WATCH</button>
   </div>

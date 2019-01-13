@@ -54,13 +54,13 @@
      {{comic?.descripcion}}
     </h6>
 </div>
-    <div *ngIf="currentUser?.username==comic?.author"><!--si eres el creador-->
+    <div *ngIf="isCurrentUser"><!--si eres el creador-->
     <button mat-menu-item class="watchButton1" (click)="goToChaptersList()">READ</button>
     <button mat-menu-item class="watchButton2" (click)="deleteComic()">DELETE</button>
     </div>
     <div *ngIf="currentUser?.username==null">
     <button mat-menu-item class="watchButton" (click)="goToChaptersList()">READ</button><!--si no estas logeado-->
     </div>
-    <div *ngIf="currentUser?.username!=null && currentUser?.username!=comic?.author"><!--si no eres el creador pero estas logeado-->
+    <div *ngIf="currentUser?.username!=null && !isCurrentUser"><!--si no eres el creador pero estas logeado-->
             <button mat-menu-item class="watchButton1" (click)="goToChaptersList()">READ</button>
     </div>

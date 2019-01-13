@@ -30,6 +30,8 @@ userScore:number;
 
 currentUser : User;
 
+isCurrentUser : boolean = false;
+
 
   constructor(private authService: AuthService, private usersService: UsersService, private route: ActivatedRoute,private lists: ListsService,private commentsService : CommentsService) {
     
@@ -66,6 +68,22 @@ currentUser : User;
     this.lists.getDrawById(this.id)
     .subscribe(result => {
     this.draw = result as Draw
+    
+      //check is is the current user
+      if(this.draw.author==this.currentUser.username){
+        this.isCurrentUser=true
+      }else{
+        console.log("ress")
+        //si no somos el usuario, comprobamos que esto sea un equipo y que estamos dentro
+        this.lists.getTeamUsers(this.draw.author).subscribe(result=>{
+          console.log(result)
+          for(let user of result){
+            if(user.user == this.currentUser.username){
+              this.isCurrentUser=true
+            }
+          }
+        })
+      }
     })
 
     //cogemos la lista de comentarios del dibujo con el id de la ruta
