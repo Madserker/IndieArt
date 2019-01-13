@@ -201,11 +201,11 @@ if($isCurrentUser){
         $animation->delete();
         $art->delete();
         return response()->json(['message' => 'Animation deleted'],200);
-    }
+    
 }else{
     return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
-
 }
+    }
 
 
 
