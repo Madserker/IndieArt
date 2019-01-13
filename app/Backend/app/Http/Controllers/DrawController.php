@@ -132,14 +132,38 @@ class DrawController extends Controller
         }
         $draw = Draw::find($id);
         $art = Art::find($id);
-        
-        //importante realizar esta comprobacion en las DELETE requests
-        if($userA->username != $art->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
+
+
+             //importante realizar esta comprobacion en las DELETE requests
+        $isCurrentUser = false;
+
+
+ //buscamos si el usuario esta dentro del equipo
+ $users=
+ DB::table('team_user')
+ ->where('team_user.team',$userA->username)
+ ->select('team_user.user','team_user.role','team_user.created_at','team_user.admin')
+ ->get();
+
+ for($i=0;$i<count($users);$i++){
+     if($users[$i]->user == $userA->username){
+         $isCurrentUser = true;
+     }
+ }
+   
+        if($userA->username != $art->author){
+            $isCurrentUser=true;
+        }
+
+        if($isCurrentUser){
+            $draw->delete();
+            $art->delete();
+    
+            return response()->json(['message' => 'Draw deleted'],200);
+        }else{//si no es el mismo usuario que el que esta logeado, devolvemos error
             return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
         }
-        $draw->delete();
-        $art->delete();
-        return response()->json(['message' => 'Draw deleted'],200);
+
     }
 
 

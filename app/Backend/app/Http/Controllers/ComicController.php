@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Comic;
 use DB;
 use App\Art;
+use App\Team;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
 
@@ -151,15 +152,40 @@ class ComicController extends Controller
         }
         $comic = Comic::find($id);
         $art = Art::find($id);
-        //importante realizar esta comprobacion en las DELETE requests
-        if($userA->username != $art->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
-            return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
-        }
+
+
+
+ //importante realizar esta comprobacion en las DELETE requests
+ $isCurrentUser = false;
+
+
+
+ //buscamos si el usuario esta dentro del equipo
+ $users=
+ DB::table('team_user')
+ ->where('team_user.team',$userA->username)
+ ->select('team_user.user','team_user.role','team_user.created_at','team_user.admin')
+ ->get();
+
+ for($i=0;$i<count($users);$i++){
+     if($users[$i]->user == $userA->username){
+         $isCurrentUser = true;
+     }
+ }
+
+ if($userA->username != $art->author){
+     $isCurrentUser=true;
+ }
+if($isCurrentUser){
         $comic->delete();
         $art->delete();
         return response()->json(['message' => 'Comic deleted'],200);
     }
+    else{
+        return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
 
+    }
+}
 
 
 

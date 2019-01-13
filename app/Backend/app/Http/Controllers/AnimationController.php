@@ -174,14 +174,38 @@ class AnimationController extends Controller
         }
         $animation = Animation::find($id);
         $art = Art::find($id);
-        //importante realizar esta comprobacion en las DELETE requests
-        if($userA->username != $art->author){//si no es el mismo usuario que el que esta logeado, devolvemos error
-            return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
-        }
+
+ //importante realizar esta comprobacion en las DELETE requests
+ $isCurrentUser = false;
+
+
+
+ //buscamos si el usuario esta dentro del equipo
+ $users=
+ DB::table('team_user')
+ ->where('team_user.team',$userA->username)
+ ->select('team_user.user','team_user.role','team_user.created_at','team_user.admin')
+ ->get();
+
+ for($i=0;$i<count($users);$i++){
+     if($users[$i]->user == $userA->username){
+         $isCurrentUser = true;
+     }
+ }
+
+ if($userA->username != $art->author){
+     $isCurrentUser=true;
+ }
+
+if($isCurrentUser){
         $animation->delete();
         $art->delete();
         return response()->json(['message' => 'Animation deleted'],200);
     }
+}else{
+    return response()->json(['message' => 'You are not the user'],404);//json con mensaje de error 404 not found
+
+}
 
 
 
