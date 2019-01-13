@@ -309,11 +309,12 @@ class UserController extends Controller
 
          }
 
-        // //ordenamos de mas reciente a menos
-         $notifications = collect($notifications)->sortBy('time')->reverse()->values();
+        //ordenamos de mas reciente a menos
+        //cogemos unicamente las 30 ultimas publicaciones
+         $notifications = collect($notifications)->sortBy('time')->reverse()->values()->take(30);
 
-         //cogemos unicamente las 30 ultimas publicaciones
-         $notification = array_slice($notifications, 0, 30);  
+
+
 
         return response()->json([
             'notifications' => $notifications
