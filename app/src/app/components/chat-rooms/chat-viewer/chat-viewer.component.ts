@@ -42,16 +42,13 @@ export class ChatViewerComponent implements OnInit {
         this.loadComponent();
 
       }
-
-
     )
-
-
 
     this.chatService.socket.on('chat.message', function(message) {
       // just simple refresh, to keep secure
-      this.loadComponent();
-      
+      if(message==this.chat_id){
+        this.loadComponent();
+      }
     }.bind(this));
   }
 
@@ -76,7 +73,7 @@ export class ChatViewerComponent implements OnInit {
 
 loadAndEmit(){
   this.loadComponent()
-  this.chatService.emit()
+  this.chatService.emit(this.chat_id)
 }
 
   postMessage(form: NgForm){

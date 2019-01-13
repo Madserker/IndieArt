@@ -135,8 +135,8 @@ export class ChatServiceService {
     })
   }
 
-  emit(){
-    this.socket.emit('chat.message', 'New Message');
+  emit(chat_id){
+    this.socket.emit('chat.message', chat_id);
   }
 //===================================================================================================
 }

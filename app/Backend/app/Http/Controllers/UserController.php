@@ -54,17 +54,24 @@ class UserController extends Controller
         'src/assets/storage/profile5.jpg','src/assets/storage/profile6.jpg'];
 
         $this->validate($request,[//validamos el registro
-        'username' => 'required|unique:authors', //el nombre de usuario es obligatorio y unico en la tabla de authors
         'email' => 'required|email|unique:users', //el email tiene que ser obligatorio, formato email y unico en la tabla de usuarios
+        'username' => 'required|unique:authors',//el nombre de usuario es obligatorio y unico en la tabla de authors
         'password' => array(
             'required',
             'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'
             //minimo 8 caracteres, que contenga letras y numeros
         ),
-        'birthday' => 'required',
-        'real_name' => 'required',
-        'username' => 
-        array(
+        'birthday' => array(
+            'required',
+            'regex:/^(19[5-9][0-9]|20[0-1][0-9])[-](0?[1-9]|1[0-2])[-](0?[1-9]|[12][0-9]|3[01])$/'
+        ),
+
+        'real_name' => array(
+            'required',
+            'regex:/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/u'
+        ),
+        
+        'username' => array(
             'required',
             'regex:/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/u'
             //regex: no puede empezar ni por . ni por _ ni acabar por . ni _ , tiene que tener entre 3 y 20 caracteres 
@@ -207,66 +214,6 @@ class UserController extends Controller
 
 
 //====================================================================================================================FRIENDS UPDATES
-    // public function getFollowingUsersDraws($username){
-    //     if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
-    //         return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
-    //     }
-    //     $user = User::find($username);
-    //     if(!$user){//si no ha encontrado el user con ese id
-    //         return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
-    //     }
-    //     $following = $user->following;
-    //     $draws = [];
-    //     for($i=0; $i<sizeof($following);$i++){
-    //         $authorDraws = Draw::where('author',$following[$i]->username)->get();//get draws del following $i
-    //         for($j=0; $j<sizeof($authorDraws);$j++){
-    //             array_push($draws,$authorDraws[$j]);//insertar draw en la lista
-    //         }
-    //     }
-    //     return response()->json(['draws' => $draws],200); 
-    // }
-
-    // public function getFollowingUsersEpisodes($username){
-    //     if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
-    //         return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
-    //     }
-    //     $user = User::find($username);
-    //     if(!$user){//si no ha encontrado el user con ese id
-    //         return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
-    //     }
-    //     $following = $user->following;
-    //     $episodes = [];
-    //     for($i=0; $i<sizeof($following);$i++){
-    //         $authorAnimations = Animation::where('author',$following[$i]->username)->get();//get episodes del following $i
-    //         for($j=0; $j<sizeof($authorAnimations);$j++){
-    //             for($k=0;$k<sizeof($authorAnimations[$j]->episodes);$k++){//get episodes de la animacion
-    //                 array_push($episodes,$authorAnimations[$j]->episodes[$k]);//insertar episode en la lista
-    //             }
-    //         }
-    //     }
-    //     return response()->json(['episodes' => $episodes],200); 
-    // }
-
-    // public function getFollowingUsersChapters($username){
-    //     if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
-    //         return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
-    //     }
-    //     $user = User::find($username);
-    //     if(!$user){//si no ha encontrado el user con ese id
-    //         return response()->json(['message' => 'User not found'],404);//json con mensaje de error 404 not found
-    //     }
-    //     $following = $user->following;
-    //     $chapters = [];
-    //     for($i=0; $i<sizeof($following);$i++){
-    //         $authorComics = Comic::where('author',$following[$i]->username)->get();//get chapters del following $i
-    //         for($j=0; $j<sizeof($authorComics);$j++){
-    //             for($k=0;$k<sizeof($authorComics[$j]->chapters);$k++){//get chapters del comic
-    //                 array_push($chapters,$authorComics[$j]->chapters[$k]);//insertar chapter en la lista
-    //             }
-    //         }
-    //     }
-    //     return response()->json(['chapters' => $chapters],200); 
-    // }
 
     public function getNotifications($username){
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
@@ -281,13 +228,7 @@ class UserController extends Controller
         $following = $author->following;
         $following->push($author);//añadimos tu actividad a la lista
 
-
-
-        
-
-
         $notifications = [];
-
 
         for($i=0; $i<sizeof($following);$i++){
 
@@ -370,6 +311,9 @@ class UserController extends Controller
 
         // //ordenamos de mas reciente a menos
          $notifications = collect($notifications)->sortBy('time')->reverse()->values();
+
+         //cogemos unicamente las 30 ultimas publicaciones
+         $notification = array_slice($notifications, 0, 30);  
 
         return response()->json([
             'notifications' => $notifications
