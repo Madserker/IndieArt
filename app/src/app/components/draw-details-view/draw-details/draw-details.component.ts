@@ -49,11 +49,13 @@ export class DrawDetailsComponent implements OnInit {
 }
   
   deleteDraw(){
+    if (confirm("Delete this draw?")) {
     this.lists.deleteDraw(this.draw.id).subscribe(
       () => {
         this.router.navigateByUrl("/");
       }
     );
+    }
   }
 
 

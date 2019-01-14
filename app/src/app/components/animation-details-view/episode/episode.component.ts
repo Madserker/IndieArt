@@ -32,11 +32,13 @@ opened :boolean = false;
 
 
 deleteEpisode(){
+  if (confirm("Delete this episode?")) {
   this.listsService.deleteEpisode(this.episode.id).subscribe(
     () => {
       window.location.reload();
     }
   );
+  }
 }
 
 }

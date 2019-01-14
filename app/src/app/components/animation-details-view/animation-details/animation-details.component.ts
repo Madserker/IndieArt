@@ -44,10 +44,12 @@ export class AnimationDetailsComponent implements OnInit {
   }
 
   deleteAnimation(){
+    if (confirm("Delete this animation?")) {
     this.lists.deleteAnimation(this.animation.id).subscribe(
       () => {
         this.router.navigateByUrl("/");
       }
     );
+    }
   }
 }

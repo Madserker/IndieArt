@@ -50,11 +50,13 @@ export class ComicDetailsComponent implements OnInit {
   }
 
   deleteComic(){
+    if (confirm("Delete this comic?")) {
     this.lists.deleteComic(this.comic.id).subscribe(
       () => {
         this.router.navigateByUrl("/");
       }
     );
+    }
   }
 
 

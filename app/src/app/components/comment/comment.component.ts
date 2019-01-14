@@ -20,11 +20,12 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment(){
+    if (confirm("Delete this comment?")) {
     this.commentsService.deleteComment(this.comment.id).subscribe(
       () => {
         this.commentDeleted.emit(this.comment);//notifica al padre y actualiza la lista de comentarios
       }
     );
-    
+    }
   }
 }
