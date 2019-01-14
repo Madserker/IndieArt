@@ -141,7 +141,7 @@ class DrawController extends Controller
  //buscamos si el usuario esta dentro del equipo
  $users=
  DB::table('team_user')
- ->where('team_user.team',$userA->username)
+ ->where('team_user.team',$art->author)
  ->select('team_user.user','team_user.role','team_user.created_at','team_user.admin')
  ->get();
 
