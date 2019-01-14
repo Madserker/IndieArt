@@ -89,8 +89,9 @@ uploadComic(form: NgForm){
       response =>{
         for(let tag of this.selectedFilters){
           console.log(response)
-          this.tagsService.addTag(response,tag).subscribe(res=>
-            window.location.reload()
+          this.tagsService.addTag(response,tag).subscribe(res=>{
+            window.location.reload()},
+            err=>{window.location.reload()}
             )
         }
         

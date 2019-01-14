@@ -6,6 +6,9 @@
   {{chapter.name}}
   </p>
   <button mat-menu-item class="watchButton" (click)="openModal()" id=button{{chapter.id}}>Read</button>
+  <button mat-menu-item class="watchButton" (click)="openModal()" id=button{{chapter.id}}
+  ng-if="isCurrentUser"
+  >Delete</button>
   </div>
   <app-chapter-viewer [pages]=pages [chapterId]=chapter.id></app-chapter-viewer>
 

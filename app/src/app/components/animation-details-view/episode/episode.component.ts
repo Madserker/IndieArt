@@ -8,6 +8,7 @@ import { Episode } from '../../../_models/Episode.interface';
 })
 export class EpisodeComponent implements OnInit {
 @Input() episode : Episode;
+@Input() isCurrentUser : boolean;
 opened :boolean = false;
   constructor() { }
 

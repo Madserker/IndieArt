@@ -9,10 +9,13 @@ import { Page } from '../../../_models/Page.interface';
 })
 export class ChapterComponent implements OnInit {
   @Input() chapter : Chapter;
+  @Input() isCurrentUser : boolean;
 
   pages : Page[];
   length;
   slideIndex = 1;
+
+
   constructor(private lists: ListsService) { }
 
   ngOnInit() {

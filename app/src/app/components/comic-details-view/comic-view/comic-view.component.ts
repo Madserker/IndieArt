@@ -61,6 +61,8 @@ export class ComicViewComponent implements OnInit {
       this.lists.getComicById(this.id)
       .subscribe(result => {
       this.comic = result as Comic
+
+      //check is is the current user
       if(this.comic.author==this.currentUser.username){
         this.isCurrentUser=true
       }else{
