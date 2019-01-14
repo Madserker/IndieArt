@@ -37,6 +37,14 @@ export class ChapterComponent implements OnInit {
   }
   
 
+
+  deleteChapter(){
+    this.lists.deleteChapter(this.chapter.id).subscribe(
+      () => {
+        window.location.reload();
+      }
+    );
+  }
   
   
 

@@ -485,4 +485,12 @@ getTeamUsers(username : string): Observable<TeamUser[]>{
     const token = this.authService.getToken();
     return this.http.delete(this.url+'/api/animation/' + id + '?token=' + token);
   }
+  deleteChapter(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete(this.url+'/api/chapter/' + id + '?token=' + token);
+  }
+  deleteEpisode(id: number){
+    const token = this.authService.getToken();
+    return this.http.delete(this.url+'/api/episode/' + id + '?token=' + token);
+  }
 } 

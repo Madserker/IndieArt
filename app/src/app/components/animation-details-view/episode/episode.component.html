@@ -6,7 +6,7 @@
 {{episode.name}}
 </p>
 <button mat-menu-item class="watchButton" (click)="openVideo()" id=button{{episode.id}}>Watch</button>
-<button mat-menu-item ng-if="isCurrentUser" class="watchButton" (click)="openVideo()" id=button{{episode.id}}>Delete</button>
+<button mat-menu-item ng-if="isCurrentUser" class="watchButton" (click)="deleteEpisode()">Delete</button>
 </div>
 
 <div id=video{{episode.id}} class="video">
