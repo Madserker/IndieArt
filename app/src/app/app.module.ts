@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+
 
 import {RouterModule, Route} from '@angular/router';
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { ListsViewComponent } from './components/lists-view/lists-view.component
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { ProfileViewComponent } from './components/profile/profile-view/profile-view.component';
 import { ProfileViewImageComponent } from './components/profile/profile-view-image/profile-view-image.component';
@@ -156,6 +159,7 @@ const routes : Route[] = [
     
   ],
   imports: [
+    SweetAlert2Module.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
@@ -163,6 +167,7 @@ const routes : Route[] = [
     FormsModule, 
     HttpClientModule,
     HttpModule,
+    InfiniteScrollModule,
     
     RouterModule.forRoot(routes) //le pasamos las rutas disponibles en la aplicación
   ],

@@ -16,10 +16,11 @@ Servidor socket.io
 localhost:3000
 
 #START APP
-cd Frontend
+
+cd app
 ng serve
 
-cd Frontend/Backend
+cd app/Backend
 php artisan serve
 
 cd chat

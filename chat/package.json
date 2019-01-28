@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "socket.io": "^1.7.4"
+    "socket.io": "^1.7.4",
+    "sweetalert2": "^8.0.1"
   }
 }

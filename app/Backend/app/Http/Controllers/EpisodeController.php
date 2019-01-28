@@ -40,7 +40,7 @@ class EpisodeController extends Controller
    
 
 
-        if($userA->username != $animation->author){
+        if($userA->username == $animation->author){
             $isCurrentUser=true;
         }
 

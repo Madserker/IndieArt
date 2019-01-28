@@ -20,6 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //CREAMOS LAS RUTAS DE LA API DEL BACKEND
 
+Route::get('/arts',[
+    'middleware' => 'cors',
+    'uses'=>'ArtController@getArts_Filtered_Sorted_Searched_Paginated'
+]);
+
+
 //===========================================================================================RUTAS PARA DRAW
 Route::post('/draw',[
     'middleware' => 'cors',

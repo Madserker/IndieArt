@@ -12,6 +12,7 @@ use App\Tag;
 use DB;
 use JWTAuth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
 
 
 class ArtController extends Controller
@@ -20,15 +21,12 @@ class ArtController extends Controller
         if(! $user = JWTAuth::parseToken()->authenticate()){//authenticate() confirms that the token is valid 
             return response()->json(['message' => 'User not found'],404); //si no hay token o no es correcto lanza un error
         }
-        
         $user = User::find($request->input('username'));
 
         //si ya hemos votado la publicacion, sobreescribimos
         $mark=Mark::where('user', $request->input('username'))
         ->where('art_id', $request->input('art_id'))
-        ->delete();
-
-        
+        ->delete();  
 
         $mark = new Mark();
         $mark->score = $request->input('score');
@@ -37,12 +35,10 @@ class ArtController extends Controller
         $mark->save();
         return response()->json(['mark' => $mark], 201);//retornamos 201
 
-
          return response()->json(['message' => 'Already scored that art'],404); //si ya seguimos al usuario, lanzamos error
     }
 
     public function getScore($id){
-
         $score = $this->calculateScore($id);
 
         $response = [
@@ -207,5 +203,60 @@ public static function getTags($art_id){
 
     }
 
+
+
+
+    // public function getArts_Filtered_Sorted_Searched_Paginated($filters,$sort,$search,$type,$page){
+    public function getArts_Filtered_Sorted_Searched_Paginated(){
+        // $filters = $request->input('filters');
+        // $sort = $request->input('sort');
+        // $search = $request->input('search');
+        // $type = $request->input('type');
+        // $page = $request->input('page'); //each page has 30 items
+
+        $filters = Input::get('filters',[]);
+        $type = Input::get('type',1);
+
+        if($type==1){
+            $arts = DB::table('draws')->join('arts','arts.id','=','draws.id')->get();
+        }
+        else if($type==2){
+            $arts = DB::table('comics')->join('arts','arts.id','=','comics.id')->get();
+        }
+        else if($type==3){
+            $arts = DB::table('animations')->join('arts','arts.id','=','animations.id')->get();
+        }
+
+        //$arts = $this->applySearch($this->sort($this->applyFilters($arts,$filters),$sort),$search);
+        $arts = $this->applyFilters($arts,$filters);
+        //get arts[$page * 30 , 30]
+
+        $response = [
+            'arts' => $arts
+        ];
+        $headers = ['Content-Type' => 'application/json; charset=UTF-8',
+        'charset' => 'utf-8'];
+        return response()->json($response, 201,$headers);//retornamos 201
+    }
     
+    public function applyFilters($arts,$filters){
+        $filtered = [];
+        $found=true;
+        //si no hay ningun filtro, hacer un get de todos
+        if(count($filters) == 0){
+            return $arts;
+        }
+        else{
+          for($i=0;$i<count($arts);$i++){//draw
+            $found=false;
+            $tags = $this->getTags($arts[$i]->id)->tags;
+            for($e=0;$e<count($tags);$e++){
+                if(in_array($tags[$e],$filters) && !$found){
+                    array_push($filtered,$arts[$i]);
+                    $found = true;
+                }
+            }
+          }
+        }
+    }
 }

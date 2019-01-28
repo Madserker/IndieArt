@@ -48,7 +48,6 @@ class UserController extends Controller
 
 //==============================================================LOGIN/REGISTER METHODS
     public function signup(Request $request){
-
         $randomPic = ['src/assets/storage/profile1.jpg','src/assets/storage/profile2.png',
         'src/assets/storage/profile3.png','src/assets/storage/profile4.jpg',
         'src/assets/storage/profile5.jpg','src/assets/storage/profile6.jpg'];
@@ -67,8 +66,7 @@ class UserController extends Controller
         ),
 
         'real_name' => array(
-            'required',
-            'regex:/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/u'
+            'required'
         ),
         
         'username' => array(
@@ -76,7 +74,9 @@ class UserController extends Controller
             'regex:/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/u'
             //regex: no puede empezar ni por . ni por _ ni acabar por . ni _ , tiene que tener entre 3 y 20 caracteres 
         )
-        ]);
+        ]
+    );
+
         $author = new Author([
             'profile_picture' => array_random($randomPic),//default image
             'username' => $request->input('username'),

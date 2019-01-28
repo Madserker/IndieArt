@@ -173,7 +173,7 @@ class ComicController extends Controller
      }
  }
 
- if($userA->username != $art->author){
+ if($userA->username == $art->author){
      $isCurrentUser=true;
  }
 if($isCurrentUser){

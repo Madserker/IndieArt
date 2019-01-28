@@ -151,7 +151,7 @@ class DrawController extends Controller
      }
  }
    
-        if($userA->username != $art->author){
+        if($userA->username == $art->author){
             $isCurrentUser=true;
         }
 
@@ -265,4 +265,6 @@ public function getDrawsOrderByScore(){
         'charset' => 'utf-8'];
         return response()->json($response, 200, $headers);
     }
+
+    
 }
