@@ -67,8 +67,8 @@ interface getTeamUsers{
 @Injectable()
 export class ListsService {
 
-  //url = "http://192.168.1.66:8000" // serve --host 0.0.0.0
-  url = "http://localhost:8000" // localhost
+  url = "http://192.168.1.66:8000" // serve --host 0.0.0.0
+  //url = "http://localhost:8000" // localhost
 
  constructor(private http: HttpClient, private authService: AuthService){}
 

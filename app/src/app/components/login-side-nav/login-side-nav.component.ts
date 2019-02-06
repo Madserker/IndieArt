@@ -56,7 +56,7 @@ export class LoginSideNavComponent implements OnInit {
 
   openRegister() {
     document.getElementById("sn").style.width = "250px";
-    document.getElementById("sn").style.height = "560px";
+    document.getElementById("sn").style.height = "610px";
     this.register=true;
 }
 
